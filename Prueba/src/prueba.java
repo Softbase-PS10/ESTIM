@@ -358,7 +358,7 @@ public class prueba {
 		filtros.add(comboBox_1);
 		
 		JButton btnNewButton_5 = new JButton("Aplicar");
-		btnNewButton_5.setBounds(84, 293, 66, 20);
+		btnNewButton_5.setBounds(20, 295, 66, 20);
 		filtros.add(btnNewButton_5);
 		
 		JFormattedTextField frmtdtxtfldValoracin = new JFormattedTextField();
