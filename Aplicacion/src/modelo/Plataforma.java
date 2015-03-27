@@ -1,10 +1,14 @@
 /*
- * GRUPO 10 - SOFTBASE
- * 		Alberto Blasco, Diego Galvez, Patricia Lazaro, Alejandro Marquez, 
- * 		Alejandro Royo, Jaime Ruiz-Borau
- * 
- * Summary: objeto que representa la informacion de una plataforma 
- * 			(identificador, nombre y alias)
+ * SOFTBASE - GRUPO 10
+ * AUTORES:
+ * 		-Alberto Blasco
+ * 		-Diego Galvez
+ * 		-Patricia Lazaro
+ * 		-Alejandro Marquez
+ * 		-Alejandro Royo
+ * 		-Jaime Ruiz-Borau
+ * DESCRIPCION: objeto que representa la informacion de una plataforma 
+ * 				(identificador, nombre y alias)
  */
 
 package modelo;

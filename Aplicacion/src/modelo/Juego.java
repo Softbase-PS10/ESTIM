@@ -1,11 +1,15 @@
 /*
- * GRUPO 10 - SOFTBASE
- * 		Alberto Blasco, Diego Galvez, Patricia Lazaro, Alejandro Marquez, 
- * 		Alejandro Royo, Jaime Ruiz-Borau
- * 
- * Summary: objeto que representa la informacion de un juego (id, titulo,
- * 			imagen, descripcion, lanzamiento, rating, genero, precio y 
- * 			plataforma)
+ * SOFTBASE - GRUPO 10
+ * AUTORES:
+ * 		-Alberto Blasco
+ * 		-Diego Galvez
+ * 		-Patricia Lazaro
+ * 		-Alejandro Marquez
+ * 		-Alejandro Royo
+ * 		-Jaime Ruiz-Borau
+ * DESCRIPCION: objeto que representa la informacion de un juego (id, titulo,
+ * 				imagen, descripcion, lanzamiento, rating, generos, precio y 
+ * 				plataforma)
  */
 
 package modelo;

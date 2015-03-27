@@ -1,10 +1,14 @@
 /*
- * GRUPO 10 - SOFTBASE
- * 		Alberto Blasco, Diego Galvez, Patricia Lazaro, Alejandro Marquez, 
- * 		Alejandro Royo, Jaime Ruiz-Borau
- * 
- * Summary: clase que encapsula las distintas sentencias SQL (Oracle) para
- * 			el acceso a la Base de Datos.
+ * SOFTBASE - GRUPO 10
+ * AUTORES:
+ * 		-Alberto Blasco
+ * 		-Diego Galvez
+ * 		-Patricia Lazaro
+ * 		-Alejandro Marquez
+ * 		-Alejandro Royo
+ * 		-Jaime Ruiz-Borau
+ * DESCRIPCION: clase que encapsula las distintas sentencias SQL (Oracle) para
+ * 				el acceso a la Base de Datos.
  */
 
 package modelo;
