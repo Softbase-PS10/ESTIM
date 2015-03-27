@@ -1,3 +1,19 @@
+/*
+ * SOFTBASE - GRUPO 10
+ * AUTORES:
+ * 		-Alberto Blasco
+ * 		-Diego Galvez
+ * 		-Patricia Lazaro
+ * 		-Alejandro Marquez
+ * 		-Alejandro Royo
+ * 		-Jaime Ruiz-Borau
+ * DESCRIPCION: clase que contiene la creacion de botones de las categorias,
+ * 				centralizando el comportamiento de dichos botones, que 
+ * 				sera el mismo en todas las pantallas.
+ * 				La barra de categorias es igual para todas las pantallas de 
+ * 				la app.
+ */
+
 package controlador;
 
 import java.awt.Color;
@@ -14,6 +30,9 @@ import vista.Principal;
 
 public class BotonesCategorias {
 
+	/**
+	 * @return
+	 */
 	public static JButton atras() {
 		JButton atras = new JButton("");
 		atras.setIcon(new ImageIcon(Principal.class
@@ -39,6 +58,10 @@ public class BotonesCategorias {
 		return atras;
 	}
 
+	/**
+	 * @return un boton que redirige a la pantalla de listados de juegos de
+	 *         PlayStation 3
+	 */
 	public static JButton ps3() {
 		JButton ps3 = new JButton("");
 		ps3.setIcon(new ImageIcon(Principal.class
@@ -64,6 +87,10 @@ public class BotonesCategorias {
 		return ps3;
 	}
 
+	/**
+	 * @return un boton que redirige a la pantalla de listado de juegos de
+	 *         PlayStation Vita
+	 */
 	public static JButton vita() {
 		JButton vita = new JButton("");
 		vita.setRolloverIcon(new ImageIcon(Principal.class
@@ -89,6 +116,10 @@ public class BotonesCategorias {
 		return vita;
 	}
 
+	/**
+	 * @return un boton que redirige a la pantalla de listado de juegos de Xbox
+	 *         ONE
+	 */
 	public static JButton xone() {
 		JButton xone = new JButton("");
 		xone.setIcon(new ImageIcon(Principal.class
@@ -114,6 +145,10 @@ public class BotonesCategorias {
 		return xone;
 	}
 
+	/**
+	 * @return un boton que redirige a la pantalla de listado de juegos de Xbox
+	 *         360
+	 */
 	public static JButton x360() {
 		JButton x360 = new JButton("");
 		x360.setRolloverIcon(new ImageIcon(Principal.class
@@ -139,6 +174,9 @@ public class BotonesCategorias {
 		return x360;
 	}
 
+	/**
+	 * @return un boton que redirige a la pantalla de listado de juegos de PC
+	 */
 	public static JButton pc() {
 		JButton pc = new JButton("");
 		pc.setIcon(new ImageIcon(Principal.class
@@ -165,6 +203,9 @@ public class BotonesCategorias {
 		return pc;
 	}
 
+	/**
+	 * @return un boton que redirige a la pantalla de listado de juegos de WiiU
+	 */
 	public static JButton wiiu() {
 		JButton wiiu = new JButton("");
 		wiiu.setRolloverIcon(new ImageIcon(Principal.class
@@ -191,6 +232,9 @@ public class BotonesCategorias {
 		return wiiu;
 	}
 
+	/**
+	 * @return un boton que redirige a la pantalla de listado de juegos de Wii
+	 */
 	public static JButton wii() {
 		JButton wii = new JButton("");
 		wii.setIcon(new ImageIcon(Principal.class
@@ -217,6 +261,10 @@ public class BotonesCategorias {
 		return wii;
 	}
 
+	/**
+	 * @return un boton que redirige a la pantalla de listado de juegos de
+	 *         Nintendo New 3DS
+	 */
 	public static JButton n3ds() {
 		JButton n3ds = new JButton("");
 		n3ds.setRolloverIcon(new ImageIcon(Principal.class
@@ -243,6 +291,10 @@ public class BotonesCategorias {
 		return n3ds;
 	}
 
+	/**
+	 * @return un boton que redirige a la pantalla de listado de juegos de
+	 *         PlayStation 4
+	 */
 	public static JButton ps4() {
 		JButton ps4 = new JButton("");
 		ps4.setRolloverIcon(new ImageIcon(Principal.class
@@ -270,6 +322,9 @@ public class BotonesCategorias {
 		return ps4;
 	}
 
+	/**
+	 * @return
+	 */
 	public static JButton adelante() {
 		JButton adelante = new JButton("");
 		adelante.setIcon(new ImageIcon(Principal.class

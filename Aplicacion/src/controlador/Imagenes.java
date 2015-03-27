@@ -1,12 +1,12 @@
 /*
  * SOFTBASE - GRUPO 10
  * AUTORES:
- * 		- Alberto Blasco
- * 		- Diego Galvez
- * 		- Patricia Lazaro
- * 		- Alejandro Marquez
- * 		- Alejandro Royo
- * 		- Jaime Ruiz-Borau
+ * 		-Alberto Blasco
+ * 		-Diego Galvez
+ * 		-Patricia Lazaro
+ * 		-Alejandro Marquez
+ * 		-Alejandro Royo
+ * 		-Jaime Ruiz-Borau
  * DESCRIPCION: clase para el tratamiento de imagenes. Tiene metodos para
  * 				la obtencion de imagenes a partir de URLs y el cambio de
  * 				dimensiones de imagenes

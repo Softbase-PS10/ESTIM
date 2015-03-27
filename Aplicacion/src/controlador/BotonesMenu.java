@@ -1,3 +1,16 @@
+/*
+ * SOFTBASE - GRUPO 10
+ * AUTORES:
+ * 		-Alberto Blasco
+ * 		-Diego Galvez
+ * 		-Patricia Lazaro
+ * 		-Alejandro Marquez
+ * 		-Alejandro Royo
+ * 		-Jaime Ruiz-Borau
+ * DESCRIPCION: clase que contiene la creacion de botones del menu de la
+ * 				pantalla principal, encapsulando su comportamiento
+ */
+
 package controlador;
 
 import java.awt.Color;
@@ -13,16 +26,19 @@ import vista.Principal;
 
 public class BotonesMenu {
 
+	/**
+	 * @return un boton que redirige a la pantalla de listado de juegos de New 3DS
+	 */
 	public static JButton menuN3DS() {
-		JButton button_7 = new JButton("");
-		button_7.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		button_7.setIcon(new ImageIcon(Principal.class
+		JButton n3ds = new JButton("");
+		n3ds.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		n3ds.setIcon(new ImageIcon(Principal.class
 				.getResource("/Imagenes/Menu/3ds.png")));
-		button_7.setBorder(new BevelBorder(BevelBorder.RAISED, Color.BLACK,
+		n3ds.setBorder(new BevelBorder(BevelBorder.RAISED, Color.BLACK,
 				Color.BLACK, Color.BLACK, Color.BLACK));
-		button_7.setBounds(596, 322, 246, 125);
+		n3ds.setBounds(596, 322, 246, 125);
 
-		button_7.addActionListener(new ActionListener() {
+		n3ds.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -31,19 +47,22 @@ public class BotonesMenu {
 			}
 		});
 
-		return button_7;
+		return n3ds;
 	}
 
+	/**
+	 * @return un boton que redirige a la pantalla de listado de juegos de la Wii
+	 */
 	public static JButton menuWii() {
-		JButton button_6 = new JButton("");
-		button_6.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		button_6.setIcon(new ImageIcon(Principal.class
+		JButton wii = new JButton("");
+		wii.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		wii.setIcon(new ImageIcon(Principal.class
 				.getResource("/Imagenes/Menu/wii.png")));
-		button_6.setBorder(new BevelBorder(BevelBorder.RAISED, Color.BLACK,
+		wii.setBorder(new BevelBorder(BevelBorder.RAISED, Color.BLACK,
 				Color.BLACK, Color.BLACK, Color.BLACK));
-		button_6.setBounds(313, 322, 246, 125);
+		wii.setBounds(313, 322, 246, 125);
 
-		button_6.addActionListener(new ActionListener() {
+		wii.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -52,19 +71,22 @@ public class BotonesMenu {
 			}
 		});
 
-		return button_6;
+		return wii;
 	}
 
+	/**
+	 * @return un boton que redirige a la pantalla de listado de juegos de la WiiU
+	 */
 	public static JButton menuWiiU() {
-		JButton button_5 = new JButton("");
-		button_5.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		button_5.setIcon(new ImageIcon(Principal.class
+		JButton wiiu = new JButton("");
+		wiiu.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		wiiu.setIcon(new ImageIcon(Principal.class
 				.getResource("/Imagenes/Menu/wiiu.png")));
-		button_5.setBorder(new BevelBorder(BevelBorder.RAISED, Color.BLACK,
+		wiiu.setBorder(new BevelBorder(BevelBorder.RAISED, Color.BLACK,
 				Color.BLACK, Color.BLACK, Color.BLACK));
-		button_5.setBounds(30, 322, 246, 125);
+		wiiu.setBounds(30, 322, 246, 125);
 
-		button_5.addActionListener(new ActionListener() {
+		wiiu.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -73,19 +95,22 @@ public class BotonesMenu {
 			}
 		});
 
-		return button_5;
+		return wiiu;
 	}
 
+	/**
+	 * @return un boton que redirige a la pantalla de listado de juegos de PC
+	 */
 	public static JButton menuPC() {
-		JButton button_4 = new JButton("");
-		button_4.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		button_4.setIcon(new ImageIcon(Principal.class
+		JButton pc = new JButton("");
+		pc.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		pc.setIcon(new ImageIcon(Principal.class
 				.getResource("/Imagenes/Menu/pc.png")));
-		button_4.setBorder(new BevelBorder(BevelBorder.RAISED, Color.BLACK,
+		pc.setBorder(new BevelBorder(BevelBorder.RAISED, Color.BLACK,
 				Color.BLACK, Color.BLACK, Color.BLACK));
-		button_4.setBounds(596, 176, 246, 125);
+		pc.setBounds(596, 176, 246, 125);
 
-		button_4.addActionListener(new ActionListener() {
+		pc.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -94,19 +119,22 @@ public class BotonesMenu {
 			}
 		});
 
-		return button_4;
+		return pc;
 	}
 
+	/**
+	 * @return un boton que redirige a la pantalla de listado de juegos de Xbox 360
+	 */
 	public static JButton menuX360() {
-		JButton button_3 = new JButton("");
-		button_3.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		button_3.setIcon(new ImageIcon(Principal.class
+		JButton x360 = new JButton("");
+		x360.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		x360.setIcon(new ImageIcon(Principal.class
 				.getResource("/Imagenes/Menu/xbox 360.png")));
-		button_3.setBorder(new BevelBorder(BevelBorder.RAISED, Color.BLACK,
+		x360.setBorder(new BevelBorder(BevelBorder.RAISED, Color.BLACK,
 				Color.BLACK, Color.BLACK, Color.BLACK));
-		button_3.setBounds(313, 176, 246, 125);
+		x360.setBounds(313, 176, 246, 125);
 
-		button_3.addActionListener(new ActionListener() {
+		x360.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -115,19 +143,22 @@ public class BotonesMenu {
 			}
 		});
 
-		return button_3;
+		return x360;
 	}
 
+	/**
+	 * @return un boton que redirige a la pantalla de listado de juegos de Xbox ONE
+	 */
 	public static JButton menuXONE() {
-		JButton button_2 = new JButton("");
-		button_2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		button_2.setIcon(new ImageIcon(Principal.class
+		JButton xone = new JButton("");
+		xone.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		xone.setIcon(new ImageIcon(Principal.class
 				.getResource("/Imagenes/Menu/xbox One.png")));
-		button_2.setBorder(new BevelBorder(BevelBorder.RAISED, Color.BLACK,
+		xone.setBorder(new BevelBorder(BevelBorder.RAISED, Color.BLACK,
 				Color.BLACK, Color.BLACK, Color.BLACK));
-		button_2.setBounds(30, 176, 246, 125);
+		xone.setBounds(30, 176, 246, 125);
 
-		button_2.addActionListener(new ActionListener() {
+		xone.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -136,19 +167,22 @@ public class BotonesMenu {
 			}
 		});
 
-		return button_2;
+		return xone;
 	}
 
+	/**
+	 * @return un boton que redirige a la pantalla de listado de juegos de PlayStation Vita
+	 */
 	public static JButton menuVita() {
-		JButton button_1 = new JButton("");
-		button_1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		button_1.setIcon(new ImageIcon(Principal.class
+		JButton vita = new JButton("");
+		vita.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		vita.setIcon(new ImageIcon(Principal.class
 				.getResource("/Imagenes/Menu/psvita.png")));
-		button_1.setBorder(new BevelBorder(BevelBorder.RAISED, Color.BLACK,
+		vita.setBorder(new BevelBorder(BevelBorder.RAISED, Color.BLACK,
 				Color.BLACK, Color.BLACK, Color.BLACK));
-		button_1.setBounds(596, 34, 246, 125);
+		vita.setBounds(596, 34, 246, 125);
 
-		button_1.addActionListener(new ActionListener() {
+		vita.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -157,19 +191,22 @@ public class BotonesMenu {
 			}
 		});
 
-		return button_1;
+		return vita;
 	}
 
+	/**
+	 * @return un boton que redirige a la pantalla de listado de juegos de PlayStation 3
+	 */
 	public static JButton menuPS3() {
-		JButton button = new JButton("");
-		button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		button.setIcon(new ImageIcon(Principal.class
+		JButton ps3 = new JButton("");
+		ps3.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		ps3.setIcon(new ImageIcon(Principal.class
 				.getResource("/Imagenes/Menu/ps3.png")));
-		button.setBorder(new BevelBorder(BevelBorder.RAISED, Color.BLACK,
+		ps3.setBorder(new BevelBorder(BevelBorder.RAISED, Color.BLACK,
 				Color.BLACK, Color.BLACK, Color.BLACK));
-		button.setBounds(313, 34, 246, 125);
+		ps3.setBounds(313, 34, 246, 125);
 
-		button.addActionListener(new ActionListener() {
+		ps3.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -178,20 +215,23 @@ public class BotonesMenu {
 			}
 		});
 
-		return button;
+		return ps3;
 	}
 
+	/**
+	 * @return un boton que redirige a la pantalla de listado de juegos de PlayStation 4
+	 */
 	public static JButton menuPS4() {
-		JButton btnNewButton_1 = new JButton("");
-		btnNewButton_1
+		JButton ps4 = new JButton("");
+		ps4
 				.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnNewButton_1.setBorder(new BevelBorder(BevelBorder.RAISED,
+		ps4.setBorder(new BevelBorder(BevelBorder.RAISED,
 				Color.BLACK, Color.BLACK, Color.BLACK, Color.BLACK));
-		btnNewButton_1.setIcon(new ImageIcon(Principal.class
+		ps4.setIcon(new ImageIcon(Principal.class
 				.getResource("/Imagenes/Menu/ps4.png")));
-		btnNewButton_1.setBounds(30, 34, 246, 125);
+		ps4.setBounds(30, 34, 246, 125);
 
-		btnNewButton_1.addActionListener(new ActionListener() {
+		ps4.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -200,6 +240,6 @@ public class BotonesMenu {
 			}
 		});
 
-		return btnNewButton_1;
+		return ps4;
 	}
 }

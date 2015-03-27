@@ -1,5 +1,15 @@
 /*
- * 
+ * SOFTBASE - GRUPO 10
+ * AUTORES:
+ * 		-Alberto Blasco
+ * 		-Diego Galvez
+ * 		-Patricia Lazaro
+ * 		-Alejandro Marquez
+ * 		-Alejandro Royo
+ * 		-Jaime Ruiz-Borau
+ * DESCRIPCION: clase que contiene la creacion de botones de diverso 
+ * 				proposito, centralizando el comportamiento de dichos
+ * 				botones, que sera el mismo en todas las pantallas.
  */
 
 package controlador;
@@ -12,11 +22,15 @@ import javax.swing.JButton;
 
 public class Botones {
 	
+	/**
+	 * @return el boton de 'Aplicar' filtros, con su comportamiento
+	 * implementado.
+	 */
 	public static JButton aplicarFiltros() {
-		JButton btnNewButton_5 = new JButton("Apply");
-		btnNewButton_5.setBounds(84, 293, 66, 20);
+		JButton aplicar = new JButton("Apply");
+		aplicar.setBounds(84, 293, 66, 20);
 
-		btnNewButton_5.addActionListener(new ActionListener() {
+		aplicar.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -25,15 +39,19 @@ public class Botones {
 			}
 		});
 
-		return btnNewButton_5;
+		return aplicar;
 	}
 
+	/**
+	 * @return el boton de 'Guardar' los cambios al modificar un
+	 * juego del catalogo.
+	 */
 	public static JButton save(){
-		JButton btnNewButton_1 = new JButton("Save");
-		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btnNewButton_1.setBounds(961, 427, 89, 33);
+		JButton salvar = new JButton("Save");
+		salvar.setFont(new Font("Tahoma", Font.BOLD, 13));
+		salvar.setBounds(961, 427, 89, 33);
 		
-		btnNewButton_1.addActionListener(new ActionListener() {
+		salvar.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -42,6 +60,6 @@ public class Botones {
 			}
 		});
 		
-		return btnNewButton_1;
+		return salvar;
 	}
 }

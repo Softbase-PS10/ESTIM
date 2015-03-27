@@ -1,3 +1,18 @@
+/*
+ * SOFTBASE - GRUPO 10
+ * AUTORES:
+ * 		-Alberto Blasco
+ * 		-Diego Galvez
+ * 		-Patricia Lazaro
+ * 		-Alejandro Marquez
+ * 		-Alejandro Royo
+ * 		-Jaime Ruiz-Borau
+ * DESCRIPCION: clase que contiene la creacion de botones de la cabecera,
+ * 				centralizando el comportamiento de dichos botones, que 
+ * 				sera el mismo en todas las pantallas.
+ * 				La cabecera es igual para todas las pantallas de la app.
+ */
+
 package controlador;
 
 import java.awt.Cursor;
@@ -12,15 +27,18 @@ import vista.Principal;
 
 public class BotonesCabecera {
 
+	/**
+	 * @return un boton de busqueda que obtiene lo escrito en un campo, lo
+	 *         procesa y redirige a la pantalla de listado de resultados.
+	 */
 	public static JButton buscar() {
-		JButton btnNewButton_4 = new JButton("");
-		btnNewButton_4
-				.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnNewButton_4.setIcon(new ImageIcon(Principal.class
+		JButton busqueda = new JButton("");
+		busqueda.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		busqueda.setIcon(new ImageIcon(Principal.class
 				.getResource("/Imagenes/B/buscar.png")));
-		btnNewButton_4.setBorder(null);
-		btnNewButton_4.setBounds(0, 0, 30, 30);
-		btnNewButton_4.addActionListener(new ActionListener() {
+		busqueda.setBorder(null);
+		busqueda.setBounds(0, 0, 30, 30);
+		busqueda.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -29,19 +47,23 @@ public class BotonesCabecera {
 			}
 		});
 
-		return btnNewButton_4;
+		return busqueda;
 	}
 
+	/**
+	 * @return un boton de ajuste/opciones que redirige a la pantalla de
+	 *         opciones de la aplicacion.
+	 */
 	public static JButton ajustes() {
-		JButton btnNewButton = new JButton("");
-		btnNewButton.setRolloverIcon(new ImageIcon(Principal.class
+		JButton ajustes = new JButton("");
+		ajustes.setRolloverIcon(new ImageIcon(Principal.class
 				.getResource("/Imagenes/B/ajustesP.png")));
-		btnNewButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnNewButton.setIcon(new ImageIcon(Principal.class
+		ajustes.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		ajustes.setIcon(new ImageIcon(Principal.class
 				.getResource("/Imagenes/B/settings.png")));
-		btnNewButton.setBounds(0, 0, 70, 70);
+		ajustes.setBounds(0, 0, 70, 70);
 
-		btnNewButton.addActionListener(new ActionListener() {
+		ajustes.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -50,9 +72,13 @@ public class BotonesCabecera {
 			}
 		});
 
-		return btnNewButton;
+		return ajustes;
 	}
 
+	/**
+	 * @return un boton del carro de la compra que implementa la funcion de
+	 *         'carrito de la compra' en la aplicacion.
+	 */
 	public static JButton carro() {
 		JButton carro = new JButton("");
 		carro.setRolloverIcon(new ImageIcon(Principal.class
@@ -74,6 +100,10 @@ public class BotonesCabecera {
 		return carro;
 	}
 
+	/**
+	 * @return un boton con el logo del producto que redirige al usuario a la
+	 *         pantalla de inicio de la app.
+	 */
 	public static JButton logo() {
 		JButton logo = new JButton("");
 		logo.setFocusPainted(false);
