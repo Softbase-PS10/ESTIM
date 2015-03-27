@@ -12,6 +12,29 @@ package modelo;
 public class Plataforma {
 
 	/* declaracion de atributos */
+
+	/* alias de las plataformas */
+	public static final String aliasXONE = "Xone";
+	public static final String alias3DS = "3DS";
+	public static final String aliasWiiU = "Wii U";
+	public static final String aliasPC = "PC";
+	public static final String aliasPS4 = "PS4";
+	public static final String aliasWii = "Wii";
+	public static final String aliasPS3 = "PS3";
+	public static final String aliasX360 = "X360";
+	public static final String aliasPSVita = "PSVita";
+
+	/* nombre de las plataformas */
+	public static final String XONE = "Microsoft Xbox One";
+	public static final String N3DS = "Nintendo 3DS";
+	public static final String WiiU = "Nintendo Wii U";
+	public static final String PC = "PC";
+	public static final String PS4 = "Sony Playstation 4";
+	public static final String Wii = "Nintendo Wii";
+	public static final String PS3 = "Sony Playstation 3";
+	public static final String X360 = "Microsoft Xbox 360";
+	public static final String PSVita = "Sony Playstation Vita";
+
 	private String nombre, alias;
 	private long id;
 
@@ -56,11 +79,12 @@ public class Plataforma {
 	public long getId() {
 		return id;
 	}
-	
+
 	/**
-	 * @param id : nuevo identificador de la plataforma
+	 * @param id
+	 *            : nuevo identificador de la plataforma
 	 */
-	public void setId(long id){
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -72,7 +96,8 @@ public class Plataforma {
 	}
 
 	/**
-	 * @param nombre : nuevo nombre de la plataforma
+	 * @param nombre
+	 *            : nuevo nombre de la plataforma
 	 */
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
@@ -86,7 +111,8 @@ public class Plataforma {
 	}
 
 	/**
-	 * @param alias : nuevo alias de la plataforma
+	 * @param alias
+	 *            : nuevo alias de la plataforma
 	 */
 	public void setAlias(String alias) {
 		this.alias = alias;

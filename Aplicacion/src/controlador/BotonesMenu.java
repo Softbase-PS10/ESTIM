@@ -22,6 +22,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.border.BevelBorder;
 
+import modelo.Plataforma;
 import vista.Principal;
 
 public class BotonesMenu {
@@ -38,14 +39,7 @@ public class BotonesMenu {
 				Color.BLACK, Color.BLACK, Color.BLACK));
 		n3ds.setBounds(596, 322, 246, 125);
 
-		n3ds.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-		});
+		n3ds.addActionListener(new PlatformListener(Plataforma.alias3DS));
 
 		return n3ds;
 	}
@@ -62,14 +56,7 @@ public class BotonesMenu {
 				Color.BLACK, Color.BLACK, Color.BLACK));
 		wii.setBounds(313, 322, 246, 125);
 
-		wii.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-		});
+		wii.addActionListener(new PlatformListener(Plataforma.aliasWii));
 
 		return wii;
 	}
@@ -86,14 +73,7 @@ public class BotonesMenu {
 				Color.BLACK, Color.BLACK, Color.BLACK));
 		wiiu.setBounds(30, 322, 246, 125);
 
-		wiiu.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-		});
+		wiiu.addActionListener(new PlatformListener(Plataforma.aliasWiiU));
 
 		return wiiu;
 	}
@@ -110,14 +90,7 @@ public class BotonesMenu {
 				Color.BLACK, Color.BLACK, Color.BLACK));
 		pc.setBounds(596, 176, 246, 125);
 
-		pc.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-		});
+		pc.addActionListener(new PlatformListener(Plataforma.aliasPC));
 
 		return pc;
 	}
@@ -134,14 +107,7 @@ public class BotonesMenu {
 				Color.BLACK, Color.BLACK, Color.BLACK));
 		x360.setBounds(313, 176, 246, 125);
 
-		x360.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-		});
+		x360.addActionListener(new PlatformListener(Plataforma.aliasX360));
 
 		return x360;
 	}
@@ -158,14 +124,7 @@ public class BotonesMenu {
 				Color.BLACK, Color.BLACK, Color.BLACK));
 		xone.setBounds(30, 176, 246, 125);
 
-		xone.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-		});
+		xone.addActionListener(new PlatformListener(Plataforma.aliasXONE));
 
 		return xone;
 	}
@@ -182,14 +141,7 @@ public class BotonesMenu {
 				Color.BLACK, Color.BLACK, Color.BLACK));
 		vita.setBounds(596, 34, 246, 125);
 
-		vita.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-		});
+		vita.addActionListener(new PlatformListener(Plataforma.aliasPSVita));
 
 		return vita;
 	}
@@ -206,14 +158,7 @@ public class BotonesMenu {
 				Color.BLACK, Color.BLACK, Color.BLACK));
 		ps3.setBounds(313, 34, 246, 125);
 
-		ps3.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-		});
+		ps3.addActionListener(new PlatformListener(Plataforma.aliasPS3));
 
 		return ps3;
 	}
@@ -231,14 +176,7 @@ public class BotonesMenu {
 				.getResource("/Imagenes/Menu/ps4.png")));
 		ps4.setBounds(30, 34, 246, 125);
 
-		ps4.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-		});
+		ps4.addActionListener(new PlatformListener(Plataforma.aliasPS4));
 
 		return ps4;
 	}

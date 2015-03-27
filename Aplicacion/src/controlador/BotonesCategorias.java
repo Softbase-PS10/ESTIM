@@ -26,6 +26,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.border.LineBorder;
 
+import modelo.Plataforma;
 import vista.Principal;
 
 public class BotonesCategorias {
@@ -76,13 +77,7 @@ public class BotonesCategorias {
 		ps3.setBorder(new LineBorder(new Color(0, 0, 0)));
 		ps3.setBounds(212, 0, 106, 30);
 
-		ps3.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO codigo de ir a lista de ps3
-			}
-		});
+		ps3.addActionListener(new PlatformListener(Plataforma.aliasPS3));
 
 		return ps3;
 	}
@@ -105,13 +100,7 @@ public class BotonesCategorias {
 		vita.setBorder(new LineBorder(new Color(0, 0, 0)));
 		vita.setBounds(318, 0, 106, 30);
 
-		vita.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO codigo de ir a lista de vita
-			}
-		});
+		vita.addActionListener(new PlatformListener(Plataforma.aliasPSVita));
 
 		return vita;
 	}
@@ -134,13 +123,7 @@ public class BotonesCategorias {
 		xone.setBorder(new LineBorder(new Color(0, 0, 0)));
 		xone.setBounds(424, 0, 106, 30);
 
-		xone.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO codigo de ir a lista de xone
-			}
-		});
+		xone.addActionListener(new PlatformListener(Plataforma.aliasXONE));
 
 		return xone;
 	}
@@ -163,13 +146,7 @@ public class BotonesCategorias {
 		x360.setBorder(new LineBorder(new Color(0, 0, 0)));
 		x360.setBounds(530, 0, 106, 30);
 
-		x360.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO codigo de ir a lista de x360
-			}
-		});
+		x360.addActionListener(new PlatformListener(Plataforma.aliasX360));
 
 		return x360;
 	}
@@ -191,14 +168,7 @@ public class BotonesCategorias {
 		pc.setBorder(new LineBorder(new Color(0, 0, 0)));
 		pc.setBounds(636, 0, 106, 30);
 
-		pc.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-		});
+		pc.addActionListener(new PlatformListener(Plataforma.aliasPC));
 
 		return pc;
 	}
@@ -220,14 +190,7 @@ public class BotonesCategorias {
 		wiiu.setBorder(new LineBorder(new Color(0, 0, 0)));
 		wiiu.setBounds(742, 0, 106, 30);
 
-		wiiu.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-		});
+		wiiu.addActionListener(new PlatformListener(Plataforma.aliasWiiU));
 
 		return wiiu;
 	}
@@ -249,14 +212,7 @@ public class BotonesCategorias {
 		wii.setBorder(new LineBorder(new Color(0, 0, 0)));
 		wii.setBounds(848, 0, 106, 30);
 
-		wii.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-		});
+		wii.addActionListener(new PlatformListener(Plataforma.aliasWii));
 
 		return wii;
 	}
@@ -279,14 +235,7 @@ public class BotonesCategorias {
 		n3ds.setBorder(new LineBorder(new Color(0, 0, 0)));
 		n3ds.setBounds(954, 0, 106, 30);
 
-		n3ds.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-		});
+		n3ds.addActionListener(new PlatformListener(Plataforma.alias3DS));
 
 		return n3ds;
 	}
@@ -310,14 +259,7 @@ public class BotonesCategorias {
 		ps4.setBorder(new LineBorder(new Color(0, 0, 0)));
 		ps4.setBounds(106, 0, 106, 30);
 
-		ps4.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-		});
+		ps4.addActionListener(new PlatformListener(Plataforma.aliasPS4));
 
 		return ps4;
 	}
