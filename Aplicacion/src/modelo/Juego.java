@@ -10,11 +10,14 @@
 
 package modelo;
 
+import java.util.ArrayList;
+
 public class Juego {
 
 	/* declaracion de atributos */
 	private long id;
-	private String titulo, imagen, descripcion, lanzamiento, rating, genero;
+	private ArrayList<String> genero;
+	private String titulo, imagen, descripcion, lanzamiento, rating;
 	private int precio;
 	private Plataforma plataforma;
 
@@ -32,14 +35,14 @@ public class Juego {
 	 * @param rating
 	 *            : valoracion del juego
 	 * @param genero
-	 *            : genero al que pertenece el juego
+	 *            : generos a los que pertenece el juego
 	 * @param precio
 	 *            : precio del juego
 	 * @param plataforma
 	 *            : plataforma en la que se encuentra disponibles
 	 */
 	public Juego(String titulo, String imagen, String descripcion,
-			String lanzamiento, String rating, String genero, int precio,
+			String lanzamiento, String rating, ArrayList<String> genero, int precio,
 			Plataforma plataforma) {
 
 		this.id = new Sentencias().obtenerUltimoIdJuego() + 1;
@@ -63,7 +66,7 @@ public class Juego {
 		this.descripcion = "";
 		this.lanzamiento = "";
 		this.rating = "";
-		this.genero = "";
+		this.genero = new ArrayList<String>();
 		this.precio = 0;
 		this.plataforma = new Plataforma();
 	}
@@ -79,7 +82,7 @@ public class Juego {
 		this.descripcion = "";
 		this.lanzamiento = "";
 		this.rating = "";
-		this.genero = "";
+		this.genero = new ArrayList<String>();
 		this.precio = 0;
 		this.plataforma = new Plataforma();
 	}
@@ -176,16 +179,16 @@ public class Juego {
 	}
 
 	/**
-	 * @return el genero del juego
+	 * @return los generos del juego
 	 */
-	public String getGenero() {
+	public ArrayList<String> getGenero() {
 		return genero;
 	}
 
 	/**
-	 * @param genero : nuevo genero del juego
+	 * @param genero : nuevos generos del juego
 	 */
-	public void setGenero(String genero) {
+	public void setGenero(ArrayList<String> genero) {
 		this.genero = genero;
 	}
 

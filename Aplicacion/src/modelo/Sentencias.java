@@ -91,7 +91,7 @@ public class Sentencias {
 	 */
 	public ArrayList<Juego> listarJuegosGenero(String genero) {
 		return listarJuegos(" AND GENERO = '" + genero + "'");
-	}
+	} 
 
 	/**
 	 * @param nomP
@@ -138,8 +138,8 @@ public class Sentencias {
 	 *         coinciden con @param query
 	 */
 	private ArrayList<Juego> listarJuegos(String query) {
-		String q = "SELECT * FROM JUEGO, GENERO, PLATAFORMA, JUEGO_PLATAFORMA WHERE GENERO.IDJUEGO = JUEGO.ID AND "
-				+ "JUEGO.ID = JUEGO_PLATAFORMA.IDJUEGO AND PLATAFORMA.ID = JUEGO_PLATAFORMA.IDPLATAFORMA"
+		String q = "SELECT * FROM JUEGO, PLATAFORMA, JUEGO_PLATAFORMA, JUEGO_GENERO WHERE "
+				+ "JUEGO.ID = JUEGO_PLATAFORMA.JUEGO AND PLATAFORMA.ID = JUEGO_PLATAFORMA.PLATAFORMA"
 				+ query;
 		Statement st;
 		ArrayList<Juego> js = new ArrayList<Juego>();
@@ -147,23 +147,33 @@ public class Sentencias {
 			st = connection.createStatement();
 			ResultSet resul = st.executeQuery(q);
 			Juego j;
-
+			ArrayList<String> gen = new ArrayList<String>();
+			ResultSet res;
 			while (!resul.isClosed() && resul.next()) {
 				j = new Juego(resul.getLong("id"));
 				j.setTitulo(resul.getString("titulo"));
-				j.setDescripcion(resul.getString("descripcion"));
+				j.setDescripcion(resul.getString("resumen"));
 				j.setImagen(resul.getString("imagen"));
 				j.setLanzamiento(resul.getString("lanzamiento"));
 				j.setPrecio(resul.getInt("precio"));
 				j.setRating(resul.getString("rating"));
-				j.setGenero(resul.getString("genero"));
+				
+				q = "SELECT * FROM JUEGO_GENERO WHERE ID = '"+j.getId()+"'";
+				res = st.executeQuery(q);
+				while (!res.isClosed() && res.next()) {
+					gen.add(res.getString("genero"));
+				}
+				j.setGenero(gen);
+				
+				
 				j.setPlataforma(new Plataforma(resul.getString("nombre"), resul
 						.getString("alias")));
 				js.add(j);
+				gen = new ArrayList<String>();
 			}
 		} catch (SQLException ex) {
 			if (ex.getSQLState().startsWith("23"))
-				System.err.println("Entrada duplicada");
+				System.out.println("Entrada duplicada");
 
 			else
 				ex.printStackTrace();
@@ -256,7 +266,7 @@ public class Sentencias {
 	 */
 	public void borrarJuego(long id) {
 		try {
-			String query = "DELETE from GENERO WHERE IDJUEGO=" + id + ";";
+			String query = "DELETE from GENERO WHERE ID=" + id + ";";
 			Statement st = null;
 			try {
 				st = connection.createStatement();
@@ -279,7 +289,7 @@ public class Sentencias {
 	public void borrarPlataforma(long id) {
 
 		try {
-			String query = "DELETE FROM juego_plataforma WHERE IDPLATAFORMA="
+			String query = "DELETE FROM juego_plataforma WHERE PLATAFORMA="
 					+ id + ";";
 			Statement st = null;
 			try {
@@ -309,7 +319,7 @@ public class Sentencias {
 		/* insercion de la informacion en la tabla de juegos */
 
 		String queryString = "INSERT INTO juego "
-				+ "(id,titulo,imagen,precio,descripcion,lanzamiento,rating) "
+				+ "(id,titulo,imagen,precio,resumen,lanzamiento,rating) "
 				+ "VALUES (?,?,?,?,?,?,?)";
 		try {
 			PreparedStatement preparedStatement = connection
@@ -333,30 +343,30 @@ public class Sentencias {
 		}
 
 		/* insercion de la informacion en la tabla de generos */
+		for(String g:juego.getGenero()){
+			queryString = "INSERT INTO genero (id,genero) VALUES (?,?)";
 
-		queryString = "INSERT INTO genero (idjuego,genero) VALUES (?,?)";
+			try {
+				PreparedStatement preparedStatement = connection
+						.prepareStatement(queryString);
 
-		try {
-			PreparedStatement preparedStatement = connection
-					.prepareStatement(queryString);
+				preparedStatement.setLong(1, juego.getId());
+				preparedStatement.setString(2, g);
 
-			preparedStatement.setLong(1, juego.getId());
-			preparedStatement.setString(2, juego.getGenero());
-
-			preparedStatement.execute();
-		} catch (SQLException ex) {
-			if (ex.getSQLState().startsWith("23"))
-				System.out.println("Entrada duplicada");
-
-			else
-				ex.printStackTrace();
+				preparedStatement.execute();
+			} catch (SQLException ex) {
+				if (ex.getSQLState().startsWith("23"))
+					System.out.println("Entrada duplicada");
+				else
+					ex.printStackTrace();
+			}
 		}
-
+		
 		insertarPlataforma(juego.getPlataforma());
 
 		/* insercion de la informacion en la tabla juego_plataforma */
 
-		queryString = "INSERT INTO juego_plataforma (idjuego,idplataforma) VALUES (?,?)";
+		queryString = "INSERT INTO juego_plataforma (juego,plataforma) VALUES (?,?)";
 
 		try {
 			PreparedStatement preparedStatement = connection
@@ -411,11 +421,11 @@ public class Sentencias {
 			juego.setDescripcion(juego.getDescripcion().substring(0, 2497)
 					+ "...");
 
-		String queryString = "UPDATE juego, genero, juego_plataforma "
-				+ "SET titulo = ?,imagen = ?,precio = ?,descripcion = ?,lanzamiento = ?,rating = ?, genero = ?, "
-				+ "JUEGO_PLATAFORMA.IDPLATAFORMA = ? "
-				+ "WHERE JUEGO.ID = GENERO.IDJUEGO AND JUEGO.ID = '"
-				+ juego.getId() + "' AND JUEGO.ID = JUEGO_PLATAFORMA.IDJUEGO";
+		String queryString = "UPDATE juego, juego_plataforma "
+				+ "SET titulo = ?,imagen = ?,precio = ?,resumen = ?,lanzamiento = ?,rating = ?, "
+				+ "JUEGO_PLATAFORMA.PLATAFORMA = ? "
+				+ "WHERE JUEGO.ID = '"
+				+ juego.getId() + "' AND JUEGO.ID = JUEGO_PLATAFORMA.JUEGO";
 		try {
 			PreparedStatement preparedStatement = connection
 					.prepareStatement(queryString);
@@ -426,9 +436,7 @@ public class Sentencias {
 			preparedStatement.setString(4, juego.getDescripcion());
 			preparedStatement.setString(5, juego.getLanzamiento());
 			preparedStatement.setString(6, juego.getRating());
-			preparedStatement.setString(7, juego.getGenero());
-			preparedStatement.setLong(8, juego.getPlataforma().getId());
-
+			preparedStatement.setLong(7, juego.getPlataforma().getId());
 			preparedStatement.execute();
 
 		} catch (SQLException ex) {
@@ -439,6 +447,29 @@ public class Sentencias {
 				ex.printStackTrace();
 		}
 
+		
+		for(String g:juego.getGenero()){
+			String query = "DELETE FROM juego_genero WHERE ID="
+					+ juego.getId() + ";";
+			try {
+			Statement st = connection.createStatement();
+			st.execute(query);
+			
+			queryString = "INSERT INTO genero (id,genero) VALUES (?,?)";
+
+			PreparedStatement preparedStatement = connection.prepareStatement(queryString);
+
+			preparedStatement.setLong(1, juego.getId());
+			preparedStatement.setString(2, g);
+
+			preparedStatement.execute();
+			} catch (SQLException ex) {
+				if (ex.getSQLState().startsWith("23"))
+					System.out.println("Entrada duplicada");
+				else
+					ex.printStackTrace();
+			}
+		}
 	}
 
 	/**
@@ -491,7 +522,7 @@ public class Sentencias {
 	 * @return el identificador de la ultima plataforma
 	 */
 	public long obtenerUltimoIdPlataforma() {
-		String q = "SELECT ID FROM JUEGO WHERE ROWNUM = 1 ORDER BY ID DESc";
+		String q = "SELECT ID FROM PLATAFORMA WHERE ROWNUM = 1 ORDER BY ID DESC";
 		Statement st;
 		long id = -1;
 		try {
