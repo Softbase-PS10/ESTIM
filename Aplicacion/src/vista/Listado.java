@@ -7,7 +7,6 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -18,14 +17,11 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.LineBorder;
-
 import controlador.Botones;
 import controlador.BotonesCabecera;
 import controlador.BotonesCategorias;
 
-
 public class Listado {
-
 	private JFrame frmPantallaPrincipal;
 	private JTextField txtBuscar;
 	private JTextField precioMinimo;
@@ -62,7 +58,8 @@ public class Listado {
 	private void initialize() {
 		frmPantallaPrincipal = new JFrame();
 		frmPantallaPrincipal.setTitle("Listado de juegos - Estim");
-		frmPantallaPrincipal.setIconImage(Toolkit.getDefaultToolkit().getImage(Listado.class.getResource("/Imagenes/E.png")));
+		frmPantallaPrincipal.setIconImage(Toolkit.getDefaultToolkit().getImage(
+				Listado.class.getResource("/Imagenes/E.png")));
 		frmPantallaPrincipal.setResizable(false);
 		frmPantallaPrincipal.setBounds(100, 100, 1066, 600);
 		frmPantallaPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -88,7 +85,6 @@ public class Listado {
 		lupaBuscar.setBounds(841, 20, 30, 30);
 		cabecera.add(lupaBuscar);
 		lupaBuscar.setLayout(null);
-		
 		lupaBuscar.add(BotonesCabecera.buscar());
 		
 		JPanel opciones = new JPanel();
@@ -96,7 +92,7 @@ public class Listado {
 		opciones.setBounds(920, 0, 70, 70);
 		cabecera.add(opciones);
 		opciones.setLayout(null);
-
+		
 		opciones.add(BotonesCabecera.ajustes());
 		
 		JPanel carrito = new JPanel();
@@ -157,7 +153,6 @@ public class Listado {
 		precioMinimo.setBounds(20, 73, 51, 20);
 		filtros.add(precioMinimo);
 		precioMinimo.setColumns(10);
-		
 		JFormattedTextField textToPrecio = new JFormattedTextField();
 		textToPrecio.setText("to");
 		textToPrecio.setOpaque(false);
@@ -236,7 +231,6 @@ public class Listado {
 		valoracionMaxima.setColumns(10);
 		valoracionMaxima.setBounds(99, 252, 51, 20);
 		filtros.add(valoracionMaxima);
-		
 		filtros.add(Botones.aplicarFiltros());
 		
 		JPanel principal = new JPanel();
@@ -254,7 +248,8 @@ public class Listado {
 		caratula_1.setBounds(8, 6, 130, 183);
 		resultado_1.add(caratula_1);
 		caratula_1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		caratula_1.setBorder(new BevelBorder(BevelBorder.RAISED, Color.BLACK, Color.BLACK, Color.BLACK, Color.BLACK));
+		caratula_1.setBorder(new BevelBorder(BevelBorder.RAISED, Color.BLACK,
+				Color.BLACK, Color.BLACK, Color.BLACK));
 		
 		JFormattedTextField precio = new JFormattedTextField();
 		precio.setText("60 \u20AC");
@@ -317,7 +312,7 @@ public class Listado {
 		resultado_1.add(fecha);
 		
 		JFormattedTextField plataformas = new JFormattedTextField();
-		plataformas.setText("PC, PS3,  X360");
+		plataformas.setText("PC, PS3, X360");
 		plataformas.setOpaque(false);
 		plataformas.setForeground(Color.WHITE);
 		plataformas.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -349,8 +344,10 @@ public class Listado {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
+		
 		caratula_2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		caratula_2.setBorder(new BevelBorder(BevelBorder.RAISED, Color.BLACK, Color.BLACK, Color.BLACK, Color.BLACK));
+		caratula_2.setBorder(new BevelBorder(BevelBorder.RAISED, Color.BLACK,
+				Color.BLACK, Color.BLACK, Color.BLACK));
 		
 		JFormattedTextField precio_1 = new JFormattedTextField();
 		precio_1.setText("59.95 \u20AC");
@@ -434,7 +431,8 @@ public class Listado {
 		
 		JLabel fondoAzul = new JLabel("New label");
 		fondoAzul.setBounds(0, 0, 870, 471);
-		fondoAzul.setIcon(new ImageIcon(Listado.class.getResource("/Imagenes/blis.jpg")));
+		fondoAzul.setIcon(new ImageIcon(Listado.class
+				.getResource("/Imagenes/blis.jpg")));
 		principal.add(fondoAzul);
 		
 		JPanel ordenacion = new JPanel();
@@ -456,7 +454,6 @@ public class Listado {
 		JComboBox ordenacionMulti = new JComboBox();
 		ordenacionMulti.setBounds(909, 11, 118, 17);
 		ordenacion.add(ordenacionMulti);
-		
 		JFormattedTextField txtOrdenar = new JFormattedTextField();
 		txtOrdenar.setText("Sort by:");
 		txtOrdenar.setOpaque(false);
