@@ -35,11 +35,12 @@ public class Info {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void main(Juego juego) {
+		final Juego jue = juego;
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Info window = new Info();
+					Info window = new Info(jue);
 					window.frmInformacinDelProduc.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -52,13 +53,13 @@ public class Info {
 	 * Create the application.
 	 */
 	public Info(Juego juego) {
-		initialize();
+		initialize(juego);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize(Juego juego) {
 		frmInformacinDelProduc = new JFrame();
 		frmInformacinDelProduc.setTitle("Informaci\u00F3n del producto - Estim");
 		frmInformacinDelProduc.setResizable(false);
@@ -267,7 +268,7 @@ public class Info {
 		RespTitulo.setBackground(new Color(255, 255, 255));
 		RespTitulo.setBorder(null);
 		RespTitulo.setForeground(Color.WHITE);
-		RespTitulo.setText("Pro Evolution Soccer 2013 (PES2013)\r\n");
+		RespTitulo.setText(juego.getTitulo() + "\r\n");
 		RespTitulo.setBounds(525, 136, 372, 31);
 		frmInformacinDelProduc.getContentPane().add(RespTitulo);
 		
@@ -282,7 +283,7 @@ public class Info {
 		RespPrecio.setForeground(Color.WHITE);
 		RespPrecio.setEditable(false);
 		RespPrecio.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		RespPrecio.setText("5 \u20AC");
+		RespPrecio.setText(juego.getPrecio() + "\u20AC");
 		RespPrecio.setBounds(525, 174, 200, 23);
 		frmInformacinDelProduc.getContentPane().add(RespPrecio);
 		
@@ -296,7 +297,7 @@ public class Info {
 		RespAnio.setForeground(Color.WHITE);
 		RespAnio.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		RespAnio.setOpaque(false);
-		RespAnio.setText("2013");
+		RespAnio.setText(juego.getLanzamiento());
 		RespAnio.setBounds(525, 215, 282, 23);
 		frmInformacinDelProduc.getContentPane().add(RespAnio);
 		
@@ -310,7 +311,7 @@ public class Info {
 		RespPlataforma.setOpaque(false);
 		RespPlataforma.setForeground(Color.WHITE);
 		RespPlataforma.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		RespPlataforma.setText("XBox360, PS2, PS3, PC");
+		RespPlataforma.setText(juego.getPlataforma().getNombre());
 		RespPlataforma.setBounds(525, 246, 254, 23);
 		frmInformacinDelProduc.getContentPane().add(RespPlataforma);
 		
@@ -322,7 +323,7 @@ public class Info {
 		
 		JTextArea RespGenero = new JTextArea();
 		RespGenero.setOpaque(false);
-		RespGenero.setText("Deportes");
+		RespGenero.setText(juego.getGenero().toString());
 		RespGenero.setForeground(Color.WHITE);
 		RespGenero.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		RespGenero.setBounds(525, 277, 200, 23);
@@ -337,7 +338,7 @@ public class Info {
 		JTextArea RespDescripcion = new JTextArea();
 		RespDescripcion.setForeground(Color.WHITE);
 		RespDescripcion.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		RespDescripcion.setText("Konami vuelve a la carga con una nueva edici\u00F3n de su simulador futbol\u00EDstico, Pro \r\nEvolution Soccer, que como cada a\u00F1o promete novedades visuales y jugables. Entre su \r\namplio elenco de plataformas la veterana saga futbol\u00EDstica pretende abarcar de m\u00FAltiples \r\nmaneras la temporada, ya sea con el control por movimiento de Wii, con las novedades \r\njugables de PlayStation 3, PC y Xbox 360 o con las plantillas actualizadas y car\u00E1tulas \r\nrenovadas de PlayStation 2.\r\nCon Cristiano Ronaldo de nuevo protagonista, PES 2013 destaca por su multitud de \r\nlicencias oficiales (entre ellas la de UEFA Champions League), sus comentarios en espa\u00F1ol \r\nde 'Maldini' y Carlos Mart\u00EDnez (de Canal +) y su amplia variedad de modos de juego.");
+		RespDescripcion.setText(juego.getDescripcion());
 		RespDescripcion.setOpaque(false);
 		RespDescripcion.setBounds(525, 321, 525, 164);
 		frmInformacinDelProduc.getContentPane().add(RespDescripcion);
@@ -352,7 +353,7 @@ public class Info {
 		RespValoracion.setOpaque(false);
 		RespValoracion.setForeground(Color.WHITE);
 		RespValoracion.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		RespValoracion.setText("80/100");
+		RespValoracion.setText(juego.getRating());
 		RespValoracion.setBounds(525, 495, 98, 22);
 		frmInformacinDelProduc.getContentPane().add(RespValoracion);
 		
@@ -393,10 +394,16 @@ public class Info {
 		menuBar.add(mnAdmin);
 		
 		JMenuItem mntmModificar_1 = new JMenuItem("Modificar");
+		mntmModificar_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+			}
+		});
 		mnAdmin.add(mntmModificar_1);
 		
 		JMenuItem mntmEliminar_1 = new JMenuItem("Eliminar");
 		mnAdmin.add(mntmEliminar_1);
+		
 		
 		JMenuItem mntmSalir_1 = new JMenuItem("Salir");
 		mnAdmin.add(mntmSalir_1);
