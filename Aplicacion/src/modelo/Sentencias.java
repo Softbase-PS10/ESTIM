@@ -37,7 +37,7 @@ public class Sentencias {
 			e.printStackTrace();
 		}
 	}
-
+	
 	/**
 	 * @param titulo
 	 *            : titulo por el que se desea filtrar
@@ -56,7 +56,7 @@ public class Sentencias {
 	 * @return una lista (ArrayList) de los juegos cuyo precio se encuentra
 	 *         entre @param min y @param max
 	 */
-	public ArrayList<Juego> listarJuegosRangoPrecios(double min, double max) {
+	public ArrayList<Juego> listarJuegosRangoPrecios(int min, int max) {
 		return listarJuegos(" AND PRECIO <= '" + max + "' AND PRECIO >= '"
 				+ min + "'");
 	}
@@ -69,9 +69,14 @@ public class Sentencias {
 	 * @return una lista(ArrayList) de los juegos cuya fecha de lanzamiento se
 	 *         encuentra entre @param min y @param max
 	 */
-	public ArrayList<Juego> listarJuegosRangoLanzamiento(double min, double max) {
-		return listarJuegos(" AND LANZAMIENTO <= '" + max
-				+ "' AND LANZAMIENTO >= '" + min + "'");
+	public ArrayList<Juego> listarJuegosRangoLanzamiento(String min, String max) {
+		return listarJuegos(" AND SUBSTR(LANZAMIENTO, 1, 2) <= '"
+				+ max.substring(0, 1) + "' AND SUBSTR(LANZAMIENTO, 1, 2) >= '"
+				+ min.substring(0, 1) + "' AND SUBSTR(LANZAMIENTO, 4, 2) <= '" 
+				+ max.substring(3, 4) + "' AND SUBSTR(LANZAMIENTO, 4, 2) >= '" 
+				+ min.substring(3, 4) + "' AND SUBSTR(LANZAMIENTO, 7, 2) <= '"
+				+ max.substring(6, 7) + "' AND SUBSTR(LANZAMIENTO, 7, 2) >= '"
+				+ min.substring(6, 7) + "'");
 	}
 
 	/**
@@ -82,7 +87,7 @@ public class Sentencias {
 	 * @return una lista (ArrayList) de los juegos cuyo rating se encuentre
 	 *         entre @param min y @param max
 	 */
-	public ArrayList<Juego> listarJuegosRangoRating(double min, double max) {
+	public ArrayList<Juego> listarJuegosRangoRating(String min, String max) {
 		return listarJuegos(" AND RATING <= '" + max + "' AND RATING >= '"
 				+ min + "'");
 	}
@@ -94,7 +99,7 @@ public class Sentencias {
 	 *         genero
 	 */
 	public ArrayList<Juego> listarJuegosGenero(String genero) {
-		return listarJuegos(" AND GENERO = '" + genero + "'");
+		return listarJuegos(" AND JUEGO_GENERO.ID = JUEGO.ID AND GENERO = '" + genero + "'");
 	} 
 
 	/**
@@ -145,7 +150,7 @@ public class Sentencias {
 		String q = "SELECT * FROM JUEGO, PLATAFORMA, JUEGO_PLATAFORMA, JUEGO_GENERO WHERE "
 				+ "JUEGO.ID = JUEGO_PLATAFORMA.JUEGO AND PLATAFORMA.ID = JUEGO_PLATAFORMA.PLATAFORMA"
 				+ query;
-		Statement st;
+		Statement st, st2;
 		ArrayList<Juego> js = new ArrayList<Juego>();
 		try {
 			st = connection.createStatement();
@@ -153,7 +158,9 @@ public class Sentencias {
 			Juego j;
 			ArrayList<String> gen = new ArrayList<String>();
 			ResultSet res;
-			while (!resul.isClosed() && resul.next()) {
+			int cont = 0;
+			while (resul.next() && cont <10) {
+				System.out.println(cont);
 				j = new Juego(resul.getLong("id"));
 				j.setTitulo(resul.getString("titulo"));
 				j.setDescripcion(resul.getString("resumen"));
@@ -161,25 +168,22 @@ public class Sentencias {
 				j.setLanzamiento(resul.getString("lanzamiento"));
 				j.setPrecio(resul.getInt("precio"));
 				j.setRating(resul.getString("rating"));
-				
+				j.setPlataforma(new Plataforma(resul.getString("nombre"), resul
+						.getString("alias")));
+						
 				q = "SELECT * FROM JUEGO_GENERO WHERE ID = '"+j.getId()+"'";
-				res = st.executeQuery(q);
-				while (!res.isClosed() && res.next()) {
+				st2 = connection.createStatement();
+				res = st2.executeQuery(q);
+				while (res.next()) {
 					gen.add(res.getString("genero"));
 				}
 				j.setGenero(gen);
 				
-				
-				j.setPlataforma(new Plataforma(resul.getString("nombre"), resul
-						.getString("alias")));
 				js.add(j);
 				gen = new ArrayList<String>();
+				cont++;
 			}
 		} catch (SQLException ex) {
-			if (ex.getSQLState().startsWith("23"))
-				System.out.println("Entrada duplicada");
-
-			else
 				ex.printStackTrace();
 		}
 		return js;
@@ -211,7 +215,7 @@ public class Sentencias {
 	 * @return la informacion asociada a la plataforma cuyo identificador con @param
 	 *         id
 	 */
-	public Plataforma listarPlataformaId(Long id) {
+	public Plataforma listarPlataformaId(int id) {
 		return listarPlataforma(" WHERE ID = '" + id + "'");
 	}
 
@@ -227,7 +231,7 @@ public class Sentencias {
 		try {
 			st = connection.createStatement();
 			ResultSet resul = st.executeQuery(q);
-			while (!resul.isClosed() && resul.next()) {
+			while (resul.next()) {
 				p = new Plataforma(resul.getLong("id"));
 				p.setAlias(resul.getString("alias"));
 				p.setNombre(resul.getString("nombre"));
@@ -251,7 +255,7 @@ public class Sentencias {
 		try {
 			st = connection.createStatement();
 			ResultSet resul = st.executeQuery(q);
-			while (!resul.isClosed() && resul.next()) {
+			while (resul.next()) {
 				p = new Plataforma(resul.getLong("id"));
 				p.setAlias(resul.getString("alias"));
 				p.setNombre(resul.getString("nombre"));
@@ -507,14 +511,14 @@ public class Sentencias {
 	 * @return el identificador del ultimo juego
 	 */
 	public long obtenerUltimoIdJuego() {
-		String q = "SELECT ID FROM JUEGO WHERE ROWNUM = 1 ORDER BY ID DESC";
+		String q = "SELECT MAX(ID) AS mid FROM JUEGO";
 		Statement st;
 		long id = -1;
 		try {
 			st = connection.createStatement();
 			ResultSet resul = st.executeQuery(q);
-			while (!resul.isClosed() && resul.next())
-				id = resul.getLong("id");
+			while (resul.next())
+				id = resul.getLong("mid");
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -526,14 +530,14 @@ public class Sentencias {
 	 * @return el identificador de la ultima plataforma
 	 */
 	public long obtenerUltimoIdPlataforma() {
-		String q = "SELECT ID FROM PLATAFORMA WHERE ROWNUM = 1 ORDER BY ID DESC";
+		String q = "SELECT MAX(ID) AS mid FROM PLATAFORMA";
 		Statement st;
 		long id = -1;
 		try {
 			st = connection.createStatement();
 			ResultSet resul = st.executeQuery(q);
-			while (!resul.isClosed() && resul.next())
-				id = resul.getLong("id");
+			while (resul.next())
+				id = resul.getLong("mid");
 
 		} catch (SQLException e) {
 			e.printStackTrace();
