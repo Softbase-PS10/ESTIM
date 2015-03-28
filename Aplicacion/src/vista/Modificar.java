@@ -1,17 +1,24 @@
 package vista;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.Toolkit;
+import java.io.IOException;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
+import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -19,20 +26,27 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
+import modelo.Juego;
 import controlador.Botones;
 import controlador.BotonesCabecera;
 import controlador.BotonesCategorias;
+import controlador.Imagenes;
 
 
 public class Modificar {
 
 	private JFrame frmPantallaPrincipal;
-	private JTextField txtBuscar;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_5;
-	private JTextField textField_7;
+	public JTextField txtBuscar;
+	public static JTextField titulo;
+	public static JTextField precio;
+	public static JTextField anyo;
+	public static JTextField valoracion;
+	public static JTextField url;
+	public static JTextArea descripcion;
+	public static JComboBox plataforma;
+	public static JMenu genero;
+	public static JFormattedTextField ePrecio;
+	public static JFormattedTextField eTitulo;
 
 	/**
 	 * Launch the application.
@@ -54,16 +68,17 @@ public class Modificar {
 	 * Create the application.
 	 */
 	public Modificar() {
-		initialize();
+		initialize(null);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize(Juego j) {
 		frmPantallaPrincipal = new JFrame();
 		frmPantallaPrincipal.setTitle("Add/Modify - Estim");
-		frmPantallaPrincipal.setIconImage(Toolkit.getDefaultToolkit().getImage(Modificar.class.getResource("/Imagenes/E.png")));
+		frmPantallaPrincipal.setIconImage(Toolkit.getDefaultToolkit().
+				getImage(Modificar.class.getResource("/Imagenes/E.png")));
 		frmPantallaPrincipal.setResizable(false);
 		frmPantallaPrincipal.setBounds(100, 100, 1066, 600);
 		frmPantallaPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -132,144 +147,232 @@ public class Modificar {
 		frmPantallaPrincipal.getContentPane().add(panel_3);
 		panel_3.setLayout(null);
 		
-		JFormattedTextField frmtdtxtfldTtulo = new JFormattedTextField();
-		frmtdtxtfldTtulo.setBounds(53, 52, 140, 20);
-		frmtdtxtfldTtulo.setText("TITLE:");
-		frmtdtxtfldTtulo.setOpaque(false);
-		frmtdtxtfldTtulo.setForeground(Color.WHITE);
-		frmtdtxtfldTtulo.setFont(new Font("Tahoma", Font.BOLD, 16));
-		frmtdtxtfldTtulo.setEditable(false);
-		frmtdtxtfldTtulo.setBorder(null);
-		panel_3.add(frmtdtxtfldTtulo);
+		JFormattedTextField nTitulo = new JFormattedTextField();
+		nTitulo.setBounds(53, 52, 140, 20);
+		nTitulo.setText("TITLE:");
+		nTitulo.setOpaque(false);
+		nTitulo.setForeground(Color.WHITE);
+		nTitulo.setFont(new Font("Tahoma", Font.BOLD, 16));
+		nTitulo.setEditable(false);
+		nTitulo.setBorder(null);
+		panel_3.add(nTitulo);
 		
-		JFormattedTextField frmtdtxtfldPrecio = new JFormattedTextField();
-		frmtdtxtfldPrecio.setBounds(53, 83, 140, 20);
-		frmtdtxtfldPrecio.setText("PRICE:");
-		frmtdtxtfldPrecio.setOpaque(false);
-		frmtdtxtfldPrecio.setForeground(Color.WHITE);
-		frmtdtxtfldPrecio.setFont(new Font("Tahoma", Font.BOLD, 16));
-		frmtdtxtfldPrecio.setEditable(false);
-		frmtdtxtfldPrecio.setBorder(null);
-		panel_3.add(frmtdtxtfldPrecio);
+		JFormattedTextField nPrecio = new JFormattedTextField();
+		nPrecio.setBounds(53, 83, 140, 20);
+		nPrecio.setText("PRICE:");
+		nPrecio.setOpaque(false);
+		nPrecio.setForeground(Color.WHITE);
+		nPrecio.setFont(new Font("Tahoma", Font.BOLD, 16));
+		nPrecio.setEditable(false);
+		nPrecio.setBorder(null);
+		panel_3.add(nPrecio);
 		
-		JFormattedTextField frmtdtxtfldAo = new JFormattedTextField();
-		frmtdtxtfldAo.setBounds(53, 114, 140, 20);
-		frmtdtxtfldAo.setText("YEAR:");
-		frmtdtxtfldAo.setOpaque(false);
-		frmtdtxtfldAo.setForeground(Color.WHITE);
-		frmtdtxtfldAo.setFont(new Font("Tahoma", Font.BOLD, 16));
-		frmtdtxtfldAo.setEditable(false);
-		frmtdtxtfldAo.setBorder(null);
-		panel_3.add(frmtdtxtfldAo);
+		JFormattedTextField nAnyo = new JFormattedTextField();
+		nAnyo.setBounds(53, 114, 140, 20);
+		nAnyo.setText("YEAR:");
+		nAnyo.setOpaque(false);
+		nAnyo.setForeground(Color.WHITE);
+		nAnyo.setFont(new Font("Tahoma", Font.BOLD, 16));
+		nAnyo.setEditable(false);
+		nAnyo.setBorder(null);
+		panel_3.add(nAnyo);
 		
-		JFormattedTextField frmtdtxtfldPlataformas = new JFormattedTextField();
-		frmtdtxtfldPlataformas.setBounds(53, 145, 140, 20);
-		frmtdtxtfldPlataformas.setText("PLATFORMS:");
-		frmtdtxtfldPlataformas.setOpaque(false);
-		frmtdtxtfldPlataformas.setForeground(Color.WHITE);
-		frmtdtxtfldPlataformas.setFont(new Font("Tahoma", Font.BOLD, 16));
-		frmtdtxtfldPlataformas.setEditable(false);
-		frmtdtxtfldPlataformas.setBorder(null);
-		panel_3.add(frmtdtxtfldPlataformas);
+		JFormattedTextField nPlataformas = new JFormattedTextField();
+		nPlataformas.setBounds(53, 145, 140, 20);
+		nPlataformas.setText("PLATFORMS:");
+		nPlataformas.setOpaque(false);
+		nPlataformas.setForeground(Color.WHITE);
+		nPlataformas.setFont(new Font("Tahoma", Font.BOLD, 16));
+		nPlataformas.setEditable(false);
+		nPlataformas.setBorder(null);
+		panel_3.add(nPlataformas);
 		
-		JFormattedTextField frmtdtxtfldGneros = new JFormattedTextField();
-		frmtdtxtfldGneros.setBounds(53, 176, 140, 20);
-		frmtdtxtfldGneros.setText("GENRES:");
-		frmtdtxtfldGneros.setOpaque(false);
-		frmtdtxtfldGneros.setForeground(Color.WHITE);
-		frmtdtxtfldGneros.setFont(new Font("Tahoma", Font.BOLD, 16));
-		frmtdtxtfldGneros.setEditable(false);
-		frmtdtxtfldGneros.setBorder(null);
-		panel_3.add(frmtdtxtfldGneros);
+		JFormattedTextField nGeneros = new JFormattedTextField();
+		nGeneros.setBounds(53, 176, 140, 20);
+		nGeneros.setText("GENRES:");
+		nGeneros.setOpaque(false);
+		nGeneros.setForeground(Color.WHITE);
+		nGeneros.setFont(new Font("Tahoma", Font.BOLD, 16));
+		nGeneros.setEditable(false);
+		nGeneros.setBorder(null);
+		panel_3.add(nGeneros);
 		
-		JFormattedTextField frmtdtxtfldValoracin = new JFormattedTextField();
-		frmtdtxtfldValoracin.setBounds(53, 207, 140, 20);
-		frmtdtxtfldValoracin.setText("RATING:");
-		frmtdtxtfldValoracin.setOpaque(false);
-		frmtdtxtfldValoracin.setForeground(Color.WHITE);
-		frmtdtxtfldValoracin.setFont(new Font("Tahoma", Font.BOLD, 16));
-		frmtdtxtfldValoracin.setEditable(false);
-		frmtdtxtfldValoracin.setBorder(null);
-		panel_3.add(frmtdtxtfldValoracin);
+		JFormattedTextField nValoracion = new JFormattedTextField();
+		nValoracion.setBounds(53, 207, 140, 20);
+		nValoracion.setText("RATING:");
+		nValoracion.setOpaque(false);
+		nValoracion.setForeground(Color.WHITE);
+		nValoracion.setFont(new Font("Tahoma", Font.BOLD, 16));
+		nValoracion.setEditable(false);
+		nValoracion.setBorder(null);
+		panel_3.add(nValoracion);
 		
-		JFormattedTextField frmtdtxtfldDescripcin = new JFormattedTextField();
-		frmtdtxtfldDescripcin.setBounds(53, 238, 140, 20);
-		frmtdtxtfldDescripcin.setText("DESCRIPTION:");
-		frmtdtxtfldDescripcin.setOpaque(false);
-		frmtdtxtfldDescripcin.setForeground(Color.WHITE);
-		frmtdtxtfldDescripcin.setFont(new Font("Tahoma", Font.BOLD, 16));
-		frmtdtxtfldDescripcin.setEditable(false);
-		frmtdtxtfldDescripcin.setBorder(null);
-		panel_3.add(frmtdtxtfldDescripcin);
+		JFormattedTextField nDescripcion = new JFormattedTextField();
+		nDescripcion.setBounds(53, 238, 140, 20);
+		nDescripcion.setText("DESCRIPTION:");
+		nDescripcion.setOpaque(false);
+		nDescripcion.setForeground(Color.WHITE);
+		nDescripcion.setFont(new Font("Tahoma", Font.BOLD, 16));
+		nDescripcion.setEditable(false);
+		nDescripcion.setBorder(null);
+		panel_3.add(nDescripcion);
 		
-		JFormattedTextField frmtdtxtfldUrlCartula = new JFormattedTextField();
-		frmtdtxtfldUrlCartula.setBounds(53, 399, 140, 20);
-		frmtdtxtfldUrlCartula.setText("COVER URL:");
-		frmtdtxtfldUrlCartula.setOpaque(false);
-		frmtdtxtfldUrlCartula.setForeground(Color.WHITE);
-		frmtdtxtfldUrlCartula.setFont(new Font("Tahoma", Font.BOLD, 16));
-		frmtdtxtfldUrlCartula.setEditable(false);
-		frmtdtxtfldUrlCartula.setBorder(null);
-		panel_3.add(frmtdtxtfldUrlCartula);
+		JFormattedTextField nCaratula = new JFormattedTextField();
+		nCaratula.setBounds(53, 399, 140, 20);
+		nCaratula.setText("COVER URL:");
+		nCaratula.setOpaque(false);
+		nCaratula.setForeground(Color.WHITE);
+		nCaratula.setFont(new Font("Tahoma", Font.BOLD, 16));
+		nCaratula.setEditable(false);
+		nCaratula.setBorder(null);
+		panel_3.add(nCaratula);
 		
-		textField = new JTextField();
-		textField.setBounds(214, 52, 300, 20);
-		panel_3.add(textField);
-		textField.setColumns(10);
+		titulo = new JTextField();
+		if(j != null){
+			titulo.setText(j.getTitulo());
+		}
+		titulo.setBounds(214, 52, 300, 20);
+		panel_3.add(titulo);
+		titulo.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(214, 85, 60, 20);
-		textField_1.setColumns(10);
-		panel_3.add(textField_1);
+		precio = new JTextField();
+		if(j != null){
+			precio.setText(j.getPrecio() + "");
+		}
+		precio.setBounds(214, 85, 60, 20);
+		precio.setColumns(10);
+		panel_3.add(precio);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(214, 116, 60, 20);
-		textField_2.setColumns(10);
-		panel_3.add(textField_2);
+		anyo = new JTextField();
+		if(j != null){
+			anyo.setText(j.getLanzamiento());
+		}
+		anyo.setBounds(214, 116, 60, 20);
+		anyo.setColumns(10);
+		panel_3.add(anyo);
 		
-		textField_5 = new JTextField();
-		textField_5.setBounds(214, 209, 60, 20);
-		textField_5.setColumns(10);
-		panel_3.add(textField_5);
+		valoracion = new JTextField();
+		if(j != null){
+			valoracion.setText(j.getRating());
+		}
+		valoracion.setBounds(214, 209, 60, 20);
+		valoracion.setColumns(10);
+		panel_3.add(valoracion);
 		
-		textField_7 = new JTextField();
-		textField_7.setBounds(214, 401, 300, 20);
-		textField_7.setColumns(10);
-		panel_3.add(textField_7);
+		url = new JTextField();
+		if(j != null){
+			url.setText(j.getImagen());
+		}
+		url.setBounds(214, 401, 300, 20);
+		url.setColumns(10);
+		panel_3.add(url);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setBounds(214, 238, 300, 152);
 		panel_3.add(scrollPane);
 		
-		JTextArea textArea = new JTextArea();
-		textArea.setWrapStyleWord(true);
-		textArea.setLineWrap(true);
-		scrollPane.setViewportView(textArea);
+		descripcion = new JTextArea();
+		if(j != null){
+			descripcion.setText(j.getDescripcion());
+		}
+		descripcion.setWrapStyleWord(true);
+		descripcion.setLineWrap(true);
+		scrollPane.setViewportView(descripcion);
 		
-		JLabel lblVistaPreviaCartula = new JLabel("Cover preview");
-		lblVistaPreviaCartula.setHorizontalAlignment(SwingConstants.CENTER);
-		lblVistaPreviaCartula.setHorizontalTextPosition(SwingConstants.CENTER);
-		lblVistaPreviaCartula.setOpaque(true);
-		lblVistaPreviaCartula.setBackground(Color.LIGHT_GRAY);
-		lblVistaPreviaCartula.setBounds(706, 114, 170, 240);
-		panel_3.add(lblVistaPreviaCartula);
+		JLabel vistaPreviaCaratula = new JLabel("Cover preview");
+		if(j!=null){
+			try {
+				ImageIcon caratula = Imagenes.getIcon(j.getImagen(),1);
+				vistaPreviaCaratula.setIcon(caratula);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		vistaPreviaCaratula.setHorizontalAlignment(SwingConstants.CENTER);
+		vistaPreviaCaratula.setHorizontalTextPosition(SwingConstants.CENTER);
+		vistaPreviaCaratula.setOpaque(true);
+		vistaPreviaCaratula.setBackground(Color.LIGHT_GRAY);
+		vistaPreviaCaratula.setBounds(706, 114, 170, 240);
+		panel_3.add(vistaPreviaCaratula);
 		
-		panel_3.add(Botones.save());
+		panel_3.add(Botones.save(null));
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"PS4", "PS3", "PSVITA", "XONE", "X360", "PC", "WII-U", "WII", "N3DS"}));
-		comboBox.setBounds(214, 145, 300, 20);
-		panel_3.add(comboBox);
+		plataforma = new JComboBox();
+		String[] listaP = new String[] {"PS4", "PS3",
+				"PSVITA", "XONE", "X360", "PC", "WII-U", "WII", "N3DS"};
+		plataforma.setModel(new DefaultComboBoxModel(listaP));
+		if(j != null){
+			boolean encontrado = false;
+			int i = 0;
+			while(i<listaP.length && !encontrado){
+				if(listaP[i].equalsIgnoreCase(j.getPlataforma().getAlias())){
+					encontrado = true;
+				}
+				else{
+					i++;
+				}
+			}
+			plataforma.setSelectedIndex(i);
+		}
+		plataforma.setBounds(214, 145, 300, 20);
+		panel_3.add(plataforma);
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Action", "Adventure", "Construction and Management Simulation", "Fighting", "Flight Simulator", "Horror", "Life Simulation", "MMO", "Music", "Platform", "Puzzle", "Racing", "Role-Playing", "Sandbox", "Shooter", "Sports", "Stealth", "Strategy", "Vehicle Simulation"}));
-		comboBox_1.setBounds(214, 176, 300, 20);
-		panel_3.add(comboBox_1);
+		JMenuBar menuBar = new JMenuBar();
+		menuBar.setBounds(214, 175, 100, 20);
+		panel_3.add(menuBar);
 		
-		JLabel label = new JLabel("");
-		label.setBounds(0, 0, 1060, 471);
-		label.setIcon(new ImageIcon(Modificar.class.getResource("/Imagenes/blizz.jpg")));
-		panel_3.add(label);
+		genero = new JMenu();
+		genero.setText("Select genres...");
+		genero.setBounds(214, 175, 50, 20);
+		menuBar.add(genero);
+		
+		String[] generos = new String[] {"Action", "Adventure",
+				"Construction and Management Simulation", "Fighting",
+				"Flight Simulator", "Horror", "Life Simulation", "MMO",
+				"Music", "Platform", "Puzzle", "Racing", "Role-Playing",
+				"Sandbox", "Shooter", "Sports", "Stealth", "Strategy",
+				"Vehicle Simulation"};
+		
+		for(int i = 0; i < generos.length; i++){
+			JCheckBoxMenuItem cb = new JCheckBoxMenuItem(generos[i]);
+			if(j != null){
+				for(String g:j.getGenero()){
+					if(g.equalsIgnoreCase(generos[i])){
+						cb.setSelected(true);
+					}
+				}
+			}
+			genero.add(cb);
+		}
+		
+		ePrecio = new JFormattedTextField();
+		ePrecio.setVisible(false);
+		ePrecio.setText("Campo obligatorio");
+		ePrecio.setOpaque(false);
+		ePrecio.setForeground(Color.RED);
+		ePrecio.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		ePrecio.setEditable(false);
+		ePrecio.setBorder(null);
+		ePrecio.setBounds(284, 84, 140, 20);
+		panel_3.add(ePrecio);
+		
+		eTitulo = new JFormattedTextField();
+		eTitulo.setVisible(false);
+		eTitulo.setText("Campo obligatorio");
+		eTitulo.setOpaque(false);
+		eTitulo.setForeground(Color.RED);
+		eTitulo.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		eTitulo.setEditable(false);
+		eTitulo.setBorder(null);
+		eTitulo.setBounds(524, 54, 140, 20);
+		panel_3.add(eTitulo);
+		
+		JLabel fondo = new JLabel("");
+		fondo.setBounds(0, 0, 1060, 471);
+		fondo.setIcon(new ImageIcon(Modificar.class.getResource("/Imagenes/blizz.jpg")));
+		panel_3.add(fondo);
+	}
+	private static void addPopup(Component component, final JPopupMenu popup) {
 	}
 }

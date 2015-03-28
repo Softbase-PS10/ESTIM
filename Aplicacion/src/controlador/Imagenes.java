@@ -25,6 +25,7 @@ import java.net.URL;
 import java.net.URLConnection;
 
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 public class Imagenes {
 
@@ -44,8 +45,8 @@ public class Imagenes {
 	 * @throws IOException
 	 *             si se produce algun error en la obtencion de la imagen
 	 */
-	public static Image getIcon(String url, int escala) throws IOException {
-		return Imagenes.getImage(url, WIDTH * escala, HEIGHT * escala);
+	public static ImageIcon getIcon(String url, int escala) throws IOException {
+		return new ImageIcon(Imagenes.getImage(url, WIDTH * escala, HEIGHT * escala));
 	}
 
 	/**

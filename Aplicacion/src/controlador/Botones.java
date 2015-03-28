@@ -14,11 +14,19 @@
 
 package controlador;
 
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
+
+import modelo.*;
+import vista.Modificar;
 
 public class Botones {
 	
@@ -46,17 +54,73 @@ public class Botones {
 	 * @return el boton de 'Guardar' los cambios al modificar un
 	 * juego del catalogo.
 	 */
-	public static JButton save(){
+	public static JButton save(final Juego j){
 		JButton salvar = new JButton("Save");
 		salvar.setFont(new Font("Tahoma", Font.BOLD, 13));
 		salvar.setBounds(961, 427, 89, 33);
 		
-		salvar.addActionListener(new ActionListener() {
+		salvar.addMouseListener(new MouseAdapter() {
 			
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+			public void mousePressed(MouseEvent e) {
+				boolean error = false;
+				Sentencias s = new Sentencias();
 				
+				String titulo = Modificar.titulo.getText();
+				if(titulo.length()==0){
+					error = true;
+					Modificar.eTitulo.setVisible(true);
+				}
+				else{
+					Modificar.eTitulo.setVisible(false);
+				}
+				String precio = Modificar.precio.getText();
+				if(precio.length()==0){
+					error = true;
+					Modificar.ePrecio.setVisible(true);
+				}
+				else{
+					Modificar.ePrecio.setVisible(false);
+				}
+				String anyo = Modificar.anyo.getText();
+				
+				String valoracion = Modificar.valoracion.getText();
+				
+				String url = Modificar.url.getText();
+				
+				String descripcion =  Modificar.descripcion.getText();
+				
+				String plataforma = (String) Modificar.plataforma.getSelectedItem();
+				Plataforma plat = s.listarPlataformaAlias(plataforma);
+				
+				ArrayList<String> genero = new ArrayList<String>();
+				Component[] comp = Modificar.genero.getComponents();
+				for (int i = 0; i < comp.length; i++) {
+					JCheckBox cb = (JCheckBox) comp[i];
+					if(cb.isSelected()){
+						genero.add(cb.getText());
+					}
+				}
+				if(!error){
+					if(j == null){
+						int p = Integer.parseInt(precio);
+						Juego j = new Juego(titulo,url,descripcion,anyo,
+								valoracion,genero,p,plat);
+						System.out.println(j.mostrarInfo());
+						s.insertarJuego(j);
+					}
+					else{
+						j.setTitulo(titulo);
+						j.setDescripcion(descripcion);
+						j.setGenero(genero);
+						j.setImagen(url);
+						j.setLanzamiento(anyo);
+						j.setPlataforma(plat);
+						j.setPrecio(Integer.parseInt(precio));
+						j.setRating(valoracion);
+						s.actualizarJuego(j);
+					}
+				}
 			}
 		});
 		
