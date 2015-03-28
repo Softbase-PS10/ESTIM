@@ -158,9 +158,7 @@ public class Sentencias {
 			Juego j;
 			ArrayList<String> gen = new ArrayList<String>();
 			ResultSet res;
-			int cont = 0;
-			while (resul.next() && cont <10) {
-				System.out.println(cont);
+			while (resul.next()) {
 				j = new Juego(resul.getLong("id"));
 				j.setTitulo(resul.getString("titulo"));
 				j.setDescripcion(resul.getString("resumen"));
@@ -181,7 +179,6 @@ public class Sentencias {
 				
 				js.add(j);
 				gen = new ArrayList<String>();
-				cont++;
 			}
 		} catch (SQLException ex) {
 				ex.printStackTrace();
