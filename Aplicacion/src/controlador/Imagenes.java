@@ -46,6 +46,9 @@ public class Imagenes {
 	 *             si se produce algun error en la obtencion de la imagen
 	 */
 	public static ImageIcon getIcon(String url, int escala) throws IOException {
+		if (url == null){
+			return null;
+		}
 		return new ImageIcon(Imagenes.getImage(url, WIDTH * escala, HEIGHT * escala));
 	}
 
