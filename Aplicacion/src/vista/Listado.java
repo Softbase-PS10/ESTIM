@@ -24,7 +24,6 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.LineBorder;
 
 import modelo.Juego;
-import modelo.Plataforma;
 import controlador.Botones;
 import controlador.BotonesCabecera;
 import controlador.BotonesCategorias;
