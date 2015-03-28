@@ -1,30 +1,28 @@
 package vista;
-import java.awt.EventQueue;
-import modelo.Juego;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import java.awt.BorderLayout;
 import java.awt.Color;
-import javax.swing.border.LineBorder;
-import javax.swing.JButton;
-import java.awt.Insets;
-import javax.swing.JTextField;
+import java.awt.EventQueue;
 import java.awt.Font;
-import javax.swing.JMenu;
-import javax.swing.SwingConstants;
-import javax.swing.JMenuItem;
+import java.awt.Insets;
 import java.awt.Toolkit;
-import javax.swing.ImageIcon;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JLabel;
-import javax.swing.JFormattedTextField;
-import javax.swing.DropMode;
-import javax.swing.JTextArea;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
+
+import modelo.Juego;
 
 
 public class Info {
