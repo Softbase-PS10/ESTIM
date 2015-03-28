@@ -273,6 +273,13 @@ public class Listado {
 			caratula.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			caratula.setBorder(new BevelBorder(BevelBorder.RAISED, Color.BLACK,
 				Color.BLACK, Color.BLACK, Color.BLACK));
+			caratula.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Lanzar app informacion con el juego j
+				}
+			});
 			res.add(caratula);
 			
 			JFormattedTextField precio = new JFormattedTextField();
@@ -363,103 +370,103 @@ public class Listado {
 			res.add(valoracion);
 		}
 		
-		JPanel resultado_2 = new JPanel();
-		resultado_2.setBounds(0, 0, 680, 195);
-		resultado_2.setLayout(null);
-		resultado_2.setBackground(Color.DARK_GRAY);
-		box.add(resultado_2);
-		
-		JButton caratula_2 = new JButton("");
-		caratula_2.setBounds(8, 6, 130, 183);
-		resultado_2.add(caratula_2);
-		caratula_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		
-		caratula_2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		caratula_2.setBorder(new BevelBorder(BevelBorder.RAISED, Color.BLACK,
-				Color.BLACK, Color.BLACK, Color.BLACK));
-		
-		JFormattedTextField precio_1 = new JFormattedTextField();
-		precio_1.setText("59.95 \u20AC");
-		precio_1.setOpaque(false);
-		precio_1.setForeground(Color.WHITE);
-		precio_1.setFont(new Font("Tahoma", Font.PLAIN, 40));
-		precio_1.setEditable(false);
-		precio_1.setBorder(null);
-		precio_1.setBounds(514, 60, 144, 60);
-		resultado_2.add(precio_1);
-		
-		JFormattedTextField releaseDate_1 = new JFormattedTextField();
-		releaseDate_1.setText("Release date:");
-		releaseDate_1.setOpaque(false);
-		releaseDate_1.setForeground(Color.WHITE);
-		releaseDate_1.setFont(new Font("Tahoma", Font.BOLD, 14));
-		releaseDate_1.setEditable(false);
-		releaseDate_1.setBorder(null);
-		releaseDate_1.setBounds(162, 71, 104, 20);
-		resultado_2.add(releaseDate_1);
-		
-		JFormattedTextField platforms_1 = new JFormattedTextField();
-		platforms_1.setText("Platforms:");
-		platforms_1.setOpaque(false);
-		platforms_1.setForeground(Color.WHITE);
-		platforms_1.setFont(new Font("Tahoma", Font.BOLD, 14));
-		platforms_1.setEditable(false);
-		platforms_1.setBorder(null);
-		platforms_1.setBounds(162, 107, 81, 20);
-		resultado_2.add(platforms_1);
-		
-		JFormattedTextField rating_1 = new JFormattedTextField();
-		rating_1.setText("Rating:");
-		rating_1.setOpaque(false);
-		rating_1.setForeground(Color.WHITE);
-		rating_1.setFont(new Font("Tahoma", Font.BOLD, 14));
-		rating_1.setEditable(false);
-		rating_1.setBorder(null);
-		rating_1.setBounds(162, 144, 62, 20);
-		resultado_2.add(rating_1);
-		
-		JFormattedTextField title = new JFormattedTextField();
-		title.setText("Super Smash Bros");
-		title.setOpaque(false);
-		title.setForeground(Color.WHITE);
-		title.setFont(new Font("Tahoma", Font.BOLD, 16));
-		title.setEditable(false);
-		title.setBorder(null);
-		title.setBounds(162, 31, 329, 20);
-		resultado_2.add(title);
-		
-		JFormattedTextField fecha_1 = new JFormattedTextField();
-		fecha_1.setText("2014");
-		fecha_1.setOpaque(false);
-		fecha_1.setForeground(Color.WHITE);
-		fecha_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		fecha_1.setEditable(false);
-		fecha_1.setBorder(null);
-		fecha_1.setBounds(264, 71, 37, 20);
-		resultado_2.add(fecha_1);
-		
-		JFormattedTextField plataformas_1 = new JFormattedTextField();
-		plataformas_1.setText("Wii U");
-		plataformas_1.setOpaque(false);
-		plataformas_1.setForeground(Color.WHITE);
-		plataformas_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		plataformas_1.setEditable(false);
-		plataformas_1.setBorder(null);
-		plataformas_1.setBounds(246, 107, 37, 20);
-		resultado_2.add(plataformas_1);
-		
-		JFormattedTextField valoracion_1 = new JFormattedTextField();
-		valoracion_1.setText("100");
-		valoracion_1.setOpaque(false);
-		valoracion_1.setForeground(Color.WHITE);
-		valoracion_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		valoracion_1.setEditable(false);
-		valoracion_1.setBorder(null);
-		valoracion_1.setBounds(234, 144, 37, 20);
-		resultado_2.add(valoracion_1);
+//		JPanel resultado_2 = new JPanel();
+//		resultado_2.setBounds(0, 0, 680, 195);
+//		resultado_2.setLayout(null);
+//		resultado_2.setBackground(Color.DARK_GRAY);
+//		box.add(resultado_2);
+//		
+//		JButton caratula_2 = new JButton("");
+//		caratula_2.setBounds(8, 6, 130, 183);
+//		resultado_2.add(caratula_2);
+//		caratula_2.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent arg0) {
+//			}
+//		});
+//		
+//		caratula_2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+//		caratula_2.setBorder(new BevelBorder(BevelBorder.RAISED, Color.BLACK,
+//				Color.BLACK, Color.BLACK, Color.BLACK));
+//		
+//		JFormattedTextField precio_1 = new JFormattedTextField();
+//		precio_1.setText("59.95 \u20AC");
+//		precio_1.setOpaque(false);
+//		precio_1.setForeground(Color.WHITE);
+//		precio_1.setFont(new Font("Tahoma", Font.PLAIN, 40));
+//		precio_1.setEditable(false);
+//		precio_1.setBorder(null);
+//		precio_1.setBounds(514, 60, 144, 60);
+//		resultado_2.add(precio_1);
+//		
+//		JFormattedTextField releaseDate_1 = new JFormattedTextField();
+//		releaseDate_1.setText("Release date:");
+//		releaseDate_1.setOpaque(false);
+//		releaseDate_1.setForeground(Color.WHITE);
+//		releaseDate_1.setFont(new Font("Tahoma", Font.BOLD, 14));
+//		releaseDate_1.setEditable(false);
+//		releaseDate_1.setBorder(null);
+//		releaseDate_1.setBounds(162, 71, 104, 20);
+//		resultado_2.add(releaseDate_1);
+//		
+//		JFormattedTextField platforms_1 = new JFormattedTextField();
+//		platforms_1.setText("Platforms:");
+//		platforms_1.setOpaque(false);
+//		platforms_1.setForeground(Color.WHITE);
+//		platforms_1.setFont(new Font("Tahoma", Font.BOLD, 14));
+//		platforms_1.setEditable(false);
+//		platforms_1.setBorder(null);
+//		platforms_1.setBounds(162, 107, 81, 20);
+//		resultado_2.add(platforms_1);
+//		
+//		JFormattedTextField rating_1 = new JFormattedTextField();
+//		rating_1.setText("Rating:");
+//		rating_1.setOpaque(false);
+//		rating_1.setForeground(Color.WHITE);
+//		rating_1.setFont(new Font("Tahoma", Font.BOLD, 14));
+//		rating_1.setEditable(false);
+//		rating_1.setBorder(null);
+//		rating_1.setBounds(162, 144, 62, 20);
+//		resultado_2.add(rating_1);
+//		
+//		JFormattedTextField title = new JFormattedTextField();
+//		title.setText("Super Smash Bros");
+//		title.setOpaque(false);
+//		title.setForeground(Color.WHITE);
+//		title.setFont(new Font("Tahoma", Font.BOLD, 16));
+//		title.setEditable(false);
+//		title.setBorder(null);
+//		title.setBounds(162, 31, 329, 20);
+//		resultado_2.add(title);
+//		
+//		JFormattedTextField fecha_1 = new JFormattedTextField();
+//		fecha_1.setText("2014");
+//		fecha_1.setOpaque(false);
+//		fecha_1.setForeground(Color.WHITE);
+//		fecha_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+//		fecha_1.setEditable(false);
+//		fecha_1.setBorder(null);
+//		fecha_1.setBounds(264, 71, 37, 20);
+//		resultado_2.add(fecha_1);
+//		
+//		JFormattedTextField plataformas_1 = new JFormattedTextField();
+//		plataformas_1.setText("Wii U");
+//		plataformas_1.setOpaque(false);
+//		plataformas_1.setForeground(Color.WHITE);
+//		plataformas_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+//		plataformas_1.setEditable(false);
+//		plataformas_1.setBorder(null);
+//		plataformas_1.setBounds(246, 107, 37, 20);
+//		resultado_2.add(plataformas_1);
+//		
+//		JFormattedTextField valoracion_1 = new JFormattedTextField();
+//		valoracion_1.setText("100");
+//		valoracion_1.setOpaque(false);
+//		valoracion_1.setForeground(Color.WHITE);
+//		valoracion_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+//		valoracion_1.setEditable(false);
+//		valoracion_1.setBorder(null);
+//		valoracion_1.setBounds(234, 144, 37, 20);
+//		resultado_2.add(valoracion_1);
 		
 		JPanel ordenacion = new JPanel();
 		ordenacion.setBackground(Color.DARK_GRAY);
