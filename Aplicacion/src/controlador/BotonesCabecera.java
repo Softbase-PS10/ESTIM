@@ -23,6 +23,7 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import modelo.Juego;
@@ -64,23 +65,14 @@ public class BotonesCabecera {
 	 * @return un boton de ajuste/opciones que redirige a la pantalla de
 	 *         opciones de la aplicacion.
 	 */
-	public static JButton ajustes() {
-		JButton ajustes = new JButton("");
-		ajustes.setRolloverIcon(new ImageIcon(Principal.class
+	public static JLabel ajustes() {
+		JLabel ajustes = new JLabel();
+		ajustes.setIcon(new ImageIcon(Principal.class
 				.getResource("/Imagenes/B/ajustesP.png")));
 		ajustes.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		ajustes.setIcon(new ImageIcon(Principal.class
 				.getResource("/Imagenes/B/settings.png")));
 		ajustes.setBounds(0, 0, 70, 70);
-
-		ajustes.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-		});
 
 		return ajustes;
 	}
@@ -132,10 +124,8 @@ public class BotonesCabecera {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				Principal.main(null);
-			}
-		});
+				}});
 
 		return logo;
 	}
-
 }
