@@ -46,7 +46,8 @@ public class Modificar {
 	public static JMenu genero;
 	public static JFormattedTextField ePrecio;
 	public static JFormattedTextField eTitulo;
-
+	public static JLabel vistaPreviaCaratula;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -67,13 +68,80 @@ public class Modificar {
 	 * Create the application.
 	 */
 	public Modificar() {
-		initialize(null);
+		initialize();
+	}
+	
+	/**
+	 * Muestra la interfaz y rellena los campos conforme el juego que le pasan.
+	 * @param j: juego del cual se extraen datos para mostrarlos en los campos
+	 * correspondientes. Si es =null, los campos quedarán vacios.
+	 */
+	public void mostrarMod(Juego j){
+		this.frmPantallaPrincipal.setVisible(true);
+		if(j != null){
+			titulo.setText(j.getTitulo());
+		}
+		if(j != null){
+			precio.setText(j.getPrecio() + "");
+		}
+		if(j != null){
+			anyo.setText(j.getLanzamiento());
+		}
+		if(j != null){
+			valoracion.setText(j.getRating());
+		}
+		if(j != null){
+			url.setText(j.getImagen());
+		}
+		if(j != null){
+			descripcion.setText(j.getDescripcion());
+		}
+		if(j!=null){
+			try {
+				ImageIcon caratula = Imagenes.getIcon(j.getImagen(),1);
+				vistaPreviaCaratula.setIcon(caratula);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		if(j != null){
+			String[] listaP = new String[] {"PS4", "PS3",
+					"PSVITA", "XONE", "X360", "PC", "WII-U", "WII", "N3DS"};
+			boolean encontrado = false;
+			int i = 0;
+			while(i<listaP.length && !encontrado){
+				if(listaP[i].equalsIgnoreCase(j.getPlataforma().getAlias())){
+					encontrado = true;
+				}
+				else{
+					i++;
+				}
+			}
+			plataforma.setSelectedIndex(i);
+		}
+		String[] generos = new String[] {"Action", "Adventure",
+				"Construction and Management Simulation", "Fighting",
+				"Flight Simulator", "Horror", "Life Simulation", "MMO",
+				"Music", "Platform", "Puzzle", "Racing", "Role-Playing",
+				"Sandbox", "Shooter", "Sports", "Stealth", "Strategy",
+				"Vehicle Simulation"};
+		
+		for(int i = 0; i < generos.length; i++){
+			JCheckBoxMenuItem cb = new JCheckBoxMenuItem(generos[i]);
+			if(j != null){
+				for(String g:j.getGenero()){
+					if(g.equalsIgnoreCase(generos[i])){
+						cb.setSelected(true);
+					}
+				}
+			}
+		}
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize(Juego j) {
+	private void initialize() {
 		frmPantallaPrincipal = new JFrame();
 		frmPantallaPrincipal.setTitle("Add/Modify - Estim");
 		frmPantallaPrincipal.setIconImage(Toolkit.getDefaultToolkit().
@@ -227,41 +295,26 @@ public class Modificar {
 		panel_3.add(nCaratula);
 		
 		titulo = new JTextField();
-		if(j != null){
-			titulo.setText(j.getTitulo());
-		}
 		titulo.setBounds(214, 52, 300, 20);
 		panel_3.add(titulo);
 		titulo.setColumns(10);
 		
 		precio = new JTextField();
-		if(j != null){
-			precio.setText(j.getPrecio() + "");
-		}
 		precio.setBounds(214, 85, 60, 20);
 		precio.setColumns(10);
 		panel_3.add(precio);
 		
 		anyo = new JTextField();
-		if(j != null){
-			anyo.setText(j.getLanzamiento());
-		}
 		anyo.setBounds(214, 116, 60, 20);
 		anyo.setColumns(10);
 		panel_3.add(anyo);
 		
 		valoracion = new JTextField();
-		if(j != null){
-			valoracion.setText(j.getRating());
-		}
 		valoracion.setBounds(214, 209, 60, 20);
 		valoracion.setColumns(10);
 		panel_3.add(valoracion);
 		
 		url = new JTextField();
-		if(j != null){
-			url.setText(j.getImagen());
-		}
 		url.setBounds(214, 401, 300, 20);
 		url.setColumns(10);
 		panel_3.add(url);
@@ -272,22 +325,11 @@ public class Modificar {
 		panel_3.add(scrollPane);
 		
 		descripcion = new JTextArea();
-		if(j != null){
-			descripcion.setText(j.getDescripcion());
-		}
 		descripcion.setWrapStyleWord(true);
 		descripcion.setLineWrap(true);
 		scrollPane.setViewportView(descripcion);
 		
-		JLabel vistaPreviaCaratula = new JLabel("Cover preview");
-		if(j!=null){
-			try {
-				ImageIcon caratula = Imagenes.getIcon(j.getImagen(),1);
-				vistaPreviaCaratula.setIcon(caratula);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
+		vistaPreviaCaratula = new JLabel("Cover preview");
 		vistaPreviaCaratula.setHorizontalAlignment(SwingConstants.CENTER);
 		vistaPreviaCaratula.setHorizontalTextPosition(SwingConstants.CENTER);
 		vistaPreviaCaratula.setOpaque(true);
@@ -301,19 +343,6 @@ public class Modificar {
 		String[] listaP = new String[] {"PS4", "PS3",
 				"PSVITA", "XONE", "X360", "PC", "WII-U", "WII", "N3DS"};
 		plataforma.setModel(new DefaultComboBoxModel(listaP));
-		if(j != null){
-			boolean encontrado = false;
-			int i = 0;
-			while(i<listaP.length && !encontrado){
-				if(listaP[i].equalsIgnoreCase(j.getPlataforma().getAlias())){
-					encontrado = true;
-				}
-				else{
-					i++;
-				}
-			}
-			plataforma.setSelectedIndex(i);
-		}
 		plataforma.setBounds(214, 145, 300, 20);
 		panel_3.add(plataforma);
 		
@@ -335,13 +364,6 @@ public class Modificar {
 		
 		for(int i = 0; i < generos.length; i++){
 			JCheckBoxMenuItem cb = new JCheckBoxMenuItem(generos[i]);
-			if(j != null){
-				for(String g:j.getGenero()){
-					if(g.equalsIgnoreCase(generos[i])){
-						cb.setSelected(true);
-					}
-				}
-			}
 			genero.add(cb);
 		}
 		
@@ -371,7 +393,5 @@ public class Modificar {
 		fondo.setBounds(0, 0, 1060, 471);
 		fondo.setIcon(new ImageIcon(Modificar.class.getResource("/Imagenes/blizz.jpg")));
 		panel_3.add(fondo);
-	}
-	private static void addPopup(Component component, final JPopupMenu popup) {
 	}
 }
