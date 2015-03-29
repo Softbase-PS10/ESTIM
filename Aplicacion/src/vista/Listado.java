@@ -123,15 +123,15 @@ public class Listado {
 		categorias.setLayout(null);
 		
 		categorias.add(BotonesCategorias.atras());
-		categorias.add(BotonesCategorias.ps3());
-		categorias.add(BotonesCategorias.vita());
-		categorias.add(BotonesCategorias.xone());
-		categorias.add(BotonesCategorias.x360());
-		categorias.add(BotonesCategorias.pc());
-		categorias.add(BotonesCategorias.wiiu());
-		categorias.add(BotonesCategorias.wii());
-		categorias.add(BotonesCategorias.n3ds());
-		categorias.add(BotonesCategorias.ps4());
+		categorias.add(BotonesCategorias.ps3(frmPantallaPrincipal));
+		categorias.add(BotonesCategorias.vita(frmPantallaPrincipal));
+		categorias.add(BotonesCategorias.xone(frmPantallaPrincipal));
+		categorias.add(BotonesCategorias.x360(frmPantallaPrincipal));
+		categorias.add(BotonesCategorias.pc(frmPantallaPrincipal));
+		categorias.add(BotonesCategorias.wiiu(frmPantallaPrincipal));
+		categorias.add(BotonesCategorias.wii(frmPantallaPrincipal));
+		categorias.add(BotonesCategorias.n3ds(frmPantallaPrincipal));
+		categorias.add(BotonesCategorias.ps4(frmPantallaPrincipal));
 		categorias.add(BotonesCategorias.adelante());
 		
 		JPanel filtros = new JPanel();

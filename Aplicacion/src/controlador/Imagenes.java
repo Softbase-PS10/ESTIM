@@ -46,7 +46,7 @@ public class Imagenes {
 	 *             si se produce algun error en la obtencion de la imagen
 	 */
 	public static ImageIcon getIcon(String url, int escala) throws IOException {
-		if (url == null){
+		if (url == null || url.compareToIgnoreCase("null") == 0){
 			return null;
 		}
 		return new ImageIcon(Imagenes.getImage(url, WIDTH * escala, HEIGHT * escala));
@@ -78,6 +78,9 @@ public class Imagenes {
 	 *             si se produce algun error en la obtencion de la imagen
 	 */
 	public static BufferedImage Url2Image(String url) throws IOException {
+		if (url == null || url.compareToIgnoreCase("null") == 0){
+			return null;
+		}
 		URL link = new URL(url);
 		URLConnection conn = link.openConnection();
 		conn.addRequestProperty("User-Agent",

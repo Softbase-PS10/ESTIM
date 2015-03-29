@@ -124,15 +124,15 @@ public class Info {
 		categorias.setLayout(null);
 		
 		categorias.add(BotonesCategorias.atras());
-		categorias.add(BotonesCategorias.ps3());
-		categorias.add(BotonesCategorias.vita());
-		categorias.add(BotonesCategorias.xone());
-		categorias.add(BotonesCategorias.x360());
-		categorias.add(BotonesCategorias.pc());
-		categorias.add(BotonesCategorias.wiiu());
-		categorias.add(BotonesCategorias.wii());
-		categorias.add(BotonesCategorias.n3ds());
-		categorias.add(BotonesCategorias.ps4());
+		categorias.add(BotonesCategorias.ps3(frmInformacinDelProduc));
+		categorias.add(BotonesCategorias.vita(frmInformacinDelProduc));
+		categorias.add(BotonesCategorias.xone(frmInformacinDelProduc));
+		categorias.add(BotonesCategorias.x360(frmInformacinDelProduc));
+		categorias.add(BotonesCategorias.pc(frmInformacinDelProduc));
+		categorias.add(BotonesCategorias.wiiu(frmInformacinDelProduc));
+		categorias.add(BotonesCategorias.wii(frmInformacinDelProduc));
+		categorias.add(BotonesCategorias.n3ds(frmInformacinDelProduc));
+		categorias.add(BotonesCategorias.ps4(frmInformacinDelProduc));
 		categorias.add(BotonesCategorias.adelante());
 
 		JPanelMenu m = new JPanelMenu("                ");
