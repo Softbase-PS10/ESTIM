@@ -53,7 +53,9 @@ public class BotonesCabecera {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				String busqueda = busc.getText();
-				ArrayList<Juego> juegos = new Sentencias().listarJuegosTitulo(busqueda);
+				Sentencias sql = new Sentencias();
+				ArrayList<Juego> juegos = sql.listarJuegosTitulo(busqueda);
+				sql.close();
 				Listado.listar(juegos);
 			}
 		});

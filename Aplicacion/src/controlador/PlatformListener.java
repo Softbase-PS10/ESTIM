@@ -15,12 +15,13 @@ public class PlatformListener implements ActionListener {
 
 	public PlatformListener(String alias) {
 		this.alias = alias;
-		sql = new Sentencias();
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		sql = new Sentencias();
 		ArrayList<Juego> juegos = sql.listarJuegosPlataformaAlias(this.alias);
+		sql.close();
 		
 		Listado.listar(juegos);
 	}

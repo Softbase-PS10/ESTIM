@@ -15,7 +15,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
-import controlador.*;
+import controlador.Botones;
+import controlador.BotonesCabecera;
+import controlador.BotonesCategorias;
+import controlador.BotonesMenu;
 
 public class Principal {
 
