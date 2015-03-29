@@ -1,46 +1,75 @@
 package vista;
 import java.awt.EventQueue;
+
+import modelo.JPanelMenu;
 import modelo.Juego;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Cursor;
+
 import javax.swing.border.LineBorder;
 import javax.swing.JButton;
+
 import java.awt.Insets;
+
 import javax.swing.JTextField;
+
 import java.awt.Font;
+
 import javax.swing.JMenu;
 import javax.swing.SwingConstants;
 import javax.swing.JMenuItem;
+
 import java.awt.Toolkit;
+
 import javax.swing.ImageIcon;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.JLabel;
 import javax.swing.JFormattedTextField;
 import javax.swing.DropMode;
 import javax.swing.JTextArea;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.swing.JMenuBar;
+import javax.swing.JInternalFrame;
+
+import controlador.BotonesCabecera;
+import controlador.BotonesCategorias;
 
 
 public class Info {
 
 	private JFrame frmInformacinDelProduc;
-	private JTextField textField;
+	private JTextField txtBuscar;
+	private static Juego juego;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(Juego juego) {
-		final Juego jue = juego;
+	public static void main(String[] args) {
+		Juego p = new Juego(2);
+		p.setImagen("http://www.matrallune.com/images/imagen_corporativa.jpg");
+		//Listado.main(null);
+		main(p);
+	}
+
+	public static void main(Juego jue) {
+		juego = jue;
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Info window = new Info(jue);
+					Info window = new Info(juego);
 					window.frmInformacinDelProduc.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -48,7 +77,7 @@ public class Info {
 			}
 		});
 	}
-
+	
 	/**
 	 * Create the application.
 	 */
@@ -68,319 +97,177 @@ public class Info {
 		frmInformacinDelProduc.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmInformacinDelProduc.getContentPane().setLayout(null);
 		
-		JPanel Cabecera = new JPanel();
-		Cabecera.setLayout(null);
-		Cabecera.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		Cabecera.setBackground(Color.BLACK);
-		Cabecera.setBounds(0, 0, 1065, 70);
-		frmInformacinDelProduc.getContentPane().add(Cabecera);
+		JPanel cabecera = new JPanel();
+		cabecera.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		cabecera.setBackground(Color.BLACK);
+		cabecera.setBounds(0, 0, 1060, 70);
+		frmInformacinDelProduc.getContentPane().add(cabecera);
+		cabecera.setLayout(null);
 		
-		JButton Logo = new JButton("");
-		Logo.setIcon(new ImageIcon(Info.class.getResource("/Imagenes/logoP.png")));
-		Logo.setOpaque(false);
-		Logo.setMargin(new Insets(0, 0, 0, 0));
-		Logo.setFocusPainted(false);
-		Logo.setContentAreaFilled(false);
-		Logo.setBorderPainted(false);
-		Logo.setBorder(null);
-		Logo.setBounds(33, 11, 97, 48);
-		Cabecera.add(Logo);
+		cabecera.add(BotonesCabecera.logo());
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setLayout(null);
-		panel_1.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel_1.setBounds(990, 0, 70, 70);
-		Cabecera.add(panel_1);
+		txtBuscar = new JTextField();
+		txtBuscar.setToolTipText("");
+		txtBuscar.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtBuscar.setBounds(650, 20, 192, 30);
+		cabecera.add(txtBuscar);
+		txtBuscar.setColumns(10);
 		
-		JButton button_1 = new JButton("");
-		button_1.setIcon(new ImageIcon(Info.class.getResource("/Imagenes/B/carro.png")));
-		button_1.setBounds(0, 0, 70, 70);
-		panel_1.add(button_1);
+		JPanel lupaBuscar = new JPanel();
+		lupaBuscar.setBounds(841, 20, 30, 30);
+		cabecera.add(lupaBuscar);
+		lupaBuscar.setLayout(null);
+		lupaBuscar.add(BotonesCabecera.buscar());
 		
-		textField = new JTextField();
-		textField.setToolTipText("");
-		textField.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textField.setColumns(10);
-		textField.setBounds(650, 20, 192, 30);
-		Cabecera.add(textField);
+		JPanel opciones = new JPanel();
 		
-		JPanel panel_2 = new JPanel();
-		panel_2.setLayout(null);
-		panel_2.setBounds(841, 20, 30, 30);
-		Cabecera.add(panel_2);
+		opciones.setBorder(new LineBorder(new Color(0, 0, 0)));
+		opciones.setBounds(920, 0, 70, 70);
+		cabecera.add(opciones);
+		opciones.setLayout(null);
 		
-		JButton button_2 = new JButton("");
-		button_2.setIcon(new ImageIcon(Info.class.getResource("/Imagenes/B/buscar.png")));
-		button_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		button_2.setBorder(null);
-		button_2.setBounds(0, 0, 30, 30);
-		panel_2.add(button_2);
+		opciones.add(BotonesCabecera.ajustes());
 		
-		JButton btnNewButton = new JButton("");
-		btnNewButton.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent arg0) {
-				
-			}
-		});
-		btnNewButton.setIcon(new ImageIcon(Info.class.getResource("/Imagenes/B/settings.png")));
-		btnNewButton.setBounds(921, 11, 70, 48);
-		Cabecera.add(btnNewButton);
+		JPanel carrito = new JPanel();
+		carrito.setBorder(new LineBorder(new Color(0, 0, 0)));
+		carrito.setBounds(990, 0, 70, 70);
+		cabecera.add(carrito);
+		carrito.setLayout(null);
 		
-		JPanel Categoria = new JPanel();
-		Categoria.setLayout(null);
-		Categoria.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		Categoria.setBackground(Color.DARK_GRAY);
-		Categoria.setBounds(0, 70, 1060, 30);
-		frmInformacinDelProduc.getContentPane().add(Categoria);
+		carrito.add(BotonesCabecera.carro());
 		
-		JButton button = new JButton("");
-		button.setIcon(new ImageIcon(Info.class.getResource("/Imagenes/B/atras.png")));
-		button.setForeground(Color.WHITE);
-		button.setFont(new Font("Tahoma", Font.BOLD, 14));
-		button.setFocusable(false);
-		button.setBorder(new LineBorder(new Color(0, 0, 0)));
-		button.setBackground(new Color(51, 102, 204));
-		button.setBounds(0, 0, 53, 30);
-		Categoria.add(button);
+		JPanel categorias = new JPanel();
+		categorias.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		categorias.setBackground(Color.DARK_GRAY);
+		categorias.setBounds(0, 70, 1060, 30);
+		frmInformacinDelProduc.getContentPane().add(categorias);
+		categorias.setLayout(null);
 		
-		JButton button_3 = new JButton("");
-		button_3.setIcon(new ImageIcon(Info.class.getResource("/Imagenes/B/PS3.png")));
-		button_3.setForeground(Color.WHITE);
-		button_3.setFont(new Font("Tahoma", Font.BOLD, 14));
-		button_3.setFocusable(false);
-		button_3.setFocusPainted(false);
-		button_3.setBorder(new LineBorder(new Color(0, 0, 0)));
-		button_3.setBounds(212, 0, 106, 30);
-		Categoria.add(button_3);
+		categorias.add(BotonesCategorias.atras());
+		categorias.add(BotonesCategorias.ps3());
+		categorias.add(BotonesCategorias.vita());
+		categorias.add(BotonesCategorias.xone());
+		categorias.add(BotonesCategorias.x360());
+		categorias.add(BotonesCategorias.pc());
+		categorias.add(BotonesCategorias.wiiu());
+		categorias.add(BotonesCategorias.wii());
+		categorias.add(BotonesCategorias.n3ds());
+		categorias.add(BotonesCategorias.ps4());
+		categorias.add(BotonesCategorias.adelante());
+
+		JPanelMenu m = new JPanelMenu("                ");
+		m.setOpaque(false);
+		m.add(new JMenuItem("Modify"));
+		m.add(new JMenuItem("Delete"));
+		m.add(new JMenuItem("Exit"));
+		m.setBounds(920, 0, 70, 70);
+		frmInformacinDelProduc.getContentPane().add(m);
 		
-		JButton button_4 = new JButton("");
-		button_4.setIcon(new ImageIcon(Info.class.getResource("/Imagenes/B/PSVITA.png")));
-		button_4.setForeground(Color.WHITE);
-		button_4.setFont(new Font("Tahoma", Font.BOLD, 14));
-		button_4.setFocusable(false);
-		button_4.setFocusPainted(false);
-		button_4.setBorder(new LineBorder(new Color(0, 0, 0)));
-		button_4.setBounds(318, 0, 106, 30);
-		Categoria.add(button_4);
-		
-		JButton button_5 = new JButton("");
-		button_5.setIcon(new ImageIcon(Info.class.getResource("/Imagenes/B/XONE.png")));
-		button_5.setForeground(Color.WHITE);
-		button_5.setFont(new Font("Tahoma", Font.BOLD, 14));
-		button_5.setFocusable(false);
-		button_5.setFocusPainted(false);
-		button_5.setBorder(new LineBorder(new Color(0, 0, 0)));
-		button_5.setBounds(424, 0, 106, 30);
-		Categoria.add(button_5);
-		
-		JButton button_6 = new JButton("");
-		button_6.setIcon(new ImageIcon(Info.class.getResource("/Imagenes/B/X360.png")));
-		button_6.setForeground(Color.WHITE);
-		button_6.setFont(new Font("Tahoma", Font.BOLD, 14));
-		button_6.setFocusable(false);
-		button_6.setFocusPainted(false);
-		button_6.setBorder(new LineBorder(new Color(0, 0, 0)));
-		button_6.setBounds(530, 0, 106, 30);
-		Categoria.add(button_6);
-		
-		JButton button_7 = new JButton("");
-		button_7.setIcon(new ImageIcon(Info.class.getResource("/Imagenes/B/PC.png")));
-		button_7.setForeground(Color.WHITE);
-		button_7.setFont(new Font("Tahoma", Font.BOLD, 14));
-		button_7.setFocusable(false);
-		button_7.setFocusPainted(false);
-		button_7.setBorder(new LineBorder(new Color(0, 0, 0)));
-		button_7.setBounds(636, 0, 106, 30);
-		Categoria.add(button_7);
-		
-		JButton button_8 = new JButton("");
-		button_8.setIcon(new ImageIcon(Info.class.getResource("/Imagenes/B/WIIU.png")));
-		button_8.setForeground(Color.WHITE);
-		button_8.setFont(new Font("Tahoma", Font.BOLD, 14));
-		button_8.setFocusable(false);
-		button_8.setFocusPainted(false);
-		button_8.setBorder(new LineBorder(new Color(0, 0, 0)));
-		button_8.setBounds(742, 0, 106, 30);
-		Categoria.add(button_8);
-		
-		JButton button_9 = new JButton("");
-		button_9.setIcon(new ImageIcon(Info.class.getResource("/Imagenes/B/WII.png")));
-		button_9.setForeground(Color.WHITE);
-		button_9.setFont(new Font("Tahoma", Font.BOLD, 14));
-		button_9.setFocusable(false);
-		button_9.setFocusPainted(false);
-		button_9.setBorder(new LineBorder(new Color(0, 0, 0)));
-		button_9.setBounds(848, 0, 106, 30);
-		Categoria.add(button_9);
-		
-		JButton button_10 = new JButton("");
-		button_10.setIcon(new ImageIcon(Info.class.getResource("/Imagenes/B/N3DS.png")));
-		button_10.setForeground(Color.WHITE);
-		button_10.setFont(new Font("Tahoma", Font.BOLD, 14));
-		button_10.setFocusable(false);
-		button_10.setFocusPainted(false);
-		button_10.setBorder(new LineBorder(new Color(0, 0, 0)));
-		button_10.setBounds(954, 0, 106, 30);
-		Categoria.add(button_10);
-		
-		JButton button_11 = new JButton("");
-		button_11.setIcon(new ImageIcon(Info.class.getResource("/Imagenes/B/PS4.png")));
-		button_11.setForeground(Color.WHITE);
-		button_11.setFont(new Font("Tahoma", Font.BOLD, 14));
-		button_11.setFocusable(false);
-		button_11.setFocusPainted(false);
-		button_11.setBorder(new LineBorder(new Color(0, 0, 0)));
-		button_11.setBackground(new Color(51, 102, 255));
-		button_11.setBounds(106, 0, 106, 30);
-		Categoria.add(button_11);
-		
-		JButton button_12 = new JButton("");
-		button_12.setIcon(new ImageIcon(Info.class.getResource("/Imagenes/B/alante.png")));
-		button_12.setOpaque(false);
-		button_12.setForeground(Color.WHITE);
-		button_12.setFont(new Font("Tahoma", Font.BOLD, 14));
-		button_12.setFocusable(false);
-		button_12.setContentAreaFilled(false);
-		button_12.setBorder(new LineBorder(new Color(0, 0, 0)));
-		button_12.setBackground(new Color(51, 102, 204));
-		button_12.setBounds(53, 0, 53, 30);
-		Categoria.add(button_12);
-		
+		//Imagen
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setBounds(122, 141, 152, 260);
+		lblNewLabel.setBounds(122, 181, 128, 180);
 		frmInformacinDelProduc.getContentPane().add(lblNewLabel);
-		lblNewLabel.setIcon(new ImageIcon(Info.class.getResource("/Imagenes/pes_2014-2352260.jpg")));
+		try {
+			lblNewLabel.setIcon(new ImageIcon(controlador.Imagenes.getIcon(juego.getImagen(), 1)));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
-		JLabel Titulo = new JLabel("T\u00EDtulo:");
+		JLabel Titulo = new JLabel();
+		Titulo.setFont(new Font("Tahoma", Font.BOLD, 16));
+		Titulo.setOpaque(false);
+		Titulo.setBackground(new Color(255, 255, 255));
+		Titulo.setBorder(null);
 		Titulo.setForeground(Color.WHITE);
-		Titulo.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		Titulo.setBounds(405, 127, 88, 30);
+		Titulo.setText("FGJ"
+				+ juego.getTitulo() + "\r\n");
+		Titulo.setBounds(0, 105, 1066, 31);
+		Titulo.setHorizontalAlignment(SwingConstants.CENTER);
 		frmInformacinDelProduc.getContentPane().add(Titulo);
 		
-		JTextArea RespTitulo = new JTextArea();
-		RespTitulo.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		RespTitulo.setEditable(false);
-		RespTitulo.setTabSize(12);
-		RespTitulo.setOpaque(false);
-		RespTitulo.setBackground(new Color(255, 255, 255));
-		RespTitulo.setBorder(null);
-		RespTitulo.setForeground(Color.WHITE);
-		RespTitulo.setText(juego.getTitulo() + "\r\n");
-		RespTitulo.setBounds(525, 136, 372, 31);
-		frmInformacinDelProduc.getContentPane().add(RespTitulo);
-		
-		JLabel Precio = new JLabel("Precio:");
+		JLabel Precio = new JLabel("Price:");
 		Precio.setForeground(Color.WHITE);
-		Precio.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		Precio.setBounds(405, 172, 53, 20);
+		Precio.setFont(new Font("Tahoma", Font.BOLD, 16));
+		Precio.setBounds(405, 160, 53, 20);
 		frmInformacinDelProduc.getContentPane().add(Precio);
 		
-		JTextArea RespPrecio = new JTextArea();
+		JLabel RespPrecio = new JLabel();
 		RespPrecio.setOpaque(false);
 		RespPrecio.setForeground(Color.WHITE);
-		RespPrecio.setEditable(false);
-		RespPrecio.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		RespPrecio.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		RespPrecio.setText(juego.getPrecio() + "\u20AC");
-		RespPrecio.setBounds(525, 174, 200, 23);
+		RespPrecio.setBounds(540, 160, 200, 20);
 		frmInformacinDelProduc.getContentPane().add(RespPrecio);
 		
-		JLabel Anio = new JLabel("A\u00F1o:");
-		Anio.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		JLabel Anio = new JLabel("Release date:");
+		Anio.setFont(new Font("Tahoma", Font.BOLD, 16));
 		Anio.setForeground(Color.WHITE);
-		Anio.setBounds(405, 213, 53, 20);
+		Anio.setBounds(405, 200, 133, 20);
 		frmInformacinDelProduc.getContentPane().add(Anio);
 		
-		JTextArea RespAnio = new JTextArea();
+		JLabel RespAnio = new JLabel();
 		RespAnio.setForeground(Color.WHITE);
-		RespAnio.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		RespAnio.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		RespAnio.setOpaque(false);
-		RespAnio.setText(juego.getLanzamiento());
-		RespAnio.setBounds(525, 215, 282, 23);
+		RespAnio.setText("fgj" + juego.getLanzamiento());
+		RespAnio.setBounds(540, 200, 282, 20);
 		frmInformacinDelProduc.getContentPane().add(RespAnio);
 		
-		JLabel Plataforma = new JLabel("Plataforma:");
-		Plataforma.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		JLabel Plataforma = new JLabel("Platform:");
+		Plataforma.setFont(new Font("Tahoma", Font.BOLD, 16));
 		Plataforma.setForeground(Color.WHITE);
 		Plataforma.setBounds(405, 244, 88, 20);
 		frmInformacinDelProduc.getContentPane().add(Plataforma);
 		
-		JTextArea RespPlataforma = new JTextArea();
+		JLabel RespPlataforma = new JLabel();
 		RespPlataforma.setOpaque(false);
 		RespPlataforma.setForeground(Color.WHITE);
-		RespPlataforma.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		RespPlataforma.setText(juego.getPlataforma().getNombre());
-		RespPlataforma.setBounds(525, 246, 254, 23);
+		RespPlataforma.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		RespPlataforma.setText("fgj" + juego.getPlataforma().getNombre());
+		RespPlataforma.setBounds(540, 244, 254, 20);
 		frmInformacinDelProduc.getContentPane().add(RespPlataforma);
 		
-		JLabel Genero = new JLabel("G\u00E9nero:");
-		Genero.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		JLabel Genero = new JLabel("Gender:");
+		Genero.setFont(new Font("Tahoma", Font.BOLD, 16));
 		Genero.setForeground(Color.WHITE);
-		Genero.setBounds(405, 275, 72, 20);
+		Genero.setBounds(405, 285, 72, 20);
 		frmInformacinDelProduc.getContentPane().add(Genero);
 		
-		JTextArea RespGenero = new JTextArea();
+		JLabel RespGenero = new JLabel();
 		RespGenero.setOpaque(false);
-		RespGenero.setText(juego.getGenero().toString());
+		RespGenero.setText("fgj" + juego.getGenero().toString().substring(1, juego.getGenero().toString().length()-1));
 		RespGenero.setForeground(Color.WHITE);
-		RespGenero.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		RespGenero.setBounds(525, 277, 200, 23);
+		RespGenero.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		RespGenero.setBounds(540, 285, 200, 20);
 		frmInformacinDelProduc.getContentPane().add(RespGenero);
 		
-		JLabel Descripcion = new JLabel("Descripci\u00F3n:");
+		JLabel Descripcion = new JLabel("Description:");
 		Descripcion.setForeground(Color.WHITE);
-		Descripcion.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		Descripcion.setBounds(405, 319, 110, 20);
+		Descripcion.setFont(new Font("Tahoma", Font.BOLD, 16));
+		Descripcion.setBounds(405, 325, 110, 20);
 		frmInformacinDelProduc.getContentPane().add(Descripcion);
 		
 		JTextArea RespDescripcion = new JTextArea();
 		RespDescripcion.setForeground(Color.WHITE);
-		RespDescripcion.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		RespDescripcion.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		RespDescripcion.setText(juego.getDescripcion());
 		RespDescripcion.setOpaque(false);
-		RespDescripcion.setBounds(525, 321, 525, 164);
+		RespDescripcion.setBounds(540, 325, 500, 164);
+		RespDescripcion.setLineWrap(true);
 		frmInformacinDelProduc.getContentPane().add(RespDescripcion);
 		
-		JLabel Valoracion = new JLabel("Valoraci\u00F3n:");
-		Valoracion.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		Valoracion.setForeground(Color.WHITE);
-		Valoracion.setBounds(405, 494, 88, 20);
-		frmInformacinDelProduc.getContentPane().add(Valoracion);
-		
-		JTextArea RespValoracion = new JTextArea();
+		JLabel RespValoracion = new JLabel();
 		RespValoracion.setOpaque(false);
 		RespValoracion.setForeground(Color.WHITE);
-		RespValoracion.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		RespValoracion.setText(juego.getRating());
-		RespValoracion.setBounds(525, 495, 98, 22);
+		RespValoracion.setFont(new Font("Tahoma", Font.BOLD, 20));
+		RespValoracion.setText(juego.getRating()+ "/10.0");
+		RespValoracion.setBounds(122, 401, 128, 25);
+		RespValoracion.setHorizontalAlignment(SwingConstants.CENTER);
 		frmInformacinDelProduc.getContentPane().add(RespValoracion);
 		
-		JButton Carro = new JButton("A\u00F1adir al carro");
-		Carro.setBounds(923, 525, 110, 23);
+		JButton Carro = new JButton("Add to cart");
+		Carro.setBounds(923, 525, 119, 23);
 		frmInformacinDelProduc.getContentPane().add(Carro);
-		
-		JMenu menu = new JMenu("New menu");
-		menu.setBounds(923, 141, 76, 76);
-		frmInformacinDelProduc.getContentPane().add(menu);
-		menu.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent arg0) {
-			}
-		});
-		menu.setIcon(new ImageIcon(Info.class.getResource("/Imagenes/B/settings.png")));
-		menu.setHorizontalAlignment(SwingConstants.CENTER);
-		
-		JMenuItem mntmModificar = new JMenuItem("Modificar");
-		mntmModificar.setSelected(true);
-		mntmModificar.setHorizontalAlignment(SwingConstants.LEFT);
-		menu.add(mntmModificar);
-		
-		JMenuItem mntmEliminar = new JMenuItem("Eliminar");
-		menu.add(mntmEliminar);
-		
-		JMenuItem mntmSalir = new JMenuItem("Salir");
-		menu.add(mntmSalir);
 		
 		JLabel Fondo = new JLabel("");
 		Fondo.setIcon(new ImageIcon(Info.class.getResource("/Imagenes/blizz.jpg")));
@@ -394,18 +281,13 @@ public class Info {
 		menuBar.add(mnAdmin);
 		
 		JMenuItem mntmModificar_1 = new JMenuItem("Modificar");
-		mntmModificar_1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-			}
-		});
 		mnAdmin.add(mntmModificar_1);
 		
-		JMenuItem mntmEliminar_1 = new JMenuItem("Eliminar");
+		JMenuItem mntmEliminar_1 = new JMenuItem("Delete");
 		mnAdmin.add(mntmEliminar_1);
 		
 		
-		JMenuItem mntmSalir_1 = new JMenuItem("Salir");
+		JMenuItem mntmSalir_1 = new JMenuItem("Exit");
 		mnAdmin.add(mntmSalir_1);
 	}
 }
