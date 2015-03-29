@@ -286,7 +286,7 @@ public class Listado {
 			
 			JFormattedTextField precio = new JFormattedTextField();
 			precio.setSize(144, 60);
-			precio.setLocation(514, 60);
+			precio.setLocation(530, 60);
 			precio.setText(j.getPrecio() + " \u20AC");
 			precio.setOpaque(false);
 			precio.setForeground(Color.WHITE);
@@ -329,9 +329,12 @@ public class Listado {
 			res.add(rating);
 			
 			JFormattedTextField titulo = new JFormattedTextField();
-			titulo.setSize(329, 20);
+			titulo.setSize(400, 20);
 			titulo.setLocation(162, 31);
-			titulo.setText(j.getTitulo());
+			if(j.getTitulo() == null || j.getTitulo().compareTo("null") == 0)
+				titulo.setText("No title available");
+			else
+				titulo.setText(j.getTitulo());
 			titulo.setOpaque(false);
 			titulo.setForeground(Color.WHITE);
 			titulo.setFont(new Font("Tahoma", Font.BOLD, 16));
@@ -340,8 +343,11 @@ public class Listado {
 			res.add(titulo);
 			
 			JFormattedTextField fecha = new JFormattedTextField();
-			fecha.setBounds(276, 71, 37, 20);
-			fecha.setText(j.getLanzamiento());
+			fecha.setBounds(270, 71, 170, 20);
+			if(j.getLanzamiento() == null || j.getLanzamiento().compareTo("null") == 0)
+				fecha.setText("No release date available");
+			else
+				fecha.setText(j.getLanzamiento());
 			fecha.setOpaque(false);
 			fecha.setForeground(Color.WHITE);
 			fecha.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -352,7 +358,10 @@ public class Listado {
 			JFormattedTextField plataformas = new JFormattedTextField();
 			plataformas.setSize(188, 20);
 			plataformas.setLocation(246, 107);
-			plataformas.setText(j.getPlataforma().getAlias());
+			if (j.getPlataforma().getAlias() == null || j.getPlataforma().getAlias().compareTo("null") == 0)
+				plataformas.setText("No platforms available");
+			else
+				plataformas.setText(j.getPlataforma().getAlias());
 			plataformas.setOpaque(false);
 			plataformas.setForeground(Color.WHITE);
 			plataformas.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -361,9 +370,12 @@ public class Listado {
 			res.add(plataformas);
 			
 			JFormattedTextField valoracion = new JFormattedTextField();
-			valoracion.setSize(37, 20);
+			valoracion.setSize(150, 20);
 			valoracion.setLocation(234, 144);
-			valoracion.setText(j.getRating());
+			if (j.getRating()== null || j.getRating().compareTo("null") == 0)
+				valoracion.setText("No rating available");
+			else
+				valoracion.setText(j.getRating() + " / 10.0");
 			valoracion.setOpaque(false);
 			valoracion.setForeground(Color.WHITE);
 			valoracion.setFont(new Font("Tahoma", Font.PLAIN, 14));
