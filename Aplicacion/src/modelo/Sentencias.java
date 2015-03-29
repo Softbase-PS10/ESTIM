@@ -141,52 +141,6 @@ public class Sentencias {
 	}
 
 	/**
-	 * @param query
-	 *            : datos adicionales para el filtrado de las consultas
-	 * @return una lista (ArrayList) de todos los juegos de la Base de Datos que
-	 *         coinciden con @param query
-	 */
-	private ArrayList<Juego> listarJuegos(String query) {
-		String q = "SELECT * FROM JUEGO, PLATAFORMA, JUEGO_PLATAFORMA, JUEGO_GENERO WHERE "
-				+ "JUEGO.ID = JUEGO_PLATAFORMA.JUEGO AND PLATAFORMA.ID = JUEGO_PLATAFORMA.PLATAFORMA"
-				+ query;
-		Statement st, st2;
-		ArrayList<Juego> js = new ArrayList<Juego>();
-		try {
-			st = connection.createStatement();
-			ResultSet resul = st.executeQuery(q);
-			Juego j;
-			ArrayList<String> gen = new ArrayList<String>();
-			ResultSet res;
-			while (resul.next()) {
-				j = new Juego(resul.getLong("id"));
-				j.setTitulo(resul.getString("titulo"));
-				j.setDescripcion(resul.getString("resumen"));
-				j.setImagen(resul.getString("imagen"));
-				j.setLanzamiento(resul.getString("lanzamiento"));
-				j.setPrecio(resul.getInt("precio"));
-				j.setRating(resul.getString("rating"));
-				j.setPlataforma(new Plataforma(resul.getString("nombre"), resul
-						.getString("alias")));
-						
-				q = "SELECT * FROM JUEGO_GENERO WHERE ID = '"+j.getId()+"'";
-				st2 = connection.createStatement();
-				res = st2.executeQuery(q);
-				while (res.next()) {
-					gen.add(res.getString("genero"));
-				}
-				j.setGenero(gen);
-				
-				js.add(j);
-				gen = new ArrayList<String>();
-			}
-		} catch (SQLException ex) {
-				ex.printStackTrace();
-		}
-		return js;
-	}
-
-	/**
 	 * @param nombre
 	 *            : nombre de la plataforma
 	 * @return la informacion asociada a la plataforma cuyo nombre coincida con @param
@@ -214,30 +168,6 @@ public class Sentencias {
 	 */
 	public Plataforma listarPlataformaId(int id) {
 		return listarPlataforma(" WHERE ID = '" + id + "'");
-	}
-
-	/**
-	 * @param query
-	 *            : datos adicionales para la obtencion de la plataforma
-	 * @return la plataforma cuya informacion coincida con @param query
-	 */
-	private Plataforma listarPlataforma(String query) {
-		String q = "SELECT * FROM plataforma" + query;
-		Statement st;
-		Plataforma p = null;
-		try {
-			st = connection.createStatement();
-			ResultSet resul = st.executeQuery(q);
-			while (resul.next()) {
-				p = new Plataforma(resul.getLong("id"));
-				p.setAlias(resul.getString("alias"));
-				p.setNombre(resul.getString("nombre"));
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return p;
 	}
 
 	/**
@@ -540,5 +470,75 @@ public class Sentencias {
 			e.printStackTrace();
 		}
 		return id;
+	}
+	
+	/**
+	 * @param query
+	 *            : datos adicionales para el filtrado de las consultas
+	 * @return una lista (ArrayList) de todos los juegos de la Base de Datos que
+	 *         coinciden con @param query
+	 */
+	private ArrayList<Juego> listarJuegos(String query) {
+		String q = "SELECT * FROM JUEGO, PLATAFORMA, JUEGO_PLATAFORMA, JUEGO_GENERO WHERE "
+				+ "JUEGO.ID = JUEGO_PLATAFORMA.JUEGO AND PLATAFORMA.ID = JUEGO_PLATAFORMA.PLATAFORMA"
+				+ query;
+		Statement st, st2;
+		ArrayList<Juego> js = new ArrayList<Juego>();
+		try {
+			st = connection.createStatement();
+			ResultSet resul = st.executeQuery(q);
+			Juego j;
+			ArrayList<String> gen = new ArrayList<String>();
+			ResultSet res;
+			while (resul.next()) {
+				j = new Juego(resul.getLong("id"));
+				j.setTitulo(resul.getString("titulo"));
+				j.setDescripcion(resul.getString("resumen"));
+				j.setImagen(resul.getString("imagen"));
+				j.setLanzamiento(resul.getString("lanzamiento"));
+				j.setPrecio(resul.getInt("precio"));
+				j.setRating(resul.getString("rating"));
+				j.setPlataforma(new Plataforma(resul.getString("nombre"), resul
+						.getString("alias")));
+						
+				q = "SELECT * FROM JUEGO_GENERO WHERE ID = '"+j.getId()+"'";
+				st2 = connection.createStatement();
+				res = st2.executeQuery(q);
+				while (res.next()) {
+					gen.add(res.getString("genero"));
+				}
+				j.setGenero(gen);
+				
+				js.add(j);
+				gen = new ArrayList<String>();
+			}
+		} catch (SQLException ex) {
+				ex.printStackTrace();
+		}
+		return js;
+	}
+	
+	/**
+	 * @param query
+	 *            : datos adicionales para la obtencion de la plataforma
+	 * @return la plataforma cuya informacion coincida con @param query
+	 */
+	private Plataforma listarPlataforma(String query) {
+		String q = "SELECT * FROM plataforma" + query;
+		Statement st;
+		Plataforma p = null;
+		try {
+			st = connection.createStatement();
+			ResultSet resul = st.executeQuery(q);
+			while (resul.next()) {
+				p = new Plataforma(resul.getLong("id"));
+				p.setAlias(resul.getString("alias"));
+				p.setNombre(resul.getString("nombre"));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return p;
 	}
 }
