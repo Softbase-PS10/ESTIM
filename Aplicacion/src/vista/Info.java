@@ -1,4 +1,6 @@
 package vista;
+
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import modelo.JPanelMenu;
@@ -7,42 +9,20 @@ import modelo.Juego;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Cursor;
-
 import javax.swing.border.LineBorder;
 import javax.swing.JButton;
-
-import java.awt.Insets;
-
-import javax.swing.JTextField;
-
 import java.awt.Font;
-
-import javax.swing.JMenu;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.JMenuItem;
 
 import java.awt.Toolkit;
+import javax.swing.JLabel;
+import javax.swing.JTextArea;
+import java.io.IOException;
+
 
 import javax.swing.ImageIcon;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
-import javax.swing.JLabel;
-import javax.swing.JFormattedTextField;
-import javax.swing.DropMode;
-import javax.swing.JTextArea;
-
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.io.IOException;
-import java.util.ArrayList;
-
-import javax.swing.JMenuBar;
-import javax.swing.JInternalFrame;
 
 import controlador.BotonesCabecera;
 import controlador.BotonesCategorias;
@@ -117,7 +97,7 @@ public class Info {
 		lupaBuscar.setBounds(841, 20, 30, 30);
 		cabecera.add(lupaBuscar);
 		lupaBuscar.setLayout(null);
-		lupaBuscar.add(BotonesCabecera.buscar());
+		lupaBuscar.add(BotonesCabecera.buscar(txtBuscar));
 		
 		JPanel opciones = new JPanel();
 		
@@ -168,7 +148,7 @@ public class Info {
 		lblNewLabel.setBounds(122, 181, 128, 180);
 		frmInformacinDelProduc.getContentPane().add(lblNewLabel);
 		try {
-			lblNewLabel.setIcon(new ImageIcon(controlador.Imagenes.getIcon(juego.getImagen(), 1)));
+			lblNewLabel.setIcon(controlador.Imagenes.getIcon(juego.getImagen(), 1));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -274,20 +254,5 @@ public class Info {
 		Fondo.setBounds(0, 100, 1065, 472);
 		frmInformacinDelProduc.getContentPane().add(Fondo);
 		
-		JMenuBar menuBar = new JMenuBar();
-		frmInformacinDelProduc.setJMenuBar(menuBar);
-		
-		JMenu mnAdmin = new JMenu("Admin");
-		menuBar.add(mnAdmin);
-		
-		JMenuItem mntmModificar_1 = new JMenuItem("Modificar");
-		mnAdmin.add(mntmModificar_1);
-		
-		JMenuItem mntmEliminar_1 = new JMenuItem("Delete");
-		mnAdmin.add(mntmEliminar_1);
-		
-		
-		JMenuItem mntmSalir_1 = new JMenuItem("Exit");
-		mnAdmin.add(mntmSalir_1);
 	}
 }

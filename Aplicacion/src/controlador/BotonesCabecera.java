@@ -19,20 +19,28 @@ import java.awt.Cursor;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JTextField;
 
+import modelo.Juego;
+import modelo.Sentencias;
+import vista.Listado;
 import vista.Principal;
 
 public class BotonesCabecera {
+	
+	private static JTextField busc;
 
 	/**
 	 * @return un boton de busqueda que obtiene lo escrito en un campo, lo
 	 *         procesa y redirige a la pantalla de listado de resultados.
 	 */
-	public static JButton buscar() {
+	public static JButton buscar(JTextField b) {
+		busc = b;
 		JButton busqueda = new JButton("");
 		busqueda.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		busqueda.setIcon(new ImageIcon(Principal.class
@@ -44,7 +52,9 @@ public class BotonesCabecera {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-
+				String busqueda = busc.getText();
+				ArrayList<Juego> juegos = new Sentencias().listarJuegosTitulo(busqueda);
+				Listado.listar(juegos);
 			}
 		});
 
@@ -113,11 +123,9 @@ public class BotonesCabecera {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-
-			}
-		});
+				Principal.main(null);
+				}});
 
 		return logo;
 	}
-
 }

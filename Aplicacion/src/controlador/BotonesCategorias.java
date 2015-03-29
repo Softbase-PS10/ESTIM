@@ -44,6 +44,7 @@ public class BotonesCategorias {
 		atras.setBorder(new LineBorder(new Color(0, 0, 0)));
 		atras.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		atras.setFocusable(false);
+		atras.setFocusPainted(false);
 		atras.setForeground(Color.WHITE);
 		atras.setFont(new Font("Tahoma", Font.BOLD, 14));
 		atras.setBounds(0, 0, 53, 30);

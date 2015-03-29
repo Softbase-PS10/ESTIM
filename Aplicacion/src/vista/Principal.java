@@ -91,7 +91,7 @@ public class Principal {
 		cabecera.add(panel_2);
 		panel_2.setLayout(null);
 
-		panel_2.add(BotonesCabecera.buscar());
+		panel_2.add(BotonesCabecera.buscar(txtBuscar));
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new LineBorder(new Color(0, 0, 0)));

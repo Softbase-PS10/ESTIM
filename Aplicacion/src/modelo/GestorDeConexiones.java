@@ -21,8 +21,8 @@ public class GestorDeConexiones {
 
 	/* declaracion de atributos */
 	private static String db_driver = "jdbc:oracle:thin:@hendrix-oracle.cps.unizar.es:1521:vicious";
-	private static String db_username = "";
-	private static String db_password = "";
+	private static String db_username = "a546751";
+	private static String db_password = "Korea11";
 
 	/* declaracion de metodos y funciones */
 

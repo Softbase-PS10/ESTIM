@@ -88,7 +88,7 @@ public class Juego {
 		this.rating = "";
 		this.genero = new ArrayList<String>();
 		this.precio = 0;
-		this.plataforma = new Plataforma();
+		this.plataforma = new Plataforma(id);
 	}
 
 	/**
