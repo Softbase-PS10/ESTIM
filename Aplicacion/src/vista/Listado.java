@@ -2,6 +2,7 @@ package vista;
 
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Toolkit;
@@ -45,9 +46,8 @@ public class Listado {
 			public void run() {
 				try {
 					Listado window = new Listado(juegos);
-					window.frmPantallaPrincipal.validate();
-					window.frmPantallaPrincipal.pack();
 					window.frmPantallaPrincipal.setVisible(true);
+					window.frmPantallaPrincipal.validate();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -263,6 +263,7 @@ public class Listado {
 			
 			JPanel res = new JPanel();
 			res.setLayout(null);
+			res.setPreferredSize(new Dimension(850, 200));
 			res.setBackground(Color.DARK_GRAY);
 			
 			JButton caratula = new JButton("");
@@ -277,7 +278,6 @@ public class Listado {
 				
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					// TODO Lanzar app informacion con el juego j
 					frmPantallaPrincipal.dispose();
 					Info.main(j);
 				}
@@ -484,7 +484,7 @@ public class Listado {
 		txtResultados.setForeground(Color.WHITE);
 		txtResultados.setEditable(false);
 		txtResultados.setBorder(null);
-		txtResultados.setText("2 games found");
+		txtResultados.setText(juegos.size() + " games found");
 		txtResultados.setBounds(10, 11, 252, 14);
 		ordenacion.add(txtResultados);
 		
