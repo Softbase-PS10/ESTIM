@@ -39,6 +39,17 @@ public class Sentencias {
 	}
 	
 	/**
+	 * Método que cierra la actual conexión
+	 */
+	public void close() {
+		try {
+			connection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
 	 * @param titulo
 	 *            : titulo por el que se desea filtrar
 	 * @return una lista (ArrayList) de los juegos cuyo campo <titulo> coincide
