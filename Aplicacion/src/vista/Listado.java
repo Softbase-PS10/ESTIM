@@ -259,15 +259,15 @@ public class Listado {
 		scrollPane.setViewportView(box);
 		
 		for (int i = 0; i < juegos.size(); i++){
-			Juego j = juegos.get(i);
+			final Juego j = juegos.get(i);
 			
 			JPanel res = new JPanel();
 			res.setLayout(null);
 			res.setBackground(Color.DARK_GRAY);
-			box.add(res);
 			
 			JButton caratula = new JButton("");
-			caratula.setIcon((Icon) Imagenes.getIcon(j.getImagen(), 1));
+			Icon car = (Icon) Imagenes.getIcon(j.getImagen(), 1);
+			caratula.setIcon(car);
 			caratula.setSize(128, 180);
 			caratula.setLocation(8, 6);
 			caratula.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -278,6 +278,8 @@ public class Listado {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					// TODO Lanzar app informacion con el juego j
+					frmPantallaPrincipal.dispose();
+					Info.main(j);
 				}
 			});
 			res.add(caratula);
@@ -368,6 +370,8 @@ public class Listado {
 			valoracion.setEditable(false);
 			valoracion.setBorder(null);
 			res.add(valoracion);
+			
+			box.add(res);
 		}
 		
 //		JPanel resultado_2 = new JPanel();
