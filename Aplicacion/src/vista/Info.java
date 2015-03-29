@@ -15,23 +15,26 @@ package vista;
 import java.awt.Color;
 import java.awt.EventQueue;
 
-import modelo.JPanelMenu;
 import modelo.Juego;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
 import javax.swing.border.LineBorder;
 import javax.swing.JButton;
+
 import java.awt.Font;
+
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.JMenuItem;
 
 import java.awt.Toolkit;
+
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
+
 import java.io.IOException;
+
 
 
 import javax.swing.ImageIcon;
