@@ -492,7 +492,7 @@ public class Sentencias {
 	private ArrayList<Juego> listarJuegos(String query) {
 		String q = "SELECT * FROM JUEGO, PLATAFORMA, JUEGO_PLATAFORMA, JUEGO_GENERO WHERE "
 				+ "JUEGO.ID = JUEGO_PLATAFORMA.JUEGO AND PLATAFORMA.ID = JUEGO_PLATAFORMA.PLATAFORMA"
-				+ query;
+				+ query+" AND ROWNUM <= 15";
 		Statement st, st2;
 		ArrayList<Juego> js = new ArrayList<Juego>();
 		try {
