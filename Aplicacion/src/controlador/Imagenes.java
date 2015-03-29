@@ -32,7 +32,7 @@ public class Imagenes {
 	/* declaracion de atributos */
 	private final static int WIDTH = 128;
 	private final static int HEIGHT = 180;
-
+	
 	/* declaracion de metodos y funciones */
 
 	/**
@@ -47,7 +47,7 @@ public class Imagenes {
 	 */
 	public static ImageIcon getIcon(String url, int escala) throws IOException {
 		if (url == null || url.compareToIgnoreCase("null") == 0){
-			return null;
+			return new ImageIcon(Imagenes.class.getResource("/Imagenes/not_available.jpg"));
 		}
 		return new ImageIcon(Imagenes.getImage(url, WIDTH * escala, HEIGHT * escala));
 	}

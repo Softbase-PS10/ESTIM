@@ -1,3 +1,15 @@
+/*
+ * SOFTBASE - GRUPO 10
+ * AUTORES:
+ * 		-Alberto Blasco
+ * 		-Diego Galvez
+ * 		-Patricia Lazaro
+ * 		-Alejandro Marquez
+ * 		-Alejandro Royo
+ * 		-Jaime Ruiz-Borau
+ * DESCRIPCION: 
+ */
+
 package vista;
 
 import java.awt.Color;
@@ -84,7 +96,7 @@ public class Info {
 		frmInformacinDelProduc.getContentPane().add(cabecera);
 		cabecera.setLayout(null);
 		
-		cabecera.add(BotonesCabecera.logo());
+		cabecera.add(BotonesCabecera.logo(frmInformacinDelProduc));
 		
 		txtBuscar = new JTextField();
 		txtBuscar.setToolTipText("");

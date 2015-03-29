@@ -1,3 +1,15 @@
+/*
+ * SOFTBASE - GRUPO 10
+ * AUTORES:
+ * 		-Alberto Blasco
+ * 		-Diego Galvez
+ * 		-Patricia Lazaro
+ * 		-Alejandro Marquez
+ * 		-Alejandro Royo
+ * 		-Jaime Ruiz-Borau
+ * DESCRIPCION:
+ */
+
 package vista;
 
 import java.awt.Color;
@@ -72,7 +84,7 @@ public class Principal {
 		frmPantallaPrincipal.getContentPane().add(cabecera);
 		cabecera.setLayout(null);
 
-		cabecera.add(BotonesCabecera.logo());
+		cabecera.add(BotonesCabecera.logo(frmPantallaPrincipal));
 
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(0, 0, 0)));

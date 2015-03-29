@@ -23,6 +23,7 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
@@ -34,6 +35,7 @@ import vista.Principal;
 public class BotonesCabecera {
 	
 	private static JTextField busc;
+	private static JFrame frame;
 
 	/**
 	 * @return un boton de busqueda que obtiene lo escrito en un campo, lo
@@ -56,6 +58,7 @@ public class BotonesCabecera {
 				Sentencias sql = new Sentencias();
 				ArrayList<Juego> juegos = sql.listarJuegosTitulo(busqueda);
 				sql.close();
+				BotonesCabecera.frame.dispose();
 				Listado.listar(juegos);
 			}
 		});
@@ -108,7 +111,8 @@ public class BotonesCabecera {
 	 * @return un boton con el logo del producto que redirige al usuario a la
 	 *         pantalla de inicio de la app.
 	 */
-	public static JButton logo() {
+	public static JButton logo(JFrame frame) {
+		BotonesCabecera.frame = frame;
 		JButton logo = new JButton("");
 		logo.setFocusPainted(false);
 		logo.setContentAreaFilled(false);
@@ -125,6 +129,7 @@ public class BotonesCabecera {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+				BotonesCabecera.frame.dispose();
 				Principal.main(null);
 				}});
 
