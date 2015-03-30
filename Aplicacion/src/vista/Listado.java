@@ -95,7 +95,7 @@ public class Listado {
 	 */
 	private void initialize(ArrayList<Juego> juegos) throws IOException {
 		frmPantallaPrincipal = new JFrame();
-		frmPantallaPrincipal.setTitle("Listado de juegos - Estim");
+		frmPantallaPrincipal.setTitle("List of Games - Estim");
 		frmPantallaPrincipal.setIconImage(Toolkit.getDefaultToolkit().getImage(
 				Listado.class.getResource("/Imagenes/E.png")));
 		frmPantallaPrincipal.setResizable(false);
