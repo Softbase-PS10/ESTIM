@@ -63,7 +63,7 @@ public class BotonesInfo {
 	}
 
 	/**
-	 * @return el cuadro de búsqueda
+	 * @return el cuadro de busqueda
 	 */
 	public static JTextField getCuadroBusqueda() {
 		JTextField txtBuscar = new JTextField();
@@ -75,7 +75,7 @@ public class BotonesInfo {
 	}
 
 	/**
-	 * @return la lupa de búsqueda
+	 * @return la lupa de busqueda
 	 */
 	public static JPanel getLupaBuscar(JTextField txtBuscar) {
 		JPanel lupaBuscar = new JPanel();

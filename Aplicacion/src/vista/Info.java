@@ -64,18 +64,18 @@ public class Info {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize(Juego juego) {
-		// Creación del frame principal
+		// Creacion del frame principal
 		frmInformacinDelProduc = BotonesInfo.getFramePrincipal();
 
 		// Cabecera
 		JPanel cabecera = BotonesInfo.getCabecera(frmInformacinDelProduc);
 		frmInformacinDelProduc.getContentPane().add(cabecera);
 
-		// Panel de búsqueda
+		// Panel de busqueda
 		JTextField txtBuscar = BotonesInfo.getCuadroBusqueda();
 		cabecera.add(txtBuscar);
 
-		// Lupa de búsqueda
+		// Lupa de busqueda
 		JPanel lupaBuscar = BotonesInfo.getLupaBuscar(txtBuscar);
 		cabecera.add(lupaBuscar);
 
@@ -139,20 +139,20 @@ public class Info {
 				.substring(1, juego.getGenero().toString().length() - 1));
 		frmInformacinDelProduc.getContentPane().add(RespGenero);
 
-		// Descripción
+		// Descripcion
 		JLabel Descripcion = BotonesInfo.getDescripcionLabel();
 		frmInformacinDelProduc.getContentPane().add(Descripcion);
 
-		// Valor de la descripción
+		// Valor de la descripcion
 		JTextArea RespDescripcion = BotonesInfo.getDescripcionValueLabel(juego
 				.getDescripcion());
 		frmInformacinDelProduc.getContentPane().add(RespDescripcion);
 
-		// Valoración
+		// Valoracion
 		JLabel RespValoracion = BotonesInfo.getValoracionLabel(juego.getRating());
 		frmInformacinDelProduc.getContentPane().add(RespValoracion);
 
-		// Botón carro
+		// Boton carro
 		JButton Carro = BotonesInfo.getBotonCarro();
 		frmInformacinDelProduc.getContentPane().add(Carro);
 
