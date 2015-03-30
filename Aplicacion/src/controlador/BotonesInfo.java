@@ -150,7 +150,7 @@ public class BotonesInfo {
 	 */
 	public static JLabel getImagenLabel(String url) {
 		JLabel lblNewLabel = new JLabel("");
-		if(url!=null){
+		if(!url.equals("null")){
 			lblNewLabel.setBounds(122, 181, 128, 180);
 			try {
 				lblNewLabel.setIcon(controlador.Imagenes.getIcon(url, 1));
@@ -179,7 +179,7 @@ public class BotonesInfo {
 		Titulo.setBackground(new Color(255, 255, 255));
 		Titulo.setBorder(null);
 		Titulo.setForeground(Color.WHITE);
-		if(tituloString!=null){
+		if(!tituloString.equals("null")){
 			Titulo.setText(tituloString + "\r\n");
 		}
 		else{
@@ -233,7 +233,7 @@ public class BotonesInfo {
 		RespAnio.setForeground(Color.WHITE);
 		RespAnio.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		RespAnio.setOpaque(false);
-		if(value!=null){
+		if(!value.equals("null")){
 			RespAnio.setText(value);	
 		}
 		else{
@@ -263,7 +263,7 @@ public class BotonesInfo {
 		RespPlataforma.setOpaque(false);
 		RespPlataforma.setForeground(Color.WHITE);
 		RespPlataforma.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		if(value!=null){
+		if(!value.equals("null")){
 			RespPlataforma.setText(value);	
 		}
 		else{
@@ -290,7 +290,7 @@ public class BotonesInfo {
 	public static JLabel getGeneroValueLabel(String value) {
 		JLabel RespGenero = new JLabel();
 		RespGenero.setOpaque(false);
-		if(value!=null){
+		if(!value.equals("null")){
 			RespGenero.setText(value);	
 		}
 		else{
@@ -320,7 +320,7 @@ public class BotonesInfo {
 		JTextArea RespDescripcion = new JTextArea();
 		RespDescripcion.setForeground(Color.WHITE);
 		RespDescripcion.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		if(value!=null){
+		if(!value.equals("null")){
 			RespDescripcion.setText(value);	
 		}
 		else{
@@ -340,7 +340,7 @@ public class BotonesInfo {
 		RespValoracion.setOpaque(false);
 		RespValoracion.setForeground(Color.WHITE);
 		RespValoracion.setFont(new Font("Tahoma", Font.BOLD, 20));
-		if(value!=null){
+		if(!value.equals("null")){
 			RespValoracion.setText(value + "/10.0");
 		}
 		else{
