@@ -52,7 +52,7 @@ public class Listado {
 	private JTextField valoracionMinima;
 	private JTextField valoracionMaxima;
 
-	private ArrayList<Juego> games;
+	private ArrayList<Juego> games;	//asi se podra realizar la ordenacion mas adelante
 
 	/* declaracion de metodos y funciones */
 
