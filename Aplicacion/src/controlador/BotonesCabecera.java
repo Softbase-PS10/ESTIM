@@ -19,19 +19,30 @@ import java.awt.Cursor;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 
+import modelo.Juego;
+import modelo.Sentencias;
+import vista.Listado;
 import vista.Principal;
 
 public class BotonesCabecera {
+	
+	private static JTextField busc;
+	private static JFrame frame;
 
 	/**
 	 * @return un boton de busqueda que obtiene lo escrito en un campo, lo
 	 *         procesa y redirige a la pantalla de listado de resultados.
 	 */
-	public static JButton buscar() {
+	public static JButton buscar(JTextField b) {
+		busc = b;
 		JButton busqueda = new JButton("");
 		busqueda.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		busqueda.setIcon(new ImageIcon(Principal.class
@@ -43,7 +54,12 @@ public class BotonesCabecera {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-
+				String busqueda = busc.getText();
+				Sentencias sql = new Sentencias();
+				ArrayList<Juego> juegos = sql.listarJuegosTitulo(busqueda);
+				sql.close();
+				BotonesCabecera.frame.dispose();
+				Listado.listar(juegos);
 			}
 		});
 
@@ -54,23 +70,14 @@ public class BotonesCabecera {
 	 * @return un boton de ajuste/opciones que redirige a la pantalla de
 	 *         opciones de la aplicacion.
 	 */
-	public static JButton ajustes() {
-		JButton ajustes = new JButton("");
-		ajustes.setRolloverIcon(new ImageIcon(Principal.class
+	public static JLabel ajustes() {
+		JLabel ajustes = new JLabel();
+		ajustes.setIcon(new ImageIcon(Principal.class
 				.getResource("/Imagenes/B/ajustesP.png")));
 		ajustes.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		ajustes.setIcon(new ImageIcon(Principal.class
 				.getResource("/Imagenes/B/settings.png")));
 		ajustes.setBounds(0, 0, 70, 70);
-
-		ajustes.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-		});
 
 		return ajustes;
 	}
@@ -104,7 +111,8 @@ public class BotonesCabecera {
 	 * @return un boton con el logo del producto que redirige al usuario a la
 	 *         pantalla de inicio de la app.
 	 */
-	public static JButton logo() {
+	public static JButton logo(JFrame frame) {
+		BotonesCabecera.frame = frame;
 		JButton logo = new JButton("");
 		logo.setFocusPainted(false);
 		logo.setContentAreaFilled(false);
@@ -121,11 +129,10 @@ public class BotonesCabecera {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-
-			}
-		});
+				BotonesCabecera.frame.dispose();
+				Principal.main(null);
+				}});
 
 		return logo;
 	}
-
 }

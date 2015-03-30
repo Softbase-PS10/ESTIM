@@ -18,6 +18,7 @@ import java.awt.Cursor;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.border.BevelBorder;
 
 import modelo.Plataforma;
@@ -28,7 +29,7 @@ public class BotonesMenu {
 	/**
 	 * @return un boton que redirige a la pantalla de listado de juegos de New 3DS
 	 */
-	public static JButton menuN3DS() {
+	public static JButton menuN3DS(JFrame frame) {
 		JButton n3ds = new JButton("");
 		n3ds.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		n3ds.setIcon(new ImageIcon(Principal.class
@@ -37,7 +38,7 @@ public class BotonesMenu {
 				Color.BLACK, Color.BLACK, Color.BLACK));
 		n3ds.setBounds(596, 322, 246, 125);
 
-		n3ds.addActionListener(new PlatformListener(Plataforma.alias3DS));
+		n3ds.addActionListener(new PlatformListener(Plataforma.alias3DS, frame));
 
 		return n3ds;
 	}
@@ -45,7 +46,7 @@ public class BotonesMenu {
 	/**
 	 * @return un boton que redirige a la pantalla de listado de juegos de la Wii
 	 */
-	public static JButton menuWii() {
+	public static JButton menuWii(JFrame frame) {
 		JButton wii = new JButton("");
 		wii.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		wii.setIcon(new ImageIcon(Principal.class
@@ -54,7 +55,7 @@ public class BotonesMenu {
 				Color.BLACK, Color.BLACK, Color.BLACK));
 		wii.setBounds(313, 322, 246, 125);
 
-		wii.addActionListener(new PlatformListener(Plataforma.aliasWii));
+		wii.addActionListener(new PlatformListener(Plataforma.aliasWii, frame));
 
 		return wii;
 	}
@@ -62,7 +63,7 @@ public class BotonesMenu {
 	/**
 	 * @return un boton que redirige a la pantalla de listado de juegos de la WiiU
 	 */
-	public static JButton menuWiiU() {
+	public static JButton menuWiiU(JFrame frame) {
 		JButton wiiu = new JButton("");
 		wiiu.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		wiiu.setIcon(new ImageIcon(Principal.class
@@ -71,7 +72,7 @@ public class BotonesMenu {
 				Color.BLACK, Color.BLACK, Color.BLACK));
 		wiiu.setBounds(30, 322, 246, 125);
 
-		wiiu.addActionListener(new PlatformListener(Plataforma.aliasWiiU));
+		wiiu.addActionListener(new PlatformListener(Plataforma.aliasWiiU, frame));
 
 		return wiiu;
 	}
@@ -79,7 +80,7 @@ public class BotonesMenu {
 	/**
 	 * @return un boton que redirige a la pantalla de listado de juegos de PC
 	 */
-	public static JButton menuPC() {
+	public static JButton menuPC(JFrame frame) {
 		JButton pc = new JButton("");
 		pc.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		pc.setIcon(new ImageIcon(Principal.class
@@ -88,7 +89,7 @@ public class BotonesMenu {
 				Color.BLACK, Color.BLACK, Color.BLACK));
 		pc.setBounds(596, 176, 246, 125);
 
-		pc.addActionListener(new PlatformListener(Plataforma.aliasPC));
+		pc.addActionListener(new PlatformListener(Plataforma.aliasPC, frame));
 
 		return pc;
 	}
@@ -96,7 +97,7 @@ public class BotonesMenu {
 	/**
 	 * @return un boton que redirige a la pantalla de listado de juegos de Xbox 360
 	 */
-	public static JButton menuX360() {
+	public static JButton menuX360(JFrame frame) {
 		JButton x360 = new JButton("");
 		x360.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		x360.setIcon(new ImageIcon(Principal.class
@@ -105,7 +106,7 @@ public class BotonesMenu {
 				Color.BLACK, Color.BLACK, Color.BLACK));
 		x360.setBounds(313, 176, 246, 125);
 
-		x360.addActionListener(new PlatformListener(Plataforma.aliasX360));
+		x360.addActionListener(new PlatformListener(Plataforma.aliasX360, frame));
 
 		return x360;
 	}
@@ -113,7 +114,7 @@ public class BotonesMenu {
 	/**
 	 * @return un boton que redirige a la pantalla de listado de juegos de Xbox ONE
 	 */
-	public static JButton menuXONE() {
+	public static JButton menuXONE(JFrame frame) {
 		JButton xone = new JButton("");
 		xone.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		xone.setIcon(new ImageIcon(Principal.class
@@ -122,7 +123,7 @@ public class BotonesMenu {
 				Color.BLACK, Color.BLACK, Color.BLACK));
 		xone.setBounds(30, 176, 246, 125);
 
-		xone.addActionListener(new PlatformListener(Plataforma.aliasXONE));
+		xone.addActionListener(new PlatformListener(Plataforma.aliasXONE, frame));
 
 		return xone;
 	}
@@ -130,7 +131,7 @@ public class BotonesMenu {
 	/**
 	 * @return un boton que redirige a la pantalla de listado de juegos de PlayStation Vita
 	 */
-	public static JButton menuVita() {
+	public static JButton menuVita(JFrame frame) {
 		JButton vita = new JButton("");
 		vita.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		vita.setIcon(new ImageIcon(Principal.class
@@ -139,7 +140,7 @@ public class BotonesMenu {
 				Color.BLACK, Color.BLACK, Color.BLACK));
 		vita.setBounds(596, 34, 246, 125);
 
-		vita.addActionListener(new PlatformListener(Plataforma.aliasPSVita));
+		vita.addActionListener(new PlatformListener(Plataforma.aliasPSVita, frame));
 
 		return vita;
 	}
@@ -147,7 +148,7 @@ public class BotonesMenu {
 	/**
 	 * @return un boton que redirige a la pantalla de listado de juegos de PlayStation 3
 	 */
-	public static JButton menuPS3() {
+	public static JButton menuPS3(JFrame frame) {
 		JButton ps3 = new JButton("");
 		ps3.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		ps3.setIcon(new ImageIcon(Principal.class
@@ -156,7 +157,7 @@ public class BotonesMenu {
 				Color.BLACK, Color.BLACK, Color.BLACK));
 		ps3.setBounds(313, 34, 246, 125);
 
-		ps3.addActionListener(new PlatformListener(Plataforma.aliasPS3));
+		ps3.addActionListener(new PlatformListener(Plataforma.aliasPS3, frame));
 
 		return ps3;
 	}
@@ -164,7 +165,7 @@ public class BotonesMenu {
 	/**
 	 * @return un boton que redirige a la pantalla de listado de juegos de PlayStation 4
 	 */
-	public static JButton menuPS4() {
+	public static JButton menuPS4(JFrame frame) {
 		JButton ps4 = new JButton("");
 		ps4
 				.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -174,7 +175,7 @@ public class BotonesMenu {
 				.getResource("/Imagenes/Menu/ps4.png")));
 		ps4.setBounds(30, 34, 246, 125);
 
-		ps4.addActionListener(new PlatformListener(Plataforma.aliasPS4));
+		ps4.addActionListener(new PlatformListener(Plataforma.aliasPS4, frame));
 
 		return ps4;
 	}

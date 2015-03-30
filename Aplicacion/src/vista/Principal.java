@@ -1,3 +1,15 @@
+/*
+ * SOFTBASE - GRUPO 10
+ * AUTORES:
+ * 		-Alberto Blasco
+ * 		-Diego Galvez
+ * 		-Patricia Lazaro
+ * 		-Alejandro Marquez
+ * 		-Alejandro Royo
+ * 		-Jaime Ruiz-Borau
+ * DESCRIPCION:
+ */
+
 package vista;
 
 import java.awt.Color;
@@ -15,7 +27,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
-import controlador.*;
+import controlador.Botones;
+import controlador.BotonesCabecera;
+import controlador.BotonesCategorias;
+import controlador.BotonesMenu;
 
 public class Principal {
 
@@ -69,7 +84,7 @@ public class Principal {
 		frmPantallaPrincipal.getContentPane().add(cabecera);
 		cabecera.setLayout(null);
 
-		cabecera.add(BotonesCabecera.logo());
+		cabecera.add(BotonesCabecera.logo(frmPantallaPrincipal));
 
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -91,7 +106,7 @@ public class Principal {
 		cabecera.add(panel_2);
 		panel_2.setLayout(null);
 
-		panel_2.add(BotonesCabecera.buscar());
+		panel_2.add(BotonesCabecera.buscar(txtBuscar));
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -109,15 +124,15 @@ public class Principal {
 		categorias.setLayout(null);
 
 		categorias.add(BotonesCategorias.atras());
-		categorias.add(BotonesCategorias.ps3());
-		categorias.add(BotonesCategorias.vita());
-		categorias.add(BotonesCategorias.xone());
-		categorias.add(BotonesCategorias.x360());
-		categorias.add(BotonesCategorias.pc());
-		categorias.add(BotonesCategorias.wiiu());
-		categorias.add(BotonesCategorias.wii());
-		categorias.add(BotonesCategorias.n3ds());
-		categorias.add(BotonesCategorias.ps4());
+		categorias.add(BotonesCategorias.ps3(frmPantallaPrincipal));
+		categorias.add(BotonesCategorias.vita(frmPantallaPrincipal));
+		categorias.add(BotonesCategorias.xone(frmPantallaPrincipal));
+		categorias.add(BotonesCategorias.x360(frmPantallaPrincipal));
+		categorias.add(BotonesCategorias.pc(frmPantallaPrincipal));
+		categorias.add(BotonesCategorias.wiiu(frmPantallaPrincipal));
+		categorias.add(BotonesCategorias.wii(frmPantallaPrincipal));
+		categorias.add(BotonesCategorias.n3ds(frmPantallaPrincipal));
+		categorias.add(BotonesCategorias.ps4(frmPantallaPrincipal));
 		categorias.add(BotonesCategorias.adelante());
 
 		JPanel filtros = new JPanel();
@@ -248,15 +263,15 @@ public class Principal {
 		frmPantallaPrincipal.getContentPane().add(principal);
 		principal.setLayout(null);
 
-		principal.add(BotonesMenu.menuPS4());
-		principal.add(BotonesMenu.menuPS3());
-		principal.add(BotonesMenu.menuVita());
-		principal.add(BotonesMenu.menuXONE());
-		principal.add(BotonesMenu.menuX360());
-		principal.add(BotonesMenu.menuPC());
-		principal.add(BotonesMenu.menuWiiU());
-		principal.add(BotonesMenu.menuWii());
-		principal.add(BotonesMenu.menuN3DS());
+		principal.add(BotonesMenu.menuPS4(frmPantallaPrincipal));
+		principal.add(BotonesMenu.menuPS3(frmPantallaPrincipal));
+		principal.add(BotonesMenu.menuVita(frmPantallaPrincipal));
+		principal.add(BotonesMenu.menuXONE(frmPantallaPrincipal));
+		principal.add(BotonesMenu.menuX360(frmPantallaPrincipal));
+		principal.add(BotonesMenu.menuPC(frmPantallaPrincipal));
+		principal.add(BotonesMenu.menuWiiU(frmPantallaPrincipal));
+		principal.add(BotonesMenu.menuWii(frmPantallaPrincipal));
+		principal.add(BotonesMenu.menuN3DS(frmPantallaPrincipal));
 
 		JLabel lblNewLabel = new JLabel("New label");
 		lblNewLabel.setBounds(0, 0, 870, 471);
