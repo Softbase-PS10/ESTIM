@@ -28,6 +28,41 @@ public class Juego {
 	/* declaracion de metodos y funciones */
 
 	/**
+	 * @param id
+	 *            : identificador del juego
+	 * @param titulo
+	 *            : titulo del juego
+	 * @param imagen
+	 *            : url de la imagen
+	 * @param descripcion
+	 *            : resumen del juego
+	 * @param lanzamiento
+	 *            : fecha de lanzamiento
+	 * @param rating
+	 *            : valoracion del juego
+	 * @param genero
+	 *            : generos a los que pertenece el juego
+	 * @param precio
+	 *            : precio del juego
+	 * @param plataforma
+	 *            : plataforma en la que se encuentra disponibles
+	 */
+	public Juego(long id, String titulo, String imagen, String descripcion,
+			String lanzamiento, String rating, ArrayList<String> genero,
+			int precio, Plataforma plataforma) {
+
+		this.id = id;
+		this.titulo = titulo;
+		this.imagen = imagen;
+		this.descripcion = descripcion;
+		this.lanzamiento = lanzamiento;
+		this.rating = rating;
+		this.genero = genero;
+		this.precio = precio;
+		this.plataforma = plataforma;
+	}
+
+	/**
 	 * @param titulo
 	 *            : titulo del juego
 	 * @param imagen
@@ -46,8 +81,8 @@ public class Juego {
 	 *            : plataforma en la que se encuentra disponibles
 	 */
 	public Juego(String titulo, String imagen, String descripcion,
-			String lanzamiento, String rating, ArrayList<String> genero, int precio,
-			Plataforma plataforma) {
+			String lanzamiento, String rating, ArrayList<String> genero,
+			int precio, Plataforma plataforma) {
 
 		this.id = new Sentencias().obtenerUltimoIdJuego() + 1;
 		this.titulo = titulo;
@@ -76,8 +111,9 @@ public class Juego {
 	}
 
 	/**
-	 * @param id : identificador del juego
-	 * Creacion de un juego con plataforma autogenerada
+	 * @param id
+	 *            : identificador del juego Creacion de un juego con plataforma
+	 *            autogenerada
 	 */
 	public Juego(long id) {
 		this.id = id;
@@ -99,7 +135,8 @@ public class Juego {
 	}
 
 	/**
-	 * @param plataforma : nueva plataforma del juego
+	 * @param plataforma
+	 *            : nueva plataforma del juego
 	 */
 	public void setPlataforma(Plataforma plataforma) {
 		this.plataforma = plataforma;
@@ -120,7 +157,8 @@ public class Juego {
 	}
 
 	/**
-	 * @param titulo : nuevo titulo del juego
+	 * @param titulo
+	 *            : nuevo titulo del juego
 	 */
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
@@ -134,7 +172,8 @@ public class Juego {
 	}
 
 	/**
-	 * @param imagen : nueva url de la imagen
+	 * @param imagen
+	 *            : nueva url de la imagen
 	 */
 	public void setImagen(String imagen) {
 		this.imagen = imagen;
@@ -148,7 +187,8 @@ public class Juego {
 	}
 
 	/**
-	 * @param descripcion : nueva descripcion del juego
+	 * @param descripcion
+	 *            : nueva descripcion del juego
 	 */
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
@@ -162,7 +202,8 @@ public class Juego {
 	}
 
 	/**
-	 * @param lanzamiento : nueva fecha de lanzamiento del juego
+	 * @param lanzamiento
+	 *            : nueva fecha de lanzamiento del juego
 	 */
 	public void setLanzamiento(String lanzamiento) {
 		this.lanzamiento = lanzamiento;
@@ -176,7 +217,8 @@ public class Juego {
 	}
 
 	/**
-	 * @param rating : nuevo rating del juego
+	 * @param rating
+	 *            : nuevo rating del juego
 	 */
 	public void setRating(String rating) {
 		this.rating = rating;
@@ -190,7 +232,8 @@ public class Juego {
 	}
 
 	/**
-	 * @param genero : nuevos generos del juego
+	 * @param genero
+	 *            : nuevos generos del juego
 	 */
 	public void setGenero(ArrayList<String> genero) {
 		this.genero = genero;
@@ -204,7 +247,8 @@ public class Juego {
 	}
 
 	/**
-	 * @param precio : nuevo precio del juego
+	 * @param precio
+	 *            : nuevo precio del juego
 	 */
 	public void setPrecio(int precio) {
 		this.precio = precio;

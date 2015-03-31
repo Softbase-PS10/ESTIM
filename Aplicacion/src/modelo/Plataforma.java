@@ -16,7 +16,7 @@ package modelo;
 public class Plataforma {
 
 	/* declaracion de atributos */
-	
+
 	/* alias de las plataformas */
 	public static final String aliasXONE = "Xone";
 	public static final String alias3DS = "3DS";
@@ -38,11 +38,26 @@ public class Plataforma {
 	public static final String PS3 = "Sony Playstation 3";
 	public static final String X360 = "Microsoft Xbox 360";
 	public static final String PSVita = "Sony Playstation Vita";
-	
+
 	private String nombre, alias;
 	private long id;
 
 	/* declaracion de metodos y funciones */
+
+	/**
+	 * @param id
+	 *            : identificador de la plataforma
+	 * @param nombre
+	 *            : nombre de la plataforma
+	 * @param alias
+	 *            : alias de la plataforma Crea una plataforma con identificador
+	 *            autogenerado, con nombre @param nombre y alias @param alias
+	 */
+	public Plataforma(long id, String nombre, String alias) {
+		this.nombre = nombre;
+		this.alias = alias;
+		this.id = id;
+	}
 
 	/**
 	 * @param nombre
@@ -83,11 +98,12 @@ public class Plataforma {
 	public long getId() {
 		return id;
 	}
-	
+
 	/**
-	 * @param id : nuevo identificador de la plataforma
+	 * @param id
+	 *            : nuevo identificador de la plataforma
 	 */
-	public void setId(long id){
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -99,7 +115,8 @@ public class Plataforma {
 	}
 
 	/**
-	 * @param nombre : nuevo nombre de la plataforma
+	 * @param nombre
+	 *            : nuevo nombre de la plataforma
 	 */
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
@@ -113,7 +130,8 @@ public class Plataforma {
 	}
 
 	/**
-	 * @param alias : nuevo alias de la plataforma
+	 * @param alias
+	 *            : nuevo alias de la plataforma
 	 */
 	public void setAlias(String alias) {
 		this.alias = alias;

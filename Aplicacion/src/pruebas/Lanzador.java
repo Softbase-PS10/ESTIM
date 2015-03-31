@@ -12,6 +12,8 @@
 
 package pruebas;
 
+import modelo.Plataforma;
+
 /* Asignado a: Patricia Lazaro */
 public class Lanzador {
 
@@ -23,7 +25,7 @@ public class Lanzador {
 	public final static String RATING = "8.0";
 	public final static String GENERO = "Shooter";
 	public final static int PRECIO = 51;
-	public final static String PLATAFORMA = "PC";
+	public final static String PLATAFORMA = Plataforma.aliasPC;
 
 	/**
 	 * Metodo que llama a las distintas funciones para realizar las
@@ -31,6 +33,16 @@ public class Lanzador {
 	 * eliminar juegos de la Base de Datos
 	 */
 	public static void main(String[] args) {
+		
+		System.out.println("Comenzando las pruebas sobre insercion de juegos...");
+		AgregarJuego.prueba();
+		System.out.println("Pruebas sobre insercion de juegos terminadas.");
+		
+		System.out.println("Comenzando las pruebas sobre modificacion de juegos...");
+		System.out.println("Pruebas sobre modificacion de juegos terminadas.");
+		
+		System.out.println("Comenzando las pruebas sobre eliminacion de juegos...");
+		System.out.println("Pruebas sobre eliminacion de juegos terminadas.");
 
 	}
 
