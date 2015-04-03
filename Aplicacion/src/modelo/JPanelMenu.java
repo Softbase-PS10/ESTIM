@@ -10,7 +10,7 @@
  * DESCRIPCION:
  */
 
-package vista;
+package modelo;
 
 import java.awt.*;
 

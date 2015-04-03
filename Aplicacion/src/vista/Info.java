@@ -14,6 +14,7 @@ package vista;
 
 import java.awt.EventQueue;
 
+import modelo.JPanelMenu;
 import modelo.Juego;
 
 import javax.swing.JFrame;
@@ -22,6 +23,7 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
+
 import controlador.BotonesInfo;
 
 public class Info {

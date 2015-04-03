@@ -17,6 +17,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.io.IOException;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -27,8 +28,9 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
+
+import modelo.JPanelMenu;
 import vista.Info;
-import vista.JPanelMenu;
 
 
 public class BotonesInfo {
@@ -327,7 +329,7 @@ public class BotonesInfo {
 			RespDescripcion.setText("");
 		}
 		RespDescripcion.setOpaque(false);
-		RespDescripcion.setBounds(540, 325, 500, 164);
+		RespDescripcion.setBounds(540, 325, 500, 170);
 		RespDescripcion.setLineWrap(true);
 		return RespDescripcion;
 	}
