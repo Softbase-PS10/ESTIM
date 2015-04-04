@@ -19,21 +19,25 @@ import java.awt.Cursor;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
 import javax.swing.JTextField;
 
 import modelo.Juego;
 import modelo.Sentencias;
 import vista.Listado;
+import vista.Modificar;
 import vista.Principal;
 
 public class BotonesCabecera {
-	
+
 	private static JTextField busc;
 	private static JFrame frame;
 
@@ -69,16 +73,75 @@ public class BotonesCabecera {
 	/**
 	 * @return un boton de ajuste/opciones que redirige a la pantalla de
 	 *         opciones de la aplicacion.
+	 * 
+	 * @param origen
+	 *            : 1 representa que el origen de esta llamada es de la pantalla
+	 *            principal, 2 para la pantalla de listado, 3 para la pantalla
+	 *            de información del juego y 4 para la pantalla de modificar
+	 *            juego
 	 */
-	public static JLabel ajustes() {
-		JLabel ajustes = new JLabel();
-		ajustes.setIcon(new ImageIcon(Principal.class
-				.getResource("/Imagenes/B/ajustesP.png")));
+	public static JLabel ajustes(int origen,Juego j) {
+		final JLabel ajustes = new JLabel();
+		final Juego juegoActual=j;
 		ajustes.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		ajustes.setIcon(new ImageIcon(Principal.class
 				.getResource("/Imagenes/B/settings.png")));
 		ajustes.setBounds(0, 0, 70, 70);
+		final JPopupMenu pop = new JPopupMenu();
+		if (origen == 1 || origen==2) {
+			JMenuItem add = new JMenuItem("Add");
+			add.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mousePressed(java.awt.event.MouseEvent evt) {
+					BotonesCabecera.frame.dispose();
+					Modificar m = new Modificar();
+					m.mostrarMod(juegoActual);
+				}
+			});
+			pop.add(add);
+		}
+		else if(origen==3){
+			JMenuItem modify = new JMenuItem("Modify");
+			modify.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mousePressed(java.awt.event.MouseEvent evt) {
+					BotonesCabecera.frame.dispose();
+					Modificar m = new Modificar();
+					m.mostrarMod(juegoActual);
+				}
+			});
+			pop.add(modify);
+		}
+		
+		JMenuItem exit = new JMenuItem("Exit");
+		exit.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(java.awt.event.MouseEvent evt) {
+				BotonesCabecera.frame.dispose();
+				Principal.main(null);
+			}
+		});
+		pop.add(exit);
+		ajustes.setComponentPopupMenu(pop);
+		ajustes.addMouseListener(new MouseAdapter() {
 
+			@Override
+			public void mouseEntered(java.awt.event.MouseEvent evt) {
+				ajustes.setIcon(new ImageIcon(Principal.class
+						.getResource("/Imagenes/B/ajustesP.png")));
+			}
+
+			@Override
+			public void mouseExited(java.awt.event.MouseEvent evt) {
+				ajustes.setIcon(new ImageIcon(Principal.class
+						.getResource("/Imagenes/B/settings.png")));
+			}
+
+			@Override
+			public void mousePressed(java.awt.event.MouseEvent evt) {
+				pop.show(evt.getComponent(), 0, 70);
+			}
+		});
 		return ajustes;
 	}
 
@@ -131,7 +194,8 @@ public class BotonesCabecera {
 				// TODO Auto-generated method stub
 				BotonesCabecera.frame.dispose();
 				Principal.main(null);
-				}});
+			}
+		});
 
 		return logo;
 	}

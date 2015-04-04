@@ -52,7 +52,7 @@ public class Modificar {
 	public static JTextField valoracion;
 	public static JTextField url;
 	public static JTextArea descripcion;
-	public static JComboBox plataforma;
+	public static JComboBox<String> plataforma;
 	public static JMenu genero;
 	public static JFormattedTextField ePrecio;
 	public static JFormattedTextField eTitulo;
@@ -116,7 +116,7 @@ public class Modificar {
 		}
 		if(j != null){
 			String[] listaP = new String[] {"PS4", "PS3",
-					"PSVITA", "XONE", "X360", "PC", "WII-U", "WII", "N3DS"};
+					"PSVITA", "XONE", "X360", "PC", "WII U", "WII", "N3DS"};
 			boolean encontrado = false;
 			int i = 0;
 			while(i<listaP.length && !encontrado){
@@ -198,7 +198,7 @@ public class Modificar {
 		cabecera.add(panel_1);
 		panel_1.setLayout(null);
 		
-		panel_1.add(BotonesCabecera.ajustes());
+		panel_1.add(BotonesCabecera.ajustes(4,null));
 		
 		JPanel categorias = new JPanel();
 		categorias.setBorder(new LineBorder(new Color(0, 0, 0), 2));
@@ -349,10 +349,10 @@ public class Modificar {
 		
 		panel_3.add(Botones.save(null));
 		
-		plataforma = new JComboBox();
+		plataforma = new JComboBox<String>();
 		String[] listaP = new String[] {"PS4", "PS3",
 				"PSVITA", "XONE", "X360", "PC", "WII-U", "WII", "N3DS"};
-		plataforma.setModel(new DefaultComboBoxModel(listaP));
+		plataforma.setModel(new DefaultComboBoxModel<String>(listaP));
 		plataforma.setBounds(214, 145, 300, 20);
 		panel_3.add(plataforma);
 		

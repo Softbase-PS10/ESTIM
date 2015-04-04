@@ -52,6 +52,7 @@ public class Listado {
 	private JTextField valoracionMinima;
 	private JTextField valoracionMaxima;
 
+	@SuppressWarnings("unused")
 	private ArrayList<Juego> games;	//asi se podra realizar la ordenacion mas adelante
 
 	/* declaracion de metodos y funciones */
@@ -131,7 +132,7 @@ public class Listado {
 		cabecera.add(opciones);
 		opciones.setLayout(null);
 
-		opciones.add(BotonesCabecera.ajustes());
+		opciones.add(BotonesCabecera.ajustes(2,null));
 
 		JPanel carrito = new JPanel();
 		carrito.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -216,7 +217,7 @@ public class Listado {
 		textGenero.setBounds(20, 104, 171, 20);
 		filtros.add(textGenero);
 
-		JComboBox generoMulti = new JComboBox();
+		JComboBox<String> generoMulti = new JComboBox<String>();
 		generoMulti.setToolTipText("");
 		generoMulti.setName("");
 		generoMulti.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -233,7 +234,7 @@ public class Listado {
 		textPlataforma.setBounds(20, 162, 171, 20);
 		filtros.add(textPlataforma);
 
-		JComboBox plataformaMulti = new JComboBox();
+		JComboBox<String> plataformaMulti = new JComboBox<String>();
 		plataformaMulti.setToolTipText("");
 		plataformaMulti.setName("");
 		plataformaMulti.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -434,7 +435,7 @@ public class Listado {
 		txtResultados.setBounds(10, 11, 252, 14);
 		ordenacion.add(txtResultados);
 
-		JComboBox ordenacionMulti = new JComboBox();
+		JComboBox<String> ordenacionMulti = new JComboBox<String>();
 		ordenacionMulti.setBounds(909, 11, 118, 17);
 		ordenacion.add(ordenacionMulti);
 		JFormattedTextField txtOrdenar = new JFormattedTextField();

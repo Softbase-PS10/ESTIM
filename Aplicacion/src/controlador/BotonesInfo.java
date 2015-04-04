@@ -22,14 +22,13 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
-import modelo.JPanelMenu;
+import modelo.Juego;
 import vista.Info;
 
 
@@ -90,12 +89,12 @@ public class BotonesInfo {
 	/**
 	 * @return las opciones
 	 */
-	public static JPanel getOpciones() {
+	public static JPanel getOpciones(Juego juego) {
 		JPanel opciones = new JPanel();
 		opciones.setBorder(new LineBorder(new Color(0, 0, 0)));
 		opciones.setBounds(920, 0, 70, 70);
 		opciones.setLayout(null);
-		opciones.add(BotonesCabecera.ajustes());
+		opciones.add(BotonesCabecera.ajustes(3,juego));
 		return opciones;
 	}
 
@@ -132,19 +131,6 @@ public class BotonesInfo {
 		categorias.add(BotonesCategorias.ps4(frmInformacinDelProduc));
 		categorias.add(BotonesCategorias.adelante());
 		return categorias;
-	}
-
-	/**
-	 * @return el menu de admin
-	 */
-	public static JPanelMenu getMenuAdmin() {
-		JPanelMenu m = new JPanelMenu("                ");
-		m.setOpaque(false);
-		m.add(new JMenuItem("Modify"));
-		m.add(new JMenuItem("Delete"));
-		m.add(new JMenuItem("Exit"));
-		m.setBounds(920, 0, 70, 70);
-		return m;
 	}
 
 	/**

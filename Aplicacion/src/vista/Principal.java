@@ -114,7 +114,7 @@ public class Principal {
 		cabecera.add(panel_1);
 		panel_1.setLayout(null);
 
-		panel_1.add(BotonesCabecera.ajustes());
+		panel_1.add(BotonesCabecera.ajustes(1,null));
 
 		JPanel categorias = new JPanel();
 		categorias.setBorder(new LineBorder(new Color(0, 0, 0), 2));
@@ -182,8 +182,8 @@ public class Principal {
 		textField_1.setBounds(99, 73, 51, 20);
 		filtros.add(textField_1);
 
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] { "Action",
+		JComboBox<String> comboBox = new JComboBox<String>();
+		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] { "Action",
 				"Adventure", "Construction and Management Simulation",
 				"Fighting", "Flight Simulator", "Horror", "Life Simulation",
 				"MMO", "Music", "Platform", "Puzzle", "Racing", "Role-Playing",
@@ -215,9 +215,9 @@ public class Principal {
 		frmtdtxtfldPlataforma.setBounds(20, 162, 171, 20);
 		filtros.add(frmtdtxtfldPlataforma);
 
-		JComboBox comboBox_1 = new JComboBox();
+		JComboBox<String> comboBox_1 = new JComboBox<String>();
 		comboBox_1
-				.setModel(new DefaultComboBoxModel(
+				.setModel(new DefaultComboBoxModel<String>(
 						new String[] { "PS4", "PS3", "PSVITA", "XONE", "X360",
 								"PC", "WII-U", "WII", "N3DS" }));
 		comboBox_1.setToolTipText("");

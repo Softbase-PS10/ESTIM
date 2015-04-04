@@ -14,7 +14,6 @@ package vista;
 
 import java.awt.EventQueue;
 
-import modelo.JPanelMenu;
 import modelo.Juego;
 
 import javax.swing.JFrame;
@@ -82,7 +81,7 @@ public class Info {
 		cabecera.add(lupaBuscar);
 
 		// Opciones
-		JPanel opciones = BotonesInfo.getOpciones();
+		JPanel opciones = BotonesInfo.getOpciones(juego);
 		cabecera.add(opciones);
 
 		// Carrito
@@ -92,10 +91,6 @@ public class Info {
 		// Categorias
 		JPanel categorias = BotonesInfo.getCategorias(frmInformacinDelProduc);
 		frmInformacinDelProduc.getContentPane().add(categorias);
-
-		// Menu desplegable de opciones de admin
-		JPanelMenu m = BotonesInfo.getMenuAdmin();
-		frmInformacinDelProduc.getContentPane().add(m);
 
 		// Imagen
 		JLabel lblNewLabel = BotonesInfo.getImagenLabel(juego.getImagen());
