@@ -25,6 +25,7 @@ public class AgregarJuego {
 	/**
 	 * Clase que lanza las distintas pruebas
 	 */
+	@SuppressWarnings("null")
 	public static void prueba() {
 		System.out.println("Comenzando las pruebas sobre insertar juego:");
 		Sentencias sql = new Sentencias();

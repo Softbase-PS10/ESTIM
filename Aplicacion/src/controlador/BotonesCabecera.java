@@ -80,15 +80,15 @@ public class BotonesCabecera {
 	 *            de información del juego y 4 para la pantalla de modificar
 	 *            juego
 	 */
-	public static JLabel ajustes(int origen,Juego j) {
+	public static JLabel ajustes(int origen, Juego j) {
 		final JLabel ajustes = new JLabel();
-		final Juego juegoActual=j;
+		final Juego juegoActual = j;
 		ajustes.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		ajustes.setIcon(new ImageIcon(Principal.class
 				.getResource("/Imagenes/B/settings.png")));
 		ajustes.setBounds(0, 0, 70, 70);
 		final JPopupMenu pop = new JPopupMenu();
-		if (origen == 1 || origen==2) {
+		if (origen == 1 || origen == 2) {
 			JMenuItem add = new JMenuItem("Add");
 			add.addMouseListener(new MouseAdapter() {
 				@Override
@@ -99,8 +99,7 @@ public class BotonesCabecera {
 				}
 			});
 			pop.add(add);
-		}
-		else if(origen==3){
+		} else if (origen == 3) {
 			JMenuItem modify = new JMenuItem("Modify");
 			modify.addMouseListener(new MouseAdapter() {
 				@Override
@@ -112,7 +111,7 @@ public class BotonesCabecera {
 			});
 			pop.add(modify);
 		}
-		
+
 		JMenuItem exit = new JMenuItem("Exit");
 		exit.addMouseListener(new MouseAdapter() {
 			@Override
@@ -149,21 +148,34 @@ public class BotonesCabecera {
 	 * @return un boton del carro de la compra que implementa la funcion de
 	 *         'carrito de la compra' en la aplicacion.
 	 */
-	public static JButton carro() {
-		JButton carro = new JButton("");
-		carro.setRolloverIcon(new ImageIcon(Principal.class
-				.getResource("/Imagenes/B/carroP.png")));
+	public static JLabel carro() {
+		final JLabel carro = new JLabel("");
 		carro.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		carro.setIcon(new ImageIcon(Principal.class
 				.getResource("/Imagenes/B/carro.png")));
 		carro.setBounds(0, 0, 70, 70);
-
-		carro.addActionListener(new ActionListener() {
+		final JPopupMenu pop = new JPopupMenu();
+		JMenuItem show = new JMenuItem("Show cart");
+		pop.add(show);
+		JMenuItem empty = new JMenuItem("Empty cart");
+		pop.add(empty);
+		carro.addMouseListener(new MouseAdapter() {
 
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+			public void mouseEntered(java.awt.event.MouseEvent evt) {
+				carro.setIcon(new ImageIcon(Principal.class
+						.getResource("/Imagenes/B/carroP.png")));
+			}
 
+			@Override
+			public void mouseExited(java.awt.event.MouseEvent evt) {
+				carro.setIcon(new ImageIcon(Principal.class
+						.getResource("/Imagenes/B/carro.png")));
+			}
+			
+			@Override
+			public void mousePressed(java.awt.event.MouseEvent evt) {
+				pop.show(evt.getComponent(), 0, 70);
 			}
 		});
 
