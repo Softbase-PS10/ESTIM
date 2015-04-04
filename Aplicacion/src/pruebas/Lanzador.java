@@ -39,9 +39,11 @@ public class Lanzador {
 		System.out.println("Pruebas sobre insercion de juegos terminadas.");
 		
 		System.out.println("Comenzando las pruebas sobre modificacion de juegos...");
+		ModificarJuego.prueba();
 		System.out.println("Pruebas sobre modificacion de juegos terminadas.");
 		
 		System.out.println("Comenzando las pruebas sobre eliminacion de juegos...");
+		BorrarJuego.prueba();
 		System.out.println("Pruebas sobre eliminacion de juegos terminadas.");
 
 	}
