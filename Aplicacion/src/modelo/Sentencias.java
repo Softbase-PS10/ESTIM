@@ -37,7 +37,7 @@ public class Sentencias {
 			e.printStackTrace();
 		}
 	}
-	
+		
 	/**
 	 * Método que cierra la actual conexión
 	 */
@@ -212,13 +212,15 @@ public class Sentencias {
 	 */
 	public void borrarJuego(long id) {
 		try {
-			String query = "DELETE FROM GENERO WHERE id = " + id + ";";
+			String query = "DELETE FROM JUEGO_GENERO WHERE id = " + id + ";";
 			Statement st = null;
 			try {
 				st = connection.createStatement();
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
+			st.execute(query);
+			query = "DELETE FROM JUEGO_PLATAFORMA WHERE juego = " + id + ";";
 			st.execute(query);
 			query = "DELETE FROM JUEGO WHERE id = " + id + ";";
 			st.execute(query);
@@ -282,7 +284,7 @@ public class Sentencias {
 			preparedStatement.execute();
 		} catch (SQLException ex) {
 			if (ex.getSQLState().startsWith("23"))
-				System.out.println("Entrada duplicada");
+				System.out.println("Entrada en juego duplicada");
 
 			else
 				ex.printStackTrace();
@@ -290,7 +292,7 @@ public class Sentencias {
 
 		/* insercion de la informacion en la tabla de generos */
 		for(String g:juego.getGenero()){
-			queryString = "INSERT INTO GENERO (id,genero) VALUES (?,?)";
+			queryString = "INSERT INTO JUEGO_GENERO (id,genero) VALUES (?,?)";
 
 			try {
 				PreparedStatement preparedStatement = connection
@@ -302,7 +304,7 @@ public class Sentencias {
 				preparedStatement.execute();
 			} catch (SQLException ex) {
 				if (ex.getSQLState().startsWith("23"))
-					System.out.println("Entrada duplicada");
+					System.out.println("Entrada en juego_genero duplicada");
 				else
 					ex.printStackTrace();
 			}
@@ -324,7 +326,7 @@ public class Sentencias {
 			preparedStatement.execute();
 		} catch (SQLException ex) {
 			if (ex.getSQLState().startsWith("23"))
-				System.out.println("Entrada duplicada");
+				System.out.println("Entrada en juego_plataforma duplicada");
 
 			else
 				ex.printStackTrace();
@@ -350,7 +352,7 @@ public class Sentencias {
 			preparedStatement.execute();
 		} catch (SQLException ex) {
 			if (ex.getSQLState().startsWith("23"))
-				System.out.println("Entrada duplicada");
+				System.out.println("Entrada en plataforma duplicada");
 
 			else
 				ex.printStackTrace();
@@ -401,7 +403,7 @@ public class Sentencias {
 			Statement st = connection.createStatement();
 			st.execute(query);
 			
-			queryString = "INSERT INTO GENERO (id,genero) VALUES (?,?)";
+			queryString = "INSERT INTO JUEGO_GENERO (id,genero) VALUES (?,?)";
 
 			PreparedStatement preparedStatement = connection.prepareStatement(queryString);
 
@@ -492,7 +494,7 @@ public class Sentencias {
 	private ArrayList<Juego> listarJuegos(String query) {
 		String q = "SELECT * FROM JUEGO, PLATAFORMA, JUEGO_PLATAFORMA WHERE "
 				+ "JUEGO.id = JUEGO_PLATAFORMA.juego AND PLATAFORMA.id = JUEGO_PLATAFORMA.plataforma "
-				+ query;//" AND ROWNUM <= 15";
+				+ query;
 		Statement st, st2;
 		ArrayList<Juego> js = new ArrayList<Juego>();
 		try {
