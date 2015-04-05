@@ -56,7 +56,7 @@ public class Sentencias {
 	 *         con @param titulo.
 	 */
 	public ArrayList<Juego> listarJuegosTitulo(String titulo) {
-		return listarJuegos(" AND TITULO = '" + titulo + "'");
+		return listarJuegos(" AND titulo = '" + titulo + "'");
 	}
 
 	/**
@@ -68,7 +68,7 @@ public class Sentencias {
 	 *         entre @param min y @param max
 	 */
 	public ArrayList<Juego> listarJuegosRangoPrecios(int min, int max) {
-		return listarJuegos(" AND PRECIO <= '" + max + "' AND PRECIO >= '"
+		return listarJuegos(" AND precio <= '" + max + "' AND precio >= '"
 				+ min + "'");
 	}
 
@@ -99,7 +99,7 @@ public class Sentencias {
 	 *         entre @param min y @param max
 	 */
 	public ArrayList<Juego> listarJuegosRangoRating(String min, String max) {
-		return listarJuegos(" AND RATING <= '" + max + "' AND RATING >= '"
+		return listarJuegos(" AND rating <= '" + max + "' AND rating >= '"
 				+ min + "'");
 	}
 
@@ -110,7 +110,7 @@ public class Sentencias {
 	 *         genero
 	 */
 	public ArrayList<Juego> listarJuegosGenero(String genero) {
-		return listarJuegos(" AND JUEGO_GENERO.ID = JUEGO.ID AND GENERO = '" + genero + "'");
+		return listarJuegos(" AND JUEGO_GENERO.id = JUEGO.id AND genero = '" + genero + "'");
 	} 
 
 	/**
@@ -120,7 +120,7 @@ public class Sentencias {
 	 *         nomP
 	 */
 	public ArrayList<Juego> listarJuegosPlataformaNombre(String nomP) {
-		return listarJuegos(" AND PLATAFORMA.NOMBRE = '" + nomP + "'");
+		return listarJuegos(" AND PLATAFORMA.nombre = '" + nomP + "'");
 	}
 
 	/**
@@ -130,7 +130,7 @@ public class Sentencias {
 	 *         alP
 	 */
 	public ArrayList<Juego> listarJuegosPlataformaAlias(String alP) {
-		return listarJuegos(" AND PLATAFORMA.ALIAS = '" + alP + "'");
+		return listarJuegos(" AND PLATAFORMA.alias = '" + alP + "'");
 	}
 
 	/**
@@ -140,7 +140,7 @@ public class Sentencias {
 	 *         id
 	 */
 	public Juego listarJuego(long id) {
-		return listarJuegos(" AND JUEGO.ID = '" + id + "'").get(0);
+		return listarJuegos(" AND JUEGO.id = '" + id + "'").get(0);
 	}
 
 	/**
@@ -158,7 +158,7 @@ public class Sentencias {
 	 *         nombre
 	 */
 	public Plataforma listarPlataformaNombre(String nombre) {
-		return listarPlataforma(" WHERE NOMBRE = '" + nombre + "'");
+		return listarPlataforma(" WHERE nombre = '" + nombre + "'");
 	}
 
 	/**
@@ -168,7 +168,7 @@ public class Sentencias {
 	 *         alias
 	 */
 	public Plataforma listarPlataformaAlias(String alias) {
-		return listarPlataforma(" WHERE ALIAS = '" + alias + "'");
+		return listarPlataforma(" WHERE alias = '" + alias + "'");
 	}
 
 	/**
@@ -178,7 +178,7 @@ public class Sentencias {
 	 *         id
 	 */
 	public Plataforma listarPlataformaId(int id) {
-		return listarPlataforma(" WHERE ID = '" + id + "'");
+		return listarPlataforma(" WHERE id = '" + id + "'");
 	}
 
 	/**
@@ -186,7 +186,7 @@ public class Sentencias {
 	 *         Base de Datos (Oracle)
 	 */
 	public ArrayList<Plataforma> listarTodasPlataformas() {
-		String q = "SELECT * FROM plataforma";
+		String q = "SELECT * FROM PLATAFORMA";
 		Statement st;
 		Plataforma p = null;
 		ArrayList<Plataforma> ps = new ArrayList<Plataforma>();
@@ -212,7 +212,7 @@ public class Sentencias {
 	 */
 	public void borrarJuego(long id) {
 		try {
-			String query = "DELETE from GENERO WHERE ID=" + id + ";";
+			String query = "DELETE FROM GENERO WHERE id = " + id + ";";
 			Statement st = null;
 			try {
 				st = connection.createStatement();
@@ -220,7 +220,7 @@ public class Sentencias {
 				e1.printStackTrace();
 			}
 			st.execute(query);
-			query = "DELETE from JUEGO WHERE ID = " + id + ";";
+			query = "DELETE FROM JUEGO WHERE id = " + id + ";";
 			st.execute(query);
 		} catch (Exception e) {
 			e.printStackTrace(System.err);
@@ -235,7 +235,7 @@ public class Sentencias {
 	public void borrarPlataforma(long id) {
 
 		try {
-			String query = "DELETE FROM juego_plataforma WHERE PLATAFORMA="
+			String query = "DELETE FROM JUEGO_PLATAFORMA WHERE plataforma = "
 					+ id + ";";
 			Statement st = null;
 			try {
@@ -244,7 +244,7 @@ public class Sentencias {
 				e1.printStackTrace();
 			}
 			st.execute(query);
-			query = "DELETE FROM plataforma WHERE ID = " + id + ";";
+			query = "DELETE FROM PLATAFORMA WHERE id = " + id + ";";
 			st.execute(query);
 		} catch (Exception e) {
 			e.printStackTrace(System.err);
@@ -264,7 +264,7 @@ public class Sentencias {
 
 		/* insercion de la informacion en la tabla de juegos */
 
-		String queryString = "INSERT INTO juego "
+		String queryString = "INSERT INTO JUEGO "
 				+ "(id,titulo,imagen,precio,resumen,lanzamiento,rating) "
 				+ "VALUES (?,?,?,?,?,?,?)";
 		try {
@@ -290,7 +290,7 @@ public class Sentencias {
 
 		/* insercion de la informacion en la tabla de generos */
 		for(String g:juego.getGenero()){
-			queryString = "INSERT INTO genero (id,genero) VALUES (?,?)";
+			queryString = "INSERT INTO GENERO (id,genero) VALUES (?,?)";
 
 			try {
 				PreparedStatement preparedStatement = connection
@@ -312,7 +312,7 @@ public class Sentencias {
 
 		/* insercion de la informacion en la tabla juego_plataforma */
 
-		queryString = "INSERT INTO juego_plataforma (juego,plataforma) VALUES (?,?)";
+		queryString = "INSERT INTO JUEGO_PLATAFORMA (juego,plataforma) VALUES (?,?)";
 
 		try {
 			PreparedStatement preparedStatement = connection
@@ -338,7 +338,7 @@ public class Sentencias {
 	 */
 	public void insertarPlataforma(Plataforma p) {
 
-		String queryString = "INSERT INTO plataforma (id,nombre,alias) VALUES (?,?,?)";
+		String queryString = "INSERT INTO PLATAFORMA (id,nombre,alias) VALUES (?,?,?)";
 		try {
 			PreparedStatement preparedStatement = connection
 					.prepareStatement(queryString);
@@ -367,11 +367,11 @@ public class Sentencias {
 			juego.setDescripcion(juego.getDescripcion().substring(0, 2497)
 					+ "...");
 
-		String queryString = "UPDATE juego, juego_plataforma "
+		String queryString = "UPDATE JUEGO, JUEGO_PLATAFORMA "
 				+ "SET titulo = ?,imagen = ?,precio = ?,resumen = ?,lanzamiento = ?,rating = ?, "
-				+ "JUEGO_PLATAFORMA.PLATAFORMA = ? "
-				+ "WHERE JUEGO.ID = '"
-				+ juego.getId() + "' AND JUEGO.ID = JUEGO_PLATAFORMA.JUEGO";
+				+ "JUEGO_PLATAFORMA.plataforma = ? "
+				+ "WHERE JUEGO.id = '"
+				+ juego.getId() + "' AND JUEGO.id = JUEGO_PLATAFORMA.juego";
 		try {
 			PreparedStatement preparedStatement = connection
 					.prepareStatement(queryString);
@@ -395,13 +395,13 @@ public class Sentencias {
 
 		
 		for(String g:juego.getGenero()){
-			String query = "DELETE FROM juego_genero WHERE ID="
+			String query = "DELETE FROM JUEGO_GENERO WHERE id = "
 					+ juego.getId() + ";";
 			try {
 			Statement st = connection.createStatement();
 			st.execute(query);
 			
-			queryString = "INSERT INTO genero (id,genero) VALUES (?,?)";
+			queryString = "INSERT INTO GENERO (id,genero) VALUES (?,?)";
 
 			PreparedStatement preparedStatement = connection.prepareStatement(queryString);
 
@@ -423,8 +423,8 @@ public class Sentencias {
 	 *            : nueva informacion de la plataforma a actualizar
 	 */
 	public void actualizarPlataforma(Plataforma p) {
-		String queryString = "UPDATE plataforma " + "SET nombre = ?,alias = ? "
-				+ "WHERE ID = ?";
+		String queryString = "UPDATE PLATAFORMA " + "SET nombre = ?,alias = ? "
+				+ "WHERE id = ?";
 		try {
 			PreparedStatement preparedStatement = connection
 					.prepareStatement(queryString);
@@ -449,7 +449,7 @@ public class Sentencias {
 	 * @return el identificador del ultimo juego
 	 */
 	public long obtenerUltimoIdJuego() {
-		String q = "SELECT MAX(ID) AS mid FROM JUEGO";
+		String q = "SELECT MAX(id) AS mid FROM JUEGO";
 		Statement st;
 		long id = -1;
 		try {
@@ -468,7 +468,7 @@ public class Sentencias {
 	 * @return el identificador de la ultima plataforma
 	 */
 	public long obtenerUltimoIdPlataforma() {
-		String q = "SELECT MAX(ID) AS mid FROM PLATAFORMA";
+		String q = "SELECT MAX(id) AS mid FROM PLATAFORMA";
 		Statement st;
 		long id = -1;
 		try {
@@ -490,9 +490,9 @@ public class Sentencias {
 	 *         coinciden con @param query
 	 */
 	private ArrayList<Juego> listarJuegos(String query) {
-		String q = "SELECT * FROM JUEGO, PLATAFORMA, JUEGO_PLATAFORMA, JUEGO_GENERO WHERE "
-				+ "JUEGO.ID = JUEGO_PLATAFORMA.JUEGO AND PLATAFORMA.ID = JUEGO_PLATAFORMA.PLATAFORMA"
-				+ query+" AND ROWNUM <= 15";
+		String q = "SELECT * FROM JUEGO, PLATAFORMA, JUEGO_PLATAFORMA WHERE "
+				+ "JUEGO.id = JUEGO_PLATAFORMA.juego AND PLATAFORMA.id = JUEGO_PLATAFORMA.plataforma "
+				+ query;//" AND ROWNUM <= 15";
 		Statement st, st2;
 		ArrayList<Juego> js = new ArrayList<Juego>();
 		try {
@@ -512,7 +512,7 @@ public class Sentencias {
 				j.setPlataforma(new Plataforma(resul.getString("nombre"), resul
 						.getString("alias")));
 						
-				q = "SELECT * FROM JUEGO_GENERO WHERE ID = '"+j.getId()+"'";
+				q = "SELECT * FROM JUEGO_GENERO WHERE id = '"+j.getId()+"'";
 				st2 = connection.createStatement();
 				res = st2.executeQuery(q);
 				while (res.next()) {
@@ -535,7 +535,7 @@ public class Sentencias {
 	 * @return la plataforma cuya informacion coincida con @param query
 	 */
 	private Plataforma listarPlataforma(String query) {
-		String q = "SELECT * FROM plataforma" + query;
+		String q = "SELECT * FROM PLATAFORMA" + query;
 		Statement st;
 		Plataforma p = null;
 		try {
