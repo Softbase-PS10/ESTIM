@@ -350,7 +350,7 @@ public class Modificar {
 		descripcion.setLineWrap(true);
 		scrollPane.setViewportView(descripcion);
 		
-		vistaPreviaCaratula = new JLabel();
+		vistaPreviaCaratula = new JLabel("");
 		vistaPreviaCaratula.setHorizontalAlignment(SwingConstants.CENTER);
 		vistaPreviaCaratula.setHorizontalTextPosition(SwingConstants.CENTER);
 		vistaPreviaCaratula.setOpaque(true);
@@ -411,6 +411,16 @@ public class Modificar {
 		eTitulo.setBorder(null);
 		eTitulo.setBounds(524, 54, 140, 20);
 		panel_3.add(eTitulo);
+		
+		JFormattedTextField previa = new JFormattedTextField();
+		previa.setBorder(null);
+		previa.setOpaque(false);
+		previa.setForeground(Color.WHITE);
+		previa.setHorizontalAlignment(SwingConstants.CENTER);
+		previa.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		previa.setText("Cover preview");
+		previa.setBounds(706, 365, 170, 20);
+		panel_3.add(previa);
 		
 		JLabel fondo = new JLabel("");
 		fondo.setBounds(0, 0, 1060, 471);

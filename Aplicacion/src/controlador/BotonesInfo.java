@@ -315,8 +315,9 @@ public class BotonesInfo {
 			RespDescripcion.setText("");
 		}
 		RespDescripcion.setOpaque(false);
-		RespDescripcion.setBounds(540, 325, 500, 170);
+		RespDescripcion.setBounds(540, 325, 475, 170);
 		RespDescripcion.setLineWrap(true);
+		RespDescripcion.setWrapStyleWord(true);
 		return RespDescripcion;
 	}
 	
