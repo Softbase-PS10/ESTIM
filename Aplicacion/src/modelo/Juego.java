@@ -96,7 +96,26 @@ public class Juego {
 	}
 
 	/**
-	 * Creacion de un juego con identificador y plataforma autogenerados
+	 * @param id
+	 *            : identificador del juego Creacion de un juego con plataforma
+	 *            autogenerada
+	 */
+	public Juego(long id) {
+		this.id = id;
+		Juego j = new Sentencias().listarJuego(id);
+		this.titulo = j.getTitulo();
+		this.imagen = j.getImagen();
+		this.descripcion = j.getDescripcion();
+		this.lanzamiento = j.getLanzamiento();
+		this.rating = j.rating;
+		this.genero = j.getGenero();
+		this.precio = j.getPrecio();
+		this.plataforma = j.getPlataforma();
+	}
+
+	/**
+	 * Genera un juego completamente vacio excepto el ID, que es el 
+	 * máximo que hay en la base de datos
 	 */
 	public Juego() {
 		this.id = new Sentencias().obtenerUltimoIdJuego() + 1;
@@ -107,26 +126,9 @@ public class Juego {
 		this.rating = "";
 		this.genero = new ArrayList<String>();
 		this.precio = 0;
-		this.plataforma = new Plataforma();
+		this.plataforma = new Plataforma(1);
 	}
-
-	/**
-	 * @param id
-	 *            : identificador del juego Creacion de un juego con plataforma
-	 *            autogenerada
-	 */
-	public Juego(long id) {
-		this.id = id;
-		this.titulo = "";
-		this.imagen = "";
-		this.descripcion = "";
-		this.lanzamiento = "";
-		this.rating = "";
-		this.genero = new ArrayList<String>();
-		this.precio = 0;
-		this.plataforma = new Plataforma(id);
-	}
-
+	
 	/**
 	 * @return plataforma a la que pertenece el juego
 	 */
