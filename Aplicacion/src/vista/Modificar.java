@@ -120,7 +120,7 @@ public class Modificar {
 		}
 		if(j!=null){
 			try {
-				ImageIcon caratula = Imagenes.getIcon(j.getImagen(),1);
+				ImageIcon caratula = Imagenes.getIcon(j.getImagen(),1.35);
 				vistaPreviaCaratula.setIcon(caratula);
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -350,7 +350,7 @@ public class Modificar {
 		descripcion.setLineWrap(true);
 		scrollPane.setViewportView(descripcion);
 		
-		vistaPreviaCaratula = new JLabel("Cover preview");
+		vistaPreviaCaratula = new JLabel();
 		vistaPreviaCaratula.setHorizontalAlignment(SwingConstants.CENTER);
 		vistaPreviaCaratula.setHorizontalTextPosition(SwingConstants.CENTER);
 		vistaPreviaCaratula.setOpaque(true);
