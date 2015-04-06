@@ -44,7 +44,7 @@ import controlador.Imagenes;
 
 public class Modificar {
 
-	private JFrame frmPantallaPrincipal;
+	private static JFrame frmPantallaPrincipal;
 	public JTextField txtBuscar;
 	public static JTextField titulo;
 	public static JTextField precio;
@@ -57,15 +57,17 @@ public class Modificar {
 	public static JFormattedTextField ePrecio;
 	public static JFormattedTextField eTitulo;
 	public static JLabel vistaPreviaCaratula;
+	private static Juego j;
 	
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+			@SuppressWarnings("static-access")
 			public void run() {
 				try {
-					Modificar window = new Modificar();
+					Modificar window = new Modificar(null);
 					window.frmPantallaPrincipal.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -76,18 +78,28 @@ public class Modificar {
 
 	/**
 	 * Create the application.
-	 */
-	public Modificar() {
-		initialize();
-	}
-	
-	/**
-	 * Muestra la interfaz y rellena los campos conforme el juego que le pasan.
 	 * @param j: juego del cual se extraen datos para mostrarlos en los campos
 	 * correspondientes. Si es =null, los campos quedarán vacios.
 	 */
-	public void mostrarMod(Juego j){
+	@SuppressWarnings("static-access")
+	public Modificar(Juego j) {
+		this.j = j;
+		initialize();
+	}
+	
+	public static void ocultarMod(){
+		frmPantallaPrincipal.dispose();
+	}
+	
+	/**
+	 * Muestra la interfaz y rellena los campos conforme el juego que hay 
+	 * en las variables globales.
+	 */
+	@SuppressWarnings("static-access")
+	public void mostrarMod(){
+
 		this.frmPantallaPrincipal.setVisible(true);
+		
 		if(j != null){
 			titulo.setText(j.getTitulo());
 		}
@@ -135,13 +147,12 @@ public class Modificar {
 				"Music", "Platform", "Puzzle", "Racing", "Role-Playing",
 				"Sandbox", "Shooter", "Sports", "Stealth", "Strategy",
 				"Vehicle Simulation"};
-		
+
 		for(int i = 0; i < generos.length; i++){
-			JCheckBoxMenuItem cb = new JCheckBoxMenuItem(generos[i]);
 			if(j != null){
 				for(String g:j.getGenero()){
 					if(g.equalsIgnoreCase(generos[i])){
-						cb.setSelected(true);
+						genero.getItem(i).setSelected(true);
 					}
 				}
 			}
@@ -347,11 +358,13 @@ public class Modificar {
 		vistaPreviaCaratula.setBounds(706, 114, 170, 240);
 		panel_3.add(vistaPreviaCaratula);
 		
-		panel_3.add(Botones.save(null));
+		
+		panel_3.add(Botones.save(j));
+
 		
 		plataforma = new JComboBox<String>();
 		String[] listaP = new String[] {"PS4", "PS3",
-				"PSVITA", "XONE", "X360", "PC", "WII-U", "WII", "N3DS"};
+				"PSVita", "XONE", "X360", "PC", "Wii U", "Wii", "3DS"};
 		plataforma.setModel(new DefaultComboBoxModel<String>(listaP));
 		plataforma.setBounds(214, 145, 300, 20);
 		panel_3.add(plataforma);

@@ -94,8 +94,8 @@ public class BotonesCabecera {
 				@Override
 				public void mousePressed(java.awt.event.MouseEvent evt) {
 					BotonesCabecera.frame.dispose();
-					Modificar m = new Modificar();
-					m.mostrarMod(juegoActual);
+					Modificar m = new Modificar(juegoActual);
+					m.mostrarMod();
 				}
 			});
 			pop.add(add);
@@ -105,8 +105,8 @@ public class BotonesCabecera {
 				@Override
 				public void mousePressed(java.awt.event.MouseEvent evt) {
 					BotonesCabecera.frame.dispose();
-					Modificar m = new Modificar();
-					m.mostrarMod(juegoActual);
+					Modificar m = new Modificar(juegoActual);
+					m.mostrarMod();
 				}
 			});
 			pop.add(modify);

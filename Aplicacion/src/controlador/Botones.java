@@ -26,6 +26,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 
 import modelo.*;
+import vista.Info;
 import vista.Modificar;
 
 public class Botones {
@@ -106,8 +107,9 @@ public class Botones {
 						int p = Integer.parseInt(precio);
 						Juego j = new Juego(titulo,url,descripcion,anyo,
 								valoracion,genero,p,plat);
-						System.out.println(j.mostrarInfo());
 						s.insertarJuego(j);
+						Modificar.ocultarMod();
+						Info.main(j);
 					}
 					else{
 						j.setTitulo(titulo);
@@ -119,6 +121,8 @@ public class Botones {
 						j.setPrecio(Integer.parseInt(precio));
 						j.setRating(valoracion);
 						s.actualizarJuego(j);
+						Modificar.ocultarMod();
+						Info.main(j);
 					}
 				}
 			}

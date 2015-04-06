@@ -18,7 +18,7 @@ public class Plataforma {
 	/* declaracion de atributos */
 
 	/* alias de las plataformas */
-	public static final String aliasXONE = "Xone";
+	public static final String aliasXONE = "XONE";
 	public static final String alias3DS = "3DS";
 	public static final String aliasWiiU = "Wii U";
 	public static final String aliasPC = "PC";

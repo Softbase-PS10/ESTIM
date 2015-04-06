@@ -37,7 +37,7 @@ public class Sentencias {
 			e.printStackTrace();
 		}
 	}
-		
+	
 	/**
 	 * Método que cierra la actual conexión
 	 */
@@ -494,7 +494,7 @@ public class Sentencias {
 	private ArrayList<Juego> listarJuegos(String query) {
 		String q = "SELECT * FROM JUEGO, PLATAFORMA, JUEGO_PLATAFORMA WHERE "
 				+ "JUEGO.id = JUEGO_PLATAFORMA.juego AND PLATAFORMA.id = JUEGO_PLATAFORMA.plataforma "
-				+ query;
+				+ query + " LIMIT 5";
 		Statement st, st2;
 		ArrayList<Juego> js = new ArrayList<Juego>();
 		try {
