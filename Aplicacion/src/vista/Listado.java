@@ -285,6 +285,8 @@ public class Listado {
 		scrollPane.setPreferredSize(new Dimension(850, 440));
 		principal.add(scrollPane);
 
+		scrollPane.getVerticalScrollBar().setUnitIncrement(20);
+		
 		Box box = Box.createVerticalBox();
 		scrollPane.setViewportView(box);
 
