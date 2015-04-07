@@ -36,6 +36,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 import modelo.Juego;
+import modelo.Plataforma;
 import controlador.Botones;
 import controlador.BotonesCabecera;
 import controlador.BotonesCategorias;
@@ -127,8 +128,7 @@ public class Modificar {
 			}
 		}
 		if(j != null){
-			String[] listaP = new String[] {"PS4", "PS3",
-					"PSVita", "XONE", "X360", "PC", "Wii U", "Wii", "3DS"};
+			String[] listaP = Plataforma.listaAlias();
 			boolean encontrado = false;
 			int i = 0;
 			while(i<listaP.length && !encontrado){
@@ -363,8 +363,7 @@ public class Modificar {
 
 		
 		plataforma = new JComboBox<String>();
-		String[] listaP = new String[] {"PS4", "PS3",
-				"PSVita", "XONE", "X360", "PC", "Wii U", "Wii", "3DS"};
+		String[] listaP = Plataforma.listaAlias();
 		plataforma.setModel(new DefaultComboBoxModel<String>(listaP));
 		plataforma.setBounds(214, 145, 300, 20);
 		panel_3.add(plataforma);

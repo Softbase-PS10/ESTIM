@@ -142,4 +142,13 @@ public class Plataforma {
 		this.alias = alias;
 	}
 
+	/**
+	 * @return una lista de Strings con los aliases de las plataformas
+	 */
+	public static String[] listaAlias() {
+		String[] s = new String[] { "PS4", "PS3", "PSVita", "XONE", "X360",
+				"PC", "Wii U", "Wii", "3DS" };
+		return s;
+	}
+
 }
