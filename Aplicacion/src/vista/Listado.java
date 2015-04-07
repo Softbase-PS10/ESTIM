@@ -365,7 +365,7 @@ public class Listado {
 			titulo.setSize(400, 20);
 			titulo.setLocation(162, 31);
 			if (j.getTitulo() == null || j.getTitulo().compareTo("null") == 0)
-				titulo.setText("No title available");
+				titulo.setText("N/A");
 			else
 				titulo.setText(j.getTitulo());
 			titulo.setOpaque(false);
@@ -379,7 +379,7 @@ public class Listado {
 			fecha.setBounds(270, 71, 170, 20);
 			if (j.getLanzamiento() == null
 					|| j.getLanzamiento().compareTo("null") == 0)
-				fecha.setText("No release date available");
+				fecha.setText("N/A");
 			else
 				fecha.setText(j.getLanzamiento());
 			fecha.setOpaque(false);
@@ -394,7 +394,7 @@ public class Listado {
 			plataformas.setLocation(246, 107);
 			if (j.getPlataforma().getAlias() == null
 					|| j.getPlataforma().getAlias().compareTo("null") == 0)
-				plataformas.setText("No platforms available");
+				plataformas.setText("N/A");
 			else
 				plataformas.setText(j.getPlataforma().getAlias());
 			plataformas.setOpaque(false);
@@ -408,7 +408,7 @@ public class Listado {
 			valoracion.setSize(150, 20);
 			valoracion.setLocation(234, 144);
 			if (j.getRating() == null || j.getRating().compareTo("null") == 0)
-				valoracion.setText("No rating available");
+				valoracion.setText("N/A");
 			else
 				valoracion.setText(j.getRating() + " / 10.0");
 			valoracion.setOpaque(false);
