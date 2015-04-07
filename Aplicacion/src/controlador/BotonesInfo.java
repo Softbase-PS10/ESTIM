@@ -149,7 +149,7 @@ public class BotonesInfo {
 		else{
 			lblNewLabel.setBounds(122, 181, 128, 180);
 			try {
-				lblNewLabel.setIcon(controlador.Imagenes.getIcon("http://www.rbrobotics.com/images/not_available.gif", 1));
+				lblNewLabel.setIcon(controlador.Imagenes.getIcon("/Imagenes/not_available.jpg", 1));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}	
