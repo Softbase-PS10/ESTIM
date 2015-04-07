@@ -23,7 +23,6 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JCheckBoxMenuItem;
 
 import modelo.*;
@@ -106,6 +105,8 @@ public class Botones {
 				if(!error){
 					if(j == null){
 						int p = Integer.parseInt(precio);
+						if(url.equals(""))
+							url = "null";
 						Juego j = new Juego(titulo,url,descripcion,anyo,
 								valoracion,genero,p,plat);
 						s.insertarJuego(j);
