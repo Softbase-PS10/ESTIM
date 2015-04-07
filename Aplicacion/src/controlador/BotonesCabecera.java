@@ -124,6 +124,7 @@ public class BotonesCabecera {
 					final JDialog dialog = new JDialog(frame, "Confirmation",
 							true);
 					dialog.setLocationRelativeTo(frame);
+					dialog.setBounds(500, 325, 200, 200);
 					dialog.setContentPane(optionPane);
 					optionPane
 							.addPropertyChangeListener(new PropertyChangeListener() {
