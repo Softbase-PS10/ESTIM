@@ -128,7 +128,7 @@ public class Modificar {
 		}
 		if(j != null){
 			String[] listaP = new String[] {"PS4", "PS3",
-					"PSVITA", "XONE", "X360", "PC", "WII U", "WII", "3DS"};
+					"PSVita", "XONE", "X360", "PC", "Wii U", "Wii", "3DS"};
 			boolean encontrado = false;
 			int i = 0;
 			while(i<listaP.length && !encontrado){
