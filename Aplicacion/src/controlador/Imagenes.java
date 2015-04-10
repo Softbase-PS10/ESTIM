@@ -45,11 +45,11 @@ public class Imagenes {
 	 * @throws IOException
 	 *             si se produce algun error en la obtencion de la imagen
 	 */
-	public static ImageIcon getIcon(String url, int escala) throws IOException {
+	public static ImageIcon getIcon(String url, double escala) throws IOException {
 		if (url == null || url.compareToIgnoreCase("null") == 0){
 			return new ImageIcon(Imagenes.class.getResource("/Imagenes/not_available.jpg"));
 		}
-		return new ImageIcon(Imagenes.getImage(url, WIDTH * escala, HEIGHT * escala));
+		return new ImageIcon(Imagenes.getImage(url, (int)(WIDTH * escala), (int)(HEIGHT * escala)));
 	}
 
 	/**

@@ -27,6 +27,15 @@ public class Sentencias {
 
 	/* declaracion de metodos y funciones */
 
+	public static void main(String[] args) {
+		Sentencias s = new Sentencias();
+		for (Juego j : s.listarJuegosPlataformaAlias("PS3")) {
+			System.out.println(j.mostrarInfo());
+		}
+		System.out.println(s.listarJuego(1).mostrarInfo());
+		s.close();
+	}
+
 	/**
 	 * Metodo de creacion de la conexion con la Base de Datos Oracle
 	 */
@@ -37,7 +46,7 @@ public class Sentencias {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Método que cierra la actual conexión
 	 */
@@ -48,7 +57,7 @@ public class Sentencias {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * @param titulo
 	 *            : titulo por el que se desea filtrar
@@ -74,24 +83,6 @@ public class Sentencias {
 
 	/**
 	 * @param min
-	 *            : fecha de lanzamiento mas antigua
-	 * @param max
-	 *            : fecha de lanzamiento mas nueva
-	 * @return una lista(ArrayList) de los juegos cuya fecha de lanzamiento se
-	 *         encuentra entre @param min y @param max
-	 */
-	public ArrayList<Juego> listarJuegosRangoLanzamiento(String min, String max) {
-		return listarJuegos(" AND SUBSTR(LANZAMIENTO, 1, 2) <= '"
-				+ max.substring(0, 1) + "' AND SUBSTR(LANZAMIENTO, 1, 2) >= '"
-				+ min.substring(0, 1) + "' AND SUBSTR(LANZAMIENTO, 4, 2) <= '" 
-				+ max.substring(3, 4) + "' AND SUBSTR(LANZAMIENTO, 4, 2) >= '" 
-				+ min.substring(3, 4) + "' AND SUBSTR(LANZAMIENTO, 7, 2) <= '"
-				+ max.substring(6, 7) + "' AND SUBSTR(LANZAMIENTO, 7, 2) >= '"
-				+ min.substring(6, 7) + "'");
-	}
-
-	/**
-	 * @param min
 	 *            : valoracion minima
 	 * @param max
 	 *            : valoracion maxima
@@ -110,8 +101,9 @@ public class Sentencias {
 	 *         genero
 	 */
 	public ArrayList<Juego> listarJuegosGenero(String genero) {
-		return listarJuegos(" AND JUEGO_GENERO.id = JUEGO.id AND genero = '" + genero + "'");
-	} 
+		return listarJuegos(" AND JUEGO_GENERO.id = JUEGO.id AND genero = '"
+				+ genero + "'");
+	}
 
 	/**
 	 * @param nomP
@@ -137,10 +129,14 @@ public class Sentencias {
 	 * @param id
 	 *            : identificador del juego
 	 * @return la informacion del juego cuyo identificador coincide con @param
-	 *         id
+	 *         id, si este no existe, devuelve un juego vacio.
 	 */
 	public Juego listarJuego(long id) {
-		return listarJuegos(" AND JUEGO.id = '" + id + "'").get(0);
+		ArrayList<Juego> ar = listarJuegos(" AND JUEGO.id = '" + id + "'");
+		if (ar.isEmpty())
+			return new Juego();
+		else
+			return ar.get(0);
 	}
 
 	/**
@@ -177,13 +173,13 @@ public class Sentencias {
 	 * @return la informacion asociada a la plataforma cuyo identificador con @param
 	 *         id
 	 */
-	public Plataforma listarPlataformaId(int id) {
+	public Plataforma listarPlataformaId(long id) {
 		return listarPlataforma(" WHERE id = '" + id + "'");
 	}
 
 	/**
 	 * @return una lista (ArrayList) de todas las plataformas existentes en la
-	 *         Base de Datos (Oracle)
+	 *         Base de Datos
 	 */
 	public ArrayList<Plataforma> listarTodasPlataformas() {
 		String q = "SELECT * FROM PLATAFORMA";
@@ -230,30 +226,6 @@ public class Sentencias {
 	}
 
 	/**
-	 * @param id
-	 *            : identificador de la plataforma a eliminar de la Base de
-	 *            Datos
-	 */
-	public void borrarPlataforma(long id) {
-
-		try {
-			String query = "DELETE FROM JUEGO_PLATAFORMA WHERE plataforma = "
-					+ id + ";";
-			Statement st = null;
-			try {
-				st = connection.createStatement();
-			} catch (SQLException e1) {
-				e1.printStackTrace();
-			}
-			st.execute(query);
-			query = "DELETE FROM PLATAFORMA WHERE id = " + id + ";";
-			st.execute(query);
-		} catch (Exception e) {
-			e.printStackTrace(System.err);
-		}
-	}
-
-	/**
 	 * @param juego
 	 *            : informacion del juego a insertar
 	 */
@@ -291,7 +263,7 @@ public class Sentencias {
 		}
 
 		/* insercion de la informacion en la tabla de generos */
-		for(String g:juego.getGenero()){
+		for (String g : juego.getGenero()) {
 			queryString = "INSERT INTO JUEGO_GENERO (id,genero) VALUES (?,?)";
 
 			try {
@@ -309,8 +281,6 @@ public class Sentencias {
 					ex.printStackTrace();
 			}
 		}
-		
-		insertarPlataforma(juego.getPlataforma());
 
 		/* insercion de la informacion en la tabla juego_plataforma */
 
@@ -331,32 +301,6 @@ public class Sentencias {
 			else
 				ex.printStackTrace();
 		}
-
-	}
-
-	/**
-	 * @param p
-	 *            : informacion de la plataforma a insertar
-	 */
-	public void insertarPlataforma(Plataforma p) {
-
-		String queryString = "INSERT INTO PLATAFORMA (id,nombre,alias) VALUES (?,?,?)";
-		try {
-			PreparedStatement preparedStatement = connection
-					.prepareStatement(queryString);
-
-			preparedStatement.setLong(1, p.getId());
-			preparedStatement.setString(2, p.getNombre());
-			preparedStatement.setString(3, p.getAlias());
-
-			preparedStatement.execute();
-		} catch (SQLException ex) {
-			if (ex.getSQLState().startsWith("23"))
-				System.out.println("Entrada en plataforma duplicada");
-
-			else
-				ex.printStackTrace();
-		}
 	}
 
 	/**
@@ -371,8 +315,7 @@ public class Sentencias {
 
 		String queryString = "UPDATE JUEGO, JUEGO_PLATAFORMA "
 				+ "SET titulo = ?,imagen = ?,precio = ?,resumen = ?,lanzamiento = ?,rating = ?, "
-				+ "JUEGO_PLATAFORMA.plataforma = ? "
-				+ "WHERE JUEGO.id = '"
+				+ "JUEGO_PLATAFORMA.plataforma = ? " + "WHERE JUEGO.id = '"
 				+ juego.getId() + "' AND JUEGO.id = JUEGO_PLATAFORMA.juego";
 		try {
 			PreparedStatement preparedStatement = connection
@@ -388,32 +331,28 @@ public class Sentencias {
 			preparedStatement.execute();
 
 		} catch (SQLException ex) {
-			if (ex.getSQLState().startsWith("23"))
-				System.out.println("Entrada duplicada");
-
-			else
-				ex.printStackTrace();
+			ex.printStackTrace();
 		}
 
-		
-		for(String g:juego.getGenero()){
+		for (String g : juego.getGenero()) {
 			String query = "DELETE FROM JUEGO_GENERO WHERE id = "
 					+ juego.getId() + ";";
 			try {
-			Statement st = connection.createStatement();
-			st.execute(query);
-			
-			queryString = "INSERT INTO JUEGO_GENERO (id,genero) VALUES (?,?)";
+				Statement st = connection.createStatement();
+				st.execute(query);
 
-			PreparedStatement preparedStatement = connection.prepareStatement(queryString);
+				queryString = "INSERT INTO JUEGO_GENERO (id,genero) VALUES (?,?)";
 
-			preparedStatement.setLong(1, juego.getId());
-			preparedStatement.setString(2, g);
+				PreparedStatement preparedStatement = connection
+						.prepareStatement(queryString);
 
-			preparedStatement.execute();
+				preparedStatement.setLong(1, juego.getId());
+				preparedStatement.setString(2, g);
+
+				preparedStatement.execute();
 			} catch (SQLException ex) {
 				if (ex.getSQLState().startsWith("23"))
-					System.out.println("Entrada duplicada");
+					System.out.println("Entrada en juego_genero duplicada");
 				else
 					ex.printStackTrace();
 			}
@@ -438,11 +377,7 @@ public class Sentencias {
 			preparedStatement.execute();
 
 		} catch (SQLException ex) {
-			if (ex.getSQLState().startsWith("23"))
-				System.out.println("Entrada duplicada");
-
-			else
-				ex.printStackTrace();
+			ex.printStackTrace();
 		}
 
 	}
@@ -467,25 +402,6 @@ public class Sentencias {
 	}
 
 	/**
-	 * @return el identificador de la ultima plataforma
-	 */
-	public long obtenerUltimoIdPlataforma() {
-		String q = "SELECT MAX(id) AS mid FROM PLATAFORMA";
-		Statement st;
-		long id = -1;
-		try {
-			st = connection.createStatement();
-			ResultSet resul = st.executeQuery(q);
-			while (resul.next())
-				id = resul.getLong("mid");
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return id;
-	}
-	
-	/**
 	 * @param query
 	 *            : datos adicionales para el filtrado de las consultas
 	 * @return una lista (ArrayList) de todos los juegos de la Base de Datos que
@@ -501,36 +417,33 @@ public class Sentencias {
 			st = connection.createStatement();
 			ResultSet resul = st.executeQuery(q);
 			Juego j;
-			ArrayList<String> gen = new ArrayList<String>();
+			ArrayList<String> generos = new ArrayList<String>();
 			ResultSet res;
 			while (resul.next()) {
-				j = new Juego(resul.getLong("id"));
-				j.setTitulo(resul.getString("titulo"));
-				j.setDescripcion(resul.getString("resumen"));
-				j.setImagen(resul.getString("imagen"));
-				j.setLanzamiento(resul.getString("lanzamiento"));
-				j.setPrecio(resul.getInt("precio"));
-				j.setRating(resul.getString("rating"));
-				j.setPlataforma(new Plataforma(resul.getString("nombre"), resul
-						.getString("alias")));
-						
-				q = "SELECT * FROM JUEGO_GENERO WHERE id = '"+j.getId()+"'";
+				j = new Juego(resul.getLong("id"), resul.getString("titulo"),
+						resul.getString("imagen"), resul.getString("resumen"),
+						resul.getString("lanzamiento"),
+						resul.getString("rating"), generos,
+						resul.getInt("precio"), new Plataforma(
+								resul.getString("nombre"),
+								resul.getString("alias")));
+				q = "SELECT * FROM JUEGO_GENERO WHERE id = '" + j.getId() + "'";
 				st2 = connection.createStatement();
 				res = st2.executeQuery(q);
 				while (res.next()) {
-					gen.add(res.getString("genero"));
+					generos.add(res.getString("genero"));
 				}
-				j.setGenero(gen);
-				
+				j.setGenero(generos);
+
 				js.add(j);
-				gen = new ArrayList<String>();
+				generos = new ArrayList<String>();
 			}
 		} catch (SQLException ex) {
-				ex.printStackTrace();
+			ex.printStackTrace();
 		}
 		return js;
 	}
-	
+
 	/**
 	 * @param query
 	 *            : datos adicionales para la obtencion de la plataforma
@@ -544,11 +457,9 @@ public class Sentencias {
 			st = connection.createStatement();
 			ResultSet resul = st.executeQuery(q);
 			while (resul.next()) {
-				p = new Plataforma(resul.getLong("id"));
-				p.setAlias(resul.getString("alias"));
-				p.setNombre(resul.getString("nombre"));
+				p = new Plataforma(resul.getLong("id"),
+						resul.getString("nombre"), resul.getString("alias"));
 			}
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

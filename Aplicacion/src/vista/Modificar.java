@@ -36,6 +36,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 import modelo.Juego;
+import modelo.Plataforma;
 import controlador.Botones;
 import controlador.BotonesCabecera;
 import controlador.BotonesCategorias;
@@ -120,15 +121,14 @@ public class Modificar {
 		}
 		if(j!=null){
 			try {
-				ImageIcon caratula = Imagenes.getIcon(j.getImagen(),1);
+				ImageIcon caratula = Imagenes.getIcon(j.getImagen(),1.35);
 				vistaPreviaCaratula.setIcon(caratula);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
 		if(j != null){
-			String[] listaP = new String[] {"PS4", "PS3",
-					"PSVITA", "XONE", "X360", "PC", "WII U", "WII", "N3DS"};
+			String[] listaP = Plataforma.listaAlias();
 			boolean encontrado = false;
 			int i = 0;
 			while(i<listaP.length && !encontrado){
@@ -350,7 +350,7 @@ public class Modificar {
 		descripcion.setLineWrap(true);
 		scrollPane.setViewportView(descripcion);
 		
-		vistaPreviaCaratula = new JLabel("Cover preview");
+		vistaPreviaCaratula = new JLabel("");
 		vistaPreviaCaratula.setHorizontalAlignment(SwingConstants.CENTER);
 		vistaPreviaCaratula.setHorizontalTextPosition(SwingConstants.CENTER);
 		vistaPreviaCaratula.setOpaque(true);
@@ -363,8 +363,7 @@ public class Modificar {
 
 		
 		plataforma = new JComboBox<String>();
-		String[] listaP = new String[] {"PS4", "PS3",
-				"PSVita", "XONE", "X360", "PC", "Wii U", "Wii", "3DS"};
+		String[] listaP = Plataforma.listaAlias();
 		plataforma.setModel(new DefaultComboBoxModel<String>(listaP));
 		plataforma.setBounds(214, 145, 300, 20);
 		panel_3.add(plataforma);
@@ -411,6 +410,16 @@ public class Modificar {
 		eTitulo.setBorder(null);
 		eTitulo.setBounds(524, 54, 140, 20);
 		panel_3.add(eTitulo);
+		
+		JFormattedTextField previa = new JFormattedTextField();
+		previa.setBorder(null);
+		previa.setOpaque(false);
+		previa.setForeground(Color.WHITE);
+		previa.setHorizontalAlignment(SwingConstants.CENTER);
+		previa.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		previa.setText("Cover preview");
+		previa.setBounds(706, 365, 170, 20);
+		panel_3.add(previa);
 		
 		JLabel fondo = new JLabel("");
 		fondo.setBounds(0, 0, 1060, 471);

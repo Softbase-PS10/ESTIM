@@ -20,13 +20,17 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.JTextField;
 
@@ -109,7 +113,63 @@ public class BotonesCabecera {
 					m.mostrarMod();
 				}
 			});
+			JMenuItem delete = new JMenuItem("Delete");
+			delete.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mousePressed(java.awt.event.MouseEvent evt) {
+					final JOptionPane optionPane = new JOptionPane(
+							"Are you sure you want to delete this game?",
+							JOptionPane.QUESTION_MESSAGE,
+							JOptionPane.YES_NO_OPTION);
+					final JDialog dialog = new JDialog(frame, "Confirmation",
+							true);
+					dialog.setLocationRelativeTo(frame);
+					dialog.setBounds(500, 325, 200, 200);
+					dialog.setContentPane(optionPane);
+					optionPane
+							.addPropertyChangeListener(new PropertyChangeListener() {
+
+								@Override
+								public void propertyChange(
+										PropertyChangeEvent arg0) {
+									String prop = arg0.getPropertyName();
+
+									if (dialog.isVisible()
+											&& (arg0.getSource() == optionPane)
+											&& (prop.equals(JOptionPane.VALUE_PROPERTY))) {
+										// If you were going to check something
+										// before closing the window, you'd do
+										// it here.
+										int value = ((Integer) optionPane
+												.getValue()).intValue();
+										if (value == JOptionPane.YES_OPTION) {
+											Sentencias s = new Sentencias();
+											s.borrarJuego(juegoActual.getId());
+											ArrayList<Juego> juegos = s
+													.listarJuegosPlataformaAlias(juegoActual
+															.getPlataforma()
+															.getAlias());
+											s.close();
+
+											frame.dispose();
+
+											Listado.listar(juegos);
+										} else if (value == JOptionPane.NO_OPTION) {
+											// Do nothing
+										}
+										dialog.setVisible(false);
+									}
+
+								}
+
+							});
+					dialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+					dialog.pack();
+					dialog.setVisible(true);
+				}
+			});
 			pop.add(modify);
+			pop.add(delete);
 		}
 
 		JMenuItem exit = new JMenuItem("Exit");
@@ -172,7 +232,7 @@ public class BotonesCabecera {
 				carro.setIcon(new ImageIcon(Principal.class
 						.getResource("/Imagenes/B/carro.png")));
 			}
-			
+
 			@Override
 			public void mousePressed(java.awt.event.MouseEvent evt) {
 				pop.show(evt.getComponent(), 0, 70);

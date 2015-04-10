@@ -45,12 +45,12 @@ public class Plataforma {
 	/* declaracion de metodos y funciones */
 
 	/**
-	 * @param id
-	 *            : identificador de la plataforma
 	 * @param nombre
 	 *            : nombre de la plataforma
 	 * @param alias
-	 *            : alias de la plataforma Crea una plataforma con identificador
+	 *            : alias de la plataforma
+	 * @param id
+	 *            : id de la plataforma Crea una plataforma con identificador
 	 *            autogenerado, con nombre @param nombre y alias @param alias
 	 */
 	public Plataforma(long id, String nombre, String alias) {
@@ -69,16 +69,20 @@ public class Plataforma {
 	public Plataforma(String nombre, String alias) {
 		this.nombre = nombre;
 		this.alias = alias;
-		this.id = new Sentencias().obtenerUltimoIdPlataforma() + 1;
+		this.id = new Sentencias().listarPlataformaAlias(alias).getId();
 	}
 
 	/**
-	 * Crea una plataforma con id autogenerado, sin nombre ni alias
+	 * 
+	 * @param alias
+	 *            : alias de la plataforma Crea una plataforma con identificador
+	 *            y nombre autogenerado y alias @param alias
 	 */
-	public Plataforma() {
-		this.nombre = "";
-		this.alias = "";
-		this.id = new Sentencias().obtenerUltimoIdPlataforma() + 1;
+	public Plataforma(String alias) {
+		this.alias = alias;
+		Plataforma p = new Sentencias().listarPlataformaAlias(alias);
+		this.nombre = p.getNombre();
+		this.id = p.getId();
 	}
 
 	/**
@@ -87,9 +91,10 @@ public class Plataforma {
 	 *            nombre ni alias. Su identificador sera @param id
 	 */
 	public Plataforma(long id) {
-		this.nombre = "";
-		this.alias = "";
 		this.id = id;
+		Plataforma p = new Sentencias().listarPlataformaId(id);
+		this.nombre = p.getNombre();
+		this.alias = p.getAlias();
 	}
 
 	/**
@@ -135,6 +140,15 @@ public class Plataforma {
 	 */
 	public void setAlias(String alias) {
 		this.alias = alias;
+	}
+
+	/**
+	 * @return una lista de Strings con los aliases de las plataformas
+	 */
+	public static String[] listaAlias() {
+		String[] s = new String[] { "PS4", "PS3", "PSVita", "XONE", "X360",
+				"PC", "Wii U", "Wii", "3DS" };
+		return s;
 	}
 
 }

@@ -23,7 +23,7 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
+import javax.swing.JCheckBoxMenuItem;
 
 import modelo.*;
 import vista.Info;
@@ -95,9 +95,9 @@ public class Botones {
 				Plataforma plat = s.listarPlataformaAlias(plataforma);
 				
 				ArrayList<String> genero = new ArrayList<String>();
-				Component[] comp = Modificar.genero.getComponents();
+				Component[] comp = Modificar.genero.getMenuComponents();
 				for (int i = 0; i < comp.length; i++) {
-					JCheckBox cb = (JCheckBox) comp[i];
+					JCheckBoxMenuItem cb = (JCheckBoxMenuItem) comp[i];
 					if(cb.isSelected()){
 						genero.add(cb.getText());
 					}
@@ -105,6 +105,8 @@ public class Botones {
 				if(!error){
 					if(j == null){
 						int p = Integer.parseInt(precio);
+						if(url.equals(""))
+							url = "null";
 						Juego j = new Juego(titulo,url,descripcion,anyo,
 								valoracion,genero,p,plat);
 						s.insertarJuego(j);

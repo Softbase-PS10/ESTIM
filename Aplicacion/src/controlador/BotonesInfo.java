@@ -149,7 +149,7 @@ public class BotonesInfo {
 		else{
 			lblNewLabel.setBounds(122, 181, 128, 180);
 			try {
-				lblNewLabel.setIcon(controlador.Imagenes.getIcon("http://www.rbrobotics.com/images/not_available.gif", 1));
+				lblNewLabel.setIcon(controlador.Imagenes.getIcon("/Imagenes/not_available.jpg", 1));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}	
@@ -171,7 +171,7 @@ public class BotonesInfo {
 			Titulo.setText(tituloString + "\r\n");
 		}
 		else{
-			Titulo.setText("[Title not available]" + "\r\n");	
+			Titulo.setText("N/A" + "\r\n");	
 		}
 		Titulo.setBounds(0, 105, 1066, 31);
 		Titulo.setHorizontalAlignment(SwingConstants.CENTER);
@@ -225,7 +225,7 @@ public class BotonesInfo {
 			RespAnio.setText(value);	
 		}
 		else{
-			RespAnio.setText("[Unknown]");	
+			RespAnio.setText("N/A");	
 		}
 		
 		RespAnio.setBounds(540, 200, 282, 20);
@@ -255,7 +255,7 @@ public class BotonesInfo {
 			RespPlataforma.setText(value);	
 		}
 		else{
-			RespPlataforma.setText("[Unknown]");
+			RespPlataforma.setText("N/A");
 		}
 		RespPlataforma.setBounds(540, 244, 254, 20);
 		return RespPlataforma;
@@ -282,7 +282,7 @@ public class BotonesInfo {
 			RespGenero.setText(value);	
 		}
 		else{
-			RespGenero.setText("[Unknown]");	
+			RespGenero.setText("N/A");	
 		}
 		RespGenero.setForeground(Color.WHITE);
 		RespGenero.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -315,8 +315,9 @@ public class BotonesInfo {
 			RespDescripcion.setText("");
 		}
 		RespDescripcion.setOpaque(false);
-		RespDescripcion.setBounds(540, 325, 500, 170);
+		RespDescripcion.setBounds(540, 325, 475, 170);
 		RespDescripcion.setLineWrap(true);
+		RespDescripcion.setWrapStyleWord(true);
 		return RespDescripcion;
 	}
 	
