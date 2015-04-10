@@ -71,14 +71,9 @@ public class Principal {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-//		frmPantallaPrincipal = new JFrame();
-//		frmPantallaPrincipal.setTitle("Main window - Estim");
-//		frmPantallaPrincipal.setIconImage(Toolkit.getDefaultToolkit().getImage(
-//				Principal.class.getResource("/Imagenes/E.png")));
-//		frmPantallaPrincipal.setResizable(false);
-//		frmPantallaPrincipal.setBounds(100, 100, 1066, 600);
-//		frmPantallaPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		frmPantallaPrincipal.getContentPane().setLayout(null);
+		frmPantallaPrincipal.setTitle("Main window - Estim");
+		frmPantallaPrincipal.setIconImage(Toolkit.getDefaultToolkit().getImage(
+				Principal.class.getResource("/Imagenes/E.png")));
 
 		JPanel cabecera = new JPanel();
 		cabecera.setBorder(new LineBorder(new Color(0, 0, 0), 2));

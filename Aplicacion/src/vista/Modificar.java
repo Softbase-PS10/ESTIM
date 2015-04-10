@@ -91,10 +91,6 @@ public class Modificar {
 		this.frmPantallaPrincipal.repaint();
 	}
 	
-//	public static void ocultarMod(){
-//		frmPantallaPrincipal.dispose();
-//	}
-	
 	/**
 	 * Muestra la interfaz y rellena los campos conforme el juego que hay 
 	 * en las variables globales.
@@ -166,14 +162,9 @@ public class Modificar {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-//		frmPantallaPrincipal = new JFrame();
-//		frmPantallaPrincipal.setTitle("Add/Modify - Estim");
-//		frmPantallaPrincipal.setIconImage(Toolkit.getDefaultToolkit().
-//				getImage(Modificar.class.getResource("/Imagenes/E.png")));
-//		frmPantallaPrincipal.setResizable(false);
-//		frmPantallaPrincipal.setBounds(100, 100, 1066, 600);
-//		frmPantallaPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		frmPantallaPrincipal.getContentPane().setLayout(null);
+		frmPantallaPrincipal.setTitle("Add/Modify - Estim");
+		frmPantallaPrincipal.setIconImage(Toolkit.getDefaultToolkit().
+				getImage(Modificar.class.getResource("/Imagenes/E.png")));
 		
 		JPanel cabecera = new JPanel();
 		cabecera.setBorder(new LineBorder(new Color(0, 0, 0), 2));

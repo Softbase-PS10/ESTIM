@@ -15,7 +15,6 @@ package controlador;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Toolkit;
 import java.io.IOException;
 
 import javax.swing.ImageIcon;
@@ -33,22 +32,6 @@ import vista.Info;
 
 
 public class BotonesInfo {
-
-	/**
-	 * @return el frame principal
-	 */
-	public static JFrame getFramePrincipal() {
-		JFrame frmInformacinDelProduc = new JFrame();
-		frmInformacinDelProduc
-				.setTitle("Informaci\u00F3n del producto - Estim");
-		frmInformacinDelProduc.setResizable(false);
-		frmInformacinDelProduc.setIconImage(Toolkit.getDefaultToolkit()
-				.getImage(Info.class.getResource("/Imagenes/E.png")));
-		frmInformacinDelProduc.setBounds(100, 100, 1066, 600);
-		frmInformacinDelProduc.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmInformacinDelProduc.getContentPane().setLayout(null);
-		return frmInformacinDelProduc;
-	}
 
 	/**
 	 * @return la cabecera de la pantalla

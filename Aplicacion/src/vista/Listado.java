@@ -17,6 +17,7 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -99,6 +100,10 @@ public class Listado {
 	 *             Inicializa la ventana
 	 */
 	private void initialize(ArrayList<Juego> juegos) throws IOException {
+		frmPantallaPrincipal.setTitle("List of games - Estim");
+		frmPantallaPrincipal.setIconImage(Toolkit.getDefaultToolkit().getImage(
+				Info.class.getResource("/Imagenes/E.png")));
+
 		JPanel cabecera = new JPanel();
 		cabecera.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		cabecera.setBackground(Color.BLACK);

@@ -13,6 +13,7 @@
 package vista;
 
 import java.awt.EventQueue;
+import java.awt.Toolkit;
 
 import modelo.Juego;
 
@@ -58,6 +59,12 @@ public class Info {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize(Juego juego) {
+
+		frmInformacinDelProduc
+				.setTitle("Product information - Estim");
+		frmInformacinDelProduc.setIconImage(Toolkit.getDefaultToolkit()
+				.getImage(Info.class.getResource("/Imagenes/E.png")));
+
 		// Cabecera
 		JPanel cabecera = BotonesInfo.getCabecera(frmInformacinDelProduc);
 		frmInformacinDelProduc.getContentPane().add(cabecera);
@@ -71,7 +78,8 @@ public class Info {
 		cabecera.add(lupaBuscar);
 
 		// Opciones
-		JPanel opciones = BotonesInfo.getOpciones(juego, frmInformacinDelProduc);
+		JPanel opciones = BotonesInfo
+				.getOpciones(juego, frmInformacinDelProduc);
 		cabecera.add(opciones);
 
 		// Carrito
@@ -136,7 +144,8 @@ public class Info {
 		frmInformacinDelProduc.getContentPane().add(RespDescripcion);
 
 		// Valoracion
-		JLabel RespValoracion = BotonesInfo.getValoracionLabel(juego.getRating());
+		JLabel RespValoracion = BotonesInfo.getValoracionLabel(juego
+				.getRating());
 		frmInformacinDelProduc.getContentPane().add(RespValoracion);
 
 		// Boton carro
