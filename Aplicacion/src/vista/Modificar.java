@@ -68,8 +68,8 @@ public class Modificar {
 			@SuppressWarnings("static-access")
 			public void run() {
 				try {
-					Modificar window = new Modificar(null);
-					window.frmPantallaPrincipal.setVisible(true);
+//					Modificar window = new Modificar(null);
+//					window.frmPantallaPrincipal.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -83,14 +83,17 @@ public class Modificar {
 	 * correspondientes. Si es =null, los campos quedarán vacios.
 	 */
 	@SuppressWarnings("static-access")
-	public Modificar(Juego j) {
+	public Modificar(JFrame fr, Juego j) {
 		this.j = j;
+		this.frmPantallaPrincipal = fr;
+		frmPantallaPrincipal.getContentPane().removeAll();
 		initialize();
+		this.frmPantallaPrincipal.repaint();
 	}
 	
-	public static void ocultarMod(){
-		frmPantallaPrincipal.dispose();
-	}
+//	public static void ocultarMod(){
+//		frmPantallaPrincipal.dispose();
+//	}
 	
 	/**
 	 * Muestra la interfaz y rellena los campos conforme el juego que hay 
@@ -163,14 +166,14 @@ public class Modificar {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frmPantallaPrincipal = new JFrame();
-		frmPantallaPrincipal.setTitle("Add/Modify - Estim");
-		frmPantallaPrincipal.setIconImage(Toolkit.getDefaultToolkit().
-				getImage(Modificar.class.getResource("/Imagenes/E.png")));
-		frmPantallaPrincipal.setResizable(false);
-		frmPantallaPrincipal.setBounds(100, 100, 1066, 600);
-		frmPantallaPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmPantallaPrincipal.getContentPane().setLayout(null);
+//		frmPantallaPrincipal = new JFrame();
+//		frmPantallaPrincipal.setTitle("Add/Modify - Estim");
+//		frmPantallaPrincipal.setIconImage(Toolkit.getDefaultToolkit().
+//				getImage(Modificar.class.getResource("/Imagenes/E.png")));
+//		frmPantallaPrincipal.setResizable(false);
+//		frmPantallaPrincipal.setBounds(100, 100, 1066, 600);
+//		frmPantallaPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		frmPantallaPrincipal.getContentPane().setLayout(null);
 		
 		JPanel cabecera = new JPanel();
 		cabecera.setBorder(new LineBorder(new Color(0, 0, 0), 2));
@@ -209,7 +212,7 @@ public class Modificar {
 		cabecera.add(panel_1);
 		panel_1.setLayout(null);
 		
-		panel_1.add(BotonesCabecera.ajustes(4,null));
+		panel_1.add(BotonesCabecera.ajustes(4,null, frmPantallaPrincipal));
 		
 		JPanel categorias = new JPanel();
 		categorias.setBorder(new LineBorder(new Color(0, 0, 0), 2));
@@ -359,7 +362,7 @@ public class Modificar {
 		panel_3.add(vistaPreviaCaratula);
 		
 		
-		panel_3.add(Botones.save(j));
+		panel_3.add(Botones.save(j, frmPantallaPrincipal));
 
 		
 		plataforma = new JComboBox<String>();

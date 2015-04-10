@@ -61,13 +61,12 @@ public class BotonesCabecera {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				String busqueda = busc.getText();
 				Sentencias sql = new Sentencias();
 				ArrayList<Juego> juegos = sql.listarJuegosTitulo(busqueda);
 				sql.close();
-				BotonesCabecera.frame.dispose();
-				Listado.listar(juegos);
+				frame.getContentPane().removeAll();
+				Listado.listar(frame, juegos);
 			}
 		});
 
@@ -84,7 +83,7 @@ public class BotonesCabecera {
 	 *            de información del juego y 4 para la pantalla de modificar
 	 *            juego
 	 */
-	public static JLabel ajustes(int origen, Juego j) {
+	public static JLabel ajustes(int origen, Juego j, final JFrame fr) {
 		final JLabel ajustes = new JLabel();
 		final Juego juegoActual = j;
 		ajustes.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -97,8 +96,8 @@ public class BotonesCabecera {
 			add.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mousePressed(java.awt.event.MouseEvent evt) {
-					BotonesCabecera.frame.dispose();
-					Modificar m = new Modificar(juegoActual);
+					frame.getContentPane().removeAll();
+					Modificar m = new Modificar(fr, juegoActual);
 					m.mostrarMod();
 				}
 			});
@@ -108,8 +107,8 @@ public class BotonesCabecera {
 			modify.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mousePressed(java.awt.event.MouseEvent evt) {
-					BotonesCabecera.frame.dispose();
-					Modificar m = new Modificar(juegoActual);
+					frame.getContentPane().removeAll();
+					Modificar m = new Modificar(fr, juegoActual);
 					m.mostrarMod();
 				}
 			});
@@ -151,9 +150,8 @@ public class BotonesCabecera {
 															.getAlias());
 											s.close();
 
-											frame.dispose();
-
-											Listado.listar(juegos);
+											frame.getContentPane().removeAll();
+											Listado.listar(frame, juegos);
 										} else if (value == JOptionPane.NO_OPTION) {
 											// Do nothing
 										}
@@ -176,8 +174,10 @@ public class BotonesCabecera {
 		exit.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(java.awt.event.MouseEvent evt) {
-				BotonesCabecera.frame.dispose();
-				Principal.main(null);
+//				BotonesCabecera.frame.dispose();
+				frame.getContentPane().removeAll();
+
+				Principal.main(frame);
 			}
 		});
 		pop.add(exit);
@@ -263,9 +263,8 @@ public class BotonesCabecera {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				BotonesCabecera.frame.dispose();
-				Principal.main(null);
+				BotonesCabecera.frame.getContentPane().removeAll();
+				Principal.main(BotonesCabecera.frame);
 			}
 		});
 

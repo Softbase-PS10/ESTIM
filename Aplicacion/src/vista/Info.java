@@ -30,22 +30,13 @@ public class Info {
 	private JFrame frmInformacinDelProduc;
 	private static Juego juego;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		Juego p = new Juego(2);
-		p.setImagen("http://www.matrallune.com/images/imagen_corporativa.jpg");
-		// Listado.main(null);
-		main(p);
-	}
-
-	public static void main(Juego jue) {
+	public static void main(final JFrame fr, Juego jue) {
 		juego = jue;
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Info window = new Info(juego);
+					Info window = new Info(fr, juego);
+					window.frmInformacinDelProduc.repaint();
 					window.frmInformacinDelProduc.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -57,7 +48,9 @@ public class Info {
 	/**
 	 * Create the application.
 	 */
-	public Info(Juego juego) {
+	public Info(JFrame fr, Juego juego) {
+		frmInformacinDelProduc = fr;
+		frmInformacinDelProduc.getContentPane().removeAll();
 		initialize(juego);
 	}
 
@@ -65,9 +58,6 @@ public class Info {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize(Juego juego) {
-		// Creacion del frame principal
-		frmInformacinDelProduc = BotonesInfo.getFramePrincipal();
-
 		// Cabecera
 		JPanel cabecera = BotonesInfo.getCabecera(frmInformacinDelProduc);
 		frmInformacinDelProduc.getContentPane().add(cabecera);
@@ -81,7 +71,7 @@ public class Info {
 		cabecera.add(lupaBuscar);
 
 		// Opciones
-		JPanel opciones = BotonesInfo.getOpciones(juego);
+		JPanel opciones = BotonesInfo.getOpciones(juego, frmInformacinDelProduc);
 		cabecera.add(opciones);
 
 		// Carrito
