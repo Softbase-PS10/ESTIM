@@ -17,7 +17,6 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -53,7 +52,8 @@ public class Listado {
 	private JTextField valoracionMaxima;
 
 	@SuppressWarnings("unused")
-	private ArrayList<Juego> games;	//asi se podra realizar la ordenacion mas adelante
+	private ArrayList<Juego> games; // asi se podra realizar la ordenacion mas
+									// adelante
 
 	/* declaracion de metodos y funciones */
 
@@ -63,13 +63,13 @@ public class Listado {
 	 * 
 	 *            Lanza la ventana de listado de juegos
 	 */
-	public static void listar(final ArrayList<Juego> juegos) {
+	public static void listar(final JFrame fr, final ArrayList<Juego> juegos) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Listado window = new Listado(juegos);
+					Listado window = new Listado(fr, juegos);
+					window.frmPantallaPrincipal.repaint();
 					window.frmPantallaPrincipal.setVisible(true);
-					window.frmPantallaPrincipal.validate();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -78,32 +78,27 @@ public class Listado {
 	}
 
 	/**
-	 * @param juegos : lista de juegos a mostrar
+	 * @param juegos
+	 *            : lista de juegos a mostrar
 	 * @throws IOException
 	 * 
-	 * Crea la aplicacion
+	 *             Crea la aplicacion
 	 */
-	public Listado(ArrayList<Juego> juegos) throws IOException {
+	public Listado(JFrame fr, ArrayList<Juego> juegos) throws IOException {
 		this.games = juegos;
+		this.frmPantallaPrincipal = fr;
+		frmPantallaPrincipal.getContentPane().removeAll();
 		initialize(juegos);
 	}
 
 	/**
-	 * @param juegos : lista de juegos a mostrar
+	 * @param juegos
+	 *            : lista de juegos a mostrar
 	 * @throws IOException
 	 * 
-	 * Inicializa la ventana
+	 *             Inicializa la ventana
 	 */
 	private void initialize(ArrayList<Juego> juegos) throws IOException {
-		frmPantallaPrincipal = new JFrame();
-		frmPantallaPrincipal.setTitle("List of Games - Estim");
-		frmPantallaPrincipal.setIconImage(Toolkit.getDefaultToolkit().getImage(
-				Listado.class.getResource("/Imagenes/E.png")));
-		frmPantallaPrincipal.setResizable(false);
-		frmPantallaPrincipal.setBounds(100, 100, 1066, 600);
-		frmPantallaPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmPantallaPrincipal.getContentPane().setLayout(null);
-
 		JPanel cabecera = new JPanel();
 		cabecera.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		cabecera.setBackground(Color.BLACK);
@@ -132,7 +127,7 @@ public class Listado {
 		cabecera.add(opciones);
 		opciones.setLayout(null);
 
-		opciones.add(BotonesCabecera.ajustes(2,null));
+		opciones.add(BotonesCabecera.ajustes(2, null, frmPantallaPrincipal));
 
 		JPanel carrito = new JPanel();
 		carrito.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -286,7 +281,7 @@ public class Listado {
 		principal.add(scrollPane);
 
 		scrollPane.getVerticalScrollBar().setUnitIncrement(20);
-		
+
 		Box box = Box.createVerticalBox();
 		scrollPane.setViewportView(box);
 
@@ -311,8 +306,8 @@ public class Listado {
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					frmPantallaPrincipal.dispose();
-					Info.main(j);
+					frmPantallaPrincipal.getContentPane().removeAll();
+					Info.main(frmPantallaPrincipal, j);
 				}
 			});
 			res.add(caratula);

@@ -44,11 +44,12 @@ public class Principal {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void main(final JFrame frame) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Principal window = new Principal();
+					Principal window = new Principal(frame);
+					window.frmPantallaPrincipal.repaint();
 					window.frmPantallaPrincipal.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -60,7 +61,9 @@ public class Principal {
 	/**
 	 * Create the application.
 	 */
-	public Principal() {
+	public Principal(JFrame frame) {
+		frmPantallaPrincipal = frame;
+		frmPantallaPrincipal.getContentPane().removeAll();
 		initialize();
 	}
 
@@ -68,14 +71,14 @@ public class Principal {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frmPantallaPrincipal = new JFrame();
-		frmPantallaPrincipal.setTitle("Main window - Estim");
-		frmPantallaPrincipal.setIconImage(Toolkit.getDefaultToolkit().getImage(
-				Principal.class.getResource("/Imagenes/E.png")));
-		frmPantallaPrincipal.setResizable(false);
-		frmPantallaPrincipal.setBounds(100, 100, 1066, 600);
-		frmPantallaPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmPantallaPrincipal.getContentPane().setLayout(null);
+//		frmPantallaPrincipal = new JFrame();
+//		frmPantallaPrincipal.setTitle("Main window - Estim");
+//		frmPantallaPrincipal.setIconImage(Toolkit.getDefaultToolkit().getImage(
+//				Principal.class.getResource("/Imagenes/E.png")));
+//		frmPantallaPrincipal.setResizable(false);
+//		frmPantallaPrincipal.setBounds(100, 100, 1066, 600);
+//		frmPantallaPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		frmPantallaPrincipal.getContentPane().setLayout(null);
 
 		JPanel cabecera = new JPanel();
 		cabecera.setBorder(new LineBorder(new Color(0, 0, 0), 2));
@@ -114,7 +117,7 @@ public class Principal {
 		cabecera.add(panel_1);
 		panel_1.setLayout(null);
 
-		panel_1.add(BotonesCabecera.ajustes(1,null));
+		panel_1.add(BotonesCabecera.ajustes(1,null, frmPantallaPrincipal));
 
 		JPanel categorias = new JPanel();
 		categorias.setBorder(new LineBorder(new Color(0, 0, 0), 2));

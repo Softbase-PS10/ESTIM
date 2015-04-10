@@ -42,9 +42,8 @@ public class PlatformListener implements ActionListener {
 		ArrayList<Juego> juegos = sql.listarJuegosPlataformaAlias(this.alias);
 		sql.close();
 		
-		frame.dispose();
-		
-		Listado.listar(juegos);
+		frame.getContentPane().removeAll();
+		Listado.listar(frame, juegos);
 	}
 
 }

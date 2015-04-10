@@ -24,8 +24,11 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBoxMenuItem;
+import javax.swing.JFrame;
 
-import modelo.*;
+import modelo.Juego;
+import modelo.Plataforma;
+import modelo.Sentencias;
 import vista.Info;
 import vista.Modificar;
 
@@ -55,7 +58,7 @@ public class Botones {
 	 * @return el boton de 'Guardar' los cambios al modificar un
 	 * juego del catalogo.
 	 */
-	public static JButton save(final Juego j){
+	public static JButton save(final Juego j, final JFrame frame){
 		JButton salvar = new JButton("Save");
 		salvar.setFont(new Font("Tahoma", Font.BOLD, 13));
 		salvar.setBounds(961, 427, 89, 33);
@@ -110,8 +113,7 @@ public class Botones {
 						Juego j = new Juego(titulo,url,descripcion,anyo,
 								valoracion,genero,p,plat);
 						s.insertarJuego(j);
-						Modificar.ocultarMod();
-						Info.main(j);
+						Info.main(frame, j);
 					}
 					else{
 						j.setTitulo(titulo);
@@ -123,8 +125,7 @@ public class Botones {
 						j.setPrecio(Integer.parseInt(precio));
 						j.setRating(valoracion);
 						s.actualizarJuego(j);
-						Modificar.ocultarMod();
-						Info.main(j);
+						Info.main(frame, j);
 					}
 				}
 			}

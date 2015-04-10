@@ -89,12 +89,12 @@ public class BotonesInfo {
 	/**
 	 * @return las opciones
 	 */
-	public static JPanel getOpciones(Juego juego) {
+	public static JPanel getOpciones(Juego juego, JFrame fr) {
 		JPanel opciones = new JPanel();
 		opciones.setBorder(new LineBorder(new Color(0, 0, 0)));
 		opciones.setBounds(920, 0, 70, 70);
 		opciones.setLayout(null);
-		opciones.add(BotonesCabecera.ajustes(3,juego));
+		opciones.add(BotonesCabecera.ajustes(3,juego, fr));
 		return opciones;
 	}
 
