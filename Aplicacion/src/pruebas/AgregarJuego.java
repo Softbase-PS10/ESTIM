@@ -30,56 +30,67 @@ public class AgregarJuego {
 		System.out.println("Comenzando las pruebas sobre insertar juego:");
 		Sentencias sql = new Sentencias();
 
-		System.out.println("Clase de equivalencia 1-8");
+		System.out.println("Clase de equivalencia 1-2-3-5-7-9-11-13-14-15-16");
 		clase(Lanzador.TITULO, Lanzador.URL, Lanzador.DESCRIPCION,
 				Lanzador.LANZAMIENTO, Lanzador.RATING, Lanzador.GENERO,
 				Lanzador.PRECIO, Lanzador.PLATAFORMA, sql);
 
-		System.out.println("Clase de equivalencia 9");
-		clase(null, Lanzador.URL, Lanzador.DESCRIPCION, Lanzador.LANZAMIENTO,
-				Lanzador.RATING, Lanzador.GENERO, Lanzador.PRECIO,
-				Lanzador.PLATAFORMA, sql);
-
-		System.out.println("Clase de equivalencia 10");
+		System.out.println("Clase de equivalencia 4");
 		clase(Lanzador.TITULO, null, Lanzador.DESCRIPCION,
 				Lanzador.LANZAMIENTO, Lanzador.RATING, Lanzador.GENERO,
 				Lanzador.PRECIO, Lanzador.PLATAFORMA, sql);
 
-		System.out.println("Clase de equivalencia 11");
-		clase(Lanzador.TITULO, Lanzador.URL, null, Lanzador.LANZAMIENTO,
-				Lanzador.RATING, Lanzador.GENERO, Lanzador.PRECIO,
-				Lanzador.PLATAFORMA, sql);
+		System.out.println("Clase de equivalencia 6");
+		clase(Lanzador.TITULO, Lanzador.URL, null,
+				Lanzador.LANZAMIENTO, Lanzador.RATING, Lanzador.GENERO,
+				Lanzador.PRECIO, Lanzador.PLATAFORMA, sql);
+		
+		System.out.println("Clase de equivalencia 8");
+		clase(Lanzador.TITULO, Lanzador.URL, Lanzador.DESCRIPCION,
+				null, Lanzador.RATING, Lanzador.GENERO,
+				Lanzador.PRECIO, Lanzador.PLATAFORMA, sql);
+
+		System.out.println("Clase de equivalencia 10");
+		clase(Lanzador.TITULO, Lanzador.URL, Lanzador.DESCRIPCION,
+				Lanzador.LANZAMIENTO, null, Lanzador.GENERO,
+				Lanzador.PRECIO, Lanzador.PLATAFORMA, sql);
 
 		System.out.println("Clase de equivalencia 12");
-		clase(Lanzador.TITULO, Lanzador.URL, Lanzador.DESCRIPCION, null,
-				Lanzador.RATING, Lanzador.GENERO, Lanzador.PRECIO,
-				Lanzador.PLATAFORMA, sql);
-
-		System.out.println("Clase de equivalencia 13");
 		clase(Lanzador.TITULO, Lanzador.URL, Lanzador.DESCRIPCION,
-				Lanzador.LANZAMIENTO, null, Lanzador.GENERO, Lanzador.PRECIO,
-				Lanzador.PLATAFORMA, sql);
-
-		System.out.println("Clase de equivalencia 14");
-		clase(Lanzador.TITULO, Lanzador.URL, Lanzador.DESCRIPCION,
-				Lanzador.LANZAMIENTO, Lanzador.RATING, null, Lanzador.PRECIO,
-				Lanzador.PLATAFORMA, sql);
-
-		System.out.println("Clase de equivalencia 15");
-		clase(Lanzador.TITULO, Lanzador.URL, Lanzador.DESCRIPCION,
-				Lanzador.LANZAMIENTO, Lanzador.RATING, Lanzador.GENERO, -25,
-				Lanzador.PLATAFORMA, sql);
-
-		System.out.println("Clase de equivalencia 16");
+				Lanzador.LANZAMIENTO, Lanzador.RATING, null,
+				Lanzador.PRECIO, Lanzador.PLATAFORMA, sql);
+		
+		System.out.println("Clase de equivalencia 17");
+		clase(null, Lanzador.URL, Lanzador.DESCRIPCION,
+				Lanzador.LANZAMIENTO, Lanzador.RATING, Lanzador.GENERO,
+				Lanzador.PRECIO, Lanzador.PLATAFORMA, sql);
+		
+		System.out.println("Clase de equivalencia 18");
+		clase("", Lanzador.URL, Lanzador.DESCRIPCION,
+				Lanzador.LANZAMIENTO, Lanzador.RATING, Lanzador.GENERO,
+				Lanzador.PRECIO, Lanzador.PLATAFORMA, sql);
+		
+		System.out.println("Clase de equivalencia 19");
 		clase(Lanzador.TITULO, Lanzador.URL, Lanzador.DESCRIPCION,
 				Lanzador.LANZAMIENTO, Lanzador.RATING, Lanzador.GENERO,
-				(Integer) null, Lanzador.PLATAFORMA, sql);
-
-		System.out.println("Clase de equivalencia 17");
+				-25, Lanzador.PLATAFORMA, sql);
+		
+		System.out.println("Clase de equivalencia 20");
+		clase(Lanzador.TITULO, Lanzador.URL, Lanzador.DESCRIPCION,
+				Lanzador.LANZAMIENTO, Lanzador.RATING, Lanzador.GENERO,
+				(Integer)null, Lanzador.PLATAFORMA, sql);
+		
+		System.out.println("Clase de equivalencia 21");
 		clase(Lanzador.TITULO, Lanzador.URL, Lanzador.DESCRIPCION,
 				Lanzador.LANZAMIENTO, Lanzador.RATING, Lanzador.GENERO,
 				Lanzador.PRECIO, null, sql);
 		
+		System.out.println("Clase de equivalencia 22");
+		clase(Lanzador.TITULO, Lanzador.URL, Lanzador.DESCRIPCION,
+				Lanzador.LANZAMIENTO, Lanzador.RATING, Lanzador.GENERO,
+				Lanzador.PRECIO, "", sql);
+		
+
 		sql.close();
 	}
 
