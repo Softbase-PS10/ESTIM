@@ -32,7 +32,7 @@ public class BorrarJuego {
 		clase(-5,sql);
 		
 		System.out.println("Clase de equivalencia 3");
-		clase(10028,sql);
+		clase(2,sql);
 		
 		sql.close();
 	}
