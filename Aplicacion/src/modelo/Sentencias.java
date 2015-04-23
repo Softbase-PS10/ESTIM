@@ -134,7 +134,7 @@ public class Sentencias {
 	public Juego listarJuego(long id) {
 		ArrayList<Juego> ar = listarJuegos(" AND JUEGO.id = '" + id + "'");
 		if (ar.isEmpty())
-			return new Juego();
+			return null;
 		else
 			return ar.get(0);
 	}
@@ -207,21 +207,34 @@ public class Sentencias {
 	 *            : identificador del juego a eliminar de la Base de Datos
 	 */
 	public void borrarJuego(long id) {
-		try {
-			String query = "DELETE FROM JUEGO_GENERO WHERE id = " + id + ";";
-			Statement st = null;
-			try {
-				st = connection.createStatement();
-			} catch (SQLException e1) {
-				e1.printStackTrace();
+		if (id > 0) {
+			if (listarJuego(id) != null) {
+				try {
+					String query = "DELETE FROM JUEGO_GENERO WHERE id = " + id
+							+ ";";
+					Statement st = null;
+					try {
+						st = connection.createStatement();
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+					}
+					st.execute(query);
+					query = "DELETE FROM JUEGO_PLATAFORMA WHERE juego = " + id
+							+ ";";
+					st.execute(query);
+					query = "DELETE FROM JUEGO WHERE id = " + id + ";";
+					st.execute(query);
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			} else {
+				System.out.println("Error de existencia");
+				// Mostrar mensaje en el log
 			}
-			st.execute(query);
-			query = "DELETE FROM JUEGO_PLATAFORMA WHERE juego = " + id + ";";
-			st.execute(query);
-			query = "DELETE FROM JUEGO WHERE id = " + id + ";";
-			st.execute(query);
-		} catch (Exception e) {
-			e.printStackTrace(System.err);
+
+		} else {
+			System.out.println("Error número negativo");
+			// Mostrar mensaje en el log
 		}
 	}
 
@@ -329,7 +342,7 @@ public class Sentencias {
 				&& juego.getPlataforma() != null
 				&& (juego.getPlataforma().getAlias().length() != 0 || juego
 						.getPlataforma().getNombre().length() != 0)) {
-			
+
 			if (juego.getDescripcion() != null
 					&& juego.getDescripcion().length() > 2500)
 				juego.setDescripcion(juego.getDescripcion().substring(0, 2497)
