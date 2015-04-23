@@ -25,7 +25,6 @@ public class ModificarJuego {
 	/**
 	 * Clase que lanza las distintas pruebas
 	 */
-	@SuppressWarnings("null")
 	public static void prueba() {
 		System.out.println("Comenzando las pruebas sobre insertar juego:");
 		Sentencias sql = new Sentencias();
@@ -78,14 +77,9 @@ public class ModificarJuego {
 		System.out.println("Clase de equivalencia 20");
 		clase(Lanzador.TITULO, Lanzador.URL, Lanzador.DESCRIPCION,
 				Lanzador.LANZAMIENTO, Lanzador.RATING, Lanzador.GENERO,
-				(Integer)null, Lanzador.PLATAFORMA, sql);
-		
-		System.out.println("Clase de equivalencia 21");
-		clase(Lanzador.TITULO, Lanzador.URL, Lanzador.DESCRIPCION,
-				Lanzador.LANZAMIENTO, Lanzador.RATING, Lanzador.GENERO,
 				Lanzador.PRECIO, null, sql);
 		
-		System.out.println("Clase de equivalencia 22");
+		System.out.println("Clase de equivalencia 21");
 		clase(Lanzador.TITULO, Lanzador.URL, Lanzador.DESCRIPCION,
 				Lanzador.LANZAMIENTO, Lanzador.RATING, Lanzador.GENERO,
 				Lanzador.PRECIO, "", sql);
