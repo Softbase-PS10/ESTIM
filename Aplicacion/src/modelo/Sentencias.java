@@ -231,75 +231,86 @@ public class Sentencias {
 	 */
 	public void insertarJuego(Juego juego) {
 
-		// formateo de la descripcion, si es necesario
-		if (juego.getDescripcion().length() > 2500)
-			juego.setDescripcion(juego.getDescripcion().substring(0, 2497)
-					+ "...");
+		// Si el titulo no es vacio ni nulo, el precio mayor que cero, la
+		// plataforma no se nula ni
+		// sus campos vacios, se comienza a añadir
+		if (juego.getTitulo() != null
+				&& !juego.getTitulo().equals("")
+				&& juego.getPrecio() > 0
+				&& juego.getPlataforma() != null
+				&& (juego.getPlataforma().getAlias().length() != 0 || juego
+						.getPlataforma().getNombre().length() != 0)) {
+			// formateo de la descripcion, si es necesario
+			if (juego.getDescripcion() != null
+					&& juego.getDescripcion().length() > 2500)
+				juego.setDescripcion(juego.getDescripcion().substring(0, 2497)
+						+ "...");
 
-		/* insercion de la informacion en la tabla de juegos */
+			/* insercion de la informacion en la tabla de juegos */
 
-		String queryString = "INSERT INTO JUEGO "
-				+ "(id,titulo,imagen,precio,resumen,lanzamiento,rating) "
-				+ "VALUES (?,?,?,?,?,?,?)";
-		try {
-			PreparedStatement preparedStatement = connection
-					.prepareStatement(queryString);
+			String queryString = "INSERT INTO JUEGO "
+					+ "(id,titulo,imagen,precio,resumen,lanzamiento,rating) "
+					+ "VALUES (?,?,?,?,?,?,?)";
+			try {
+				PreparedStatement preparedStatement = connection
+						.prepareStatement(queryString);
 
-			preparedStatement.setLong(1, juego.getId());
-			preparedStatement.setString(2, juego.getTitulo());
-			preparedStatement.setString(3, juego.getImagen());
-			preparedStatement.setLong(4, juego.getPrecio());
-			preparedStatement.setString(5, juego.getDescripcion());
-			preparedStatement.setString(6, juego.getLanzamiento());
-			preparedStatement.setString(7, juego.getRating());
+				preparedStatement.setLong(1, juego.getId());
+				preparedStatement.setString(2, juego.getTitulo());
+				preparedStatement.setString(3, juego.getImagen());
+				preparedStatement.setLong(4, juego.getPrecio());
+				preparedStatement.setString(5, juego.getDescripcion());
+				preparedStatement.setString(6, juego.getLanzamiento());
+				preparedStatement.setString(7, juego.getRating());
 
-			preparedStatement.execute();
-		} catch (SQLException ex) {
-			if (ex.getSQLState().startsWith("23"))
-				System.out.println("Entrada en juego duplicada");
+				preparedStatement.execute();
+			} catch (SQLException ex) {
+				if (ex.getSQLState().startsWith("23"))
+					System.out.println("Entrada en juego duplicada");
 
-			else
-				ex.printStackTrace();
-		}
+				else
+					ex.printStackTrace();
+			}
 
-		/* insercion de la informacion en la tabla de generos */
-		for (String g : juego.getGenero()) {
-			queryString = "INSERT INTO JUEGO_GENERO (id,genero) VALUES (?,?)";
+			/* insercion de la informacion en la tabla de generos */
+			for (String g : juego.getGenero()) {
+				queryString = "INSERT INTO JUEGO_GENERO (id,genero) VALUES (?,?)";
+
+				try {
+					PreparedStatement preparedStatement = connection
+							.prepareStatement(queryString);
+
+					preparedStatement.setLong(1, juego.getId());
+					preparedStatement.setString(2, g);
+
+					preparedStatement.execute();
+				} catch (SQLException ex) {
+					if (ex.getSQLState().startsWith("23"))
+						System.out.println("Entrada en juego_genero duplicada");
+					else
+						ex.printStackTrace();
+				}
+			}
+
+			/* insercion de la informacion en la tabla juego_plataforma */
+
+			queryString = "INSERT INTO JUEGO_PLATAFORMA (juego,plataforma) VALUES (?,?)";
 
 			try {
 				PreparedStatement preparedStatement = connection
 						.prepareStatement(queryString);
 
 				preparedStatement.setLong(1, juego.getId());
-				preparedStatement.setString(2, g);
+				preparedStatement.setLong(2, juego.getPlataforma().getId());
 
 				preparedStatement.execute();
 			} catch (SQLException ex) {
 				if (ex.getSQLState().startsWith("23"))
-					System.out.println("Entrada en juego_genero duplicada");
+					System.out.println("Entrada en juego_plataforma duplicada");
+
 				else
 					ex.printStackTrace();
 			}
-		}
-
-		/* insercion de la informacion en la tabla juego_plataforma */
-
-		queryString = "INSERT INTO JUEGO_PLATAFORMA (juego,plataforma) VALUES (?,?)";
-
-		try {
-			PreparedStatement preparedStatement = connection
-					.prepareStatement(queryString);
-
-			preparedStatement.setLong(1, juego.getId());
-			preparedStatement.setLong(2, juego.getPlataforma().getId());
-
-			preparedStatement.execute();
-		} catch (SQLException ex) {
-			if (ex.getSQLState().startsWith("23"))
-				System.out.println("Entrada en juego_plataforma duplicada");
-
-			else
-				ex.printStackTrace();
 		}
 	}
 
@@ -309,52 +320,64 @@ public class Sentencias {
 	 */
 	public void actualizarJuego(Juego juego) {
 
-		if (juego.getDescripcion().length() > 2500)
-			juego.setDescripcion(juego.getDescripcion().substring(0, 2497)
-					+ "...");
+		// Si el titulo no es vacio ni nulo, el precio mayor que cero, la
+		// plataforma no se nula ni
+		// sus campos vacios, se comienza a añadir
+		if (juego.getTitulo() != null
+				&& !juego.getTitulo().equals("")
+				&& juego.getPrecio() > 0
+				&& juego.getPlataforma() != null
+				&& (juego.getPlataforma().getAlias().length() != 0 || juego
+						.getPlataforma().getNombre().length() != 0)) {
+			
+			if (juego.getDescripcion() != null
+					&& juego.getDescripcion().length() > 2500)
+				juego.setDescripcion(juego.getDescripcion().substring(0, 2497)
+						+ "...");
 
-		String queryString = "UPDATE JUEGO, JUEGO_PLATAFORMA "
-				+ "SET titulo = ?,imagen = ?,precio = ?,resumen = ?,lanzamiento = ?,rating = ?, "
-				+ "JUEGO_PLATAFORMA.plataforma = ? " + "WHERE JUEGO.id = '"
-				+ juego.getId() + "' AND JUEGO.id = JUEGO_PLATAFORMA.juego";
-		try {
-			PreparedStatement preparedStatement = connection
-					.prepareStatement(queryString);
-
-			preparedStatement.setString(1, juego.getTitulo());
-			preparedStatement.setString(2, juego.getImagen());
-			preparedStatement.setLong(3, juego.getPrecio());
-			preparedStatement.setString(4, juego.getDescripcion());
-			preparedStatement.setString(5, juego.getLanzamiento());
-			preparedStatement.setString(6, juego.getRating());
-			preparedStatement.setLong(7, juego.getPlataforma().getId());
-			preparedStatement.execute();
-
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-		}
-
-		for (String g : juego.getGenero()) {
-			String query = "DELETE FROM JUEGO_GENERO WHERE id = "
-					+ juego.getId() + ";";
+			String queryString = "UPDATE JUEGO, JUEGO_PLATAFORMA "
+					+ "SET titulo = ?,imagen = ?,precio = ?,resumen = ?,lanzamiento = ?,rating = ?, "
+					+ "JUEGO_PLATAFORMA.plataforma = ? " + "WHERE JUEGO.id = '"
+					+ juego.getId() + "' AND JUEGO.id = JUEGO_PLATAFORMA.juego";
 			try {
-				Statement st = connection.createStatement();
-				st.execute(query);
-
-				queryString = "INSERT INTO JUEGO_GENERO (id,genero) VALUES (?,?)";
-
 				PreparedStatement preparedStatement = connection
 						.prepareStatement(queryString);
 
-				preparedStatement.setLong(1, juego.getId());
-				preparedStatement.setString(2, g);
-
+				preparedStatement.setString(1, juego.getTitulo());
+				preparedStatement.setString(2, juego.getImagen());
+				preparedStatement.setLong(3, juego.getPrecio());
+				preparedStatement.setString(4, juego.getDescripcion());
+				preparedStatement.setString(5, juego.getLanzamiento());
+				preparedStatement.setString(6, juego.getRating());
+				preparedStatement.setLong(7, juego.getPlataforma().getId());
 				preparedStatement.execute();
+
 			} catch (SQLException ex) {
-				if (ex.getSQLState().startsWith("23"))
-					System.out.println("Entrada en juego_genero duplicada");
-				else
-					ex.printStackTrace();
+				ex.printStackTrace();
+			}
+
+			for (String g : juego.getGenero()) {
+				String query = "DELETE FROM JUEGO_GENERO WHERE id = "
+						+ juego.getId() + ";";
+				try {
+					Statement st = connection.createStatement();
+					st.execute(query);
+
+					queryString = "INSERT INTO JUEGO_GENERO (id,genero) VALUES (?,?)";
+
+					PreparedStatement preparedStatement = connection
+							.prepareStatement(queryString);
+
+					preparedStatement.setLong(1, juego.getId());
+					preparedStatement.setString(2, g);
+
+					preparedStatement.execute();
+				} catch (SQLException ex) {
+					if (ex.getSQLState().startsWith("23"))
+						System.out.println("Entrada en juego_genero duplicada");
+					else
+						ex.printStackTrace();
+				}
 			}
 		}
 	}
