@@ -42,7 +42,6 @@ import controlador.BotonesCabecera;
 import controlador.BotonesCategorias;
 import controlador.Imagenes;
 
-
 public class Modificar {
 
 	private static JFrame frmPantallaPrincipal;
@@ -56,10 +55,13 @@ public class Modificar {
 	public static JComboBox<String> plataforma;
 	public static JMenu genero;
 	public static JFormattedTextField ePrecio;
+	public static JFormattedTextField ePrecioString;
+	public static JFormattedTextField ePrecioNegativo;
+	public static JFormattedTextField eRating;
 	public static JFormattedTextField eTitulo;
 	public static JLabel vistaPreviaCaratula;
 	private static Juego j;
-	
+
 	/**
 	 * Launch the application.
 	 */
@@ -68,8 +70,8 @@ public class Modificar {
 			@SuppressWarnings("static-access")
 			public void run() {
 				try {
-//					Modificar window = new Modificar(null);
-//					window.frmPantallaPrincipal.setVisible(true);
+					// Modificar window = new Modificar(null);
+					// window.frmPantallaPrincipal.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -79,8 +81,11 @@ public class Modificar {
 
 	/**
 	 * Create the application.
-	 * @param j: juego del cual se extraen datos para mostrarlos en los campos
-	 * correspondientes. Si es =null, los campos quedarán vacios.
+	 * 
+	 * @param j
+	 *            : juego del cual se extraen datos para mostrarlos en los
+	 *            campos correspondientes. Si es =null, los campos quedarán
+	 *            vacios.
 	 */
 	@SuppressWarnings("static-access")
 	public Modificar(JFrame fr, Juego j) {
@@ -90,68 +95,68 @@ public class Modificar {
 		initialize();
 		this.frmPantallaPrincipal.repaint();
 	}
-	
+
 	/**
-	 * Muestra la interfaz y rellena los campos conforme el juego que hay 
-	 * en las variables globales.
+	 * Muestra la interfaz y rellena los campos conforme el juego que hay en las
+	 * variables globales.
 	 */
 	@SuppressWarnings("static-access")
-	public void mostrarMod(){
+	public void mostrarMod() {
 
 		this.frmPantallaPrincipal.setVisible(true);
-		
-		if(j != null){
-			titulo.setText(j.getTitulo());
-		}
-		if(j != null){
-			precio.setText(j.getPrecio() + "");
-		}
-		if(j != null){
-			anyo.setText(j.getLanzamiento());
-		}
-		if(j != null){
-			valoracion.setText(j.getRating());
-		}
-		if(j != null){
-			url.setText(j.getImagen());
-		}
-		if(j != null){
-			descripcion.setText(j.getDescripcion());
-		}
-		if(j!=null){
-			try {
-				ImageIcon caratula = Imagenes.getIcon(j.getImagen(),1.35);
-				vistaPreviaCaratula.setIcon(caratula);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		if(j != null){
-			String[] listaP = Plataforma.listaAlias();
-			boolean encontrado = false;
-			int i = 0;
-			while(i<listaP.length && !encontrado){
-				if(listaP[i].equalsIgnoreCase(j.getPlataforma().getAlias())){
-					encontrado = true;
-				}
-				else{
-					i++;
-				}
-			}
-			plataforma.setSelectedIndex(i);
-		}
-		String[] generos = new String[] {"Action", "Adventure",
-				"Construction and Management Simulation", "Fighting",
-				"Flight Simulator", "Horror", "Life Simulation", "MMO",
-				"Music", "Platform", "Puzzle", "Racing", "Role-Playing",
-				"Sandbox", "Shooter", "Sports", "Stealth", "Strategy",
-				"Vehicle Simulation"};
 
-		for(int i = 0; i < generos.length; i++){
-			if(j != null){
-				for(String g:j.getGenero()){
-					if(g.equalsIgnoreCase(generos[i])){
-						genero.getItem(i).setSelected(true);
+		if (j != null) {
+			if (j.getTitulo() != null && !j.getTitulo().equals("null")) {
+				titulo.setText(j.getTitulo());
+			}
+
+			precio.setText(j.getPrecio() + "");
+
+			if (j.getLanzamiento() != null && !j.getLanzamiento().equals("null")) {
+				anyo.setText(j.getLanzamiento());
+			}
+			if (j.getRating() != null && !j.getRating().equals("null")) {
+				valoracion.setText(j.getRating());
+			}
+			if (j.getImagen() != null && !j.getImagen().equals("null")) {
+				url.setText(j.getImagen());
+				try {
+					ImageIcon caratula = Imagenes.getIcon(j.getImagen(), 1.35);
+					vistaPreviaCaratula.setIcon(caratula);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+			if (j.getDescripcion() != null && !j.getDescripcion().equals("null")) {
+				descripcion.setText(j.getDescripcion());
+			}
+			if (j.getPlataforma() != null) {
+				String[] listaP = Plataforma.listaAlias();
+				boolean encontrado = false;
+				int i = 0;
+				while (i < listaP.length && !encontrado) {
+					if (listaP[i]
+							.equalsIgnoreCase(j.getPlataforma().getAlias())) {
+						encontrado = true;
+					} else {
+						i++;
+					}
+				}
+				plataforma.setSelectedIndex(i);
+			}
+			String[] generos = new String[] { "Action", "Adventure",
+					"Construction and Management Simulation", "Fighting",
+					"Flight Simulator", "Horror", "Life Simulation", "MMO",
+					"Music", "Platform", "Puzzle", "Racing", "Role-Playing",
+					"Sandbox", "Shooter", "Sports", "Stealth", "Strategy",
+					"Vehicle Simulation" };
+
+			for (int i = 0; i < generos.length; i++) {
+				if (j != null) {
+					for (String g : j.getGenero()) {
+						if (g.equalsIgnoreCase(generos[i])) {
+							genero.getItem(i).setSelected(true);
+						}
 					}
 				}
 			}
@@ -163,33 +168,33 @@ public class Modificar {
 	 */
 	private void initialize() {
 		frmPantallaPrincipal.setTitle("Add/Modify - Estim");
-		frmPantallaPrincipal.setIconImage(Toolkit.getDefaultToolkit().
-				getImage(Modificar.class.getResource("/Imagenes/E.png")));
-		
+		frmPantallaPrincipal.setIconImage(Toolkit.getDefaultToolkit().getImage(
+				Modificar.class.getResource("/Imagenes/E.png")));
+
 		JPanel cabecera = new JPanel();
 		cabecera.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		cabecera.setBackground(Color.BLACK);
 		cabecera.setBounds(0, 0, 1060, 70);
 		frmPantallaPrincipal.getContentPane().add(cabecera);
 		cabecera.setLayout(null);
-		
+
 		cabecera.add(BotonesCabecera.logo(frmPantallaPrincipal));
-		
+
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel.setBounds(990, 0, 70, 70);
 		cabecera.add(panel);
 		panel.setLayout(null);
-		
+
 		panel.add(BotonesCabecera.carro());
-		
+
 		txtBuscar = new JTextField();
 		txtBuscar.setToolTipText("");
 		txtBuscar.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtBuscar.setBounds(650, 20, 192, 30);
 		cabecera.add(txtBuscar);
 		txtBuscar.setColumns(10);
-		
+
 		JPanel panel_2 = new JPanel();
 		panel_2.setBounds(841, 20, 30, 30);
 		cabecera.add(panel_2);
@@ -202,9 +207,9 @@ public class Modificar {
 		panel_1.setBounds(920, 0, 70, 70);
 		cabecera.add(panel_1);
 		panel_1.setLayout(null);
-		
-		panel_1.add(BotonesCabecera.ajustes(4,null, frmPantallaPrincipal));
-		
+
+		panel_1.add(BotonesCabecera.ajustes(4, null, frmPantallaPrincipal));
+
 		JPanel categorias = new JPanel();
 		categorias.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		categorias.setBackground(Color.DARK_GRAY);
@@ -223,12 +228,12 @@ public class Modificar {
 		categorias.add(BotonesCategorias.n3ds(frmPantallaPrincipal));
 		categorias.add(BotonesCategorias.ps4(frmPantallaPrincipal));
 		categorias.add(BotonesCategorias.adelante());
-		
+
 		JPanel panel_3 = new JPanel();
 		panel_3.setBounds(0, 100, 1060, 471);
 		frmPantallaPrincipal.getContentPane().add(panel_3);
 		panel_3.setLayout(null);
-		
+
 		JFormattedTextField nTitulo = new JFormattedTextField();
 		nTitulo.setBounds(53, 52, 140, 20);
 		nTitulo.setText("TITLE:");
@@ -238,7 +243,7 @@ public class Modificar {
 		nTitulo.setEditable(false);
 		nTitulo.setBorder(null);
 		panel_3.add(nTitulo);
-		
+
 		JFormattedTextField nPrecio = new JFormattedTextField();
 		nPrecio.setBounds(53, 83, 140, 20);
 		nPrecio.setText("PRICE:");
@@ -248,7 +253,7 @@ public class Modificar {
 		nPrecio.setEditable(false);
 		nPrecio.setBorder(null);
 		panel_3.add(nPrecio);
-		
+
 		JFormattedTextField nAnyo = new JFormattedTextField();
 		nAnyo.setBounds(53, 114, 140, 20);
 		nAnyo.setText("YEAR:");
@@ -258,7 +263,7 @@ public class Modificar {
 		nAnyo.setEditable(false);
 		nAnyo.setBorder(null);
 		panel_3.add(nAnyo);
-		
+
 		JFormattedTextField nPlataformas = new JFormattedTextField();
 		nPlataformas.setBounds(53, 145, 140, 20);
 		nPlataformas.setText("PLATFORMS:");
@@ -268,7 +273,7 @@ public class Modificar {
 		nPlataformas.setEditable(false);
 		nPlataformas.setBorder(null);
 		panel_3.add(nPlataformas);
-		
+
 		JFormattedTextField nGeneros = new JFormattedTextField();
 		nGeneros.setBounds(53, 176, 140, 20);
 		nGeneros.setText("GENRES:");
@@ -278,7 +283,7 @@ public class Modificar {
 		nGeneros.setEditable(false);
 		nGeneros.setBorder(null);
 		panel_3.add(nGeneros);
-		
+
 		JFormattedTextField nValoracion = new JFormattedTextField();
 		nValoracion.setBounds(53, 207, 140, 20);
 		nValoracion.setText("RATING:");
@@ -288,7 +293,7 @@ public class Modificar {
 		nValoracion.setEditable(false);
 		nValoracion.setBorder(null);
 		panel_3.add(nValoracion);
-		
+
 		JFormattedTextField nDescripcion = new JFormattedTextField();
 		nDescripcion.setBounds(53, 238, 140, 20);
 		nDescripcion.setText("DESCRIPTION:");
@@ -298,7 +303,7 @@ public class Modificar {
 		nDescripcion.setEditable(false);
 		nDescripcion.setBorder(null);
 		panel_3.add(nDescripcion);
-		
+
 		JFormattedTextField nCaratula = new JFormattedTextField();
 		nCaratula.setBounds(53, 399, 140, 20);
 		nCaratula.setText("COVER URL:");
@@ -308,42 +313,43 @@ public class Modificar {
 		nCaratula.setEditable(false);
 		nCaratula.setBorder(null);
 		panel_3.add(nCaratula);
-		
+
 		titulo = new JTextField();
 		titulo.setBounds(214, 52, 300, 20);
 		panel_3.add(titulo);
 		titulo.setColumns(10);
-		
+
 		precio = new JTextField();
 		precio.setBounds(214, 85, 60, 20);
 		precio.setColumns(10);
 		panel_3.add(precio);
-		
+
 		anyo = new JTextField();
 		anyo.setBounds(214, 116, 60, 20);
 		anyo.setColumns(10);
 		panel_3.add(anyo);
-		
+
 		valoracion = new JTextField();
 		valoracion.setBounds(214, 209, 60, 20);
 		valoracion.setColumns(10);
 		panel_3.add(valoracion);
-		
+
 		url = new JTextField();
 		url.setBounds(214, 401, 300, 20);
 		url.setColumns(10);
 		panel_3.add(url);
-		
+
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPane
+				.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setBounds(214, 238, 300, 152);
 		panel_3.add(scrollPane);
-		
+
 		descripcion = new JTextArea();
 		descripcion.setWrapStyleWord(true);
 		descripcion.setLineWrap(true);
 		scrollPane.setViewportView(descripcion);
-		
+
 		vistaPreviaCaratula = new JLabel("");
 		vistaPreviaCaratula.setHorizontalAlignment(SwingConstants.CENTER);
 		vistaPreviaCaratula.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -351,38 +357,36 @@ public class Modificar {
 		vistaPreviaCaratula.setBackground(Color.LIGHT_GRAY);
 		vistaPreviaCaratula.setBounds(706, 114, 170, 240);
 		panel_3.add(vistaPreviaCaratula);
-		
-		
+
 		panel_3.add(Botones.save(j, frmPantallaPrincipal));
 
-		
 		plataforma = new JComboBox<String>();
 		String[] listaP = Plataforma.listaAlias();
 		plataforma.setModel(new DefaultComboBoxModel<String>(listaP));
 		plataforma.setBounds(214, 145, 300, 20);
 		panel_3.add(plataforma);
-		
+
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBounds(214, 175, 100, 20);
 		panel_3.add(menuBar);
-		
+
 		genero = new JMenu();
 		genero.setText("Select genres...");
 		genero.setBounds(214, 175, 50, 20);
 		menuBar.add(genero);
-		
-		String[] generos = new String[] {"Action", "Adventure",
+
+		String[] generos = new String[] { "Action", "Adventure",
 				"Construction and Management Simulation", "Fighting",
 				"Flight Simulator", "Horror", "Life Simulation", "MMO",
 				"Music", "Platform", "Puzzle", "Racing", "Role-Playing",
 				"Sandbox", "Shooter", "Sports", "Stealth", "Strategy",
-				"Vehicle Simulation"};
-		
-		for(int i = 0; i < generos.length; i++){
+				"Vehicle Simulation" };
+
+		for (int i = 0; i < generos.length; i++) {
 			JCheckBoxMenuItem cb = new JCheckBoxMenuItem(generos[i]);
 			genero.add(cb);
 		}
-		
+
 		ePrecio = new JFormattedTextField();
 		ePrecio.setVisible(false);
 		ePrecio.setText("Campo obligatorio");
@@ -392,7 +396,38 @@ public class Modificar {
 		ePrecio.setEditable(false);
 		ePrecio.setBorder(null);
 		ePrecio.setBounds(284, 84, 140, 20);
+		ePrecioString = new JFormattedTextField();
+		ePrecioString.setVisible(false);
+		ePrecioString.setText("Solo se admiten números");
+		ePrecioString.setOpaque(false);
+		ePrecioString.setForeground(Color.RED);
+		ePrecioString.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		ePrecioString.setEditable(false);
+		ePrecioString.setBorder(null);
+		ePrecioString.setBounds(284, 84, 250, 20);
+		ePrecioNegativo = new JFormattedTextField();
+		ePrecioNegativo.setVisible(false);
+		ePrecioNegativo.setText("Solo se admiten números positivos");
+		ePrecioNegativo.setOpaque(false);
+		ePrecioNegativo.setForeground(Color.RED);
+		ePrecioNegativo.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		ePrecioNegativo.setEditable(false);
+		ePrecioNegativo.setBorder(null);
+		ePrecioNegativo.setBounds(284, 84, 250, 20);
 		panel_3.add(ePrecio);
+		panel_3.add(ePrecioString);
+		panel_3.add(ePrecioNegativo);
+
+		eRating = new JFormattedTextField();
+		eRating.setVisible(false);
+		eRating.setText("Formato incorrecto, número decimal entre 0 y 10 con separador .");
+		eRating.setOpaque(false);
+		eRating.setForeground(Color.RED);
+		eRating.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		eRating.setEditable(false);
+		eRating.setBorder(null);
+		eRating.setBounds(284, 209, 410, 20);
+		panel_3.add(eRating);
 		
 		eTitulo = new JFormattedTextField();
 		eTitulo.setVisible(false);
@@ -404,7 +439,7 @@ public class Modificar {
 		eTitulo.setBorder(null);
 		eTitulo.setBounds(524, 54, 140, 20);
 		panel_3.add(eTitulo);
-		
+
 		JFormattedTextField previa = new JFormattedTextField();
 		previa.setBorder(null);
 		previa.setOpaque(false);
@@ -414,10 +449,11 @@ public class Modificar {
 		previa.setText("Cover preview");
 		previa.setBounds(706, 365, 170, 20);
 		panel_3.add(previa);
-		
+
 		JLabel fondo = new JLabel("");
 		fondo.setBounds(0, 0, 1060, 471);
-		fondo.setIcon(new ImageIcon(Modificar.class.getResource("/Imagenes/blizz.jpg")));
+		fondo.setIcon(new ImageIcon(Modificar.class
+				.getResource("/Imagenes/blizz.jpg")));
 		panel_3.add(fondo);
 	}
 }
