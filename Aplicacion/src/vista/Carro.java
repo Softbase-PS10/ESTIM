@@ -164,51 +164,7 @@ public class Carro {
 			res.setBorder(new LineBorder(new Color(0, 0, 0), 1));
 			res.setBackground(Color.DARK_GRAY);
 
-			JButton caratula = new JButton("");
-			caratula.setSize(128, 180);
-			caratula.setLocation(35, 11);
-			caratula.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-			caratula.setBorder(new BevelBorder(BevelBorder.RAISED, Color.BLACK,
-					Color.BLACK, Color.BLACK, Color.BLACK));
-			res.add(caratula);
-
-			JFormattedTextField precio = new JFormattedTextField();
-			precio.setSize(144, 60);
-			precio.setLocation(596, 73);
-			precio.setText("50\u20AC");
-			precio.setOpaque(false);
-			precio.setForeground(Color.WHITE);
-			precio.setFont(new Font("Tahoma", Font.PLAIN, 40));
-			precio.setEditable(false);
-			precio.setBorder(null);
-			res.add(precio);
-
-			JFormattedTextField titulo = new JFormattedTextField();
-			titulo.setHorizontalAlignment(SwingConstants.CENTER);
-			titulo.setSize(368, 20);
-			titulo.setLocation(216, 90);
-				titulo.setText("Half Life 3");
-			titulo.setOpaque(false);
-			titulo.setForeground(Color.WHITE);
-			titulo.setFont(new Font("Tahoma", Font.BOLD, 16));
-			titulo.setEditable(false);
-			titulo.setBorder(null);
-			res.add(titulo);
-
 			box.add(res);
-			
-			JButton btnNewButton = new JButton("");
-			btnNewButton.setContentAreaFilled(false);
-			btnNewButton.setRolloverIcon(new ImageIcon(Carro.class.getResource("/Imagenes/B/botonP.png")));
-			btnNewButton.setBorder(null);
-			btnNewButton.setOpaque(false);
-			btnNewButton.setIcon(new ImageIcon(Carro.class.getResource("/Imagenes/B/botonSP.png")));
-			btnNewButton.setBounds(857, 73, 69, 60);
-			res.add(btnNewButton);
-			
-			JSeparator separator = new JSeparator();
-			separator.setBounds(35, 203, 990, 2);
-			res.add(separator);
 			
 			JFormattedTextField frmtdtxtfldTotal = new JFormattedTextField();
 			frmtdtxtfldTotal.setText("TOTAL:");
@@ -233,5 +189,53 @@ public class Carro {
 			JButton btnBuy = new JButton("Buy");
 			btnBuy.setBounds(957, 433, 89, 23);
 			res.add(btnBuy);
+			
+			JPanel panel = new JPanel();
+			panel.setBorder(null);
+			panel.setBackground(Color.DARK_GRAY);
+			panel.setBounds(35, 11, 990, 194);
+			res.add(panel);
+			panel.setLayout(null);
+			
+						JButton caratula = new JButton("");
+						caratula.setBounds(0, 0, 128, 180);
+						panel.add(caratula);
+						caratula.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+						caratula.setBorder(new BevelBorder(BevelBorder.RAISED, Color.BLACK,
+								Color.BLACK, Color.BLACK, Color.BLACK));
+						
+									JFormattedTextField precio = new JFormattedTextField();
+									precio.setBounds(561, 62, 144, 60);
+									panel.add(precio);
+									precio.setText("50\u20AC");
+									precio.setOpaque(false);
+									precio.setForeground(Color.WHITE);
+									precio.setFont(new Font("Tahoma", Font.PLAIN, 40));
+									precio.setEditable(false);
+									precio.setBorder(null);
+									
+												JFormattedTextField titulo = new JFormattedTextField();
+												titulo.setBounds(180, 80, 368, 20);
+												panel.add(titulo);
+												titulo.setHorizontalAlignment(SwingConstants.CENTER);
+												titulo.setText("Half Life 3");
+												titulo.setOpaque(false);
+												titulo.setForeground(Color.WHITE);
+												titulo.setFont(new Font("Tahoma", Font.BOLD, 16));
+												titulo.setEditable(false);
+												titulo.setBorder(null);
+												
+												JSeparator separator = new JSeparator();
+												separator.setBounds(0, 191, 990, 2);
+												panel.add(separator);
+												
+												JButton btnNewButton = new JButton("");
+												btnNewButton.setBounds(821, 62, 69, 60);
+												panel.add(btnNewButton);
+												btnNewButton.setContentAreaFilled(false);
+												btnNewButton.setRolloverIcon(new ImageIcon(Carro.class.getResource("/Imagenes/B/botonP.png")));
+												btnNewButton.setBorder(null);
+												btnNewButton.setOpaque(false);
+												btnNewButton.setIcon(new ImageIcon(Carro.class.getResource("/Imagenes/B/botonSP.png")));
 	}
 }
