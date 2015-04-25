@@ -15,12 +15,15 @@ package controlador;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
-
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -30,19 +33,19 @@ import javax.swing.border.LineBorder;
 import modelo.Juego;
 import vista.Info;
 
-
 public class BotonesInfo {
 
 	/**
 	 * @return la cabecera de la pantalla
 	 */
-	public static JPanel getCabecera(JFrame framePrincipal) {
+	public static JPanel getCabecera(JFrame framePrincipal,
+			ArrayList<Juego> cesta) {
 		JPanel cabecera = new JPanel();
 		cabecera.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		cabecera.setBackground(Color.BLACK);
 		cabecera.setBounds(0, 0, 1060, 70);
 		cabecera.setLayout(null);
-		cabecera.add(BotonesCabecera.logo(framePrincipal));
+		cabecera.add(BotonesCabecera.logo(framePrincipal, cesta));
 		return cabecera;
 	}
 
@@ -61,57 +64,60 @@ public class BotonesInfo {
 	/**
 	 * @return la lupa de busqueda
 	 */
-	public static JPanel getLupaBuscar(JTextField txtBuscar) {
+	public static JPanel getLupaBuscar(JTextField txtBuscar,
+			ArrayList<Juego> cesta) {
 		JPanel lupaBuscar = new JPanel();
 		lupaBuscar.setBounds(841, 20, 30, 30);
 		lupaBuscar.setLayout(null);
-		lupaBuscar.add(BotonesCabecera.buscar(txtBuscar));
+		lupaBuscar.add(BotonesCabecera.buscar(txtBuscar, cesta));
 		return lupaBuscar;
 	}
 
 	/**
 	 * @return las opciones
 	 */
-	public static JPanel getOpciones(Juego juego, JFrame fr) {
+	public static JPanel getOpciones(Juego juego, JFrame fr,
+			ArrayList<Juego> cesta) {
 		JPanel opciones = new JPanel();
 		opciones.setBorder(new LineBorder(new Color(0, 0, 0)));
 		opciones.setBounds(920, 0, 70, 70);
 		opciones.setLayout(null);
-		opciones.add(BotonesCabecera.ajustes(3,juego, fr));
+		opciones.add(BotonesCabecera.ajustes(3, juego, fr, cesta));
 		return opciones;
 	}
 
 	/**
 	 * @return el carrito
 	 */
-	public static JPanel getCarrito() {
+	public static JPanel getCarrito(ArrayList<Juego> cesta) {
 		JPanel carrito = new JPanel();
 		carrito.setBorder(new LineBorder(new Color(0, 0, 0)));
 		carrito.setBounds(990, 0, 70, 70);
 		carrito.setLayout(null);
-		carrito.add(BotonesCabecera.carro());
+		carrito.add(BotonesCabecera.carro(cesta));
 		return carrito;
 	}
 
 	/**
 	 * @return las categorias
 	 */
-	public static JPanel getCategorias(JFrame frmInformacinDelProduc) {
+	public static JPanel getCategorias(JFrame frmInformacinDelProduc,
+			ArrayList<Juego> cesta) {
 		JPanel categorias = new JPanel();
 		categorias.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		categorias.setBackground(Color.DARK_GRAY);
 		categorias.setBounds(0, 70, 1060, 30);
 		categorias.setLayout(null);
 		categorias.add(BotonesCategorias.atras());
-		categorias.add(BotonesCategorias.ps3(frmInformacinDelProduc));
-		categorias.add(BotonesCategorias.vita(frmInformacinDelProduc));
-		categorias.add(BotonesCategorias.xone(frmInformacinDelProduc));
-		categorias.add(BotonesCategorias.x360(frmInformacinDelProduc));
-		categorias.add(BotonesCategorias.pc(frmInformacinDelProduc));
-		categorias.add(BotonesCategorias.wiiu(frmInformacinDelProduc));
-		categorias.add(BotonesCategorias.wii(frmInformacinDelProduc));
-		categorias.add(BotonesCategorias.n3ds(frmInformacinDelProduc));
-		categorias.add(BotonesCategorias.ps4(frmInformacinDelProduc));
+		categorias.add(BotonesCategorias.ps3(frmInformacinDelProduc, cesta));
+		categorias.add(BotonesCategorias.vita(frmInformacinDelProduc, cesta));
+		categorias.add(BotonesCategorias.xone(frmInformacinDelProduc, cesta));
+		categorias.add(BotonesCategorias.x360(frmInformacinDelProduc, cesta));
+		categorias.add(BotonesCategorias.pc(frmInformacinDelProduc, cesta));
+		categorias.add(BotonesCategorias.wiiu(frmInformacinDelProduc, cesta));
+		categorias.add(BotonesCategorias.wii(frmInformacinDelProduc, cesta));
+		categorias.add(BotonesCategorias.n3ds(frmInformacinDelProduc, cesta));
+		categorias.add(BotonesCategorias.ps4(frmInformacinDelProduc, cesta));
 		categorias.add(BotonesCategorias.adelante());
 		return categorias;
 	}
@@ -121,21 +127,21 @@ public class BotonesInfo {
 	 */
 	public static JLabel getImagenLabel(String url) {
 		JLabel lblNewLabel = new JLabel("");
-		if(!url.equals("null")){
+		if (!url.equals("null")) {
 			lblNewLabel.setBounds(122, 181, 128, 180);
 			try {
 				lblNewLabel.setIcon(controlador.Imagenes.getIcon(url, 1));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		}
-		else{
+		} else {
 			lblNewLabel.setBounds(122, 181, 128, 180);
 			try {
-				lblNewLabel.setIcon(controlador.Imagenes.getIcon("/Imagenes/not_available.jpg", 1));
+				lblNewLabel.setIcon(controlador.Imagenes.getIcon(
+						"/Imagenes/not_available.jpg", 1));
 			} catch (IOException e) {
 				e.printStackTrace();
-			}	
+			}
 		}
 		return lblNewLabel;
 	}
@@ -150,11 +156,10 @@ public class BotonesInfo {
 		Titulo.setBackground(new Color(255, 255, 255));
 		Titulo.setBorder(null);
 		Titulo.setForeground(Color.WHITE);
-		if(!tituloString.equals("null")){
+		if (!tituloString.equals("null")) {
 			Titulo.setText(tituloString + "\r\n");
-		}
-		else{
-			Titulo.setText("N/A" + "\r\n");	
+		} else {
+			Titulo.setText("N/A" + "\r\n");
 		}
 		Titulo.setBounds(0, 105, 1066, 31);
 		Titulo.setHorizontalAlignment(SwingConstants.CENTER);
@@ -204,13 +209,12 @@ public class BotonesInfo {
 		RespAnio.setForeground(Color.WHITE);
 		RespAnio.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		RespAnio.setOpaque(false);
-		if(!value.equals("null")){
-			RespAnio.setText(value);	
+		if (!value.equals("null")) {
+			RespAnio.setText(value);
+		} else {
+			RespAnio.setText("N/A");
 		}
-		else{
-			RespAnio.setText("N/A");	
-		}
-		
+
 		RespAnio.setBounds(540, 200, 282, 20);
 		return RespAnio;
 	}
@@ -234,10 +238,9 @@ public class BotonesInfo {
 		RespPlataforma.setOpaque(false);
 		RespPlataforma.setForeground(Color.WHITE);
 		RespPlataforma.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		if(!value.equals("null")){
-			RespPlataforma.setText(value);	
-		}
-		else{
+		if (!value.equals("null")) {
+			RespPlataforma.setText(value);
+		} else {
 			RespPlataforma.setText("N/A");
 		}
 		RespPlataforma.setBounds(540, 244, 254, 20);
@@ -261,11 +264,10 @@ public class BotonesInfo {
 	public static JLabel getGeneroValueLabel(String value) {
 		JLabel RespGenero = new JLabel();
 		RespGenero.setOpaque(false);
-		if(!value.equals("null")){
-			RespGenero.setText(value);	
-		}
-		else{
-			RespGenero.setText("N/A");	
+		if (!value.equals("null")) {
+			RespGenero.setText(value);
+		} else {
+			RespGenero.setText("N/A");
 		}
 		RespGenero.setForeground(Color.WHITE);
 		RespGenero.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -291,10 +293,9 @@ public class BotonesInfo {
 		JTextArea RespDescripcion = new JTextArea();
 		RespDescripcion.setForeground(Color.WHITE);
 		RespDescripcion.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		if(!value.equals("null")){
-			RespDescripcion.setText(value);	
-		}
-		else{
+		if (!value.equals("null")) {
+			RespDescripcion.setText(value);
+		} else {
 			RespDescripcion.setText("");
 		}
 		RespDescripcion.setOpaque(false);
@@ -303,7 +304,7 @@ public class BotonesInfo {
 		RespDescripcion.setWrapStyleWord(true);
 		return RespDescripcion;
 	}
-	
+
 	/**
 	 * @return la label de la valoracion
 	 */
@@ -312,27 +313,34 @@ public class BotonesInfo {
 		RespValoracion.setOpaque(false);
 		RespValoracion.setForeground(Color.WHITE);
 		RespValoracion.setFont(new Font("Tahoma", Font.BOLD, 20));
-		if(!value.equals("null")){
+		if (!value.equals("null")) {
 			RespValoracion.setText(value + "/10.0");
-		}
-		else{
-			RespValoracion.setText("NA/10.0");	
+		} else {
+			RespValoracion.setText("NA/10.0");
 		}
 		RespValoracion.setBounds(122, 401, 128, 25);
 		RespValoracion.setHorizontalAlignment(SwingConstants.CENTER);
 		return RespValoracion;
 	}
-	
+
 	/**
 	 * @return el boton del carro
 	 */
-	public static JButton getBotonCarro() {
+	public static JButton getBotonCarro(final JFrame frame, final Juego game,
+			final ArrayList<Juego> cesta) {
 		JButton Carro = new JButton("Add to cart");
 		Carro.setBounds(923, 525, 119, 23);
+		Carro.addMouseListener(new MouseAdapter() {
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				cesta.add(game);
+				JOptionPane.showMessageDialog(frame, "Game added to cart");
+			}
+		});
 		return Carro;
 	}
-	
-	
+
 	/**
 	 * @return el fondo
 	 */

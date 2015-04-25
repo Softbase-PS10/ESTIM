@@ -46,8 +46,7 @@ public class Botones {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-
+				;
 			}
 		});
 
@@ -58,7 +57,7 @@ public class Botones {
 	 * @return el boton de 'Guardar' los cambios al modificar un juego del
 	 *         catalogo.
 	 */
-	public static JButton save(final Juego j, final JFrame frame) {
+	public static JButton save(final Juego j, final JFrame frame, final ArrayList<Juego> cesta) {
 		JButton salvar = new JButton("Save");
 		salvar.setFont(new Font("Tahoma", Font.BOLD, 13));
 		salvar.setBounds(961, 427, 89, 33);
@@ -150,7 +149,7 @@ public class Botones {
 						Juego j = new Juego(titulo, url, descripcion, anyo,
 								valoracion, genero, p, plat);
 						s.insertarJuego(j);
-						Info.main(frame, j);
+						Info.main(frame, j, cesta);
 					} else {
 						j.setTitulo(titulo);
 						j.setDescripcion(descripcion);
@@ -161,7 +160,7 @@ public class Botones {
 						j.setPrecio(Integer.parseInt(precio));
 						j.setRating(valoracion);
 						s.actualizarJuego(j);
-						Info.main(frame, j);
+						Info.main(frame, j, cesta);
 					}
 				}
 			}

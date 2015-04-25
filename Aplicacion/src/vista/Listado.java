@@ -55,6 +55,7 @@ public class Listado {
 	@SuppressWarnings("unused")
 	private ArrayList<Juego> games; // asi se podra realizar la ordenacion mas
 									// adelante
+	private ArrayList<Juego> cesta;
 
 	/* declaracion de metodos y funciones */
 
@@ -64,11 +65,12 @@ public class Listado {
 	 * 
 	 *            Lanza la ventana de listado de juegos
 	 */
-	public static void listar(final JFrame fr, final ArrayList<Juego> juegos) {
+	public static void listar(final JFrame fr, final ArrayList<Juego> juegos,
+			final ArrayList<Juego> cesta) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Listado window = new Listado(fr, juegos);
+					Listado window = new Listado(fr, juegos, cesta);
 					window.frmPantallaPrincipal.repaint();
 					window.frmPantallaPrincipal.setVisible(true);
 				} catch (Exception e) {
@@ -85,8 +87,10 @@ public class Listado {
 	 * 
 	 *             Crea la aplicacion
 	 */
-	public Listado(JFrame fr, ArrayList<Juego> juegos) throws IOException {
+	public Listado(JFrame fr, ArrayList<Juego> juegos, ArrayList<Juego> cesta)
+			throws IOException {
 		this.games = juegos;
+		this.cesta = cesta;
 		this.frmPantallaPrincipal = fr;
 		frmPantallaPrincipal.getContentPane().removeAll();
 		initialize(juegos);
@@ -111,7 +115,7 @@ public class Listado {
 		frmPantallaPrincipal.getContentPane().add(cabecera);
 		cabecera.setLayout(null);
 
-		cabecera.add(BotonesCabecera.logo(frmPantallaPrincipal));
+		cabecera.add(BotonesCabecera.logo(frmPantallaPrincipal, cesta));
 
 		txtBuscar = new JTextField();
 		txtBuscar.setToolTipText("");
@@ -124,7 +128,7 @@ public class Listado {
 		lupaBuscar.setBounds(841, 20, 30, 30);
 		cabecera.add(lupaBuscar);
 		lupaBuscar.setLayout(null);
-		lupaBuscar.add(BotonesCabecera.buscar(txtBuscar));
+		lupaBuscar.add(BotonesCabecera.buscar(txtBuscar, cesta));
 
 		JPanel opciones = new JPanel();
 		opciones.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -132,7 +136,7 @@ public class Listado {
 		cabecera.add(opciones);
 		opciones.setLayout(null);
 
-		opciones.add(BotonesCabecera.ajustes(2, null, frmPantallaPrincipal));
+		opciones.add(BotonesCabecera.ajustes(2, null, frmPantallaPrincipal, cesta));
 
 		JPanel carrito = new JPanel();
 		carrito.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -140,7 +144,7 @@ public class Listado {
 		cabecera.add(carrito);
 		carrito.setLayout(null);
 
-		carrito.add(BotonesCabecera.carro());
+		carrito.add(BotonesCabecera.carro(cesta));
 
 		JPanel categorias = new JPanel();
 		categorias.setBorder(new LineBorder(new Color(0, 0, 0), 2));
@@ -150,15 +154,15 @@ public class Listado {
 		categorias.setLayout(null);
 
 		categorias.add(BotonesCategorias.atras());
-		categorias.add(BotonesCategorias.ps3(frmPantallaPrincipal));
-		categorias.add(BotonesCategorias.vita(frmPantallaPrincipal));
-		categorias.add(BotonesCategorias.xone(frmPantallaPrincipal));
-		categorias.add(BotonesCategorias.x360(frmPantallaPrincipal));
-		categorias.add(BotonesCategorias.pc(frmPantallaPrincipal));
-		categorias.add(BotonesCategorias.wiiu(frmPantallaPrincipal));
-		categorias.add(BotonesCategorias.wii(frmPantallaPrincipal));
-		categorias.add(BotonesCategorias.n3ds(frmPantallaPrincipal));
-		categorias.add(BotonesCategorias.ps4(frmPantallaPrincipal));
+		categorias.add(BotonesCategorias.ps3(frmPantallaPrincipal,cesta));
+		categorias.add(BotonesCategorias.vita(frmPantallaPrincipal,cesta));
+		categorias.add(BotonesCategorias.xone(frmPantallaPrincipal,cesta));
+		categorias.add(BotonesCategorias.x360(frmPantallaPrincipal,cesta));
+		categorias.add(BotonesCategorias.pc(frmPantallaPrincipal,cesta));
+		categorias.add(BotonesCategorias.wiiu(frmPantallaPrincipal,cesta));
+		categorias.add(BotonesCategorias.wii(frmPantallaPrincipal,cesta));
+		categorias.add(BotonesCategorias.n3ds(frmPantallaPrincipal,cesta));
+		categorias.add(BotonesCategorias.ps4(frmPantallaPrincipal,cesta));
 		categorias.add(BotonesCategorias.adelante());
 
 		JPanel filtros = new JPanel();
@@ -312,7 +316,7 @@ public class Listado {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					frmPantallaPrincipal.getContentPane().removeAll();
-					Info.main(frmPantallaPrincipal, j);
+					Info.main(frmPantallaPrincipal, j, cesta);
 				}
 			});
 			res.add(caratula);

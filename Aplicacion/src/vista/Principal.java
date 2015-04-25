@@ -16,6 +16,7 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Toolkit;
+import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
@@ -27,6 +28,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
+import modelo.Juego;
 import controlador.Botones;
 import controlador.BotonesCabecera;
 import controlador.BotonesCategorias;
@@ -40,15 +42,16 @@ public class Principal {
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
+	private ArrayList<Juego> cesta;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(final JFrame frame) {
+	public static void main(final JFrame frame,final ArrayList<Juego> cesta) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Principal window = new Principal(frame);
+					Principal window = new Principal(frame,cesta);
 					window.frmPantallaPrincipal.repaint();
 					window.frmPantallaPrincipal.setVisible(true);
 				} catch (Exception e) {
@@ -61,7 +64,8 @@ public class Principal {
 	/**
 	 * Create the application.
 	 */
-	public Principal(JFrame frame) {
+	public Principal(JFrame frame,ArrayList<Juego> cesta) {
+		this.cesta = cesta;
 		frmPantallaPrincipal = frame;
 		frmPantallaPrincipal.getContentPane().removeAll();
 		initialize();
@@ -82,7 +86,7 @@ public class Principal {
 		frmPantallaPrincipal.getContentPane().add(cabecera);
 		cabecera.setLayout(null);
 
-		cabecera.add(BotonesCabecera.logo(frmPantallaPrincipal));
+		cabecera.add(BotonesCabecera.logo(frmPantallaPrincipal,cesta));
 
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -90,7 +94,7 @@ public class Principal {
 		cabecera.add(panel);
 		panel.setLayout(null);
 
-		panel.add(BotonesCabecera.carro());
+		panel.add(BotonesCabecera.carro(cesta));
 
 		txtBuscar = new JTextField();
 		txtBuscar.setToolTipText("");
@@ -104,7 +108,7 @@ public class Principal {
 		cabecera.add(panel_2);
 		panel_2.setLayout(null);
 
-		panel_2.add(BotonesCabecera.buscar(txtBuscar));
+		panel_2.add(BotonesCabecera.buscar(txtBuscar,cesta));
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -112,7 +116,7 @@ public class Principal {
 		cabecera.add(panel_1);
 		panel_1.setLayout(null);
 
-		panel_1.add(BotonesCabecera.ajustes(1,null, frmPantallaPrincipal));
+		panel_1.add(BotonesCabecera.ajustes(1,null, frmPantallaPrincipal,cesta));
 
 		JPanel categorias = new JPanel();
 		categorias.setBorder(new LineBorder(new Color(0, 0, 0), 2));
@@ -122,15 +126,15 @@ public class Principal {
 		categorias.setLayout(null);
 
 		categorias.add(BotonesCategorias.atras());
-		categorias.add(BotonesCategorias.ps3(frmPantallaPrincipal));
-		categorias.add(BotonesCategorias.vita(frmPantallaPrincipal));
-		categorias.add(BotonesCategorias.xone(frmPantallaPrincipal));
-		categorias.add(BotonesCategorias.x360(frmPantallaPrincipal));
-		categorias.add(BotonesCategorias.pc(frmPantallaPrincipal));
-		categorias.add(BotonesCategorias.wiiu(frmPantallaPrincipal));
-		categorias.add(BotonesCategorias.wii(frmPantallaPrincipal));
-		categorias.add(BotonesCategorias.n3ds(frmPantallaPrincipal));
-		categorias.add(BotonesCategorias.ps4(frmPantallaPrincipal));
+		categorias.add(BotonesCategorias.ps3(frmPantallaPrincipal,cesta));
+		categorias.add(BotonesCategorias.vita(frmPantallaPrincipal,cesta));
+		categorias.add(BotonesCategorias.xone(frmPantallaPrincipal,cesta));
+		categorias.add(BotonesCategorias.x360(frmPantallaPrincipal,cesta));
+		categorias.add(BotonesCategorias.pc(frmPantallaPrincipal,cesta));
+		categorias.add(BotonesCategorias.wiiu(frmPantallaPrincipal,cesta));
+		categorias.add(BotonesCategorias.wii(frmPantallaPrincipal,cesta));
+		categorias.add(BotonesCategorias.n3ds(frmPantallaPrincipal,cesta));
+		categorias.add(BotonesCategorias.ps4(frmPantallaPrincipal,cesta));
 		categorias.add(BotonesCategorias.adelante());
 
 		JPanel filtros = new JPanel();
@@ -261,15 +265,15 @@ public class Principal {
 		frmPantallaPrincipal.getContentPane().add(principal);
 		principal.setLayout(null);
 
-		principal.add(BotonesMenu.menuPS4(frmPantallaPrincipal));
-		principal.add(BotonesMenu.menuPS3(frmPantallaPrincipal));
-		principal.add(BotonesMenu.menuVita(frmPantallaPrincipal));
-		principal.add(BotonesMenu.menuXONE(frmPantallaPrincipal));
-		principal.add(BotonesMenu.menuX360(frmPantallaPrincipal));
-		principal.add(BotonesMenu.menuPC(frmPantallaPrincipal));
-		principal.add(BotonesMenu.menuWiiU(frmPantallaPrincipal));
-		principal.add(BotonesMenu.menuWii(frmPantallaPrincipal));
-		principal.add(BotonesMenu.menuN3DS(frmPantallaPrincipal));
+		principal.add(BotonesMenu.menuPS4(frmPantallaPrincipal,cesta));
+		principal.add(BotonesMenu.menuPS3(frmPantallaPrincipal,cesta));
+		principal.add(BotonesMenu.menuVita(frmPantallaPrincipal,cesta));
+		principal.add(BotonesMenu.menuXONE(frmPantallaPrincipal,cesta));
+		principal.add(BotonesMenu.menuX360(frmPantallaPrincipal,cesta));
+		principal.add(BotonesMenu.menuPC(frmPantallaPrincipal,cesta));
+		principal.add(BotonesMenu.menuWiiU(frmPantallaPrincipal,cesta));
+		principal.add(BotonesMenu.menuWii(frmPantallaPrincipal,cesta));
+		principal.add(BotonesMenu.menuN3DS(frmPantallaPrincipal,cesta));
 
 		JLabel lblNewLabel = new JLabel("New label");
 		lblNewLabel.setBounds(0, 0, 870, 471);

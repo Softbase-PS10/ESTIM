@@ -36,6 +36,7 @@ import javax.swing.JTextField;
 
 import modelo.Juego;
 import modelo.Sentencias;
+import vista.Carro;
 import vista.Listado;
 import vista.Modificar;
 import vista.Principal;
@@ -49,7 +50,7 @@ public class BotonesCabecera {
 	 * @return un boton de busqueda que obtiene lo escrito en un campo, lo
 	 *         procesa y redirige a la pantalla de listado de resultados.
 	 */
-	public static JButton buscar(JTextField b) {
+	public static JButton buscar(JTextField b, final ArrayList<Juego> cesta) {
 		busc = b;
 		JButton busqueda = new JButton("");
 		busqueda.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -66,7 +67,7 @@ public class BotonesCabecera {
 				ArrayList<Juego> juegos = sql.listarJuegosTitulo(busqueda);
 				sql.close();
 				frame.getContentPane().removeAll();
-				Listado.listar(frame, juegos);
+				Listado.listar(frame, juegos, cesta);
 			}
 		});
 
@@ -83,7 +84,8 @@ public class BotonesCabecera {
 	 *            de información del juego y 4 para la pantalla de modificar
 	 *            juego
 	 */
-	public static JLabel ajustes(int origen, Juego j, final JFrame fr) {
+	public static JLabel ajustes(int origen, Juego j, final JFrame fr,
+			final ArrayList<Juego> cesta) {
 		final JLabel ajustes = new JLabel();
 		final Juego juegoActual = j;
 		ajustes.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -97,7 +99,7 @@ public class BotonesCabecera {
 				@Override
 				public void mousePressed(java.awt.event.MouseEvent evt) {
 					frame.getContentPane().removeAll();
-					Modificar m = new Modificar(fr, juegoActual);
+					Modificar m = new Modificar(fr, juegoActual,cesta);
 					m.mostrarMod();
 				}
 			});
@@ -108,7 +110,7 @@ public class BotonesCabecera {
 				@Override
 				public void mousePressed(java.awt.event.MouseEvent evt) {
 					frame.getContentPane().removeAll();
-					Modificar m = new Modificar(fr, juegoActual);
+					Modificar m = new Modificar(fr, juegoActual,cesta);
 					m.mostrarMod();
 				}
 			});
@@ -151,7 +153,7 @@ public class BotonesCabecera {
 											s.close();
 
 											frame.getContentPane().removeAll();
-											Listado.listar(frame, juegos);
+											Listado.listar(frame, juegos,cesta);
 										} else if (value == JOptionPane.NO_OPTION) {
 											// Do nothing
 										}
@@ -174,10 +176,10 @@ public class BotonesCabecera {
 		exit.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(java.awt.event.MouseEvent evt) {
-//				BotonesCabecera.frame.dispose();
+				// BotonesCabecera.frame.dispose();
 				frame.getContentPane().removeAll();
 
-				Principal.main(frame);
+				Principal.main(frame, cesta);
 			}
 		});
 		pop.add(exit);
@@ -208,17 +210,12 @@ public class BotonesCabecera {
 	 * @return un boton del carro de la compra que implementa la funcion de
 	 *         'carrito de la compra' en la aplicacion.
 	 */
-	public static JLabel carro() {
+	public static JLabel carro(final ArrayList<Juego> cesta) {
 		final JLabel carro = new JLabel("");
 		carro.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		carro.setIcon(new ImageIcon(Principal.class
 				.getResource("/Imagenes/B/carro.png")));
 		carro.setBounds(0, 0, 70, 70);
-		final JPopupMenu pop = new JPopupMenu();
-		JMenuItem show = new JMenuItem("Show cart");
-		pop.add(show);
-		JMenuItem empty = new JMenuItem("Empty cart");
-		pop.add(empty);
 		carro.addMouseListener(new MouseAdapter() {
 
 			@Override
@@ -235,7 +232,7 @@ public class BotonesCabecera {
 
 			@Override
 			public void mousePressed(java.awt.event.MouseEvent evt) {
-				pop.show(evt.getComponent(), 0, 70);
+				Carro.main(frame, cesta);
 			}
 		});
 
@@ -246,7 +243,7 @@ public class BotonesCabecera {
 	 * @return un boton con el logo del producto que redirige al usuario a la
 	 *         pantalla de inicio de la app.
 	 */
-	public static JButton logo(JFrame frame) {
+	public static JButton logo(JFrame frame, final ArrayList<Juego> cesta) {
 		BotonesCabecera.frame = frame;
 		JButton logo = new JButton("");
 		logo.setFocusPainted(false);
@@ -264,7 +261,7 @@ public class BotonesCabecera {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				BotonesCabecera.frame.getContentPane().removeAll();
-				Principal.main(BotonesCabecera.frame);
+				Principal.main(BotonesCabecera.frame,cesta);
 			}
 		});
 

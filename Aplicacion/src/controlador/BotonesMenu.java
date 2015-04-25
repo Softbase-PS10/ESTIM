@@ -15,12 +15,14 @@ package controlador;
 
 import java.awt.Color;
 import java.awt.Cursor;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.border.BevelBorder;
 
+import modelo.Juego;
 import modelo.Plataforma;
 import vista.Principal;
 
@@ -29,7 +31,7 @@ public class BotonesMenu {
 	/**
 	 * @return un boton que redirige a la pantalla de listado de juegos de New 3DS
 	 */
-	public static JButton menuN3DS(JFrame frame) {
+	public static JButton menuN3DS(JFrame frame, ArrayList<Juego> cesta) {
 		JButton n3ds = new JButton("");
 		n3ds.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		n3ds.setIcon(new ImageIcon(Principal.class
@@ -38,7 +40,7 @@ public class BotonesMenu {
 				Color.BLACK, Color.BLACK, Color.BLACK));
 		n3ds.setBounds(596, 322, 246, 125);
 
-		n3ds.addActionListener(new PlatformListener(Plataforma.alias3DS, frame));
+		n3ds.addActionListener(new PlatformListener(Plataforma.alias3DS, frame, cesta));
 
 		return n3ds;
 	}
@@ -46,7 +48,7 @@ public class BotonesMenu {
 	/**
 	 * @return un boton que redirige a la pantalla de listado de juegos de la Wii
 	 */
-	public static JButton menuWii(JFrame frame) {
+	public static JButton menuWii(JFrame frame, ArrayList<Juego> cesta) {
 		JButton wii = new JButton("");
 		wii.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		wii.setIcon(new ImageIcon(Principal.class
@@ -55,7 +57,7 @@ public class BotonesMenu {
 				Color.BLACK, Color.BLACK, Color.BLACK));
 		wii.setBounds(313, 322, 246, 125);
 
-		wii.addActionListener(new PlatformListener(Plataforma.aliasWii, frame));
+		wii.addActionListener(new PlatformListener(Plataforma.aliasWii, frame, cesta));
 
 		return wii;
 	}
@@ -63,7 +65,7 @@ public class BotonesMenu {
 	/**
 	 * @return un boton que redirige a la pantalla de listado de juegos de la WiiU
 	 */
-	public static JButton menuWiiU(JFrame frame) {
+	public static JButton menuWiiU(JFrame frame, ArrayList<Juego> cesta) {
 		JButton wiiu = new JButton("");
 		wiiu.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		wiiu.setIcon(new ImageIcon(Principal.class
@@ -72,7 +74,7 @@ public class BotonesMenu {
 				Color.BLACK, Color.BLACK, Color.BLACK));
 		wiiu.setBounds(30, 322, 246, 125);
 
-		wiiu.addActionListener(new PlatformListener(Plataforma.aliasWiiU, frame));
+		wiiu.addActionListener(new PlatformListener(Plataforma.aliasWiiU, frame, cesta));
 
 		return wiiu;
 	}
@@ -80,7 +82,7 @@ public class BotonesMenu {
 	/**
 	 * @return un boton que redirige a la pantalla de listado de juegos de PC
 	 */
-	public static JButton menuPC(JFrame frame) {
+	public static JButton menuPC(JFrame frame, ArrayList<Juego> cesta) {
 		JButton pc = new JButton("");
 		pc.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		pc.setIcon(new ImageIcon(Principal.class
@@ -89,7 +91,7 @@ public class BotonesMenu {
 				Color.BLACK, Color.BLACK, Color.BLACK));
 		pc.setBounds(596, 176, 246, 125);
 
-		pc.addActionListener(new PlatformListener(Plataforma.aliasPC, frame));
+		pc.addActionListener(new PlatformListener(Plataforma.aliasPC, frame, cesta));
 
 		return pc;
 	}
@@ -97,7 +99,7 @@ public class BotonesMenu {
 	/**
 	 * @return un boton que redirige a la pantalla de listado de juegos de Xbox 360
 	 */
-	public static JButton menuX360(JFrame frame) {
+	public static JButton menuX360(JFrame frame, ArrayList<Juego> cesta) {
 		JButton x360 = new JButton("");
 		x360.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		x360.setIcon(new ImageIcon(Principal.class
@@ -106,7 +108,7 @@ public class BotonesMenu {
 				Color.BLACK, Color.BLACK, Color.BLACK));
 		x360.setBounds(313, 176, 246, 125);
 
-		x360.addActionListener(new PlatformListener(Plataforma.aliasX360, frame));
+		x360.addActionListener(new PlatformListener(Plataforma.aliasX360, frame, cesta));
 
 		return x360;
 	}
@@ -114,7 +116,7 @@ public class BotonesMenu {
 	/**
 	 * @return un boton que redirige a la pantalla de listado de juegos de Xbox ONE
 	 */
-	public static JButton menuXONE(JFrame frame) {
+	public static JButton menuXONE(JFrame frame, ArrayList<Juego> cesta) {
 		JButton xone = new JButton("");
 		xone.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		xone.setIcon(new ImageIcon(Principal.class
@@ -123,7 +125,7 @@ public class BotonesMenu {
 				Color.BLACK, Color.BLACK, Color.BLACK));
 		xone.setBounds(30, 176, 246, 125);
 
-		xone.addActionListener(new PlatformListener(Plataforma.aliasXONE, frame));
+		xone.addActionListener(new PlatformListener(Plataforma.aliasXONE, frame, cesta));
 
 		return xone;
 	}
@@ -131,7 +133,7 @@ public class BotonesMenu {
 	/**
 	 * @return un boton que redirige a la pantalla de listado de juegos de PlayStation Vita
 	 */
-	public static JButton menuVita(JFrame frame) {
+	public static JButton menuVita(JFrame frame, ArrayList<Juego> cesta) {
 		JButton vita = new JButton("");
 		vita.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		vita.setIcon(new ImageIcon(Principal.class
@@ -140,7 +142,7 @@ public class BotonesMenu {
 				Color.BLACK, Color.BLACK, Color.BLACK));
 		vita.setBounds(596, 34, 246, 125);
 
-		vita.addActionListener(new PlatformListener(Plataforma.aliasPSVita, frame));
+		vita.addActionListener(new PlatformListener(Plataforma.aliasPSVita, frame, cesta));
 
 		return vita;
 	}
@@ -148,7 +150,7 @@ public class BotonesMenu {
 	/**
 	 * @return un boton que redirige a la pantalla de listado de juegos de PlayStation 3
 	 */
-	public static JButton menuPS3(JFrame frame) {
+	public static JButton menuPS3(JFrame frame, ArrayList<Juego> cesta) {
 		JButton ps3 = new JButton("");
 		ps3.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		ps3.setIcon(new ImageIcon(Principal.class
@@ -157,7 +159,7 @@ public class BotonesMenu {
 				Color.BLACK, Color.BLACK, Color.BLACK));
 		ps3.setBounds(313, 34, 246, 125);
 
-		ps3.addActionListener(new PlatformListener(Plataforma.aliasPS3, frame));
+		ps3.addActionListener(new PlatformListener(Plataforma.aliasPS3, frame, cesta));
 
 		return ps3;
 	}
@@ -165,7 +167,7 @@ public class BotonesMenu {
 	/**
 	 * @return un boton que redirige a la pantalla de listado de juegos de PlayStation 4
 	 */
-	public static JButton menuPS4(JFrame frame) {
+	public static JButton menuPS4(JFrame frame, ArrayList<Juego> cesta) {
 		JButton ps4 = new JButton("");
 		ps4
 				.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -175,7 +177,7 @@ public class BotonesMenu {
 				.getResource("/Imagenes/Menu/ps4.png")));
 		ps4.setBounds(30, 34, 246, 125);
 
-		ps4.addActionListener(new PlatformListener(Plataforma.aliasPS4, frame));
+		ps4.addActionListener(new PlatformListener(Plataforma.aliasPS4, frame, cesta));
 
 		return ps4;
 	}

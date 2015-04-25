@@ -13,7 +13,8 @@
 package vista;
 
 import java.awt.Toolkit;
-
+import modelo.Juego;
+import java.util.ArrayList;
 import javax.swing.JFrame;
 
 public class FramePal {
@@ -28,7 +29,7 @@ public class FramePal {
 		frmPantallaPrincipal.setBounds(100, 100, 1066, 600);
 		frmPantallaPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmPantallaPrincipal.getContentPane().setLayout(null);
-		
-		Principal.main(frmPantallaPrincipal);
+		ArrayList<Juego> cesta = new ArrayList<Juego>();
+		Principal.main(frmPantallaPrincipal,cesta);
 	}
 }
