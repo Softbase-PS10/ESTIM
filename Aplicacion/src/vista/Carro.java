@@ -6,33 +6,26 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.LineBorder;
 
 import modelo.Juego;
-import controlador.Botones;
 import controlador.BotonesCabecera;
 import controlador.BotonesCategorias;
-import controlador.Imagenes;
-import javax.swing.ImageIcon;
-import javax.swing.JSeparator;
-import javax.swing.SwingConstants;
 
 public class Carro {
 
@@ -92,7 +85,7 @@ public class Carro {
 		frmPantallaPrincipal.getContentPane().add(cabecera);
 		cabecera.setLayout(null);
 
-		cabecera.add(BotonesCabecera.logo(frmPantallaPrincipal));
+		cabecera.add(BotonesCabecera.logo(frmPantallaPrincipal, cesta));
 
 		txtBuscar = new JTextField();
 		txtBuscar.setToolTipText("");
@@ -105,7 +98,7 @@ public class Carro {
 		lupaBuscar.setBounds(841, 20, 30, 30);
 		cabecera.add(lupaBuscar);
 		lupaBuscar.setLayout(null);
-		lupaBuscar.add(BotonesCabecera.buscar(txtBuscar));
+		lupaBuscar.add(BotonesCabecera.buscar(txtBuscar, cesta));
 
 		JPanel opciones = new JPanel();
 		opciones.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -113,7 +106,8 @@ public class Carro {
 		cabecera.add(opciones);
 		opciones.setLayout(null);
 
-		opciones.add(BotonesCabecera.ajustes(2, null, frmPantallaPrincipal));
+		opciones.add(BotonesCabecera.ajustes(2, null, frmPantallaPrincipal,
+				cesta));
 
 		JPanel carrito = new JPanel();
 		carrito.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -121,7 +115,7 @@ public class Carro {
 		cabecera.add(carrito);
 		carrito.setLayout(null);
 
-		carrito.add(BotonesCabecera.carro());
+		carrito.add(BotonesCabecera.carro(cesta));
 
 		JPanel categorias = new JPanel();
 		categorias.setBorder(new LineBorder(new Color(0, 0, 0), 2));
@@ -131,15 +125,15 @@ public class Carro {
 		categorias.setLayout(null);
 
 		categorias.add(BotonesCategorias.atras());
-		categorias.add(BotonesCategorias.ps3(frmPantallaPrincipal));
-		categorias.add(BotonesCategorias.vita(frmPantallaPrincipal));
-		categorias.add(BotonesCategorias.xone(frmPantallaPrincipal));
-		categorias.add(BotonesCategorias.x360(frmPantallaPrincipal));
-		categorias.add(BotonesCategorias.pc(frmPantallaPrincipal));
-		categorias.add(BotonesCategorias.wiiu(frmPantallaPrincipal));
-		categorias.add(BotonesCategorias.wii(frmPantallaPrincipal));
-		categorias.add(BotonesCategorias.n3ds(frmPantallaPrincipal));
-		categorias.add(BotonesCategorias.ps4(frmPantallaPrincipal));
+		categorias.add(BotonesCategorias.ps3(frmPantallaPrincipal, cesta));
+		categorias.add(BotonesCategorias.vita(frmPantallaPrincipal, cesta));
+		categorias.add(BotonesCategorias.xone(frmPantallaPrincipal, cesta));
+		categorias.add(BotonesCategorias.x360(frmPantallaPrincipal, cesta));
+		categorias.add(BotonesCategorias.pc(frmPantallaPrincipal, cesta));
+		categorias.add(BotonesCategorias.wiiu(frmPantallaPrincipal, cesta));
+		categorias.add(BotonesCategorias.wii(frmPantallaPrincipal, cesta));
+		categorias.add(BotonesCategorias.n3ds(frmPantallaPrincipal, cesta));
+		categorias.add(BotonesCategorias.ps4(frmPantallaPrincipal, cesta));
 		categorias.add(BotonesCategorias.adelante());
 
 		JPanel principal = new JPanel();
@@ -192,54 +186,60 @@ public class Carro {
 		btnBuy.setBounds(957, 433, 89, 23);
 		res.add(btnBuy);
 
-		JPanel panel = new JPanel();
-		panel.setBorder(null);
-		panel.setBackground(Color.DARK_GRAY);
-		panel.setBounds(35, 11, 990, 194);
-		res.add(panel);
-		panel.setLayout(null);
+		Iterator<Juego> it = cesta.iterator();
 
-		JButton caratula = new JButton("");
-		caratula.setBounds(0, 0, 128, 180);
-		panel.add(caratula);
-		caratula.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		caratula.setBorder(new BevelBorder(BevelBorder.RAISED, Color.BLACK,
-				Color.BLACK, Color.BLACK, Color.BLACK));
+		while (it.hasNext()) {
+			Juego actual = it.next();
+			JPanel panel = new JPanel();
+			panel.setBorder(null);
+			panel.setBackground(Color.DARK_GRAY);
+			panel.setBounds(35, 11, 990, 194);
+			box.add(panel);
+			panel.setLayout(null);
 
-		JFormattedTextField precio = new JFormattedTextField();
-		precio.setBounds(561, 62, 144, 60);
-		panel.add(precio);
-		precio.setText("50\u20AC");
-		precio.setOpaque(false);
-		precio.setForeground(Color.WHITE);
-		precio.setFont(new Font("Tahoma", Font.PLAIN, 40));
-		precio.setEditable(false);
-		precio.setBorder(null);
+			JButton caratula = new JButton("");
+			caratula.setBounds(0, 0, 128, 180);
+			panel.add(caratula);
+			caratula.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			caratula.setBorder(new BevelBorder(BevelBorder.RAISED, Color.BLACK,
+					Color.BLACK, Color.BLACK, Color.BLACK));
 
-		JFormattedTextField titulo = new JFormattedTextField();
-		titulo.setBounds(180, 80, 368, 20);
-		panel.add(titulo);
-		titulo.setHorizontalAlignment(SwingConstants.CENTER);
-		titulo.setText("Half Life 3");
-		titulo.setOpaque(false);
-		titulo.setForeground(Color.WHITE);
-		titulo.setFont(new Font("Tahoma", Font.BOLD, 16));
-		titulo.setEditable(false);
-		titulo.setBorder(null);
+			JFormattedTextField precio = new JFormattedTextField();
+			precio.setBounds(561, 62, 144, 60);
+			panel.add(precio);
+			precio.setText(actual.getPrecio()+"\u20AC");
+			precio.setOpaque(false);
+			precio.setForeground(Color.WHITE);
+			precio.setFont(new Font("Tahoma", Font.PLAIN, 40));
+			precio.setEditable(false);
+			precio.setBorder(null);
 
-		JSeparator separator = new JSeparator();
-		separator.setBounds(0, 191, 990, 2);
-		panel.add(separator);
+			JFormattedTextField titulo = new JFormattedTextField();
+			titulo.setBounds(180, 80, 368, 20);
+			panel.add(titulo);
+			titulo.setHorizontalAlignment(SwingConstants.CENTER);
+			titulo.setText(actual.getTitulo());
+			titulo.setOpaque(false);
+			titulo.setForeground(Color.WHITE);
+			titulo.setFont(new Font("Tahoma", Font.BOLD, 16));
+			titulo.setEditable(false);
+			titulo.setBorder(null);
 
-		JButton btnNewButton = new JButton("");
-		btnNewButton.setBounds(821, 62, 69, 60);
-		panel.add(btnNewButton);
-		btnNewButton.setContentAreaFilled(false);
-		btnNewButton.setRolloverIcon(new ImageIcon(Carro.class
-				.getResource("/Imagenes/B/botonP.png")));
-		btnNewButton.setBorder(null);
-		btnNewButton.setOpaque(false);
-		btnNewButton.setIcon(new ImageIcon(Carro.class
-				.getResource("/Imagenes/B/botonSP.png")));
+			JSeparator separator = new JSeparator();
+			separator.setBounds(0, 191, 990, 2);
+			panel.add(separator);
+
+			JButton btnNewButton = new JButton("");
+			btnNewButton.setBounds(821, 62, 69, 60);
+			panel.add(btnNewButton);
+			btnNewButton.setContentAreaFilled(false);
+			btnNewButton.setRolloverIcon(new ImageIcon(Carro.class
+					.getResource("/Imagenes/B/botonP.png")));
+			btnNewButton.setBorder(null);
+			btnNewButton.setOpaque(false);
+			btnNewButton.setIcon(new ImageIcon(Carro.class
+					.getResource("/Imagenes/B/botonSP.png")));
+		}
+
 	}
 }
