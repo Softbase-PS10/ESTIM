@@ -17,6 +17,7 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.util.ArrayList;
+import java.util.TreeMap;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
@@ -38,11 +39,10 @@ public class Principal {
 
 	private JFrame frmPantallaPrincipal;
 	private JTextField txtBuscar;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
+	public static JTextField textField, textField_1, textField_2, textField_3;
 	private ArrayList<Juego> cesta;
+	public static JComboBox<String> comboBox, comboBox_1;
+	public static TreeMap<String, String> filtrosMap;
 
 	/**
 	 * Launch the application.
@@ -68,6 +68,7 @@ public class Principal {
 		this.cesta = cesta;
 		frmPantallaPrincipal = frame;
 		frmPantallaPrincipal.getContentPane().removeAll();
+		filtrosMap = new TreeMap<>();
 		initialize();
 	}
 
@@ -184,8 +185,8 @@ public class Principal {
 		textField_1.setBounds(99, 73, 51, 20);
 		filtros.add(textField_1);
 
-		JComboBox<String> comboBox = new JComboBox<String>();
-		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] { "Action",
+		comboBox = new JComboBox<String>();
+		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] { "", "Action",
 				"Adventure", "Construction and Management Simulation",
 				"Fighting", "Flight Simulator", "Horror", "Life Simulation",
 				"MMO", "Music", "Platform", "Puzzle", "Racing", "Role-Playing",
@@ -217,10 +218,10 @@ public class Principal {
 		frmtdtxtfldPlataforma.setBounds(20, 162, 171, 20);
 		filtros.add(frmtdtxtfldPlataforma);
 
-		JComboBox<String> comboBox_1 = new JComboBox<String>();
+		comboBox_1 = new JComboBox<String>();
 		comboBox_1
 				.setModel(new DefaultComboBoxModel<String>(
-						new String[] { "PS4", "PS3", "PSVITA", "XONE", "X360",
+						new String[] { "", "PS4", "PS3", "PSVITA", "XONE", "X360",
 								"PC", "WII-U", "WII", "N3DS" }));
 		comboBox_1.setToolTipText("");
 		comboBox_1.setName("");
@@ -228,7 +229,7 @@ public class Principal {
 		comboBox_1.setBounds(20, 187, 130, 20);
 		filtros.add(comboBox_1);
 
-		filtros.add(Botones.aplicarFiltros());
+		filtros.add(Botones.aplicarFiltros("Principal", frmPantallaPrincipal,cesta));
 
 		JFormattedTextField frmtdtxtfldValoracin = new JFormattedTextField();
 		frmtdtxtfldValoracin.setText("Rating:");

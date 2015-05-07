@@ -26,7 +26,7 @@ public class Sentencias {
 
 	/* declaracion de atributos */
 	private Connection connection;
-
+	
 	/* declaracion de metodos y funciones */
 
 	/**
@@ -366,7 +366,6 @@ public class Sentencias {
 			} catch (SQLException ex) {
 				if (ex.getSQLState().startsWith("23"))
 					System.out.println("Entrada en juego duplicada");
-
 				else
 					ex.printStackTrace();
 			}
