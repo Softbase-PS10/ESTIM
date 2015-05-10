@@ -79,7 +79,7 @@ public class Info {
 
 		// Opciones
 		JPanel opciones = BotonesInfo
-				.getOpciones(juego, frmInformacinDelProduc);
+				.getOpciones(juego, null, frmInformacinDelProduc);
 		cabecera.add(opciones);
 
 		// Carrito

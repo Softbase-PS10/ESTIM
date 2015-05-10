@@ -112,7 +112,7 @@ public class Principal {
 		cabecera.add(panel_1);
 		panel_1.setLayout(null);
 
-		panel_1.add(BotonesCabecera.ajustes(1,null, frmPantallaPrincipal));
+		panel_1.add(BotonesCabecera.ajustes(1,null, null, frmPantallaPrincipal));
 
 		JPanel categorias = new JPanel();
 		categorias.setBorder(new LineBorder(new Color(0, 0, 0), 2));

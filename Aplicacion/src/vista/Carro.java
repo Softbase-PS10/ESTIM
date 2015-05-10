@@ -110,7 +110,7 @@ public class Carro {
 		cabecera.add(opciones);
 		opciones.setLayout(null);
 
-		opciones.add(BotonesCabecera.ajustes(2, null, frmPantallaPrincipal));
+		opciones.add(BotonesCabecera.ajustes(2, null, null, frmPantallaPrincipal));
 
 		JPanel carrito = new JPanel();
 		carrito.setBorder(new LineBorder(new Color(0, 0, 0)));

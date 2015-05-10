@@ -132,8 +132,6 @@ public class Listado {
 		cabecera.add(opciones);
 		opciones.setLayout(null);
 
-		opciones.add(BotonesCabecera.ajustes(2, null, frmPantallaPrincipal));
-
 		JPanel carrito = new JPanel();
 		carrito.setBorder(new LineBorder(new Color(0, 0, 0)));
 		carrito.setBounds(990, 0, 70, 70);
@@ -449,5 +447,8 @@ public class Listado {
 		txtOrdenar.setBorder(null);
 		txtOrdenar.setBounds(842, 7, 57, 20);
 		ordenacion.add(txtOrdenar);
+
+		opciones.add(BotonesCabecera.ajustes(2, null, games, frmPantallaPrincipal));
+
 	}
 }

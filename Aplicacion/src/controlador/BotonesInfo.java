@@ -16,6 +16,7 @@ package controlador;
 import java.awt.Color;
 import java.awt.Font;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -72,12 +73,12 @@ public class BotonesInfo {
 	/**
 	 * @return las opciones
 	 */
-	public static JPanel getOpciones(Juego juego, JFrame fr) {
+	public static JPanel getOpciones(Juego juego, ArrayList<Juego> juegos,  JFrame fr) {
 		JPanel opciones = new JPanel();
 		opciones.setBorder(new LineBorder(new Color(0, 0, 0)));
 		opciones.setBounds(920, 0, 70, 70);
 		opciones.setLayout(null);
-		opciones.add(BotonesCabecera.ajustes(3,juego, fr));
+		opciones.add(BotonesCabecera.ajustes(3,juego, juegos, fr));
 		return opciones;
 	}
 
