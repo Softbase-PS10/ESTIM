@@ -24,6 +24,7 @@ import javax.swing.JFrame;
 import modelo.Juego;
 import modelo.Sentencias;
 import vista.Listado;
+import vista.Principal;
 
 public class PlatformListener implements ActionListener {
 
@@ -43,7 +44,7 @@ public class PlatformListener implements ActionListener {
 		sql = new Sentencias();
 		ArrayList<Juego> juegos = sql.listarJuegosPlataformaAlias(this.alias);
 		sql.close();
-		
+		Principal.filtrosMap.put("plataforma", alias);
 		frame.getContentPane().removeAll();
 		Listado.listar(frame, juegos, cesta);
 	}

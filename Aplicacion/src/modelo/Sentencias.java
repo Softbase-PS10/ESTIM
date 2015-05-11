@@ -29,6 +29,23 @@ public class Sentencias {
 	
 	/* declaracion de metodos y funciones */
 
+	
+
+	public static void main(String[] args) {
+		Sentencias s = new Sentencias();
+		TreeMap<String, String> filtros = new TreeMap<String, String>();
+		// filtros.put("preciomin", "50");
+		// filtros.put("preciomin", "50");
+		filtros.put("order", "JUEGO.titulo");
+		filtros.put("type", "ASC");
+		filtros.put("plataforma", "PC");
+		for (Juego j : s.listarJuegosMultipleFiltros(filtros, 120)) {
+			System.out.println(j.mostrarInfo());
+		}
+		s.close();
+	}	
+	
+	
 	/**
 	 * Método que aplica distintas querys en función del contenido del parámetro
 	 * filtros. Además devuelve una consulta paginada, es decir, dependiendo del
