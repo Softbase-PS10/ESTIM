@@ -30,6 +30,7 @@ import javax.swing.JFrame;
 import modelo.Juego;
 import modelo.Plataforma;
 import modelo.Sentencias;
+import vista.Carro;
 import vista.Info;
 import vista.Listado;
 import vista.Modificar;
@@ -52,71 +53,106 @@ public class Botones {
 				Sentencias s = new Sentencias();
 				TreeMap<String, String> filtros = Principal.filtrosMap;
 				if (origen == "Listado") {
-					int pMin, pMax, gMin, gMax;
+					int pMin, pMax;
+					double gMin, gMax;
 					String te = Listado.precioMinimo.getText();
 					try {
 						pMin = Integer.parseInt(te);
 						filtros.put("preciomin", pMin + "");
 					} catch (NumberFormatException e1) {
+						filtros.remove("preciomin");
 					}
 					te = Listado.precioMaximo.getText();
 					try {
 						pMax = Integer.parseInt(te);
 						filtros.put("preciomax", pMax + "");
 					} catch (NumberFormatException e1) {
+						filtros.remove("preciomax");
 					}
 					te = Listado.valoracionMinima.getText();
+					if (te.length() > 4)
+						te = te.substring(0, 3);
 					try {
-						gMin = Integer.parseInt(te);
-						filtros.put("ratingmin", gMin + "");
+						gMin = Double.parseDouble(te);
+						if (gMin / 10 < 1)
+							filtros.put("ratingmin", gMin + "");
 					} catch (NumberFormatException e1) {
+						filtros.remove("ratingmin");
 					}
 					te = Listado.valoracionMaxima.getText();
+					if (te.length() > 4)
+						te = te.substring(0, 3);
 					try {
-						gMax = Integer.parseInt(te);
-						filtros.put("ratingmax", gMax + "");
+						gMax = Double.parseDouble(te);
+						if (gMax / 10 < 1)
+							filtros.put("ratingmax", gMax + "");
 					} catch (NumberFormatException e1) {
+						filtros.remove("ratingmax");
 					}
 					if (!Listado.generoMulti.getSelectedItem().equals(""))
 						filtros.put("genero",
 								(String) Listado.generoMulti.getSelectedItem());
+					else
+						filtros.remove("genero");
 					if (!Listado.plataformaMulti.getSelectedItem().equals(""))
 						filtros.put("plataforma",
-								(String) Listado.plataformaMulti.getSelectedItem());
+								(String) Listado.plataformaMulti
+										.getSelectedItem());
+					else
+						filtros.remove("plataforma");
 				}
 
 				else if (origen == "Principal") {
-					int pMin, pMax, gMin, gMax;
+					int pMin, pMax;
+					double gMin, gMax;
 					String te = Principal.textField.getText();
 					try {
 						pMin = Integer.parseInt(te);
 						filtros.put("preciomin", pMin + "");
 					} catch (NumberFormatException e1) {
+						filtros.remove("preciomin");
 					}
 					te = Principal.textField_1.getText();
 					try {
 						pMax = Integer.parseInt(te);
 						filtros.put("preciomax", pMax + "");
 					} catch (NumberFormatException e1) {
+						filtros.remove("preciomax");
 					}
 					te = Principal.textField_2.getText();
+					if (te.length() > 4)
+						te = te.substring(0, 3);
 					try {
-						gMin = Integer.parseInt(te);
-						filtros.put("ratingmin", gMin + "");
+						gMin = Double.parseDouble(te);
+						if (gMin / 10 < 1)
+							filtros.put("ratingmin", gMin + "");
+						else
+							filtros.remove("ratingmin");
 					} catch (NumberFormatException e1) {
+						filtros.remove("ratingmin");
 					}
 					te = Principal.textField_3.getText();
+					if (te.length() > 4)
+						te = te.substring(0, 3);
 					try {
-						gMax = Integer.parseInt(te);
-						filtros.put("ratingmax", gMax + "");
+						gMax = Double.parseDouble(te);
+						if (gMax / 10 < 1)
+							filtros.put("ratingmax", gMax + "");
+						else
+							filtros.remove("ratingmax");
 					} catch (NumberFormatException e1) {
+						filtros.remove("ratingmax");
 					}
 					if (!Principal.comboBox.getSelectedItem().equals(""))
 						filtros.put("genero",
 								(String) Principal.comboBox.getSelectedItem());
+					else
+						filtros.remove("genero");
 					if (!Principal.comboBox_1.getSelectedItem().equals(""))
 						filtros.put("plataforma",
 								(String) Principal.comboBox_1.getSelectedItem());
+					else
+						filtros.remove("plataforma");
 				}
 				if (!filtros.isEmpty()) {
 					frame.getContentPane().removeAll();
@@ -130,6 +166,43 @@ public class Botones {
 		return aplicar;
 	}
 
+	/**
+	 * @return el boton de 'Empty cart', con su comportamiento
+	 *         implementado.
+	 */
+	public static JButton vaciarCarro(final JFrame frame) {
+		JButton vaciar = new JButton("Empty cart");
+		vaciar.setBounds(40, 120, 100, 20);
+		vaciar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Carro.main(frame, new ArrayList<Juego>());
+			}
+		});
+
+		return vaciar;
+	}
+	
+	/**
+	 * @return el boton de 'Empty cart', con su comportamiento
+	 *         implementado.
+	 */
+	public static JButton comprarCarro(final JFrame frame) {
+		JButton buy = new JButton("Buy games");
+		buy.setBounds(40, 145, 100, 20);
+		buy.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//Falta this
+				//Carro.main(frame, new ArrayList<Juego>());
+			}
+		});
+
+		return buy;
+	}
+	
 	/**
 	 * @return el boton de 'Guardar' los cambios al modificar un juego del
 	 *         catalogo.

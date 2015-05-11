@@ -42,6 +42,7 @@ import controlador.Botones;
 import controlador.BotonesCabecera;
 import controlador.BotonesCategorias;
 import controlador.Imagenes;
+import controlador.OrdenacionListener;
 
 public class Listado {
 
@@ -50,7 +51,7 @@ public class Listado {
 	private JTextField txtBuscar;
 	public static JTextField precioMinimo, precioMaximo, valoracionMinima,
 			valoracionMaxima;
-	public static JComboBox<String> generoMulti, plataformaMulti;
+	public static JComboBox<String> generoMulti, plataformaMulti, ordenacionMulti;
 
 	@SuppressWarnings("unused")
 	private ArrayList<Juego> games; // asi se podra realizar la ordenacion mas
@@ -196,6 +197,8 @@ public class Listado {
 
 		precioMinimo = new JTextField();
 		precioMinimo.setBounds(20, 73, 51, 20);
+		if (Principal.filtrosMap.containsKey("preciomin"))
+			precioMinimo.setText(Principal.filtrosMap.get("preciomin"));
 		filtros.add(precioMinimo);
 		precioMinimo.setColumns(10);
 		JFormattedTextField textToPrecio = new JFormattedTextField();
@@ -211,6 +214,8 @@ public class Listado {
 		precioMaximo = new JTextField();
 		precioMaximo.setColumns(10);
 		precioMaximo.setBounds(99, 73, 51, 20);
+		if (Principal.filtrosMap.containsKey("preciomax"))
+			precioMaximo.setText(Principal.filtrosMap.get("preciomax"));
 		filtros.add(precioMaximo);
 
 		JFormattedTextField textGenero = new JFormattedTextField();
@@ -235,6 +240,8 @@ public class Listado {
 		generoMulti.setName("");
 		generoMulti.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		generoMulti.setBounds(20, 131, 130, 20);
+		if (Principal.filtrosMap.containsKey("genero"))
+			generoMulti.setSelectedItem(Principal.filtrosMap.get("genero"));
 		filtros.add(generoMulti);
 
 		JFormattedTextField textPlataforma = new JFormattedTextField();
@@ -255,6 +262,8 @@ public class Listado {
 		plataformaMulti.setName("");
 		plataformaMulti.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		plataformaMulti.setBounds(20, 187, 130, 20);
+		if (Principal.filtrosMap.containsKey("plataforma"))
+			plataformaMulti.setSelectedItem(Principal.filtrosMap.get("plataforma"));
 		filtros.add(plataformaMulti);
 
 		JFormattedTextField textValoracion = new JFormattedTextField();
@@ -270,6 +279,8 @@ public class Listado {
 		valoracionMinima = new JTextField();
 		valoracionMinima.setColumns(10);
 		valoracionMinima.setBounds(20, 252, 51, 20);
+		if (Principal.filtrosMap.containsKey("ratingmin"))
+			valoracionMinima.setText(Principal.filtrosMap.get("ratingmin"));
 		filtros.add(valoracionMinima);
 
 		JFormattedTextField textToValoracion = new JFormattedTextField();
@@ -285,6 +296,8 @@ public class Listado {
 		valoracionMaxima = new JTextField();
 		valoracionMaxima.setColumns(10);
 		valoracionMaxima.setBounds(99, 252, 51, 20);
+		if (Principal.filtrosMap.containsKey("ratingmax"))
+			valoracionMaxima.setText(Principal.filtrosMap.get("ratingmax"));
 		filtros.add(valoracionMaxima);
 		filtros.add(Botones.aplicarFiltros("Listado", frmPantallaPrincipal,
 				cesta));
@@ -454,8 +467,14 @@ public class Listado {
 		txtResultados.setBounds(10, 11, 252, 14);
 		ordenacion.add(txtResultados);
 
-		JComboBox<String> ordenacionMulti = new JComboBox<String>();
+		ordenacionMulti = new JComboBox<String>();
 		ordenacionMulti.setBounds(909, 11, 118, 17);
+		ordenacionMulti.setModel(new DefaultComboBoxModel<String>(new String[] {
+				"", "Price asc.", "Price desc.", "Rating asc.",
+				"Rating desc.", "Title asc.", "Title desc.", "Year asc.", "Year desc." }));
+		ordenacionMulti.addActionListener(new OrdenacionListener(frmPantallaPrincipal, cesta));
+		if(Principal.filtrosMap.containsKey("optionS"))
+			ordenacionMulti.setSelectedItem(Principal.filtrosMap.get("optionS"));
 		ordenacion.add(ordenacionMulti);
 		JFormattedTextField txtOrdenar = new JFormattedTextField();
 		txtOrdenar.setText("Sort by:");

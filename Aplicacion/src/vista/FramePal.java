@@ -21,8 +21,12 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+
 import modelo.Juego;
+import modelo.Logger;
+
 import java.util.ArrayList;
+
 import javax.swing.JFrame;
 
 public class FramePal {
@@ -41,6 +45,12 @@ public class FramePal {
 		frmPantallaPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmPantallaPrincipal.getContentPane().setLayout(null);
 		ArrayList<Juego> cesta = new ArrayList<Juego>();
+		try {
+			Logger.initialize();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		Principal.main(frmPantallaPrincipal,cesta);
 	}
 	
