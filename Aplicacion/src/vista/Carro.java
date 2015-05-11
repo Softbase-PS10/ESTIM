@@ -372,7 +372,7 @@ public class Carro {
 			}
 		}
 		JFormattedTextField textToPrecio = new JFormattedTextField();
-		textToPrecio.setText(precioTotal + " €");
+		textToPrecio.setText(precioTotal + " \u20AC");
 		textToPrecio.setOpaque(false);
 		textToPrecio.setForeground(Color.WHITE);
 		textToPrecio.setFont(new Font("Tahoma", Font.BOLD, 14));
