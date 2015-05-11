@@ -30,6 +30,7 @@ import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
 import modelo.Juego;
+import modelo.Logger;
 import controlador.Botones;
 import controlador.BotonesCabecera;
 import controlador.BotonesCategorias;
@@ -75,6 +76,7 @@ public class Principal {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		Logger.log("Inicializando frame principal...");
 		frmPantallaPrincipal.setTitle("Main window - Estim");
 		frmPantallaPrincipal.setIconImage(Toolkit.getDefaultToolkit().getImage(
 				Principal.class.getResource("/Imagenes/E.png")));
@@ -291,5 +293,6 @@ public class Principal {
 		lblNewLabel.setBounds(0, 0, 870, 471);
 		lblNewLabel.setIcon(new ImageIcon(Principal.class.getResource("/Imagenes/blis.jpg")));
 		principal.add(lblNewLabel);
+		Logger.log("Frame principal creado");
 	}
 }
