@@ -50,6 +50,7 @@ public class Carro {
 			public void run() {
 				try {
 					Carro window = new Carro(frame, cesta);
+					window.frmPantallaPrincipal.repaint();
 					window.frmPantallaPrincipal.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
