@@ -43,7 +43,7 @@ public class Principal {
 	public static JTextField textField, textField_1, textField_2, textField_3;
 	private ArrayList<Juego> cesta;
 	public static JComboBox<String> comboBox, comboBox_1;
-	public static TreeMap<String, String> filtrosMap;
+	public static TreeMap<String, String> filtrosMap  = new TreeMap<>();
 
 	/**
 	 * Launch the application.
@@ -69,7 +69,6 @@ public class Principal {
 		this.cesta = cesta;
 		frmPantallaPrincipal = frame;
 		frmPantallaPrincipal.getContentPane().removeAll();
-		filtrosMap = new TreeMap<>();
 		initialize();
 	}
 
@@ -169,6 +168,8 @@ public class Principal {
 
 		textField = new JTextField();
 		textField.setBounds(20, 73, 51, 20);
+		if(filtrosMap.containsKey("preciomin"))
+			textField.setText(filtrosMap.get("preciomin"));
 		filtros.add(textField);
 		textField.setColumns(10);
 
@@ -185,6 +186,8 @@ public class Principal {
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
 		textField_1.setBounds(99, 73, 51, 20);
+		if(filtrosMap.containsKey("preciomax"))
+			textField_1.setText(filtrosMap.get("preciomax"));
 		filtros.add(textField_1);
 
 		comboBox = new JComboBox<String>();
@@ -198,6 +201,8 @@ public class Principal {
 		comboBox.setName("");
 		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		comboBox.setBounds(20, 131, 130, 20);
+		if(filtrosMap.containsKey("genero"))
+			comboBox.setSelectedItem(filtrosMap.get("genero"));
 		filtros.add(comboBox);
 
 		JFormattedTextField frmtdtxtfldGnero = new JFormattedTextField();
@@ -229,6 +234,8 @@ public class Principal {
 		comboBox_1.setName("");
 		comboBox_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		comboBox_1.setBounds(20, 187, 130, 20);
+		if(filtrosMap.containsKey("plataforma"))
+			comboBox_1.setSelectedItem(filtrosMap.get("plataforma"));
 		filtros.add(comboBox_1);
 
 		filtros.add(Botones.aplicarFiltros("Principal", frmPantallaPrincipal,cesta));
@@ -246,6 +253,8 @@ public class Principal {
 		textField_2 = new JTextField();
 		textField_2.setColumns(10);
 		textField_2.setBounds(20, 252, 51, 20);
+		if(filtrosMap.containsKey("ratingmin"))
+			textField_2.setText(filtrosMap.get("ratingmin"));
 		filtros.add(textField_2);
 
 		JFormattedTextField frmtdtxtfldTo = new JFormattedTextField();
@@ -261,6 +270,8 @@ public class Principal {
 		textField_3 = new JTextField();
 		textField_3.setColumns(10);
 		textField_3.setBounds(99, 252, 51, 20);
+		if(filtrosMap.containsKey("ratingmax"))
+			textField_3.setText(filtrosMap.get("ratingmax"));
 		filtros.add(textField_3);
 
 		JPanel principal = new JPanel();
