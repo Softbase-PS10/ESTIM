@@ -21,12 +21,14 @@ import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.border.LineBorder;
 
+import modelo.Juego;
 import modelo.Plataforma;
 import vista.Principal;
 
@@ -54,7 +56,7 @@ public class BotonesCategorias {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO el codigo de ir atras
+				;
 			}
 		});
 
@@ -65,7 +67,7 @@ public class BotonesCategorias {
 	 * @return un boton que redirige a la pantalla de listados de juegos de
 	 *         PlayStation 3
 	 */
-	public static JButton ps3(JFrame frame) {
+	public static JButton ps3(JFrame frame, ArrayList<Juego> cesta) {
 		JButton ps3 = new JButton("");
 		ps3.setIcon(new ImageIcon(Principal.class
 				.getResource("/Imagenes/B/PS3.png")));
@@ -79,7 +81,7 @@ public class BotonesCategorias {
 		ps3.setBorder(new LineBorder(new Color(0, 0, 0)));
 		ps3.setBounds(212, 0, 106, 30);
 
-		ps3.addActionListener(new PlatformListener(Plataforma.aliasPS3, frame));
+		ps3.addActionListener(new PlatformListener(Plataforma.aliasPS3, frame, cesta));
 
 		return ps3;
 	}
@@ -88,7 +90,7 @@ public class BotonesCategorias {
 	 * @return un boton que redirige a la pantalla de listado de juegos de
 	 *         PlayStation Vita
 	 */
-	public static JButton vita(JFrame frame) {
+	public static JButton vita(JFrame frame, ArrayList<Juego> cesta) {
 		JButton vita = new JButton("");
 		vita.setRolloverIcon(new ImageIcon(Principal.class
 				.getResource("/Imagenes/B/PSVITAP.png")));
@@ -102,7 +104,7 @@ public class BotonesCategorias {
 		vita.setBorder(new LineBorder(new Color(0, 0, 0)));
 		vita.setBounds(318, 0, 106, 30);
 
-		vita.addActionListener(new PlatformListener(Plataforma.aliasPSVita, frame));
+		vita.addActionListener(new PlatformListener(Plataforma.aliasPSVita, frame, cesta));
 
 		return vita;
 	}
@@ -111,7 +113,7 @@ public class BotonesCategorias {
 	 * @return un boton que redirige a la pantalla de listado de juegos de Xbox
 	 *         ONE
 	 */
-	public static JButton xone(JFrame frame) {
+	public static JButton xone(JFrame frame, ArrayList<Juego> cesta) {
 		JButton xone = new JButton("");
 		xone.setIcon(new ImageIcon(Principal.class
 				.getResource("/Imagenes/B/XONE.png")));
@@ -125,7 +127,7 @@ public class BotonesCategorias {
 		xone.setBorder(new LineBorder(new Color(0, 0, 0)));
 		xone.setBounds(424, 0, 106, 30);
 
-		xone.addActionListener(new PlatformListener(Plataforma.aliasXONE, frame));
+		xone.addActionListener(new PlatformListener(Plataforma.aliasXONE, frame, cesta));
 
 		return xone;
 	}
@@ -134,7 +136,7 @@ public class BotonesCategorias {
 	 * @return un boton que redirige a la pantalla de listado de juegos de Xbox
 	 *         360
 	 */
-	public static JButton x360(JFrame frame) {
+	public static JButton x360(JFrame frame, ArrayList<Juego> cesta) {
 		JButton x360 = new JButton("");
 		x360.setRolloverIcon(new ImageIcon(Principal.class
 				.getResource("/Imagenes/B/X360P.png")));
@@ -148,7 +150,7 @@ public class BotonesCategorias {
 		x360.setBorder(new LineBorder(new Color(0, 0, 0)));
 		x360.setBounds(530, 0, 106, 30);
 
-		x360.addActionListener(new PlatformListener(Plataforma.aliasX360, frame));
+		x360.addActionListener(new PlatformListener(Plataforma.aliasX360, frame, cesta));
 
 		return x360;
 	}
@@ -156,7 +158,7 @@ public class BotonesCategorias {
 	/**
 	 * @return un boton que redirige a la pantalla de listado de juegos de PC
 	 */
-	public static JButton pc(JFrame frame) {
+	public static JButton pc(JFrame frame, ArrayList<Juego> cesta) {
 		JButton pc = new JButton("");
 		pc.setIcon(new ImageIcon(Principal.class
 				.getResource("/Imagenes/B/PC.png")));
@@ -170,7 +172,7 @@ public class BotonesCategorias {
 		pc.setBorder(new LineBorder(new Color(0, 0, 0)));
 		pc.setBounds(636, 0, 106, 30);
 
-		pc.addActionListener(new PlatformListener(Plataforma.aliasPC, frame));
+		pc.addActionListener(new PlatformListener(Plataforma.aliasPC, frame, cesta));
 
 		return pc;
 	}
@@ -178,7 +180,7 @@ public class BotonesCategorias {
 	/**
 	 * @return un boton que redirige a la pantalla de listado de juegos de WiiU
 	 */
-	public static JButton wiiu(JFrame frame) {
+	public static JButton wiiu(JFrame frame, ArrayList<Juego> cesta) {
 		JButton wiiu = new JButton("");
 		wiiu.setRolloverIcon(new ImageIcon(Principal.class
 				.getResource("/Imagenes/B/WIIUP.png")));
@@ -192,7 +194,7 @@ public class BotonesCategorias {
 		wiiu.setBorder(new LineBorder(new Color(0, 0, 0)));
 		wiiu.setBounds(742, 0, 106, 30);
 
-		wiiu.addActionListener(new PlatformListener(Plataforma.aliasWiiU, frame));
+		wiiu.addActionListener(new PlatformListener(Plataforma.aliasWiiU, frame, cesta));
 
 		return wiiu;
 	}
@@ -200,7 +202,7 @@ public class BotonesCategorias {
 	/**
 	 * @return un boton que redirige a la pantalla de listado de juegos de Wii
 	 */
-	public static JButton wii(JFrame frame) {
+	public static JButton wii(JFrame frame, ArrayList<Juego> cesta) {
 		JButton wii = new JButton("");
 		wii.setIcon(new ImageIcon(Principal.class
 				.getResource("/Imagenes/B/WII.png")));
@@ -214,7 +216,7 @@ public class BotonesCategorias {
 		wii.setBorder(new LineBorder(new Color(0, 0, 0)));
 		wii.setBounds(848, 0, 106, 30);
 
-		wii.addActionListener(new PlatformListener(Plataforma.aliasWii, frame));
+		wii.addActionListener(new PlatformListener(Plataforma.aliasWii, frame, cesta));
 
 		return wii;
 	}
@@ -223,7 +225,7 @@ public class BotonesCategorias {
 	 * @return un boton que redirige a la pantalla de listado de juegos de
 	 *         Nintendo New 3DS
 	 */
-	public static JButton n3ds(JFrame frame) {
+	public static JButton n3ds(JFrame frame, ArrayList<Juego> cesta) {
 		JButton n3ds = new JButton("");
 		n3ds.setRolloverIcon(new ImageIcon(Principal.class
 				.getResource("/Imagenes/B/N3DSP.png")));
@@ -237,7 +239,7 @@ public class BotonesCategorias {
 		n3ds.setBorder(new LineBorder(new Color(0, 0, 0)));
 		n3ds.setBounds(954, 0, 106, 30);
 
-		n3ds.addActionListener(new PlatformListener(Plataforma.alias3DS, frame));
+		n3ds.addActionListener(new PlatformListener(Plataforma.alias3DS, frame, cesta));
 
 		return n3ds;
 	}
@@ -246,7 +248,7 @@ public class BotonesCategorias {
 	 * @return un boton que redirige a la pantalla de listado de juegos de
 	 *         PlayStation 4
 	 */
-	public static JButton ps4(JFrame frame) {
+	public static JButton ps4(JFrame frame, ArrayList<Juego> cesta) {
 		JButton ps4 = new JButton("");
 		ps4.setRolloverIcon(new ImageIcon(Principal.class
 				.getResource("/Imagenes/B/PS4P.png")));
@@ -261,7 +263,7 @@ public class BotonesCategorias {
 		ps4.setBorder(new LineBorder(new Color(0, 0, 0)));
 		ps4.setBounds(106, 0, 106, 30);
 
-		ps4.addActionListener(new PlatformListener(Plataforma.aliasPS4, frame));
+		ps4.addActionListener(new PlatformListener(Plataforma.aliasPS4, frame, cesta));
 
 		return ps4;
 	}
@@ -288,8 +290,7 @@ public class BotonesCategorias {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-
+				;
 			}
 		});
 

@@ -14,7 +14,6 @@ package vista;
 
 import java.awt.Toolkit;
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -22,7 +21,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-
+import modelo.Juego;
+import java.util.ArrayList;
 import javax.swing.JFrame;
 
 public class FramePal {
@@ -40,8 +40,8 @@ public class FramePal {
 		frmPantallaPrincipal.setBounds(100, 100, 1066, 600);
 		frmPantallaPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmPantallaPrincipal.getContentPane().setLayout(null);
-		
-		Principal.main(frmPantallaPrincipal);
+		ArrayList<Juego> cesta = new ArrayList<Juego>();
+		Principal.main(frmPantallaPrincipal,cesta);
 	}
 	
 	//caballocampestre

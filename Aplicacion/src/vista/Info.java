@@ -14,6 +14,7 @@ package vista;
 
 import java.awt.EventQueue;
 import java.awt.Toolkit;
+import java.util.ArrayList;
 
 import modelo.Juego;
 
@@ -30,13 +31,14 @@ public class Info {
 
 	private JFrame frmInformacinDelProduc;
 	private static Juego juego;
+	private ArrayList<Juego> cesta;
 
-	public static void main(final JFrame fr, Juego jue) {
+	public static void main(final JFrame fr, Juego jue, final ArrayList<Juego> cesta) {
 		juego = jue;
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Info window = new Info(fr, juego);
+					Info window = new Info(fr, juego, cesta);
 					window.frmInformacinDelProduc.repaint();
 					window.frmInformacinDelProduc.setVisible(true);
 				} catch (Exception e) {
@@ -49,7 +51,8 @@ public class Info {
 	/**
 	 * Create the application.
 	 */
-	public Info(JFrame fr, Juego juego) {
+	public Info(JFrame fr, Juego juego, ArrayList<Juego> cesta) {
+		this.cesta = cesta;
 		frmInformacinDelProduc = fr;
 		frmInformacinDelProduc.getContentPane().removeAll();
 		initialize(juego);
@@ -66,7 +69,7 @@ public class Info {
 				.getImage(Info.class.getResource("/Imagenes/E.png")));
 
 		// Cabecera
-		JPanel cabecera = BotonesInfo.getCabecera(frmInformacinDelProduc);
+		JPanel cabecera = BotonesInfo.getCabecera(frmInformacinDelProduc,cesta);
 		frmInformacinDelProduc.getContentPane().add(cabecera);
 
 		// Panel de busqueda
@@ -74,20 +77,20 @@ public class Info {
 		cabecera.add(txtBuscar);
 
 		// Lupa de busqueda
-		JPanel lupaBuscar = BotonesInfo.getLupaBuscar(txtBuscar);
+		JPanel lupaBuscar = BotonesInfo.getLupaBuscar(txtBuscar, cesta);
 		cabecera.add(lupaBuscar);
 
 		// Opciones
 		JPanel opciones = BotonesInfo
-				.getOpciones(juego, null, frmInformacinDelProduc);
+				.getOpciones(juego, null, frmInformacinDelProduc, cesta);
 		cabecera.add(opciones);
 
 		// Carrito
-		JPanel carrito = BotonesInfo.getCarrito();
+		JPanel carrito = BotonesInfo.getCarrito(cesta);
 		cabecera.add(carrito);
 
 		// Categorias
-		JPanel categorias = BotonesInfo.getCategorias(frmInformacinDelProduc);
+		JPanel categorias = BotonesInfo.getCategorias(frmInformacinDelProduc,cesta);
 		frmInformacinDelProduc.getContentPane().add(categorias);
 
 		// Imagen
@@ -149,7 +152,7 @@ public class Info {
 		frmInformacinDelProduc.getContentPane().add(RespValoracion);
 
 		// Boton carro
-		JButton Carro = BotonesInfo.getBotonCarro();
+		JButton Carro = BotonesInfo.getBotonCarro(frmInformacinDelProduc,juego,cesta);
 		frmInformacinDelProduc.getContentPane().add(Carro);
 
 		// Label fondo

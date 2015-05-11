@@ -25,6 +25,7 @@ import java.util.ArrayList;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -47,14 +48,14 @@ public class Listado {
 	/* declaracion de variables */
 	private JFrame frmPantallaPrincipal;
 	private JTextField txtBuscar;
-	private JTextField precioMinimo;
-	private JTextField precioMaximo;
-	private JTextField valoracionMinima;
-	private JTextField valoracionMaxima;
+	public static JTextField precioMinimo, precioMaximo, valoracionMinima,
+			valoracionMaxima;
+	public static JComboBox<String> generoMulti, plataformaMulti;
 
 	@SuppressWarnings("unused")
 	private ArrayList<Juego> games; // asi se podra realizar la ordenacion mas
 									// adelante
+	private ArrayList<Juego> cesta;
 
 	/* declaracion de metodos y funciones */
 
@@ -64,11 +65,12 @@ public class Listado {
 	 * 
 	 *            Lanza la ventana de listado de juegos
 	 */
-	public static void listar(final JFrame fr, final ArrayList<Juego> juegos) {
+	public static void listar(final JFrame fr, final ArrayList<Juego> juegos,
+			final ArrayList<Juego> cesta) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Listado window = new Listado(fr, juegos);
+					Listado window = new Listado(fr, juegos, cesta);
 					window.frmPantallaPrincipal.repaint();
 					window.frmPantallaPrincipal.setVisible(true);
 				} catch (Exception e) {
@@ -85,8 +87,10 @@ public class Listado {
 	 * 
 	 *             Crea la aplicacion
 	 */
-	public Listado(JFrame fr, ArrayList<Juego> juegos) throws IOException {
+	public Listado(JFrame fr, ArrayList<Juego> juegos, ArrayList<Juego> cesta)
+			throws IOException {
 		this.games = juegos;
+		this.cesta = cesta;
 		this.frmPantallaPrincipal = fr;
 		frmPantallaPrincipal.getContentPane().removeAll();
 		initialize(juegos);
@@ -111,7 +115,7 @@ public class Listado {
 		frmPantallaPrincipal.getContentPane().add(cabecera);
 		cabecera.setLayout(null);
 
-		cabecera.add(BotonesCabecera.logo(frmPantallaPrincipal));
+		cabecera.add(BotonesCabecera.logo(frmPantallaPrincipal, cesta));
 
 		txtBuscar = new JTextField();
 		txtBuscar.setToolTipText("");
@@ -124,7 +128,7 @@ public class Listado {
 		lupaBuscar.setBounds(841, 20, 30, 30);
 		cabecera.add(lupaBuscar);
 		lupaBuscar.setLayout(null);
-		lupaBuscar.add(BotonesCabecera.buscar(txtBuscar));
+		lupaBuscar.add(BotonesCabecera.buscar(txtBuscar, cesta));
 
 		JPanel opciones = new JPanel();
 		opciones.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -132,13 +136,17 @@ public class Listado {
 		cabecera.add(opciones);
 		opciones.setLayout(null);
 
+
+		opciones.add(BotonesCabecera.ajustes(2, null, null, frmPantallaPrincipal,
+				cesta));
+
 		JPanel carrito = new JPanel();
 		carrito.setBorder(new LineBorder(new Color(0, 0, 0)));
 		carrito.setBounds(990, 0, 70, 70);
 		cabecera.add(carrito);
 		carrito.setLayout(null);
 
-		carrito.add(BotonesCabecera.carro());
+		carrito.add(BotonesCabecera.carro(cesta));
 
 		JPanel categorias = new JPanel();
 		categorias.setBorder(new LineBorder(new Color(0, 0, 0), 2));
@@ -148,15 +156,15 @@ public class Listado {
 		categorias.setLayout(null);
 
 		categorias.add(BotonesCategorias.atras());
-		categorias.add(BotonesCategorias.ps3(frmPantallaPrincipal));
-		categorias.add(BotonesCategorias.vita(frmPantallaPrincipal));
-		categorias.add(BotonesCategorias.xone(frmPantallaPrincipal));
-		categorias.add(BotonesCategorias.x360(frmPantallaPrincipal));
-		categorias.add(BotonesCategorias.pc(frmPantallaPrincipal));
-		categorias.add(BotonesCategorias.wiiu(frmPantallaPrincipal));
-		categorias.add(BotonesCategorias.wii(frmPantallaPrincipal));
-		categorias.add(BotonesCategorias.n3ds(frmPantallaPrincipal));
-		categorias.add(BotonesCategorias.ps4(frmPantallaPrincipal));
+		categorias.add(BotonesCategorias.ps3(frmPantallaPrincipal, cesta));
+		categorias.add(BotonesCategorias.vita(frmPantallaPrincipal, cesta));
+		categorias.add(BotonesCategorias.xone(frmPantallaPrincipal, cesta));
+		categorias.add(BotonesCategorias.x360(frmPantallaPrincipal, cesta));
+		categorias.add(BotonesCategorias.pc(frmPantallaPrincipal, cesta));
+		categorias.add(BotonesCategorias.wiiu(frmPantallaPrincipal, cesta));
+		categorias.add(BotonesCategorias.wii(frmPantallaPrincipal, cesta));
+		categorias.add(BotonesCategorias.n3ds(frmPantallaPrincipal, cesta));
+		categorias.add(BotonesCategorias.ps4(frmPantallaPrincipal, cesta));
 		categorias.add(BotonesCategorias.adelante());
 
 		JPanel filtros = new JPanel();
@@ -215,7 +223,14 @@ public class Listado {
 		textGenero.setBounds(20, 104, 171, 20);
 		filtros.add(textGenero);
 
-		JComboBox<String> generoMulti = new JComboBox<String>();
+		generoMulti = new JComboBox<String>();
+		generoMulti.setModel(new DefaultComboBoxModel<String>(new String[] {
+				"", "Action", "Adventure",
+				"Construction and Management Simulation", "Fighting",
+				"Flight Simulator", "Horror", "Life Simulation", "MMO",
+				"Music", "Platform", "Puzzle", "Racing", "Role-Playing",
+				"Sandbox", "Shooter", "Sports", "Stealth", "Strategy",
+				"Vehicle Simulation" }));
 		generoMulti.setToolTipText("");
 		generoMulti.setName("");
 		generoMulti.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -232,7 +247,10 @@ public class Listado {
 		textPlataforma.setBounds(20, 162, 171, 20);
 		filtros.add(textPlataforma);
 
-		JComboBox<String> plataformaMulti = new JComboBox<String>();
+		plataformaMulti = new JComboBox<String>();
+		plataformaMulti.setModel(new DefaultComboBoxModel<String>(new String[] {
+				"", "PS4", "PS3", "PSVITA", "XONE", "X360", "PC", "WII-U",
+				"WII", "N3DS" }));
 		plataformaMulti.setToolTipText("");
 		plataformaMulti.setName("");
 		plataformaMulti.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -268,7 +286,8 @@ public class Listado {
 		valoracionMaxima.setColumns(10);
 		valoracionMaxima.setBounds(99, 252, 51, 20);
 		filtros.add(valoracionMaxima);
-		filtros.add(Botones.aplicarFiltros());
+		filtros.add(Botones.aplicarFiltros("Listado", frmPantallaPrincipal,
+				cesta));
 
 		JPanel principal = new JPanel();
 		principal.setBounds(190, 131, 870, 440);
@@ -310,7 +329,7 @@ public class Listado {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					frmPantallaPrincipal.getContentPane().removeAll();
-					Info.main(frmPantallaPrincipal, j);
+					Info.main(frmPantallaPrincipal, j, cesta);
 				}
 			});
 			res.add(caratula);
@@ -447,8 +466,5 @@ public class Listado {
 		txtOrdenar.setBorder(null);
 		txtOrdenar.setBounds(842, 7, 57, 20);
 		ordenacion.add(txtOrdenar);
-
-		opciones.add(BotonesCabecera.ajustes(2, null, games, frmPantallaPrincipal));
-
 	}
 }

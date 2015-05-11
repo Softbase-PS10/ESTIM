@@ -7,7 +7,7 @@
  * 		-Alejandro Marquez
  * 		-Alejandro Royo
  * 		-Jaime Ruiz-Borau
- * DESCRIPCION: clase que encapsula las distintas sentencias SQL (Oracle) para
+ * DESCRIPCION: clase que encapsula las distintas sentencias SQL (MySQL) para
  * 				el acceso a la Base de Datos.
  */
 
@@ -19,25 +19,111 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Map.Entry;
+import java.util.TreeMap;
 
 public class Sentencias {
 
 	/* declaracion de atributos */
 	private Connection connection;
-
+	
 	/* declaracion de metodos y funciones */
 
-	public static void main(String[] args) {
-		Sentencias s = new Sentencias();
-		for (Juego j : s.listarJuegosPlataformaAlias("PS3")) {
-			System.out.println(j.mostrarInfo());
+	/**
+	 * Método que aplica distintas querys en función del contenido del parámetro
+	 * filtros. Además devuelve una consulta paginada, es decir, dependiendo del
+	 * número de página, devuelve los 5 elementos de dicha página. Se asume la
+	 * primera página la número 1.
+	 * 
+	 * @param filtros
+	 *            : TreeMap que contiene los distintos requisitos para la
+	 *            consulta (Ej. que la plataforma sea PS3)
+	 * @param nPagina
+	 *            : Número de página que se quiere consultar, la primera es la
+	 *            número 1
+	 * @return Una lista con los 5 juegos que pertenezcan a la página pasada y
+	 *         que cumplan los requisitos especifícados en el TreeMap
+	 */
+	public ArrayList<Juego> listarJuegosMultipleFiltros(
+			TreeMap<String, String> filtros, int nPagina) {
+		String query = "select distinct JUEGO.id, titulo, imagen, resumen, rating, lanzamiento, precio, nombre, alias "
+				+ "from JUEGO, JUEGO_GENERO, JUEGO_PLATAFORMA, PLATAFORMA where "
+				+ "JUEGO.id = JUEGO_GENERO.id and JUEGO.id = JUEGO_PLATAFORMA.juego and "
+				+ "JUEGO_PLATAFORMA.plataforma = PLATAFORMA.id";
+		String order = "";
+		if (filtros != null) {
+			for (Entry<String, String> e : filtros.entrySet()) {
+				switch (e.getKey()) {
+				case ("titulo"):
+					query = query + " and JUEGO.titulo = '" + e.getValue() + "'";
+					break;
+				case ("preciomin"):
+					query = query + " and JUEGO.precio >= " + e.getValue();
+					break;
+				case ("preciomax"):
+					query = query + " and JUEGO.precio <= " + e.getValue();
+					break;
+				case ("genero"):
+					query = query + " and JUEGO_GENERO.genero = '"
+							+ e.getValue() + "'";
+					break;
+				case ("plataforma"):
+					query = query + " and PLATAFORMA.alias = '" + e.getValue()
+							+ "'";
+					break;
+				case ("ratingmin"):
+					query = query + " and JUEGO.rating >= " + e.getValue();
+					break;
+				case ("ratingmax"):
+					query = query + " and JUEGO.rating <= " + e.getValue();
+					break;
+				case ("order"):
+					order = " ORDER BY " + e.getValue() + ", JUEGO.id ";
+					break;
+				case ("type"):
+					order = order + e.getValue();
+					break;
+				}
+			}
 		}
-		System.out.println(s.listarJuego(1).mostrarInfo());
-		s.close();
+		
+		query = query + order + " limit 5 offset " + (5 * (nPagina - 1));
+		ArrayList<Juego> js = new ArrayList<Juego>();
+		try {		
+			Statement st = connection.createStatement(), st2;
+			ResultSet resul = st.executeQuery(query);
+			Juego j;
+			String q;
+			ArrayList<String> generos = new ArrayList<String>();
+			ResultSet res;
+			while (resul.next()) {
+				j = new Juego(resul.getLong("id"), resul.getString("titulo"),
+						resul.getString("imagen"), resul.getString("resumen"),
+						resul.getString("lanzamiento"),
+						resul.getString("rating"), generos,
+						resul.getInt("precio"), new Plataforma(
+								resul.getString("nombre"),
+								resul.getString("alias")));
+
+				q = "SELECT * FROM JUEGO_GENERO WHERE id = '" + j.getId() + "'";
+				st2 = connection.createStatement();
+				res = st2.executeQuery(q);
+				while (res.next()) {
+					generos.add(res.getString("genero"));
+				}
+				j.setGenero(generos);
+				js.add(j);
+				generos = new ArrayList<String>();
+			}
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+		return js;
 	}
+	
 
 	/**
-	 * Metodo de creacion de la conexion con la Base de Datos Oracle
+	 * Metodo de creacion de la conexion con la Base de Datos MySql
 	 */
 	public Sentencias() {
 		try {
@@ -141,7 +227,7 @@ public class Sentencias {
 
 	/**
 	 * @return una lista (ArrayList) con todos los juegos disponibles en la Base
-	 *         de Datos (Oracle)
+	 *         de Datos (MySQL)
 	 */
 	public ArrayList<Juego> listarTodosJuegos() {
 		return listarJuegos("");
@@ -245,8 +331,8 @@ public class Sentencias {
 	public void insertarJuego(Juego juego) {
 
 		// Si el titulo no es vacio ni nulo, el precio mayor que cero, la
-		// plataforma no se nula ni
-		// sus campos vacios, se comienza a añadir
+		// plataforma no se nula ni sus campos vacios,
+		// se comienza a añadir
 		if (juego.getTitulo() != null
 				&& !juego.getTitulo().equals("")
 				&& juego.getPrecio() > 0
@@ -280,7 +366,6 @@ public class Sentencias {
 			} catch (SQLException ex) {
 				if (ex.getSQLState().startsWith("23"))
 					System.out.println("Entrada en juego duplicada");
-
 				else
 					ex.printStackTrace();
 			}

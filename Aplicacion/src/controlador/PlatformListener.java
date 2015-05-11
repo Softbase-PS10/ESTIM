@@ -30,10 +30,12 @@ public class PlatformListener implements ActionListener {
 	private String alias;
 	private Sentencias sql;
 	private JFrame frame;
+	private ArrayList<Juego> cesta;
 
-	public PlatformListener(String alias, JFrame frame) {
+	public PlatformListener(String alias, JFrame frame, ArrayList<Juego> cesta) {
 		this.alias = alias;
 		this.frame = frame;
+		this.cesta = cesta;
 	}
 
 	@Override
@@ -43,7 +45,7 @@ public class PlatformListener implements ActionListener {
 		sql.close();
 		
 		frame.getContentPane().removeAll();
-		Listado.listar(frame, juegos);
+		Listado.listar(frame, juegos, cesta);
 	}
 
 }

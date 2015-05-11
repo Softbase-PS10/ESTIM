@@ -17,6 +17,7 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
@@ -61,13 +62,13 @@ public class Modificar {
 	public static JFormattedTextField eTitulo;
 	public static JLabel vistaPreviaCaratula;
 	private static Juego j;
+	private static ArrayList<Juego> cesta;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
-			@SuppressWarnings("static-access")
 			public void run() {
 				try {
 					// Modificar window = new Modificar(null);
@@ -88,7 +89,8 @@ public class Modificar {
 	 *            vacios.
 	 */
 	@SuppressWarnings("static-access")
-	public Modificar(JFrame fr, Juego j) {
+	public Modificar(JFrame fr, Juego j, ArrayList<Juego> cesta) {
+		this.cesta = cesta;
 		this.j = j;
 		this.frmPantallaPrincipal = fr;
 		frmPantallaPrincipal.getContentPane().removeAll();
@@ -178,7 +180,7 @@ public class Modificar {
 		frmPantallaPrincipal.getContentPane().add(cabecera);
 		cabecera.setLayout(null);
 
-		cabecera.add(BotonesCabecera.logo(frmPantallaPrincipal));
+		cabecera.add(BotonesCabecera.logo(frmPantallaPrincipal,cesta));
 
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -186,7 +188,7 @@ public class Modificar {
 		cabecera.add(panel);
 		panel.setLayout(null);
 
-		panel.add(BotonesCabecera.carro());
+		panel.add(BotonesCabecera.carro(cesta));
 
 		txtBuscar = new JTextField();
 		txtBuscar.setToolTipText("");
@@ -200,7 +202,7 @@ public class Modificar {
 		cabecera.add(panel_2);
 		panel_2.setLayout(null);
 
-		panel_2.add(BotonesCabecera.buscar(txtBuscar));
+		panel_2.add(BotonesCabecera.buscar(txtBuscar,cesta));
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -208,7 +210,7 @@ public class Modificar {
 		cabecera.add(panel_1);
 		panel_1.setLayout(null);
 
-		panel_1.add(BotonesCabecera.ajustes(4, null, null, frmPantallaPrincipal));
+		panel_1.add(BotonesCabecera.ajustes(4, null, null, frmPantallaPrincipal, cesta));
 
 		JPanel categorias = new JPanel();
 		categorias.setBorder(new LineBorder(new Color(0, 0, 0), 2));
@@ -218,15 +220,15 @@ public class Modificar {
 		categorias.setLayout(null);
 
 		categorias.add(BotonesCategorias.atras());
-		categorias.add(BotonesCategorias.ps3(frmPantallaPrincipal));
-		categorias.add(BotonesCategorias.vita(frmPantallaPrincipal));
-		categorias.add(BotonesCategorias.xone(frmPantallaPrincipal));
-		categorias.add(BotonesCategorias.x360(frmPantallaPrincipal));
-		categorias.add(BotonesCategorias.pc(frmPantallaPrincipal));
-		categorias.add(BotonesCategorias.wiiu(frmPantallaPrincipal));
-		categorias.add(BotonesCategorias.wii(frmPantallaPrincipal));
-		categorias.add(BotonesCategorias.n3ds(frmPantallaPrincipal));
-		categorias.add(BotonesCategorias.ps4(frmPantallaPrincipal));
+		categorias.add(BotonesCategorias.ps3(frmPantallaPrincipal,cesta));
+		categorias.add(BotonesCategorias.vita(frmPantallaPrincipal,cesta));
+		categorias.add(BotonesCategorias.xone(frmPantallaPrincipal,cesta));
+		categorias.add(BotonesCategorias.x360(frmPantallaPrincipal,cesta));
+		categorias.add(BotonesCategorias.pc(frmPantallaPrincipal,cesta));
+		categorias.add(BotonesCategorias.wiiu(frmPantallaPrincipal,cesta));
+		categorias.add(BotonesCategorias.wii(frmPantallaPrincipal,cesta));
+		categorias.add(BotonesCategorias.n3ds(frmPantallaPrincipal,cesta));
+		categorias.add(BotonesCategorias.ps4(frmPantallaPrincipal,cesta));
 		categorias.add(BotonesCategorias.adelante());
 
 		JPanel panel_3 = new JPanel();
@@ -358,7 +360,7 @@ public class Modificar {
 		vistaPreviaCaratula.setBounds(706, 114, 170, 240);
 		panel_3.add(vistaPreviaCaratula);
 
-		panel_3.add(Botones.save(j, frmPantallaPrincipal));
+		panel_3.add(Botones.save(j, frmPantallaPrincipal,cesta));
 
 		plataforma = new JComboBox<String>();
 		String[] listaP = Plataforma.listaAlias();

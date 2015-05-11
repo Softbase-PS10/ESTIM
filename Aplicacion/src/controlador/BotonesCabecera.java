@@ -23,8 +23,6 @@ import java.awt.event.MouseAdapter;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -47,6 +45,7 @@ import modelo.Juego;
 import modelo.Sentencias;
 import vista.FramePal;
 import vista.Info;
+import vista.Carro;
 import vista.Listado;
 import vista.Modificar;
 import vista.Principal;
@@ -60,7 +59,7 @@ public class BotonesCabecera {
 	 * @return un boton de busqueda que obtiene lo escrito en un campo, lo
 	 *         procesa y redirige a la pantalla de listado de resultados.
 	 */
-	public static JButton buscar(JTextField b) {
+	public static JButton buscar(JTextField b, final ArrayList<Juego> cesta) {
 		busc = b;
 		JButton busqueda = new JButton("");
 		busqueda.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -77,7 +76,7 @@ public class BotonesCabecera {
 				ArrayList<Juego> juegos = sql.listarJuegosTitulo(busqueda);
 				sql.close();
 				frame.getContentPane().removeAll();
-				Listado.listar(frame, juegos);
+				Listado.listar(frame, juegos, cesta);
 			}
 		});
 
@@ -94,7 +93,8 @@ public class BotonesCabecera {
 	 *            de información del juego y 4 para la pantalla de modificar
 	 *            juego
 	 */
-	public static JLabel ajustes(final int origen, final Juego j, final ArrayList<Juego> juegos, final JFrame fr) {
+	public static JLabel ajustes(final int origen, final Juego j, final ArrayList<Juego> juegos, 
+			final JFrame fr, final ArrayList<Juego> cesta) {
 		
 		final JLabel ajustes = new JLabel();
 		final Juego juegoActual = j;
@@ -111,7 +111,7 @@ public class BotonesCabecera {
 					@Override
 					public void mousePressed(java.awt.event.MouseEvent evt) {
 						frame.getContentPane().removeAll();
-						Modificar m = new Modificar(fr, juegoActual);
+						Modificar m = new Modificar(fr, juegoActual, cesta);
 						m.mostrarMod();
 					}
 				});
@@ -122,7 +122,7 @@ public class BotonesCabecera {
 					@Override
 					public void mousePressed(java.awt.event.MouseEvent evt) {
 						frame.getContentPane().removeAll();
-						Modificar m = new Modificar(fr, juegoActual);
+						Modificar m = new Modificar(fr, juegoActual, cesta);
 						m.mostrarMod();
 					}
 				});
@@ -165,7 +165,7 @@ public class BotonesCabecera {
 												s.close();
 
 												frame.getContentPane().removeAll();
-												Listado.listar(frame, juegos);
+												Listado.listar(frame, juegos, cesta);
 											} else if (value == JOptionPane.NO_OPTION) {
 												// Do nothing
 											}
@@ -191,7 +191,7 @@ public class BotonesCabecera {
 	    			FramePal.setAdminOn(false);
 					frame.getContentPane().removeAll();
 
-					Principal.main(frame);
+					Principal.main(frame, cesta);
 				}
 			});
 			pop.add(exit);
@@ -301,15 +301,15 @@ public class BotonesCabecera {
 												    			switch (origen) {
 												    			case 1:
 												    				//Pantalla principal
-												    				Principal.main(fr);
+												    				Principal.main(fr, cesta);
 												    				break;
 												    			case 2:
 												    				//Listado de juegos
-												    				Listado.listar(fr, juegos);
+												    				Listado.listar(fr, juegos, cesta);
 												    				break;
 												    			case 3:
 												    				//Info de juego
-												    				Info.main(fr, juegoActual);
+												    				Info.main(fr, juegoActual, cesta);
 												    				break;
 												    			}
 												    		}
@@ -331,7 +331,6 @@ public class BotonesCabecera {
 							dialog.pack();
 							dialog.setVisible(true);
 						} catch (IOException e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
 			    		
@@ -350,17 +349,12 @@ public class BotonesCabecera {
 	 * @return un boton del carro de la compra que implementa la funcion de
 	 *         'carrito de la compra' en la aplicacion.
 	 */
-	public static JLabel carro() {
+	public static JLabel carro(final ArrayList<Juego> cesta) {
 		final JLabel carro = new JLabel("");
 		carro.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		carro.setIcon(new ImageIcon(Principal.class
 				.getResource("/Imagenes/B/carro.png")));
 		carro.setBounds(0, 0, 70, 70);
-		final JPopupMenu pop = new JPopupMenu();
-		JMenuItem show = new JMenuItem("Show cart");
-		pop.add(show);
-		JMenuItem empty = new JMenuItem("Empty cart");
-		pop.add(empty);
 		carro.addMouseListener(new MouseAdapter() {
 
 			@Override
@@ -377,7 +371,7 @@ public class BotonesCabecera {
 
 			@Override
 			public void mousePressed(java.awt.event.MouseEvent evt) {
-				pop.show(evt.getComponent(), 0, 70);
+				Carro.main(frame, cesta);
 			}
 		});
 
@@ -388,7 +382,7 @@ public class BotonesCabecera {
 	 * @return un boton con el logo del producto que redirige al usuario a la
 	 *         pantalla de inicio de la app.
 	 */
-	public static JButton logo(JFrame frame) {
+	public static JButton logo(JFrame frame, final ArrayList<Juego> cesta) {
 		BotonesCabecera.frame = frame;
 		JButton logo = new JButton("");
 		logo.setFocusPainted(false);
@@ -406,7 +400,7 @@ public class BotonesCabecera {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				BotonesCabecera.frame.getContentPane().removeAll();
-				Principal.main(BotonesCabecera.frame);
+				Principal.main(BotonesCabecera.frame,cesta);
 			}
 		});
 
