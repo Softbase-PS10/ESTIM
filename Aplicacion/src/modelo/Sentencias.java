@@ -19,6 +19,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.TreeMap;
 
@@ -26,10 +27,8 @@ public class Sentencias {
 
 	/* declaracion de atributos */
 	private Connection connection;
-	
-	/* declaracion de metodos y funciones */
 
-	
+	/* declaracion de metodos y funciones */
 
 	public static void main(String[] args) {
 		Sentencias s = new Sentencias();
@@ -43,9 +42,8 @@ public class Sentencias {
 			Logger.log(j.mostrarInfo());
 		}
 		s.close();
-	}	
-	
-	
+	}
+
 	/**
 	 * Método que aplica distintas querys en función del contenido del parámetro
 	 * filtros. Además devuelve una consulta paginada, es decir, dependiendo del
@@ -73,7 +71,8 @@ public class Sentencias {
 			for (Entry<String, String> e : filtros.entrySet()) {
 				switch (e.getKey()) {
 				case ("titulo"):
-					query = query + " and JUEGO.titulo = '" + e.getValue() + "'";
+					query = query + " and JUEGO.titulo = '" + e.getValue()
+							+ "'";
 					break;
 				case ("preciomin"):
 					query = query + " and JUEGO.precio >= " + e.getValue();
@@ -104,10 +103,10 @@ public class Sentencias {
 				}
 			}
 		}
-		
+
 		query = query + order + " limit 5 offset " + (5 * (nPagina - 1));
 		ArrayList<Juego> js = new ArrayList<Juego>();
-		try {		
+		try {
 			Statement st = connection.createStatement(), st2;
 			ResultSet resul = st.executeQuery(query);
 			Juego j;
@@ -139,7 +138,64 @@ public class Sentencias {
 		Logger.log("Juegos obtenidos");
 		return js;
 	}
-	
+
+	/**
+	 * Devuelve la cantidad de juegos que cumplen las condiciones establecidas
+	 * en los filtros
+	 * 
+	 * @param filtros
+	 *            : Pares clave valor que establecen filtros a aplicar a la
+	 *            busqueda
+	 * @return numero de juegos que cumplen los filtros
+	 */
+	public int cantidadMultiples(HashMap<String, String> filtros) {
+		String query = "select COUNT(DISTINCT JUEGO.id) AS CONTAR "
+				+ "from JUEGO, JUEGO_GENERO, JUEGO_PLATAFORMA, PLATAFORMA where "
+				+ "JUEGO.id = JUEGO_GENERO.id and JUEGO.id = JUEGO_PLATAFORMA.juego and "
+				+ "JUEGO_PLATAFORMA.plataforma = PLATAFORMA.id";
+		if (filtros != null) {
+			for (Entry<String, String> e : filtros.entrySet()) {
+				System.out.println(e.getKey() + ": " + e.getValue());
+				switch (e.getKey()) {
+				case ("titulo"):
+					query = query + " and JUEGO.titulo = '" + e.getValue()
+							+ "'";
+					break;
+				case ("preciomin"):
+					query = query + " and JUEGO.precio >= " + e.getValue();
+					break;
+				case ("preciomax"):
+					query = query + " and JUEGO.precio <= " + e.getValue();
+					break;
+				case ("genero"):
+					query = query + " and JUEGO_GENERO.genero = '"
+							+ e.getValue() + "'";
+					break;
+				case ("plataforma"):
+					query = query + " and PLATAFORMA.alias = '" + e.getValue()
+							+ "'";
+					break;
+				case ("ratingmin"):
+					query = query + " and JUEGO.rating >= " + e.getValue();
+					break;
+				case ("ratingmax"):
+					query = query + " and JUEGO.rating <= " + e.getValue();
+					break;
+				}
+			}
+		}
+		try {
+			Statement st = connection.createStatement();
+			ResultSet resul = st.executeQuery(query);
+			int cantidad = -1;
+			while (resul.next()) {
+				cantidad = resul.getInt("CONTAR");
+			}
+			return cantidad;
+		} catch (SQLException ex) {
+			return -1;
+		}
+	}
 
 	/**
 	 * Metodo de creacion de la conexion con la Base de Datos MySql
@@ -314,7 +370,7 @@ public class Sentencias {
 	 *            : identificador del juego a eliminar de la Base de Datos
 	 */
 	public void borrarJuego(long id) {
-		Logger.log("Accediendo a la BD para borrar con id "+id+"...");
+		Logger.log("Accediendo a la BD para borrar con id " + id + "...");
 		if (id > 0) {
 			if (listarJuego(id) != null) {
 				try {
@@ -332,7 +388,7 @@ public class Sentencias {
 					st.execute(query);
 					query = "DELETE FROM JUEGO WHERE id = " + id + ";";
 					st.execute(query);
-					Logger.log("Juego con id "+id+" borrado");
+					Logger.log("Juego con id " + id + " borrado");
 				} catch (Exception e) {
 					e.printStackTrace(System.err);
 				}
@@ -362,7 +418,8 @@ public class Sentencias {
 				&& juego.getPlataforma() != null
 				&& (juego.getPlataforma().getAlias().length() != 0 || juego
 						.getPlataforma().getNombre().length() != 0)) {
-			Logger.log("Accediendo a la BD para insertar el juego "+juego.getTitulo()+"...");
+			Logger.log("Accediendo a la BD para insertar el juego "
+					+ juego.getTitulo() + "...");
 			// formateo de la descripcion, si es necesario
 			if (juego.getDescripcion() != null
 					&& juego.getDescripcion().length() > 2500)
@@ -433,7 +490,7 @@ public class Sentencias {
 				else
 					ex.printStackTrace();
 			}
-			Logger.log("Juego "+juego.getTitulo()+" insertado");
+			Logger.log("Juego " + juego.getTitulo() + " insertado");
 		}
 	}
 
@@ -442,7 +499,7 @@ public class Sentencias {
 	 *            : nueva informacion del juego a actualizar
 	 */
 	public void actualizarJuego(Juego juego) {
-		
+
 		// Si el titulo no es vacio ni nulo, el precio mayor que cero, la
 		// plataforma no se nula ni
 		// sus campos vacios, se comienza a añadir
@@ -452,7 +509,8 @@ public class Sentencias {
 				&& juego.getPlataforma() != null
 				&& (juego.getPlataforma().getAlias().length() != 0 || juego
 						.getPlataforma().getNombre().length() != 0)) {
-			Logger.log("Accediendo a la BD para actualizar el juego "+juego.getTitulo()+"...");
+			Logger.log("Accediendo a la BD para actualizar el juego "
+					+ juego.getTitulo() + "...");
 			if (juego.getDescripcion() != null
 					&& juego.getDescripcion().length() > 2500)
 				juego.setDescripcion(juego.getDescripcion().substring(0, 2497)
@@ -502,7 +560,7 @@ public class Sentencias {
 						ex.printStackTrace();
 				}
 			}
-			Logger.log("Juego "+juego.getTitulo()+" actualizado");
+			Logger.log("Juego " + juego.getTitulo() + " actualizado");
 		}
 	}
 
@@ -511,7 +569,8 @@ public class Sentencias {
 	 *            : nueva informacion de la plataforma a actualizar
 	 */
 	public void actualizarPlataforma(Plataforma p) {
-		Logger.log("Accediendo a la BD para actualizar la plataforma "+p.getAlias()+"...");
+		Logger.log("Accediendo a la BD para actualizar la plataforma "
+				+ p.getAlias() + "...");
 		String queryString = "UPDATE PLATAFORMA " + "SET nombre = ?,alias = ? "
 				+ "WHERE id = ?";
 		try {
@@ -527,7 +586,7 @@ public class Sentencias {
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 		}
-		Logger.log("Plataforma "+p.getAlias()+" actualizada");
+		Logger.log("Plataforma " + p.getAlias() + " actualizada");
 	}
 
 	/**
@@ -602,7 +661,8 @@ public class Sentencias {
 	 * @return la plataforma cuya informacion coincida con @param query
 	 */
 	private Plataforma listarPlataforma(String query) {
-		Logger.log("Accediendo a la BD para obtener juegos de la plataforma "+query+"...");
+		Logger.log("Accediendo a la BD para obtener juegos de la plataforma "
+				+ query + "...");
 		String q = "SELECT * FROM PLATAFORMA" + query;
 		Statement st;
 		Plataforma p = null;
@@ -616,7 +676,7 @@ public class Sentencias {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		Logger.log("Juegos de la plataforma "+query+" obtenidos");
+		Logger.log("Juegos de la plataforma " + query + " obtenidos");
 		return p;
 	}
 }
