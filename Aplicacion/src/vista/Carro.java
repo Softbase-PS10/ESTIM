@@ -80,7 +80,6 @@ public class Carro {
 		Logger.log("Inicializando frame carro...");
 		games = cesta;
 		frmPantallaPrincipal = frm;
-		frmPantallaPrincipal.setTitle("Main window - Estim");
 		frmPantallaPrincipal.setIconImage(Toolkit.getDefaultToolkit().getImage(
 				Principal.class.getResource("/Imagenes/E.png")));
 		frmPantallaPrincipal.setResizable(false);
