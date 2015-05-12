@@ -29,6 +29,8 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -247,115 +249,110 @@ public class BotonesCabecera {
 				@Override
 				public void mousePressed(java.awt.event.MouseEvent evt) {
 					
+					InputStream is = Principal.class.getResourceAsStream("/Imagenes/Admin.txt");
+					BufferedReader br = new BufferedReader(new InputStreamReader(is));
 					try {
-						BufferedReader br = new BufferedReader (new FileReader ("Adminis.txt"));
-			    		try {
-			    			
-							final String pass = br.readLine().split(" ")[0];
-				    		br.close();
+						
+						final String pass = br.readLine().split(" ")[0];
+						br.close();
 
-							final JDialog dialog = new JDialog(frame, "Admin password", true);
-							final JPasswordField password;
-							JPanel panel = new JPanel();
-							JButton aceptar = new JButton("Accept");
-							JLabel texto = new JLabel("Use your admin password, please");
-							final JLabel errorPass = new JLabel("Incorrect password, try again");
-							JButton cancelar = new JButton("Cancel");
+						final JDialog dialog = new JDialog(frame, "Admin password", true);
+						final JPasswordField password;
+						JPanel panel = new JPanel();
+						JButton aceptar = new JButton("Accept");
+						JLabel texto = new JLabel("Use your admin password, please");
+						final JLabel errorPass = new JLabel("Incorrect password, try again");
+						JButton cancelar = new JButton("Cancel");
 
-							panel.setLayout(null);
+						panel.setLayout(null);
 
-							panel.setPreferredSize(new Dimension(275, 125));
-							frame.getContentPane().add(panel, BorderLayout.CENTER);
-							panel.setBounds(500, 325, 400, 300);
-							
-							texto.setHorizontalAlignment(SwingConstants.CENTER);
-							texto.setBounds(0, 11, 275, 14);
-							panel.add(texto);
-							
-							errorPass.setHorizontalAlignment(SwingConstants.CENTER);
-							errorPass.setForeground(Color.RED);
-							errorPass.setBounds(0, 25, 275, 14);
-							errorPass.setVisible(false);
-							panel.add(errorPass);
-							
-							password = new JPasswordField();
-							password.setBounds(33, 48, 210, 20);
-							panel.add(password);
-							password.setPreferredSize(new Dimension(120, 20));
-							password.setName("Pass");
-							
-							cancelar.setBounds(149, 79, 75, 23);
-							cancelar.setHorizontalAlignment(SwingConstants.CENTER);
-							cancelar.addActionListener(new ActionListener() {
-								@Override
-								public void actionPerformed(ActionEvent e) {
-									dialog.setVisible(false);
+						panel.setPreferredSize(new Dimension(275, 125));
+						frame.getContentPane().add(panel, BorderLayout.CENTER);
+						panel.setBounds(500, 325, 400, 300);
+						
+						texto.setHorizontalAlignment(SwingConstants.CENTER);
+						texto.setBounds(0, 11, 275, 14);
+						panel.add(texto);
+						
+						errorPass.setHorizontalAlignment(SwingConstants.CENTER);
+						errorPass.setForeground(Color.RED);
+						errorPass.setBounds(0, 25, 275, 14);
+						errorPass.setVisible(false);
+						panel.add(errorPass);
+						
+						password = new JPasswordField();
+						password.setBounds(33, 48, 210, 20);
+						panel.add(password);
+						password.setPreferredSize(new Dimension(120, 20));
+						password.setName("Pass");
+						
+						cancelar.setBounds(149, 79, 75, 23);
+						cancelar.setHorizontalAlignment(SwingConstants.CENTER);
+						cancelar.addActionListener(new ActionListener() {
+							@Override
+							public void actionPerformed(ActionEvent e) {
+								dialog.setVisible(false);
+							}
+						});							
+						panel.add(cancelar);
+
+						aceptar.setBounds(45, 79, 75, 23);
+						aceptar.setHorizontalAlignment(SwingConstants.CENTER);
+						aceptar.addActionListener(new ActionListener() {
+							@Override
+							public void actionPerformed(ActionEvent e) {
+								@SuppressWarnings("deprecation")
+								String passwor = password.getText();
+								if(passwor.length() != 0){
+								 try {
+									MessageDigest md = MessageDigest.getInstance("MD5");
+						        	md.update(passwor.getBytes());
+						 
+							        byte byteData[] = md.digest();
+							        StringBuffer hexString = new StringBuffer();
+						    		for (int i=0;i<byteData.length;i++) {
+						    			String hex=Integer.toHexString(0xff & byteData[i]);
+						   	     		if(hex.length()==1) hexString.append('0');
+						   	     		hexString.append(hex);
+						    		}
+						    		
+						    		if(hexString.toString().compareTo(pass.toString()) == 0){
+						    			FramePal.setAdminOn(true);
+						    			dialog.setVisible(false);
+						    			switch (origen) {
+						    			case 1:
+						    				//Pantalla principal
+						    				Principal.main(fr, cesta);
+						    				break;
+						    			case 2:
+						    				//Listado de juegos
+						    				Listado.listar(fr, juegos, cesta);
+						    				break;
+						    			case 3:
+						    				//Info de juego
+						    				Info.main(fr, juegoActual, cesta);
+						    				break;
+						    			}
+						    		}
+									
+								} catch (NoSuchAlgorithmException ex) {
+									ex.printStackTrace();
 								}
-							});							
-							panel.add(cancelar);
-
-							aceptar.setBounds(45, 79, 75, 23);
-							aceptar.setHorizontalAlignment(SwingConstants.CENTER);
-							aceptar.addActionListener(new ActionListener() {
-								@Override
-								public void actionPerformed(ActionEvent e) {
-									@SuppressWarnings("deprecation")
-									String passwor = password.getText();
-									if(passwor.length() != 0){
-									 try {
-										MessageDigest md = MessageDigest.getInstance("MD5");
-							        	md.update(passwor.getBytes());
-							 
-								        byte byteData[] = md.digest();
-								        StringBuffer hexString = new StringBuffer();
-							    		for (int i=0;i<byteData.length;i++) {
-							    			String hex=Integer.toHexString(0xff & byteData[i]);
-							   	     		if(hex.length()==1) hexString.append('0');
-							   	     		hexString.append(hex);
-							    		}
-							    		
-							    		if(hexString.toString().compareTo(pass.toString()) == 0){
-							    			FramePal.setAdminOn(true);
-							    			dialog.setVisible(false);
-							    			switch (origen) {
-							    			case 1:
-							    				//Pantalla principal
-							    				Principal.main(fr, cesta);
-							    				break;
-							    			case 2:
-							    				//Listado de juegos
-							    				Listado.listar(fr, juegos, cesta);
-							    				break;
-							    			case 3:
-							    				//Info de juego
-							    				Info.main(fr, juegoActual, cesta);
-							    				break;
-							    			}
-							    		}
-										
-									} catch (NoSuchAlgorithmException ex) {
-										ex.printStackTrace();
-									}
-								}	
-								else{
-									errorPass.setVisible(true);
+							}	
+							else{
+								errorPass.setVisible(true);
+							}
 								}
-									}
-							});
-							panel.add(aceptar);
-							
-							dialog.add(panel);
-							dialog.setBounds(500, 325, 400, 300);
-							dialog.setResizable(false);
-							dialog.pack();
-							dialog.setVisible(true);
-						} catch (IOException e1) {
-							e1.printStackTrace();
-						}
-			    		
-					}
-					catch (FileNotFoundException e) {
-						System.out.println("Fichero de admin not found.");
+						});
+						panel.add(aceptar);
+						
+						dialog.add(panel);
+						dialog.setBounds(500, 325, 400, 300);
+						dialog.setResizable(false);
+						dialog.pack();
+						dialog.setVisible(true);
+					} catch (IOException e1) {
+						e1.printStackTrace();
 					}
 				}
 			});
