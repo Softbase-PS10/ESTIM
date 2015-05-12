@@ -175,7 +175,7 @@ public class Botones {
 	 */
 	public static JButton vaciarCarro(final JFrame frame) {
 		JButton vaciar = new JButton("Empty cart");
-		vaciar.setBounds(40, 120, 100, 20);
+		vaciar.setBounds(20, 120, 150, 20);
 		vaciar.addActionListener(new ActionListener() {
 
 			@Override
@@ -194,7 +194,7 @@ public class Botones {
 	 */
 	public static JButton comprarCarro(final JFrame frame) {
 		JButton buy = new JButton("Buy games");
-		buy.setBounds(40, 145, 100, 20);
+		buy.setBounds(20, 145, 150, 20);
 		buy.addActionListener(new ActionListener() {
 
 			@Override
