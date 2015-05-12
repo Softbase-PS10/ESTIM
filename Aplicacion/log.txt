@@ -1,3 +1,4 @@
+
 Starting log
 [12-05-2015 09:48:59]Inicializando frame principal...
 [12-05-2015 09:48:59]Frame principal creado
