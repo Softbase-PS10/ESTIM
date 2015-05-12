@@ -61,7 +61,7 @@ public class FramePal {
 	 */
 	private static void cifrarPass(){
 		try{
-			BufferedReader br = new BufferedReader (new FileReader ("Admin.txt"));
+			BufferedReader br = new BufferedReader (new FileReader ("/Imagenes/Admin.txt"));
     		String pass = br.readLine().split(" ")[0];
 			MessageDigest md = MessageDigest.getInstance("MD5");
         	md.update(pass.getBytes());
@@ -74,7 +74,7 @@ public class FramePal {
    	     		hexString.append(hex);
     		}
     		
-    		PrintWriter pw = new PrintWriter(new FileWriter("Admin.txt"));
+    		PrintWriter pw = new PrintWriter(new FileWriter("/Imagenes/Admin.txt"));
     		pw.print(hexString.toString());
     		br.close();
     		pw.close();
