@@ -1,6 +1,31 @@
-
 Starting log
-[12-05-2015 09:23:47]Inicializando frame principal...
-[12-05-2015 09:23:47]Frame principal creado
-[12-05-2015 09:23:51]Inicializando frame carro...
-[12-05-2015 09:23:51]Frame carro creado
+[12-05-2015 10:01:06]Inicializando frame principal...
+[12-05-2015 10:01:07]Frame principal creado
+[12-05-2015 10:01:09]Cargando juegos de la plataforma PS4
+[12-05-2015 10:01:16]Juegos de la plataforma PS4 cargados
+[12-05-2015 10:01:16]Inicializando listado de juegos...
+[12-05-2015 10:01:22]Listado de juegos inicializado
+[12-05-2015 10:01:35]Cargando informaci�n del juego The Witcher 3: Wild Hunter
+[12-05-2015 10:01:35]Informaci�n del juego The Witcher 3: Wild Hunter cargada
+[12-05-2015 10:01:35]Inicializando informaci�n del juego...
+[12-05-2015 10:01:36]Informaci�n del juego inicializada
+[12-05-2015 10:01:38]A�adiendo juego The Witcher 3: Wild Hunter al carro
+[12-05-2015 10:01:38]Juego The Witcher 3: Wild Hunter a�adido al carro
+[12-05-2015 10:01:42]A�adiendo juego The Witcher 3: Wild Hunter al carro
+[12-05-2015 10:01:42]Juego The Witcher 3: Wild Hunter a�adido al carro
+[12-05-2015 10:01:45]A�adiendo juego The Witcher 3: Wild Hunter al carro
+[12-05-2015 10:01:45]Juego The Witcher 3: Wild Hunter a�adido al carro
+[12-05-2015 10:01:48]Inicializando frame carro...
+[12-05-2015 10:01:51]Frame carro creado
+[12-05-2015 10:02:07]Borrando juego The Witcher 3: Wild Hunter del carro
+[12-05-2015 10:02:07]Juego The Witcher 3: Wild Hunter borrado del carro
+[12-05-2015 10:02:07]Inicializando frame carro...
+[12-05-2015 10:02:09]Frame carro creado
+[12-05-2015 10:02:16]Borrando juego The Witcher 3: Wild Hunter del carro
+[12-05-2015 10:02:16]Juego The Witcher 3: Wild Hunter borrado del carro
+[12-05-2015 10:02:16]Inicializando frame carro...
+[12-05-2015 10:02:18]Frame carro creado
+[12-05-2015 10:02:19]Borrando juego The Witcher 3: Wild Hunter del carro
+[12-05-2015 10:02:19]Juego The Witcher 3: Wild Hunter borrado del carro
+[12-05-2015 10:02:19]Inicializando frame carro...
+[12-05-2015 10:02:19]Frame carro creado
