@@ -1,3 +1,0 @@
-Starting log
-Inicializando frame principal...
-Frame principal creado
