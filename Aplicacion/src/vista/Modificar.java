@@ -37,6 +37,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 import modelo.Juego;
+import modelo.Logger;
 import modelo.Plataforma;
 import controlador.Botones;
 import controlador.BotonesCabecera;
@@ -169,6 +170,7 @@ public class Modificar {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		Logger.log("Inicializando crear/modificar juego...");
 		frmPantallaPrincipal.setTitle("Add/Modify - Estim");
 		frmPantallaPrincipal.setIconImage(Toolkit.getDefaultToolkit().getImage(
 				Modificar.class.getResource("/Imagenes/E.png")));
@@ -457,5 +459,6 @@ public class Modificar {
 		fondo.setIcon(new ImageIcon(Modificar.class
 				.getResource("/Imagenes/blizz.jpg")));
 		panel_3.add(fondo);
+		Logger.log("Crear/Modificar juego inicializado");
 	}
 }

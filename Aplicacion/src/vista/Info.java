@@ -17,6 +17,7 @@ import java.awt.Toolkit;
 import java.util.ArrayList;
 
 import modelo.Juego;
+import modelo.Logger;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -62,7 +63,7 @@ public class Info {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize(Juego juego) {
-
+		Logger.log("Inicializando información del juego...");
 		frmInformacinDelProduc
 				.setTitle("Product information - Estim");
 		frmInformacinDelProduc.setIconImage(Toolkit.getDefaultToolkit()
@@ -159,5 +160,6 @@ public class Info {
 		JLabel Fondo = BotonesInfo.getFondo();
 		frmInformacinDelProduc.getContentPane().add(Fondo);
 
+		Logger.log("Información del juego inicializada");
 	}
 }

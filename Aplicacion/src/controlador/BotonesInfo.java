@@ -19,6 +19,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.ArrayList;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -31,6 +32,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 import modelo.Juego;
+import modelo.Logger;
 import vista.Info;
 
 public class BotonesInfo {
@@ -339,7 +341,9 @@ public class BotonesInfo {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
+				Logger.log("Añadiendo juego "+game.getTitulo()+" al carro");
 				cesta.add(game);
+				Logger.log("Juego "+game.getTitulo()+" añadido al carro");
 				JOptionPane.showMessageDialog(frame, "Game added to cart");
 			}
 		});

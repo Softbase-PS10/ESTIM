@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 
 import modelo.Juego;
+import modelo.Logger;
 import modelo.Sentencias;
 import vista.Listado;
 import vista.Principal;
@@ -41,11 +42,13 @@ public class PlatformListener implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		Logger.log("Cargando juegos de la plataforma "+this.alias);
 		sql = new Sentencias();
 		ArrayList<Juego> juegos = sql.listarJuegosPlataformaAlias(this.alias);
 		sql.close();
 		Principal.filtrosMap.put("plataforma", alias);
 		frame.getContentPane().removeAll();
+		Logger.log("Juegos de la plataforma "+this.alias+" cargados");
 		Listado.listar(frame, juegos, cesta);
 	}
 

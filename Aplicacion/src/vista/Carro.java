@@ -26,6 +26,7 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.LineBorder;
 
 import modelo.Juego;
+import modelo.Logger;
 import controlador.Botones;
 import controlador.BotonesCabecera;
 import controlador.BotonesCategorias;
@@ -76,6 +77,7 @@ public class Carro {
 	 */
 	private void initialize(JFrame frm, final ArrayList<Juego> cesta)
 			throws IOException {
+		Logger.log("Inicializando frame carro...");
 		games = cesta;
 		frmPantallaPrincipal = frm;
 		frmPantallaPrincipal.setTitle("Main window - Estim");
@@ -117,7 +119,8 @@ public class Carro {
 		cabecera.add(opciones);
 		opciones.setLayout(null);
 
-		opciones.add(BotonesCabecera.ajustes(2, null, null, frmPantallaPrincipal, cesta));
+		opciones.add(BotonesCabecera.ajustes(2, null, null,
+				frmPantallaPrincipal, cesta));
 
 		JPanel carrito = new JPanel();
 		carrito.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -239,7 +242,9 @@ public class Carro {
 
 					@Override
 					public void actionPerformed(ActionEvent e) {
+						Logger.log("Cargando información del juego "+j.getTitulo());
 						frmPantallaPrincipal.getContentPane().removeAll();
+						Logger.log("Información del juego "+j.getTitulo()+" cargada");
 						Info.main(frmPantallaPrincipal, j, cesta);
 					}
 				});
@@ -362,7 +367,14 @@ public class Carro {
 
 					@Override
 					public void actionPerformed(ActionEvent e) {
+						String titulo = games.get(indiceJuego).getTitulo();
+						Logger.log("Borrando juego "
+								+ titulo
+								+ " del carro");
 						games.remove(indiceJuego);
+						Logger.log("Juego "
+								+ titulo
+								+ " borrado del carro");
 						Carro.main(frmPantallaPrincipal, games);
 					}
 				});
@@ -395,5 +407,6 @@ public class Carro {
 		txtResultados.setText(games.size() + " games in the cart");
 		txtResultados.setBounds(10, 11, 252, 14);
 		ordenacion.add(txtResultados);
+		Logger.log("Frame carro creado");
 	}
 }

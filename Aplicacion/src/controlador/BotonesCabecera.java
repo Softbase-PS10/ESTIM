@@ -42,6 +42,7 @@ import javax.swing.JPopupMenu;
 import javax.swing.JTextField;
 
 import modelo.Juego;
+import modelo.Logger;
 import modelo.Sentencias;
 import vista.FramePal;
 import vista.Info;
@@ -71,11 +72,13 @@ public class BotonesCabecera {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				Logger.log("Buscando juegos en la base de datos...");
 				String busqueda = busc.getText();
 				Sentencias sql = new Sentencias();
 				ArrayList<Juego> juegos = sql.listarJuegosTitulo(busqueda);
 				sql.close();
 				frame.getContentPane().removeAll();
+				Logger.log("Juegos encontrados");
 				Listado.listar(frame, juegos, cesta);
 			}
 		});

@@ -76,7 +76,7 @@ public class Principal {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-			Logger.log("Inicializando frame principal...");
+		Logger.log("Inicializando frame principal...");
 		frmPantallaPrincipal.setTitle("Main window - Estim");
 		frmPantallaPrincipal.setIconImage(Toolkit.getDefaultToolkit().getImage(
 				Principal.class.getResource("/Imagenes/E.png")));

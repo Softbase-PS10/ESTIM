@@ -38,6 +38,7 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.LineBorder;
 
 import modelo.Juego;
+import modelo.Logger;
 import controlador.Botones;
 import controlador.BotonesCabecera;
 import controlador.BotonesCategorias;
@@ -105,6 +106,7 @@ public class Listado {
 	 *             Inicializa la ventana
 	 */
 	private void initialize(ArrayList<Juego> juegos) throws IOException {
+		Logger.log("Inicializando listado de juegos...");
 		frmPantallaPrincipal.setTitle("List of games - Estim");
 		frmPantallaPrincipal.setIconImage(Toolkit.getDefaultToolkit().getImage(
 				Info.class.getResource("/Imagenes/E.png")));
@@ -341,7 +343,9 @@ public class Listado {
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
+					Logger.log("Cargando información del juego "+j.getTitulo());
 					frmPantallaPrincipal.getContentPane().removeAll();
+					Logger.log("Información del juego "+j.getTitulo()+" cargada");
 					Info.main(frmPantallaPrincipal, j, cesta);
 				}
 			});
@@ -485,5 +489,6 @@ public class Listado {
 		txtOrdenar.setBorder(null);
 		txtOrdenar.setBounds(842, 7, 57, 20);
 		ordenacion.add(txtOrdenar);
+		Logger.log("Listado de juegos inicializado");
 	}
 }

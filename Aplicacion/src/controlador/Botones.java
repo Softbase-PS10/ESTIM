@@ -28,6 +28,7 @@ import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFrame;
 
 import modelo.Juego;
+import modelo.Logger;
 import modelo.Plataforma;
 import modelo.Sentencias;
 import vista.Carro;
@@ -50,6 +51,7 @@ public class Botones {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				Logger.log("Aplicando filtros...");
 				Sentencias s = new Sentencias();
 				TreeMap<String, String> filtros = Principal.filtrosMap;
 				if (origen == "Listado") {
@@ -155,11 +157,13 @@ public class Botones {
 						filtros.remove("plataforma");
 				}
 				if (!filtros.isEmpty()) {
+					Logger.log("Filtros aplicados");
 					frame.getContentPane().removeAll();
 					Listado.listar(frame,
 							s.listarJuegosMultipleFiltros(filtros, 1), cesta);
+				} else {
+					Logger.log("Sin filtros que aplicar");
 				}
-
 			}
 		});
 
@@ -167,8 +171,7 @@ public class Botones {
 	}
 
 	/**
-	 * @return el boton de 'Empty cart', con su comportamiento
-	 *         implementado.
+	 * @return el boton de 'Empty cart', con su comportamiento implementado.
 	 */
 	public static JButton vaciarCarro(final JFrame frame) {
 		JButton vaciar = new JButton("Empty cart");
@@ -177,16 +180,17 @@ public class Botones {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				Logger.log("Vaciando carro...");
+				Logger.log("Carro vaciado");
 				Carro.main(frame, new ArrayList<Juego>());
 			}
 		});
 
 		return vaciar;
 	}
-	
+
 	/**
-	 * @return el boton de 'Empty cart', con su comportamiento
-	 *         implementado.
+	 * @return el boton de 'Empty cart', con su comportamiento implementado.
 	 */
 	public static JButton comprarCarro(final JFrame frame) {
 		JButton buy = new JButton("Buy games");
@@ -195,14 +199,19 @@ public class Botones {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//Falta this
-				//Carro.main(frame, new ArrayList<Juego>());
+				Logger.log("Creando orden de pedido...");
+				// Creación de orden de pedido
+				Logger.log("Orden de pedido creada");
+				Logger.log("Vaciando carro...");
+				Logger.log("Carro vaciado");
+				// Falta this
+				// Carro.main(frame, new ArrayList<Juego>());
 			}
 		});
 
 		return buy;
 	}
-	
+
 	/**
 	 * @return el boton de 'Guardar' los cambios al modificar un juego del
 	 *         catalogo.
@@ -217,12 +226,14 @@ public class Botones {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
+				Logger.log("Guardando cambios en el juego...");
 				boolean error = false;
 				Sentencias s = new Sentencias();
 
 				String titulo = Modificar.titulo.getText();
 				if (titulo.length() == 0) {
 					error = true;
+					Logger.log("Error: La longitud del título es cero");
 					Modificar.eTitulo.setVisible(true);
 				} else {
 					Modificar.eTitulo.setVisible(false);
@@ -231,6 +242,7 @@ public class Botones {
 				int p = 0;
 				if (precio.length() == 0) {
 					error = true;
+					Logger.log("Error: La longitud del precio es cero");
 					Modificar.ePrecio.setVisible(true);
 					Modificar.ePrecioNegativo.setVisible(false);
 					Modificar.ePrecioString.setVisible(false);
@@ -238,6 +250,7 @@ public class Botones {
 					try {
 						p = Integer.parseInt(precio);
 						if (p <= 0) {
+							Logger.log("Error: El precio es negativo");
 							Modificar.ePrecioNegativo.setVisible(true);
 							Modificar.ePrecioString.setVisible(false);
 							Modificar.ePrecio.setVisible(false);
@@ -248,9 +261,7 @@ public class Botones {
 						Modificar.ePrecioNegativo.setVisible(false);
 						Modificar.ePrecio.setVisible(false);
 						error = true;
-						// Mostrar en el log que se han introducido un string en
-						// vez
-						// de numero
+						Logger.log("Error: Se ha introducido un String en vez de un numero en el precio");
 					}
 				}
 
@@ -267,6 +278,7 @@ public class Botones {
 						if (!((point > 47 && point < 58) || point == 46)
 								&& !punto) {
 							error = true;
+							Logger.log("Error: La valoración del juego tiene un formato incorrecto");
 							Modificar.eRating.setVisible(true);
 						} else {
 							Modificar.eRating.setVisible(false);
@@ -274,6 +286,7 @@ public class Botones {
 					}
 				} else {
 					error = true;
+					Logger.log("Error: La valoración del juego tiene un formato incorrecto");
 					Modificar.eRating.setVisible(true);
 				}
 
@@ -300,8 +313,10 @@ public class Botones {
 						Juego j = new Juego(titulo, url, descripcion, anyo,
 								valoracion, genero, p, plat);
 						s.insertarJuego(j);
+						Logger.log("Juego guardado correctamente en la base de datos");
 						Info.main(frame, j, cesta);
 					} else {
+						Logger.log("Juego no guardado en la base de datos debido a la presencia de errores");
 						j.setTitulo(titulo);
 						j.setDescripcion(descripcion);
 						j.setGenero(genero);
