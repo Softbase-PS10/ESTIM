@@ -2,6 +2,8 @@ package modelo;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Logger {
 
@@ -20,7 +22,7 @@ public class Logger {
 			FileWriter log;
 			try {
 				log = new FileWriter(NOMFICH,true);
-				log.write(text+"\n");
+				log.write(obtenerFechaYHora()+text+"\n");
 				log.close();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -30,5 +32,12 @@ public class Logger {
 		else{
 			System.out.println("Error: Es necesario inicializar el logger antes de usarlo");
 		}
+	}
+	
+	private static String obtenerFechaYHora() {
+	    SimpleDateFormat simpleDateFecha = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");//dd/MM/yyyy
+	    Date d = new Date();
+	    String strDate = simpleDateFecha.format(d);
+	    return "["+strDate+"]";
 	}
 }

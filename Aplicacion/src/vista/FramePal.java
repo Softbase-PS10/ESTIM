@@ -13,7 +13,14 @@
 package vista;
 
 import java.awt.Toolkit;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 import modelo.Juego;
 import modelo.Logger;
@@ -23,8 +30,11 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 
 public class FramePal {
+	
+	private static boolean adminOn = false;
 
 	public static void main(String[] args) {
+//		cifrarPass();
 		JFrame frmPantallaPrincipal;
 		frmPantallaPrincipal = new JFrame();
 		frmPantallaPrincipal.setTitle("Main window - Estim");
@@ -43,4 +53,50 @@ public class FramePal {
 		}
 		Principal.main(frmPantallaPrincipal,cesta);
 	}
+	
+	//caballocampestre
+	/*
+	 * Método para cifrar al contraseña del administrador, 
+	 * la contraseña solamente puede tener una palabra y va a estar contenida en Admin.txt
+	 */
+	private static void cifrarPass(){
+		try{
+			BufferedReader br = new BufferedReader (new FileReader ("Admin.txt"));
+    		String pass = br.readLine().split(" ")[0];
+			MessageDigest md = MessageDigest.getInstance("MD5");
+        	md.update(pass.getBytes());
+ 
+	        byte byteData[] = md.digest();
+	        StringBuffer hexString = new StringBuffer();
+    		for (int i=0;i<byteData.length;i++) {
+    			String hex=Integer.toHexString(0xff & byteData[i]);
+   	     		if(hex.length()==1) hexString.append('0');
+   	     		hexString.append(hex);
+    		}
+    		
+    		PrintWriter pw = new PrintWriter(new FileWriter("Admin.txt"));
+    		pw.print(hexString.toString());
+    		br.close();
+    		pw.close();
+		}
+		catch(FileNotFoundException e){
+			System.out.println("Falta el fichero de admin.");
+		}	
+
+		catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		catch (IOException e){
+			e.printStackTrace();
+		}
+	}
+	
+
+	public static boolean isAdminOn() {
+		return adminOn;
+	}
+
+	public static void setAdminOn(boolean adminOn) {
+		FramePal.adminOn = adminOn;
+	}	
 }

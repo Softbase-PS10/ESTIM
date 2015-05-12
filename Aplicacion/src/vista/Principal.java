@@ -88,7 +88,7 @@ public class Principal {
 		frmPantallaPrincipal.getContentPane().add(cabecera);
 		cabecera.setLayout(null);
 
-		cabecera.add(BotonesCabecera.logo(frmPantallaPrincipal,cesta));
+		cabecera.add(BotonesCabecera.logo(frmPantallaPrincipal, cesta));
 
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -110,7 +110,7 @@ public class Principal {
 		cabecera.add(panel_2);
 		panel_2.setLayout(null);
 
-		panel_2.add(BotonesCabecera.buscar(txtBuscar,cesta));
+		panel_2.add(BotonesCabecera.buscar(txtBuscar, cesta));
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -118,7 +118,7 @@ public class Principal {
 		cabecera.add(panel_1);
 		panel_1.setLayout(null);
 
-		panel_1.add(BotonesCabecera.ajustes(1,null, frmPantallaPrincipal,cesta));
+		panel_1.add(BotonesCabecera.ajustes(1,null, null, frmPantallaPrincipal, cesta));
 
 		JPanel categorias = new JPanel();
 		categorias.setBorder(new LineBorder(new Color(0, 0, 0), 2));
@@ -128,15 +128,15 @@ public class Principal {
 		categorias.setLayout(null);
 
 		categorias.add(BotonesCategorias.atras());
-		categorias.add(BotonesCategorias.ps3(frmPantallaPrincipal,cesta));
-		categorias.add(BotonesCategorias.vita(frmPantallaPrincipal,cesta));
-		categorias.add(BotonesCategorias.xone(frmPantallaPrincipal,cesta));
-		categorias.add(BotonesCategorias.x360(frmPantallaPrincipal,cesta));
-		categorias.add(BotonesCategorias.pc(frmPantallaPrincipal,cesta));
-		categorias.add(BotonesCategorias.wiiu(frmPantallaPrincipal,cesta));
-		categorias.add(BotonesCategorias.wii(frmPantallaPrincipal,cesta));
-		categorias.add(BotonesCategorias.n3ds(frmPantallaPrincipal,cesta));
-		categorias.add(BotonesCategorias.ps4(frmPantallaPrincipal,cesta));
+		categorias.add(BotonesCategorias.ps3(frmPantallaPrincipal, cesta));
+		categorias.add(BotonesCategorias.vita(frmPantallaPrincipal, cesta));
+		categorias.add(BotonesCategorias.xone(frmPantallaPrincipal, cesta));
+		categorias.add(BotonesCategorias.x360(frmPantallaPrincipal, cesta));
+		categorias.add(BotonesCategorias.pc(frmPantallaPrincipal, cesta));
+		categorias.add(BotonesCategorias.wiiu(frmPantallaPrincipal, cesta));
+		categorias.add(BotonesCategorias.wii(frmPantallaPrincipal, cesta));
+		categorias.add(BotonesCategorias.n3ds(frmPantallaPrincipal, cesta));
+		categorias.add(BotonesCategorias.ps4(frmPantallaPrincipal, cesta));
 		categorias.add(BotonesCategorias.adelante());
 
 		JPanel filtros = new JPanel();
@@ -225,7 +225,7 @@ public class Principal {
 		frmtdtxtfldPlataforma.setBounds(20, 162, 171, 20);
 		filtros.add(frmtdtxtfldPlataforma);
 
-		comboBox_1 = new JComboBox<String>();
+		JComboBox<String> comboBox_1 = new JComboBox<String>();
 		comboBox_1
 				.setModel(new DefaultComboBoxModel<String>(
 						new String[] { "", "PS4", "PS3", "PSVITA", "XONE", "X360",
@@ -279,15 +279,15 @@ public class Principal {
 		frmPantallaPrincipal.getContentPane().add(principal);
 		principal.setLayout(null);
 
-		principal.add(BotonesMenu.menuPS4(frmPantallaPrincipal,cesta));
-		principal.add(BotonesMenu.menuPS3(frmPantallaPrincipal,cesta));
-		principal.add(BotonesMenu.menuVita(frmPantallaPrincipal,cesta));
-		principal.add(BotonesMenu.menuXONE(frmPantallaPrincipal,cesta));
-		principal.add(BotonesMenu.menuX360(frmPantallaPrincipal,cesta));
-		principal.add(BotonesMenu.menuPC(frmPantallaPrincipal,cesta));
-		principal.add(BotonesMenu.menuWiiU(frmPantallaPrincipal,cesta));
-		principal.add(BotonesMenu.menuWii(frmPantallaPrincipal,cesta));
-		principal.add(BotonesMenu.menuN3DS(frmPantallaPrincipal,cesta));
+		principal.add(BotonesMenu.menuPS4(frmPantallaPrincipal, cesta));
+		principal.add(BotonesMenu.menuPS3(frmPantallaPrincipal, cesta));
+		principal.add(BotonesMenu.menuVita(frmPantallaPrincipal, cesta));
+		principal.add(BotonesMenu.menuXONE(frmPantallaPrincipal, cesta));
+		principal.add(BotonesMenu.menuX360(frmPantallaPrincipal, cesta));
+		principal.add(BotonesMenu.menuPC(frmPantallaPrincipal, cesta));
+		principal.add(BotonesMenu.menuWiiU(frmPantallaPrincipal, cesta));
+		principal.add(BotonesMenu.menuWii(frmPantallaPrincipal, cesta));
+		principal.add(BotonesMenu.menuN3DS(frmPantallaPrincipal, cesta));
 
 		JLabel lblNewLabel = new JLabel("New label");
 		lblNewLabel.setBounds(0, 0, 870, 471);
