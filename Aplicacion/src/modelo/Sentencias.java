@@ -40,7 +40,7 @@ public class Sentencias {
 		filtros.put("type", "ASC");
 		filtros.put("plataforma", "PC");
 		for (Juego j : s.listarJuegosMultipleFiltros(filtros, 120)) {
-			System.out.println(j.mostrarInfo());
+			Logger.log(j.mostrarInfo());
 		}
 		s.close();
 	}	
@@ -63,6 +63,7 @@ public class Sentencias {
 	 */
 	public ArrayList<Juego> listarJuegosMultipleFiltros(
 			TreeMap<String, String> filtros, int nPagina) {
+		Logger.log("Accediendo a la BD para obtener juegos aplicando filtros...");
 		String query = "select distinct JUEGO.id, titulo, imagen, resumen, rating, lanzamiento, precio, nombre, alias "
 				+ "from JUEGO, JUEGO_GENERO, JUEGO_PLATAFORMA, PLATAFORMA where "
 				+ "JUEGO.id = JUEGO_GENERO.id and JUEGO.id = JUEGO_PLATAFORMA.juego and "
@@ -135,6 +136,7 @@ public class Sentencias {
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 		}
+		Logger.log("Juegos obtenidos");
 		return js;
 	}
 	
@@ -285,6 +287,7 @@ public class Sentencias {
 	 *         Base de Datos
 	 */
 	public ArrayList<Plataforma> listarTodasPlataformas() {
+		Logger.log("Accediendo a la BD para listar los juegos de todas las plataformas...");
 		String q = "SELECT * FROM PLATAFORMA";
 		Statement st;
 		Plataforma p = null;
@@ -302,6 +305,7 @@ public class Sentencias {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		Logger.log("Juegos obtenidos");
 		return ps;
 	}
 
@@ -310,6 +314,7 @@ public class Sentencias {
 	 *            : identificador del juego a eliminar de la Base de Datos
 	 */
 	public void borrarJuego(long id) {
+		Logger.log("Accediendo a la BD para borrar con id "+id+"...");
 		if (id > 0) {
 			if (listarJuego(id) != null) {
 				try {
@@ -327,16 +332,17 @@ public class Sentencias {
 					st.execute(query);
 					query = "DELETE FROM JUEGO WHERE id = " + id + ";";
 					st.execute(query);
+					Logger.log("Juego con id "+id+" borrado");
 				} catch (Exception e) {
 					e.printStackTrace(System.err);
 				}
 			} else {
-				System.out.println("Error de existencia");
+				Logger.log("Error de existencia");
 				// Mostrar mensaje en el log
 			}
 
 		} else {
-			System.out.println("Error número negativo");
+			Logger.log("Error número negativo");
 			// Mostrar mensaje en el log
 		}
 	}
@@ -356,6 +362,7 @@ public class Sentencias {
 				&& juego.getPlataforma() != null
 				&& (juego.getPlataforma().getAlias().length() != 0 || juego
 						.getPlataforma().getNombre().length() != 0)) {
+			Logger.log("Accediendo a la BD para insertar el juego "+juego.getTitulo()+"...");
 			// formateo de la descripcion, si es necesario
 			if (juego.getDescripcion() != null
 					&& juego.getDescripcion().length() > 2500)
@@ -382,7 +389,7 @@ public class Sentencias {
 				preparedStatement.execute();
 			} catch (SQLException ex) {
 				if (ex.getSQLState().startsWith("23"))
-					System.out.println("Entrada en juego duplicada");
+					Logger.log("Entrada en juego duplicada");
 				else
 					ex.printStackTrace();
 			}
@@ -401,7 +408,7 @@ public class Sentencias {
 					preparedStatement.execute();
 				} catch (SQLException ex) {
 					if (ex.getSQLState().startsWith("23"))
-						System.out.println("Entrada en juego_genero duplicada");
+						Logger.log("Entrada en juego_genero duplicada");
 					else
 						ex.printStackTrace();
 				}
@@ -421,11 +428,12 @@ public class Sentencias {
 				preparedStatement.execute();
 			} catch (SQLException ex) {
 				if (ex.getSQLState().startsWith("23"))
-					System.out.println("Entrada en juego_plataforma duplicada");
+					Logger.log("Entrada en juego_plataforma duplicada");
 
 				else
 					ex.printStackTrace();
 			}
+			Logger.log("Juego "+juego.getTitulo()+" insertado");
 		}
 	}
 
@@ -434,7 +442,7 @@ public class Sentencias {
 	 *            : nueva informacion del juego a actualizar
 	 */
 	public void actualizarJuego(Juego juego) {
-
+		
 		// Si el titulo no es vacio ni nulo, el precio mayor que cero, la
 		// plataforma no se nula ni
 		// sus campos vacios, se comienza a añadir
@@ -444,7 +452,7 @@ public class Sentencias {
 				&& juego.getPlataforma() != null
 				&& (juego.getPlataforma().getAlias().length() != 0 || juego
 						.getPlataforma().getNombre().length() != 0)) {
-
+			Logger.log("Accediendo a la BD para actualizar el juego "+juego.getTitulo()+"...");
 			if (juego.getDescripcion() != null
 					&& juego.getDescripcion().length() > 2500)
 				juego.setDescripcion(juego.getDescripcion().substring(0, 2497)
@@ -489,11 +497,12 @@ public class Sentencias {
 					preparedStatement.execute();
 				} catch (SQLException ex) {
 					if (ex.getSQLState().startsWith("23"))
-						System.out.println("Entrada en juego_genero duplicada");
+						Logger.log("Entrada en juego_genero duplicada");
 					else
 						ex.printStackTrace();
 				}
 			}
+			Logger.log("Juego "+juego.getTitulo()+" actualizado");
 		}
 	}
 
@@ -502,6 +511,7 @@ public class Sentencias {
 	 *            : nueva informacion de la plataforma a actualizar
 	 */
 	public void actualizarPlataforma(Plataforma p) {
+		Logger.log("Accediendo a la BD para actualizar la plataforma "+p.getAlias()+"...");
 		String queryString = "UPDATE PLATAFORMA " + "SET nombre = ?,alias = ? "
 				+ "WHERE id = ?";
 		try {
@@ -517,13 +527,14 @@ public class Sentencias {
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 		}
-
+		Logger.log("Plataforma "+p.getAlias()+" actualizada");
 	}
 
 	/**
 	 * @return el identificador del ultimo juego
 	 */
 	public long obtenerUltimoIdJuego() {
+		Logger.log("Accediendo a la BD para obtener el id del último juego...");
 		String q = "SELECT MAX(id) AS mid FROM JUEGO";
 		Statement st;
 		long id = -1;
@@ -536,6 +547,7 @@ public class Sentencias {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		Logger.log("Id obtenido");
 		return id;
 	}
 
@@ -546,6 +558,7 @@ public class Sentencias {
 	 *         coinciden con @param query
 	 */
 	private ArrayList<Juego> listarJuegos(String query) {
+		Logger.log("Accediendo a la BD para obtener juegos bajo ciertos criterios...");
 		String q = "SELECT * FROM JUEGO, PLATAFORMA, JUEGO_PLATAFORMA WHERE "
 				+ "JUEGO.id = JUEGO_PLATAFORMA.juego AND PLATAFORMA.id = JUEGO_PLATAFORMA.plataforma "
 				+ query + " LIMIT 5";
@@ -579,6 +592,7 @@ public class Sentencias {
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 		}
+		Logger.log("Juegos obtenidos");
 		return js;
 	}
 
@@ -588,6 +602,7 @@ public class Sentencias {
 	 * @return la plataforma cuya informacion coincida con @param query
 	 */
 	private Plataforma listarPlataforma(String query) {
+		Logger.log("Accediendo a la BD para obtener juegos de la plataforma "+query+"...");
 		String q = "SELECT * FROM PLATAFORMA" + query;
 		Statement st;
 		Plataforma p = null;
@@ -601,6 +616,7 @@ public class Sentencias {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		Logger.log("Juegos de la plataforma "+query+" obtenidos");
 		return p;
 	}
 }

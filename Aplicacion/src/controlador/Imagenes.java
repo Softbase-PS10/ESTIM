@@ -27,6 +27,8 @@ import java.net.URLConnection;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
+import modelo.Logger;
+
 public class Imagenes {
 
 	/* declaracion de atributos */
@@ -78,6 +80,7 @@ public class Imagenes {
 	 *             si se produce algun error en la obtencion de la imagen
 	 */
 	public static BufferedImage Url2Image(String url) throws IOException {
+		Logger.log("Cargando imagen de internet...");
 		URL link = new URL(url);
 		URLConnection conn = link.openConnection();
 		conn.addRequestProperty("User-Agent",
@@ -92,7 +95,7 @@ public class Imagenes {
 
 		BufferedImage image = ImageIO.read(new ByteArrayInputStream(
 				byteArrayOut.toByteArray()));
-
+		Logger.log("Imagen cargada");
 		return image;
 
 	}
