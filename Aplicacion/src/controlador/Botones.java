@@ -46,7 +46,7 @@ public class Botones {
 	public static JButton aplicarFiltros(final String origen,
 			final JFrame frame, final ArrayList<Juego> cesta) {
 		JButton aplicar = new JButton("Apply");
-		aplicar.setBounds(84, 293, 66, 20);
+		aplicar.setBounds(74, 293, 80, 20);
 		aplicar.addActionListener(new ActionListener() {
 
 			@Override
@@ -200,7 +200,7 @@ public class Botones {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Logger.log("Creando orden de pedido...");
-				// Creación de orden de pedido
+				// Creaciï¿½n de orden de pedido
 				Logger.log("Orden de pedido creada");
 				Logger.log("Vaciando carro...");
 				Logger.log("Carro vaciado");
@@ -233,7 +233,7 @@ public class Botones {
 				String titulo = Modificar.titulo.getText();
 				if (titulo.length() == 0) {
 					error = true;
-					Logger.log("Error: La longitud del título es cero");
+					Logger.log("Error: La longitud del tï¿½tulo es cero");
 					Modificar.eTitulo.setVisible(true);
 				} else {
 					Modificar.eTitulo.setVisible(false);
@@ -278,7 +278,7 @@ public class Botones {
 						if (!((point > 47 && point < 58) || point == 46)
 								&& !punto) {
 							error = true;
-							Logger.log("Error: La valoración del juego tiene un formato incorrecto");
+							Logger.log("Error: La valoraciï¿½n del juego tiene un formato incorrecto");
 							Modificar.eRating.setVisible(true);
 						} else {
 							Modificar.eRating.setVisible(false);
@@ -286,7 +286,7 @@ public class Botones {
 					}
 				} else {
 					error = true;
-					Logger.log("Error: La valoración del juego tiene un formato incorrecto");
+					Logger.log("Error: La valoraciï¿½n del juego tiene un formato incorrecto");
 					Modificar.eRating.setVisible(true);
 				}
 
