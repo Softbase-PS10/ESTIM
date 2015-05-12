@@ -343,9 +343,9 @@ public class Listado {
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					Logger.log("Cargando información del juego "+j.getTitulo());
+					Logger.log("Cargando informaciï¿½n del juego "+j.getTitulo());
 					frmPantallaPrincipal.getContentPane().removeAll();
-					Logger.log("Información del juego "+j.getTitulo()+" cargada");
+					Logger.log("Informaciï¿½n del juego "+j.getTitulo()+" cargada");
 					Info.main(frmPantallaPrincipal, j, cesta);
 				}
 			});
@@ -353,7 +353,7 @@ public class Listado {
 
 			JFormattedTextField precio = new JFormattedTextField();
 			precio.setSize(144, 60);
-			precio.setLocation(530, 60);
+			precio.setLocation(540, 60);
 			precio.setText(j.getPrecio() + " \u20AC");
 			precio.setOpaque(false);
 			precio.setForeground(Color.WHITE);
@@ -363,8 +363,8 @@ public class Listado {
 			res.add(precio);
 
 			JFormattedTextField releaseDate = new JFormattedTextField();
-			releaseDate.setSize(104, 20);
-			releaseDate.setLocation(162, 71);
+			releaseDate.setSize(114, 20);
+			releaseDate.setLocation(172, 71);
 			releaseDate.setText("Release date:");
 			releaseDate.setOpaque(false);
 			releaseDate.setForeground(Color.WHITE);
@@ -375,7 +375,7 @@ public class Listado {
 
 			JFormattedTextField platforms = new JFormattedTextField();
 			platforms.setSize(81, 20);
-			platforms.setLocation(162, 107);
+			platforms.setLocation(172, 107);
 			platforms.setText("Platforms:");
 			platforms.setOpaque(false);
 			platforms.setForeground(Color.WHITE);
@@ -386,7 +386,7 @@ public class Listado {
 
 			JFormattedTextField rating = new JFormattedTextField();
 			rating.setSize(62, 20);
-			rating.setLocation(162, 144);
+			rating.setLocation(172, 144);
 			rating.setText("Rating:");
 			rating.setOpaque(false);
 			rating.setForeground(Color.WHITE);
@@ -397,7 +397,7 @@ public class Listado {
 
 			JFormattedTextField titulo = new JFormattedTextField();
 			titulo.setSize(400, 20);
-			titulo.setLocation(162, 31);
+			titulo.setLocation(172, 31);
 			if (j.getTitulo() == null || j.getTitulo().compareTo("null") == 0)
 				titulo.setText("N/A");
 			else
@@ -410,7 +410,7 @@ public class Listado {
 			res.add(titulo);
 
 			JFormattedTextField fecha = new JFormattedTextField();
-			fecha.setBounds(270, 71, 170, 20);
+			fecha.setBounds(290, 71, 170, 20);
 			if (j.getLanzamiento() == null
 					|| j.getLanzamiento().compareTo("null") == 0)
 				fecha.setText("N/A");
@@ -425,7 +425,7 @@ public class Listado {
 
 			JFormattedTextField plataformas = new JFormattedTextField();
 			plataformas.setSize(188, 20);
-			plataformas.setLocation(246, 107);
+			plataformas.setLocation(256, 107);
 			if (j.getPlataforma().getAlias() == null
 					|| j.getPlataforma().getAlias().compareTo("null") == 0)
 				plataformas.setText("N/A");
@@ -440,7 +440,7 @@ public class Listado {
 
 			JFormattedTextField valoracion = new JFormattedTextField();
 			valoracion.setSize(150, 20);
-			valoracion.setLocation(234, 144);
+			valoracion.setLocation(244, 144);
 			if (j.getRating() == null || j.getRating().compareTo("null") == 0)
 				valoracion.setText("N/A");
 			else
