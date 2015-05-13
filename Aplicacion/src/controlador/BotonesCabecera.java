@@ -284,7 +284,7 @@ public class BotonesCabecera {
 						password.setPreferredSize(new Dimension(120, 20));
 						password.setName("Pass");
 						
-						cancelar.setBounds(149, 79, 75, 23);
+						cancelar.setBounds(149, 79, 85, 23);
 						cancelar.setHorizontalAlignment(SwingConstants.CENTER);
 						cancelar.addActionListener(new ActionListener() {
 							@Override
@@ -294,7 +294,7 @@ public class BotonesCabecera {
 						});							
 						panel.add(cancelar);
 
-						aceptar.setBounds(45, 79, 75, 23);
+						aceptar.setBounds(45, 79, 85, 23);
 						aceptar.setHorizontalAlignment(SwingConstants.CENTER);
 						aceptar.addActionListener(new ActionListener() {
 							@Override
@@ -331,6 +331,9 @@ public class BotonesCabecera {
 						    				Info.main(fr, juegoActual, cesta);
 						    				break;
 						    			}
+						    		}
+						    		else {
+										errorPass.setVisible(true);
 						    		}
 									
 								} catch (NoSuchAlgorithmException ex) {
