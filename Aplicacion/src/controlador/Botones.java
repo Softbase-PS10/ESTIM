@@ -200,7 +200,7 @@ public class Botones {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Logger.log("Creando orden de pedido...");
-				// Creaci�n de orden de pedido
+				// Creacion de orden de pedido
 				Logger.log("Orden de pedido creada");
 				Logger.log("Vaciando carro...");
 				Logger.log("Carro vaciado");

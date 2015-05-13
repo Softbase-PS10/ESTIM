@@ -26,8 +26,6 @@ import java.awt.event.MouseAdapter;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -51,9 +49,9 @@ import javax.swing.SwingConstants;
 import modelo.Juego;
 import modelo.Logger;
 import modelo.Sentencias;
+import vista.Carro;
 import vista.FramePal;
 import vista.Info;
-import vista.Carro;
 import vista.Listado;
 import vista.Modificar;
 import vista.Principal;
@@ -100,7 +98,7 @@ public class BotonesCabecera {
 	 * @param origen
 	 *            : 1 representa que el origen de esta llamada es de la pantalla
 	 *            principal, 2 para la pantalla de listado, 3 para la pantalla
-	 *            de información del juego y 4 para la pantalla de modificar
+	 *            de informacion del juego y 4 para la pantalla de modificar
 	 *            juego
 	 */
 	public static JLabel ajustes(final int origen, final Juego j, final ArrayList<Juego> juegos, 
@@ -110,7 +108,7 @@ public class BotonesCabecera {
 		final Juego juegoActual = j;
 		ajustes.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		ajustes.setBounds(0, 0, 70, 70);
-		//Está iniciada la sesión de administrador
+		//Esta iniciada la sesion de administrador
 		if(FramePal.isAdminOn()){
 			ajustes.setIcon(new ImageIcon(Principal.class
 					.getResource("/Imagenes/B/admin.png")));
@@ -228,7 +226,7 @@ public class BotonesCabecera {
 				}
 			});
 		}
-		//No está iniciada la sesión de administrador
+		//No esta iniciada la sesion de administrador
 		else{
 			ajustes.setIcon(new ImageIcon(Principal.class
 					.getResource("/Imagenes/B/settings.png")));
