@@ -17,7 +17,7 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.util.ArrayList;
-import java.util.TreeMap;
+import java.util.HashMap;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
@@ -43,7 +43,7 @@ public class Principal {
 	public static JTextField textField, textField_1, textField_2, textField_3;
 	private ArrayList<Juego> cesta;
 	public static JComboBox<String> comboBox, comboBox_1;
-	public static TreeMap<String, String> filtrosMap  = new TreeMap<>();
+	public static HashMap<String, String> filtrosMap  = new HashMap<>();
 
 	/**
 	 * Launch the application.

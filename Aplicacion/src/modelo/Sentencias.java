@@ -21,7 +21,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
-import java.util.TreeMap;
 
 public class Sentencias {
 
@@ -32,7 +31,7 @@ public class Sentencias {
 
 	public static void main(String[] args) {
 		Sentencias s = new Sentencias();
-		TreeMap<String, String> filtros = new TreeMap<String, String>();
+		HashMap<String, String> filtros = new HashMap<String, String>();
 		// filtros.put("preciomin", "50");
 		// filtros.put("preciomin", "50");
 		filtros.put("order", "JUEGO.titulo");
@@ -60,7 +59,7 @@ public class Sentencias {
 	 *         que cumplan los requisitos especifícados en el TreeMap
 	 */
 	public ArrayList<Juego> listarJuegosMultipleFiltros(
-			TreeMap<String, String> filtros, int nPagina) {
+			HashMap<String, String> filtros, int nPagina) {
 		Logger.log("Accediendo a la BD para obtener juegos aplicando filtros...");
 		String query = "select distinct JUEGO.id, titulo, imagen, resumen, rating, lanzamiento, precio, nombre, alias "
 				+ "from JUEGO, JUEGO_GENERO, JUEGO_PLATAFORMA, PLATAFORMA where "

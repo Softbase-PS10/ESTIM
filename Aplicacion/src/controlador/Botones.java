@@ -21,7 +21,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import java.util.TreeMap;
+import java.util.HashMap;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBoxMenuItem;
@@ -53,7 +53,7 @@ public class Botones {
 			public void actionPerformed(ActionEvent e) {
 				Logger.log("Aplicando filtros...");
 				Sentencias s = new Sentencias();
-				TreeMap<String, String> filtros = Principal.filtrosMap;
+				HashMap<String, String> filtros = Principal.filtrosMap;
 				if (origen == "Listado") {
 					int pMin, pMax;
 					double gMin, gMax;
