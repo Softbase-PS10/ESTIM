@@ -229,7 +229,7 @@ public class Principal {
 		comboBox_1
 				.setModel(new DefaultComboBoxModel<String>(
 						new String[] { "", "PS4", "PS3", "PSVITA", "XONE", "X360",
-								"PC", "WII-U", "WII", "N3DS" }));
+								"PC", "Wii U", "WII", "N3DS" }));
 		comboBox_1.setToolTipText("");
 		comboBox_1.setName("");
 		comboBox_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
