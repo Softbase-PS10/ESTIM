@@ -176,7 +176,7 @@ public class Carro {
 		filtros.add(tituloFiltros);
 
 		filtros.add(Botones.vaciarCarro(frmPantallaPrincipal));
-		filtros.add(Botones.comprarCarro(frmPantallaPrincipal));
+		filtros.add(Botones.comprarCarro(frmPantallaPrincipal,games));
 
 		JPanel principal = new JPanel();
 		principal.setBounds(190, 131, 870, 440);

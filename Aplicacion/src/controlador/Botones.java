@@ -26,9 +26,11 @@ import java.util.HashMap;
 import javax.swing.JButton;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import modelo.Juego;
 import modelo.Logger;
+import modelo.OrdenDePedido;
 import modelo.Plataforma;
 import modelo.Sentencias;
 import vista.Carro;
@@ -190,9 +192,10 @@ public class Botones {
 	}
 
 	/**
-	 * @return el boton de 'Empty cart', con su comportamiento implementado.
+	 * @return el boton de 'Buy cart', con su comportamiento implementado.
 	 */
-	public static JButton comprarCarro(final JFrame frame) {
+	public static JButton comprarCarro(final JFrame frame,
+			final ArrayList<Juego> games) {
 		JButton buy = new JButton("Buy games");
 		buy.setBounds(20, 145, 150, 20);
 		buy.addActionListener(new ActionListener() {
@@ -200,12 +203,13 @@ public class Botones {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Logger.log("Creando orden de pedido...");
-				// Creacion de orden de pedido
+				OrdenDePedido.makeTicket(games);
 				Logger.log("Orden de pedido creada");
 				Logger.log("Vaciando carro...");
 				Logger.log("Carro vaciado");
-				// Falta this
-				// Carro.main(frame, new ArrayList<Juego>());
+				JOptionPane.showMessageDialog(frame,
+						"Invoice created. Thanks for buying in Estim!");
+				Principal.main(frame, new ArrayList<Juego>());
 			}
 		});
 
