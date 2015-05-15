@@ -73,6 +73,7 @@ public class Listado {
 			public void run() {
 				try {
 					Listado window = new Listado(fr, juegos, cesta);
+					window.frmPantallaPrincipal.revalidate();
 					window.frmPantallaPrincipal.repaint();
 					window.frmPantallaPrincipal.setVisible(true);
 				} catch (Exception e) {
@@ -95,6 +96,8 @@ public class Listado {
 		this.cesta = cesta;
 		this.frmPantallaPrincipal = fr;
 		frmPantallaPrincipal.getContentPane().removeAll();
+		frmPantallaPrincipal.revalidate();
+		frmPantallaPrincipal.repaint();
 		initialize(juegos);
 	}
 
