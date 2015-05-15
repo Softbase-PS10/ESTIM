@@ -34,33 +34,83 @@ import vista.Principal;
 
 public class BotonesCategorias {
 
+//	/**
+//	 * @return
+//	 */
+//	public static JButton atras() {
+//		JButton atras = new JButton("");
+//		atras.setIcon(new ImageIcon(Principal.class
+//				.getResource("/Imagenes/B/atras.png")));
+//		atras.setRolloverIcon(new ImageIcon(Principal.class
+//				.getResource("/Imagenes/B/atrasP.png")));
+//		atras.setBackground(new Color(51, 102, 204));
+//		atras.setBorder(new LineBorder(new Color(0, 0, 0)));
+//		atras.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+//		atras.setFocusable(false);
+//		atras.setFocusPainted(false);
+//		atras.setForeground(Color.WHITE);
+//		atras.setFont(new Font("Tahoma", Font.BOLD, 14));
+//		atras.setBounds(0, 0, 53, 30);
+//
+//		atras.addActionListener(new ActionListener() {
+//
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				;
+//			}
+//		});
+//
+//		return atras;
+//	}
+//	
+//	/**
+//	 * @return
+//	 */
+//	public static JButton adelante() {
+//		JButton adelante = new JButton("");
+//		adelante.setIcon(new ImageIcon(Principal.class
+//				.getResource("/Imagenes/B/alante.png")));
+//		adelante.setRolloverIcon(new ImageIcon(Principal.class
+//				.getResource("/Imagenes/B/alanteP.png")));
+//		adelante.setOpaque(false);
+//		adelante.setForeground(Color.WHITE);
+//		adelante.setFont(new Font("Tahoma", Font.BOLD, 14));
+//		adelante.setFocusable(false);
+//		adelante.setContentAreaFilled(false);
+//		adelante.setBorder(new LineBorder(new Color(0, 0, 0)));
+//		adelante.setBackground(new Color(51, 102, 204));
+//		adelante.setBounds(53, 0, 53, 30);
+//
+//		adelante.addActionListener(new ActionListener() {
+//
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				;
+//			}
+//		});
+//
+//		return adelante;
+//	}
+	
 	/**
-	 * @return
+	 * @return un boton que redirige a la pantalla de listados de juegos de
+	 *         todos los juegos
 	 */
-	public static JButton atras() {
-		JButton atras = new JButton("");
-		atras.setIcon(new ImageIcon(Principal.class
-				.getResource("/Imagenes/B/atras.png")));
-		atras.setRolloverIcon(new ImageIcon(Principal.class
-				.getResource("/Imagenes/B/atrasP.png")));
-		atras.setBackground(new Color(51, 102, 204));
-		atras.setBorder(new LineBorder(new Color(0, 0, 0)));
-		atras.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		atras.setFocusable(false);
-		atras.setFocusPainted(false);
-		atras.setForeground(Color.WHITE);
-		atras.setFont(new Font("Tahoma", Font.BOLD, 14));
-		atras.setBounds(0, 0, 53, 30);
+	public static JButton allgames() {
+		JButton allgames = new JButton("");
+		allgames.setIcon(new ImageIcon(Principal.class
+				.getResource("/Imagenes/B/allgamesS.png")));
+		allgames.setRolloverIcon(new ImageIcon(Principal.class
+				.getResource("/Imagenes/B/allgamessP.png")));
+		allgames.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		allgames.setForeground(Color.WHITE);
+		allgames.setFont(new Font("Tahoma", Font.BOLD, 14));
+		allgames.setFocusable(false);
+		allgames.setFocusPainted(false);
+		allgames.setBorder(new LineBorder(new Color(0, 0, 0)));
+		allgames.setBounds(0, 0, 106, 30);
 
-		atras.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				;
-			}
-		});
-
-		return atras;
+		return allgames;
 	}
 
 	/**
@@ -266,34 +316,5 @@ public class BotonesCategorias {
 		ps4.addActionListener(new PlatformListener(Plataforma.aliasPS4, frame, cesta));
 
 		return ps4;
-	}
-
-	/**
-	 * @return
-	 */
-	public static JButton adelante() {
-		JButton adelante = new JButton("");
-		adelante.setIcon(new ImageIcon(Principal.class
-				.getResource("/Imagenes/B/alante.png")));
-		adelante.setRolloverIcon(new ImageIcon(Principal.class
-				.getResource("/Imagenes/B/alanteP.png")));
-		adelante.setOpaque(false);
-		adelante.setForeground(Color.WHITE);
-		adelante.setFont(new Font("Tahoma", Font.BOLD, 14));
-		adelante.setFocusable(false);
-		adelante.setContentAreaFilled(false);
-		adelante.setBorder(new LineBorder(new Color(0, 0, 0)));
-		adelante.setBackground(new Color(51, 102, 204));
-		adelante.setBounds(53, 0, 53, 30);
-
-		adelante.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				;
-			}
-		});
-
-		return adelante;
 	}
 }

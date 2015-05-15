@@ -221,7 +221,7 @@ public class Modificar {
 		frmPantallaPrincipal.getContentPane().add(categorias);
 		categorias.setLayout(null);
 
-		categorias.add(BotonesCategorias.atras());
+		categorias.add(BotonesCategorias.allgames());
 		categorias.add(BotonesCategorias.ps3(frmPantallaPrincipal,cesta));
 		categorias.add(BotonesCategorias.vita(frmPantallaPrincipal,cesta));
 		categorias.add(BotonesCategorias.xone(frmPantallaPrincipal,cesta));
@@ -231,7 +231,6 @@ public class Modificar {
 		categorias.add(BotonesCategorias.wii(frmPantallaPrincipal,cesta));
 		categorias.add(BotonesCategorias.n3ds(frmPantallaPrincipal,cesta));
 		categorias.add(BotonesCategorias.ps4(frmPantallaPrincipal,cesta));
-		categorias.add(BotonesCategorias.adelante());
 
 		JPanel panel_3 = new JPanel();
 		panel_3.setBounds(0, 100, 1060, 471);

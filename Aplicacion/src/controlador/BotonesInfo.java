@@ -110,7 +110,7 @@ public class BotonesInfo {
 		categorias.setBackground(Color.DARK_GRAY);
 		categorias.setBounds(0, 70, 1060, 30);
 		categorias.setLayout(null);
-		categorias.add(BotonesCategorias.atras());
+		categorias.add(BotonesCategorias.allgames());
 		categorias.add(BotonesCategorias.ps3(frmInformacinDelProduc, cesta));
 		categorias.add(BotonesCategorias.vita(frmInformacinDelProduc, cesta));
 		categorias.add(BotonesCategorias.xone(frmInformacinDelProduc, cesta));
@@ -120,7 +120,6 @@ public class BotonesInfo {
 		categorias.add(BotonesCategorias.wii(frmInformacinDelProduc, cesta));
 		categorias.add(BotonesCategorias.n3ds(frmInformacinDelProduc, cesta));
 		categorias.add(BotonesCategorias.ps4(frmInformacinDelProduc, cesta));
-		categorias.add(BotonesCategorias.adelante());
 		return categorias;
 	}
 
