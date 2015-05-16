@@ -13,6 +13,7 @@
 
 package modelo;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -29,7 +30,7 @@ public class Sentencias {
 	private static boolean abierta;
 
 	/* declaracion de metodos y funciones */
-
+	
 	/**
 	 * Metodo de creacion de la conexion con la Base de Datos MySql
 	 */
