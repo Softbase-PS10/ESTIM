@@ -224,7 +224,7 @@ public class Principal {
 		frmtdtxtfldPlataforma.setBounds(20, 162, 171, 20);
 		filtros.add(frmtdtxtfldPlataforma);
 
-		JComboBox<String> comboBox_1 = new JComboBox<String>();
+		comboBox_1 = new JComboBox<String>();
 		comboBox_1
 				.setModel(new DefaultComboBoxModel<String>(
 						new String[] { "", "PS4", "PS3", "PSVITA", "XONE", "X360",
