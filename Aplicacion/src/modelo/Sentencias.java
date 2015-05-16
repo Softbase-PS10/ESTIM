@@ -13,7 +13,6 @@
 
 package modelo;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -30,27 +29,6 @@ public class Sentencias {
 	private static boolean abierta;
 
 	/* declaracion de metodos y funciones */
-
-	public static void main(String[] args) {
-		Sentencias s = new Sentencias();
-		HashMap<String, String> filtros = new HashMap<String, String>();
-		// filtros.put("preciomin", "50");
-		// filtros.put("preciomin", "50");
-		try {
-			Logger.initialize();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		filtros.put("order", "precio");
-		filtros.put("type", "DESC");
-		for (Juego j : s.listarJuegosMultipleFiltros(filtros, 1)) {
-			System.out.println(j.mostrarInfo());
-		}
-		s.close();
-	}
-
-
 
 	/**
 	 * Metodo de creacion de la conexion con la Base de Datos MySql
