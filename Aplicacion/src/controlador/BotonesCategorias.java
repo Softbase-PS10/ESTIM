@@ -334,9 +334,9 @@ public class BotonesCategorias {
 	public static JButton allgames(JFrame frame, ArrayList<Juego> cesta) {
 		JButton allgames = new JButton("");
 		allgames.setIcon(new ImageIcon(Principal.class
-				.getResource("/Imagenes/B/allgamesS.png")));
+				.getResource("/Imagenes/B/allgames.png")));
 		allgames.setRolloverIcon(new ImageIcon(Principal.class
-				.getResource("/Imagenes/B/allgamessP.png")));
+				.getResource("/Imagenes/B/allgamesP.png")));
 		allgames.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		allgames.setForeground(Color.WHITE);
 		allgames.setFont(new Font("Tahoma", Font.BOLD, 14));
