@@ -221,7 +221,7 @@ public class Modificar {
 		frmPantallaPrincipal.getContentPane().add(categorias);
 		categorias.setLayout(null);
 
-		categorias.add(BotonesCategorias.allgames());
+		categorias.add(BotonesCategorias.allgames(frmPantallaPrincipal,cesta));
 		categorias.add(BotonesCategorias.ps3(frmPantallaPrincipal,cesta));
 		categorias.add(BotonesCategorias.vita(frmPantallaPrincipal,cesta));
 		categorias.add(BotonesCategorias.xone(frmPantallaPrincipal,cesta));

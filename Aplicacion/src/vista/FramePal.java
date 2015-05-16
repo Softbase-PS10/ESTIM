@@ -62,9 +62,9 @@ public class FramePal {
 	}
 	
 	//caballocampestre
-	/*
-	 * Método para cifrar al contraseña del administrador, 
-	 * la contraseña solamente puede tener una palabra y va a estar contenida en Admin.txt
+	/**
+	 * Metodo para cifrar la password del administrador, 
+	 * La password solamente puede tener una palabra y va a estar contenida en Admin.txt
 	 */
 	private static void cifrarPass(){
 		try{

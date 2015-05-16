@@ -42,13 +42,24 @@ public class PlatformListener implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		Logger.log("Cargando juegos de la plataforma "+this.alias);
-		sql = new Sentencias();
-		ArrayList<Juego> juegos = sql.listarJuegosPlataformaAlias(this.alias);
-		Principal.filtrosMap.put("plataforma", alias);
-		frame.getContentPane().removeAll();
-		Logger.log("Juegos de la plataforma "+this.alias+" cargados");
-		Listado.listar(frame, juegos, cesta, 1);
+		if (alias != null) {
+			Logger.log("Cargando juegos de la plataforma " + this.alias);
+			sql = new Sentencias();
+			ArrayList<Juego> juegos = sql
+					.listarJuegosPlataformaAlias(this.alias);
+			Principal.filtrosMap.put("plataforma", alias);
+			frame.getContentPane().removeAll();
+			Logger.log("Juegos de la plataforma " + this.alias + " cargados");
+			Listado.listar(frame, juegos, cesta, 1);
+		} else{
+			Logger.log("Cargando todos los juegos");
+			sql = new Sentencias();
+			ArrayList<Juego> juegos = sql.listarTodosJuegos();
+			Principal.filtrosMap.remove("plataforma");
+			frame.getContentPane().removeAll();
+			Logger.log("Todos los juegos cargados");
+			Listado.listar(frame, juegos, cesta, 1);
+		}
 	}
 
 }

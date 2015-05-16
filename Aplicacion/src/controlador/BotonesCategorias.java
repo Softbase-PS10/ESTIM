@@ -331,7 +331,7 @@ public class BotonesCategorias {
 	 * @return un boton que redirige a la pantalla de listados de juegos de
 	 *         todos los juegos
 	 */
-	public static JButton allgames() {
+	public static JButton allgames(JFrame frame, ArrayList<Juego> cesta) {
 		JButton allgames = new JButton("");
 		allgames.setIcon(new ImageIcon(Principal.class
 				.getResource("/Imagenes/B/allgamesS.png")));
@@ -344,6 +344,8 @@ public class BotonesCategorias {
 		allgames.setFocusPainted(false);
 		allgames.setBorder(new LineBorder(new Color(0, 0, 0)));
 		allgames.setBounds(0, 0, 106, 30);
+		
+		allgames.addActionListener(new PlatformListener(null, frame, cesta));
 
 		return allgames;
 	}

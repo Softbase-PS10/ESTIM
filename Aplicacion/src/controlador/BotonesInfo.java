@@ -110,7 +110,7 @@ public class BotonesInfo {
 		categorias.setBackground(Color.DARK_GRAY);
 		categorias.setBounds(0, 70, 1060, 30);
 		categorias.setLayout(null);
-		categorias.add(BotonesCategorias.allgames());
+		categorias.add(BotonesCategorias.allgames(frmInformacinDelProduc, cesta));
 		categorias.add(BotonesCategorias.ps3(frmInformacinDelProduc, cesta));
 		categorias.add(BotonesCategorias.vita(frmInformacinDelProduc, cesta));
 		categorias.add(BotonesCategorias.xone(frmInformacinDelProduc, cesta));
