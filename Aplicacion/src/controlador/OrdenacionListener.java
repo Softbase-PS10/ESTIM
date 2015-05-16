@@ -90,7 +90,6 @@ public class OrdenacionListener implements ActionListener {
 		}
 		ArrayList<Juego> juegos = sql.listarJuegosMultipleFiltros(
 				Principal.filtrosMap, 1);
-		sql.close();
 		frame.getContentPane().removeAll();
 		Listado.listar(frame, juegos, cesta, 1);
 	}

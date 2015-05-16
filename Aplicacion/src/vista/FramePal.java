@@ -13,6 +13,8 @@
 package vista;
 
 import java.awt.Toolkit;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -21,13 +23,13 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-
-import modelo.Juego;
-import modelo.Logger;
-
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
+
+import modelo.Juego;
+import modelo.Logger;
+import modelo.Sentencias;
 
 public class FramePal {
 	
@@ -42,8 +44,13 @@ public class FramePal {
 				Principal.class.getResource("/Imagenes/E.png")));
 		frmPantallaPrincipal.setResizable(false);
 		frmPantallaPrincipal.setBounds(100, 100, 1066, 600);
-		frmPantallaPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmPantallaPrincipal.getContentPane().setLayout(null);
+		frmPantallaPrincipal.addWindowListener(new WindowAdapter(){
+            public void windowClosing(WindowEvent e){
+	             	new Sentencias().close();
+                    System.exit(0);
+            }
+        });
 		ArrayList<Juego> cesta = new ArrayList<Juego>();
 		try {
 			Logger.initialize();

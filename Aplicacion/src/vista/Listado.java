@@ -479,8 +479,6 @@ public class Listado {
 				"", "Price asc.", "Price desc.", "Rating asc.",
 				"Rating desc.", "Title asc.", "Title desc.", "Year asc.", "Year desc." }));
 		ordenacionMulti.addActionListener(new OrdenacionListener(frmPantallaPrincipal, cesta));
-		if(Principal.filtrosMap.containsKey("optionS"))
-			ordenacionMulti.setSelectedItem(Principal.filtrosMap.get("optionS"));
 		ordenacion.add(ordenacionMulti);
 		JFormattedTextField txtOrdenar = new JFormattedTextField();
 		txtOrdenar.setText("Sort by:");
