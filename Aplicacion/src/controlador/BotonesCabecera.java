@@ -110,7 +110,7 @@ public class BotonesCabecera {
 		//Esta iniciada la sesion de administrador
 		if(FramePal.isAdminOn()){
 			ajustes.setIcon(new ImageIcon(Principal.class
-					.getResource("/Imagenes/B/admin.png")));
+					.getResource("/Imagenes/B/settings.png")));
 			final JPopupMenu pop = new JPopupMenu();
 			if (origen == 1 || origen == 2) {
 				JMenuItem add = new JMenuItem("Add");
@@ -208,13 +208,13 @@ public class BotonesCabecera {
 				@Override
 				public void mouseEntered(java.awt.event.MouseEvent evt) {
 					ajustes.setIcon(new ImageIcon(Principal.class
-							.getResource("/Imagenes/B/admin2.png")));
+							.getResource("/Imagenes/B/ajustesP.png")));
 				}
 
 				@Override
 				public void mouseExited(java.awt.event.MouseEvent evt) {
 					ajustes.setIcon(new ImageIcon(Principal.class
-							.getResource("/Imagenes/B/admin.png")));
+							.getResource("/Imagenes/B/settings.png")));
 				}
 
 				@Override
@@ -226,19 +226,19 @@ public class BotonesCabecera {
 		//No esta iniciada la sesion de administrador
 		else{
 			ajustes.setIcon(new ImageIcon(Principal.class
-					.getResource("/Imagenes/B/settings.png")));
+					.getResource("/Imagenes/B/admin.png")));
 			ajustes.addMouseListener(new MouseAdapter() {
 
 				@Override
 				public void mouseEntered(java.awt.event.MouseEvent evt) {
 					ajustes.setIcon(new ImageIcon(Principal.class
-							.getResource("/Imagenes/B/ajustesP.png")));
+							.getResource("/Imagenes/B/admin2.png")));
 				}
 
 				@Override
 				public void mouseExited(java.awt.event.MouseEvent evt) {
 					ajustes.setIcon(new ImageIcon(Principal.class
-							.getResource("/Imagenes/B/settings.png")));
+							.getResource("/Imagenes/B/admin.png")));
 				}
 
 				@Override
