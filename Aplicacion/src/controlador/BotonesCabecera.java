@@ -81,7 +81,6 @@ public class BotonesCabecera {
 				String busqueda = busc.getText();
 				Sentencias sql = new Sentencias();
 				ArrayList<Juego> juegos = sql.listarJuegosTitulo(busqueda);
-				sql.close();
 				frame.getContentPane().removeAll();
 				Logger.log("Juegos encontrados");
 				Listado.listar(frame, juegos, cesta);
@@ -170,8 +169,6 @@ public class BotonesCabecera {
 														.listarJuegosPlataformaAlias(juegoActual
 																.getPlataforma()
 																.getAlias());
-												s.close();
-
 												frame.getContentPane().removeAll();
 												Listado.listar(frame, juegos, cesta);
 											} else if (value == JOptionPane.NO_OPTION) {

@@ -45,7 +45,6 @@ public class PlatformListener implements ActionListener {
 		Logger.log("Cargando juegos de la plataforma "+this.alias);
 		sql = new Sentencias();
 		ArrayList<Juego> juegos = sql.listarJuegosPlataformaAlias(this.alias);
-		sql.close();
 		Principal.filtrosMap.put("plataforma", alias);
 		frame.getContentPane().removeAll();
 		Logger.log("Juegos de la plataforma "+this.alias+" cargados");

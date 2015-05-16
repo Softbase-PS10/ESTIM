@@ -13,6 +13,7 @@
 
 package modelo;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -25,7 +26,8 @@ import java.util.Map.Entry;
 public class Sentencias {
 
 	/* declaracion de atributos */
-	private Connection connection;
+	private static Connection connection;
+	private static boolean abierta;
 
 	/* declaracion de metodos y funciones */
 
@@ -34,29 +36,62 @@ public class Sentencias {
 		HashMap<String, String> filtros = new HashMap<String, String>();
 		// filtros.put("preciomin", "50");
 		// filtros.put("preciomin", "50");
-		filtros.put("order", "JUEGO.titulo");
-		filtros.put("type", "ASC");
-		filtros.put("plataforma", "PC");
-		for (Juego j : s.listarJuegosMultipleFiltros(filtros, 120)) {
-			Logger.log(j.mostrarInfo());
+		try {
+			Logger.initialize();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		filtros.put("order", "precio");
+		filtros.put("type", "DESC");
+		for (Juego j : s.listarJuegosMultipleFiltros(filtros, 1)) {
+			System.out.println(j.mostrarInfo());
 		}
 		s.close();
 	}
 
+
+
 	/**
-	 * Método que aplica distintas querys en función del contenido del parámetro
-	 * filtros. Además devuelve una consulta paginada, es decir, dependiendo del
-	 * número de página, devuelve los 5 elementos de dicha página. Se asume la
-	 * primera página la número 1.
+	 * Metodo de creacion de la conexion con la Base de Datos MySql
+	 */
+	public Sentencias() {
+		try {
+			if(!abierta){
+				connection = GestorDeConexiones.getConnection();
+				abierta = true;
+			}
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Metodo que cierra la actual conexion
+	 */
+	public void close() {
+		try {
+			connection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Metodo que aplica distintas querys en funcion del contenido del parametro
+	 * filtros. Ademas devuelve una consulta paginada, es decir, dependiendo del
+	 * numero de pagina, devuelve los 5 elementos de dicha pagina. Se asume la
+	 * primera pagina la numero 1.
 	 * 
 	 * @param filtros
 	 *            : TreeMap que contiene los distintos requisitos para la
 	 *            consulta (Ej. que la plataforma sea PS3)
 	 * @param nPagina
-	 *            : Número de página que se quiere consultar, la primera es la
-	 *            número 1
-	 * @return Una lista con los 5 juegos que pertenezcan a la página pasada y
-	 *         que cumplan los requisitos especifícados en el TreeMap
+	 *            : Numero de pagina que se quiere consultar, la primera es la
+	 *            numero 1
+	 * @return Una lista con los 5 juegos que pertenezcan a la pagina pasada y
+	 *         que cumplan los requisitos especificados en el TreeMap
 	 */
 	public ArrayList<Juego> listarJuegosMultipleFiltros(
 			HashMap<String, String> filtros, int nPagina) {
@@ -65,7 +100,7 @@ public class Sentencias {
 				+ "from JUEGO, JUEGO_GENERO, JUEGO_PLATAFORMA, PLATAFORMA where "
 				+ "JUEGO.id = JUEGO_GENERO.id and JUEGO.id = JUEGO_PLATAFORMA.juego and "
 				+ "JUEGO_PLATAFORMA.plataforma = PLATAFORMA.id";
-		String order = "";
+		String order = "", type = "";
 		if (filtros != null) {
 			for (Entry<String, String> e : filtros.entrySet()) {
 				switch (e.getKey()) {
@@ -94,16 +129,15 @@ public class Sentencias {
 					query = query + " and JUEGO.rating <= " + e.getValue();
 					break;
 				case ("order"):
-					order = " ORDER BY " + e.getValue() + ", JUEGO.id ";
+					order = " ORDER BY " + e.getValue();
 					break;
 				case ("type"):
-					order = order + e.getValue();
+					type = e.getValue();
 					break;
 				}
 			}
 		}
-
-		query = query + order + " limit 5 offset " + (5 * (nPagina - 1));
+		query = query + order + " " + type + " limit 5 offset " + (5 * (nPagina - 1));
 		ArrayList<Juego> js = new ArrayList<Juego>();
 		try {
 			Statement st = connection.createStatement(), st2;
@@ -193,28 +227,6 @@ public class Sentencias {
 			return cantidad;
 		} catch (SQLException ex) {
 			return -1;
-		}
-	}
-
-	/**
-	 * Metodo de creacion de la conexion con la Base de Datos MySql
-	 */
-	public Sentencias() {
-		try {
-			connection = GestorDeConexiones.getConnection();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * Método que cierra la actual conexión
-	 */
-	public void close() {
-		try {
-			connection.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
 		}
 	}
 
@@ -397,7 +409,7 @@ public class Sentencias {
 			}
 
 		} else {
-			Logger.log("Error número negativo");
+			Logger.log("Error nï¿½mero negativo");
 			// Mostrar mensaje en el log
 		}
 	}
@@ -410,7 +422,7 @@ public class Sentencias {
 
 		// Si el titulo no es vacio ni nulo, el precio mayor que cero, la
 		// plataforma no se nula ni sus campos vacios,
-		// se comienza a añadir
+		// se comienza a aï¿½adir
 		if (juego.getTitulo() != null
 				&& !juego.getTitulo().equals("")
 				&& juego.getPrecio() > 0
@@ -501,7 +513,7 @@ public class Sentencias {
 
 		// Si el titulo no es vacio ni nulo, el precio mayor que cero, la
 		// plataforma no se nula ni
-		// sus campos vacios, se comienza a añadir
+		// sus campos vacios, se comienza a aï¿½adir
 		if (juego.getTitulo() != null
 				&& !juego.getTitulo().equals("")
 				&& juego.getPrecio() > 0
@@ -592,7 +604,7 @@ public class Sentencias {
 	 * @return el identificador del ultimo juego
 	 */
 	public long obtenerUltimoIdJuego() {
-		Logger.log("Accediendo a la BD para obtener el id del último juego...");
+		Logger.log("Accediendo a la BD para obtener el id del ï¿½ltimo juego...");
 		String q = "SELECT MAX(id) AS mid FROM JUEGO";
 		Statement st;
 		long id = -1;
