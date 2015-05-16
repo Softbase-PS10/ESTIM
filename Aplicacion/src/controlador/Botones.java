@@ -162,7 +162,7 @@ public class Botones {
 					Logger.log("Filtros aplicados");
 					frame.getContentPane().removeAll();
 					Listado.listar(frame,
-							s.listarJuegosMultipleFiltros(filtros, 1), cesta);
+							s.listarJuegosMultipleFiltros(filtros, 1), cesta, 1);
 				} else {
 					Logger.log("Sin filtros que aplicar");
 				}

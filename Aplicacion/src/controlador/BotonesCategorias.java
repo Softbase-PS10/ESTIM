@@ -22,6 +22,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -29,69 +30,303 @@ import javax.swing.JFrame;
 import javax.swing.border.LineBorder;
 
 import modelo.Juego;
+import modelo.Logger;
 import modelo.Plataforma;
+import modelo.Sentencias;
+import vista.Listado;
 import vista.Principal;
 
 public class BotonesCategorias {
 
-//	/**
-//	 * @return
-//	 */
-//	public static JButton atras() {
-//		JButton atras = new JButton("");
-//		atras.setIcon(new ImageIcon(Principal.class
-//				.getResource("/Imagenes/B/atras.png")));
-//		atras.setRolloverIcon(new ImageIcon(Principal.class
-//				.getResource("/Imagenes/B/atrasP.png")));
-//		atras.setBackground(new Color(51, 102, 204));
-//		atras.setBorder(new LineBorder(new Color(0, 0, 0)));
-//		atras.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-//		atras.setFocusable(false);
-//		atras.setFocusPainted(false);
-//		atras.setForeground(Color.WHITE);
-//		atras.setFont(new Font("Tahoma", Font.BOLD, 14));
-//		atras.setBounds(0, 0, 53, 30);
-//
-//		atras.addActionListener(new ActionListener() {
-//
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				;
-//			}
-//		});
-//
-//		return atras;
-//	}
-//	
-//	/**
-//	 * @return
-//	 */
-//	public static JButton adelante() {
-//		JButton adelante = new JButton("");
-//		adelante.setIcon(new ImageIcon(Principal.class
-//				.getResource("/Imagenes/B/alante.png")));
-//		adelante.setRolloverIcon(new ImageIcon(Principal.class
-//				.getResource("/Imagenes/B/alanteP.png")));
-//		adelante.setOpaque(false);
-//		adelante.setForeground(Color.WHITE);
-//		adelante.setFont(new Font("Tahoma", Font.BOLD, 14));
-//		adelante.setFocusable(false);
-//		adelante.setContentAreaFilled(false);
-//		adelante.setBorder(new LineBorder(new Color(0, 0, 0)));
-//		adelante.setBackground(new Color(51, 102, 204));
-//		adelante.setBounds(53, 0, 53, 30);
-//
-//		adelante.addActionListener(new ActionListener() {
-//
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				;
-//			}
-//		});
-//
-//		return adelante;
-//	}
-	
+	/**
+	 * @return
+	 */
+	public static JButton atras(final JFrame frame,
+			final ArrayList<Juego> cesta, final int nPagina) {
+		JButton atras = new JButton("");
+		atras.setIcon(new ImageIcon(Principal.class
+				.getResource("/Imagenes/B/atras.png")));
+		atras.setRolloverIcon(new ImageIcon(Principal.class
+				.getResource("/Imagenes/B/atrasP.png")));
+		atras.setBackground(new Color(51, 102, 204));
+		atras.setBorder(new LineBorder(new Color(0, 0, 0)));
+		atras.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		atras.setFocusable(false);
+		atras.setFocusPainted(false);
+		atras.setForeground(Color.WHITE);
+		atras.setFont(new Font("Tahoma", Font.BOLD, 14));
+		atras.setBounds(350, 6, 53, 30);
+
+		atras.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Logger.log("Cambiando de página...");
+				Sentencias s = new Sentencias();
+				String origen = "Listado";
+				HashMap<String, String> filtros = Principal.filtrosMap;
+				if (origen == "Listado") {
+					int pMin, pMax;
+					double gMin, gMax;
+					String te = Listado.precioMinimo.getText();
+					try {
+						pMin = Integer.parseInt(te);
+						filtros.put("preciomin", pMin + "");
+					} catch (NumberFormatException e1) {
+						filtros.remove("preciomin");
+					}
+					te = Listado.precioMaximo.getText();
+					try {
+						pMax = Integer.parseInt(te);
+						filtros.put("preciomax", pMax + "");
+					} catch (NumberFormatException e1) {
+						filtros.remove("preciomax");
+					}
+					te = Listado.valoracionMinima.getText();
+					if (te.length() > 4)
+						te = te.substring(0, 3);
+					try {
+						gMin = Double.parseDouble(te);
+						if (gMin / 10 < 1)
+							filtros.put("ratingmin", gMin + "");
+					} catch (NumberFormatException e1) {
+						filtros.remove("ratingmin");
+					}
+					te = Listado.valoracionMaxima.getText();
+					if (te.length() > 4)
+						te = te.substring(0, 3);
+					try {
+						gMax = Double.parseDouble(te);
+						if (gMax / 10 < 1)
+							filtros.put("ratingmax", gMax + "");
+					} catch (NumberFormatException e1) {
+						filtros.remove("ratingmax");
+					}
+					if (!Listado.generoMulti.getSelectedItem().equals(""))
+						filtros.put("genero",
+								(String) Listado.generoMulti.getSelectedItem());
+					else
+						filtros.remove("genero");
+					if (!Listado.plataformaMulti.getSelectedItem().equals(""))
+						filtros.put("plataforma",
+								(String) Listado.plataformaMulti
+										.getSelectedItem());
+					else
+						filtros.remove("plataforma");
+				}
+
+				else if (origen == "Principal") {
+					int pMin, pMax;
+					double gMin, gMax;
+					String te = Principal.textField.getText();
+					try {
+						pMin = Integer.parseInt(te);
+						filtros.put("preciomin", pMin + "");
+					} catch (NumberFormatException e1) {
+						filtros.remove("preciomin");
+					}
+					te = Principal.textField_1.getText();
+					try {
+						pMax = Integer.parseInt(te);
+						filtros.put("preciomax", pMax + "");
+					} catch (NumberFormatException e1) {
+						filtros.remove("preciomax");
+					}
+					te = Principal.textField_2.getText();
+					if (te.length() > 4)
+						te = te.substring(0, 3);
+					try {
+						gMin = Double.parseDouble(te);
+						if (gMin / 10 < 1)
+							filtros.put("ratingmin", gMin + "");
+						else
+							filtros.remove("ratingmin");
+					} catch (NumberFormatException e1) {
+						filtros.remove("ratingmin");
+					}
+					te = Principal.textField_3.getText();
+					if (te.length() > 4)
+						te = te.substring(0, 3);
+					try {
+						gMax = Double.parseDouble(te);
+						if (gMax / 10 < 1)
+							filtros.put("ratingmax", gMax + "");
+						else
+							filtros.remove("ratingmax");
+					} catch (NumberFormatException e1) {
+						filtros.remove("ratingmax");
+					}
+					if (!Principal.comboBox.getSelectedItem().equals(""))
+						filtros.put("genero",
+								(String) Principal.comboBox.getSelectedItem());
+					else
+						filtros.remove("genero");
+					if (!Principal.comboBox_1.getSelectedItem().equals(""))
+						filtros.put("plataforma",
+								(String) Principal.comboBox_1.getSelectedItem());
+					else
+						filtros.remove("plataforma");
+				}
+				Logger.log("Página cambiada");
+				if (!filtros.isEmpty()) {
+					frame.getContentPane().removeAll();
+					Listado.listar(frame,
+							s.listarJuegosMultipleFiltros(filtros, 1), cesta,
+							nPagina - 1);
+				} else {
+					;
+				}
+			}
+		});
+
+		return atras;
+	}
+
+	/**
+	 * @return
+	 */
+	public static JButton adelante(final JFrame frame,
+			final ArrayList<Juego> cesta, final int nPagina) {
+		JButton adelante = new JButton("");
+		adelante.setIcon(new ImageIcon(Principal.class
+				.getResource("/Imagenes/B/alante.png")));
+		adelante.setRolloverIcon(new ImageIcon(Principal.class
+				.getResource("/Imagenes/B/alanteP.png")));
+		adelante.setOpaque(false);
+		adelante.setForeground(Color.WHITE);
+		adelante.setFont(new Font("Tahoma", Font.BOLD, 14));
+		adelante.setFocusable(false);
+		adelante.setContentAreaFilled(false);
+		adelante.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		adelante.setBorder(new LineBorder(new Color(0, 0, 0)));
+		adelante.setBackground(new Color(51, 102, 204));
+		adelante.setBounds(450, 6, 53, 30);
+
+		adelante.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Logger.log("Cambiando de página...");
+				Sentencias s = new Sentencias();
+				String origen = "Listado";
+				HashMap<String, String> filtros = Principal.filtrosMap;
+				if (origen == "Listado") {
+					int pMin, pMax;
+					double gMin, gMax;
+					String te = Listado.precioMinimo.getText();
+					try {
+						pMin = Integer.parseInt(te);
+						filtros.put("preciomin", pMin + "");
+					} catch (NumberFormatException e1) {
+						filtros.remove("preciomin");
+					}
+					te = Listado.precioMaximo.getText();
+					try {
+						pMax = Integer.parseInt(te);
+						filtros.put("preciomax", pMax + "");
+					} catch (NumberFormatException e1) {
+						filtros.remove("preciomax");
+					}
+					te = Listado.valoracionMinima.getText();
+					if (te.length() > 4)
+						te = te.substring(0, 3);
+					try {
+						gMin = Double.parseDouble(te);
+						if (gMin / 10 < 1)
+							filtros.put("ratingmin", gMin + "");
+					} catch (NumberFormatException e1) {
+						filtros.remove("ratingmin");
+					}
+					te = Listado.valoracionMaxima.getText();
+					if (te.length() > 4)
+						te = te.substring(0, 3);
+					try {
+						gMax = Double.parseDouble(te);
+						if (gMax / 10 < 1)
+							filtros.put("ratingmax", gMax + "");
+					} catch (NumberFormatException e1) {
+						filtros.remove("ratingmax");
+					}
+					if (!Listado.generoMulti.getSelectedItem().equals(""))
+						filtros.put("genero",
+								(String) Listado.generoMulti.getSelectedItem());
+					else
+						filtros.remove("genero");
+					if (!Listado.plataformaMulti.getSelectedItem().equals(""))
+						filtros.put("plataforma",
+								(String) Listado.plataformaMulti
+										.getSelectedItem());
+					else
+						filtros.remove("plataforma");
+				}
+
+				else if (origen == "Principal") {
+					int pMin, pMax;
+					double gMin, gMax;
+					String te = Principal.textField.getText();
+					try {
+						pMin = Integer.parseInt(te);
+						filtros.put("preciomin", pMin + "");
+					} catch (NumberFormatException e1) {
+						filtros.remove("preciomin");
+					}
+					te = Principal.textField_1.getText();
+					try {
+						pMax = Integer.parseInt(te);
+						filtros.put("preciomax", pMax + "");
+					} catch (NumberFormatException e1) {
+						filtros.remove("preciomax");
+					}
+					te = Principal.textField_2.getText();
+					if (te.length() > 4)
+						te = te.substring(0, 3);
+					try {
+						gMin = Double.parseDouble(te);
+						if (gMin / 10 < 1)
+							filtros.put("ratingmin", gMin + "");
+						else
+							filtros.remove("ratingmin");
+					} catch (NumberFormatException e1) {
+						filtros.remove("ratingmin");
+					}
+					te = Principal.textField_3.getText();
+					if (te.length() > 4)
+						te = te.substring(0, 3);
+					try {
+						gMax = Double.parseDouble(te);
+						if (gMax / 10 < 1)
+							filtros.put("ratingmax", gMax + "");
+						else
+							filtros.remove("ratingmax");
+					} catch (NumberFormatException e1) {
+						filtros.remove("ratingmax");
+					}
+					if (!Principal.comboBox.getSelectedItem().equals(""))
+						filtros.put("genero",
+								(String) Principal.comboBox.getSelectedItem());
+					else
+						filtros.remove("genero");
+					if (!Principal.comboBox_1.getSelectedItem().equals(""))
+						filtros.put("plataforma",
+								(String) Principal.comboBox_1.getSelectedItem());
+					else
+						filtros.remove("plataforma");
+				}
+				Logger.log("Página cambiada");
+				if (!filtros.isEmpty()) {
+					frame.getContentPane().removeAll();
+					Listado.listar(frame,
+							s.listarJuegosMultipleFiltros(filtros, 1), cesta,
+							nPagina + 1);
+				} else {
+					;
+				}
+			}
+		});
+
+		return adelante;
+	}
+
 	/**
 	 * @return un boton que redirige a la pantalla de listados de juegos de
 	 *         todos los juegos
@@ -131,7 +366,8 @@ public class BotonesCategorias {
 		ps3.setBorder(new LineBorder(new Color(0, 0, 0)));
 		ps3.setBounds(212, 0, 106, 30);
 
-		ps3.addActionListener(new PlatformListener(Plataforma.aliasPS3, frame, cesta));
+		ps3.addActionListener(new PlatformListener(Plataforma.aliasPS3, frame,
+				cesta));
 
 		return ps3;
 	}
@@ -154,7 +390,8 @@ public class BotonesCategorias {
 		vita.setBorder(new LineBorder(new Color(0, 0, 0)));
 		vita.setBounds(318, 0, 106, 30);
 
-		vita.addActionListener(new PlatformListener(Plataforma.aliasPSVita, frame, cesta));
+		vita.addActionListener(new PlatformListener(Plataforma.aliasPSVita,
+				frame, cesta));
 
 		return vita;
 	}
@@ -177,7 +414,8 @@ public class BotonesCategorias {
 		xone.setBorder(new LineBorder(new Color(0, 0, 0)));
 		xone.setBounds(424, 0, 106, 30);
 
-		xone.addActionListener(new PlatformListener(Plataforma.aliasXONE, frame, cesta));
+		xone.addActionListener(new PlatformListener(Plataforma.aliasXONE,
+				frame, cesta));
 
 		return xone;
 	}
@@ -200,7 +438,8 @@ public class BotonesCategorias {
 		x360.setBorder(new LineBorder(new Color(0, 0, 0)));
 		x360.setBounds(530, 0, 106, 30);
 
-		x360.addActionListener(new PlatformListener(Plataforma.aliasX360, frame, cesta));
+		x360.addActionListener(new PlatformListener(Plataforma.aliasX360,
+				frame, cesta));
 
 		return x360;
 	}
@@ -222,7 +461,8 @@ public class BotonesCategorias {
 		pc.setBorder(new LineBorder(new Color(0, 0, 0)));
 		pc.setBounds(636, 0, 106, 30);
 
-		pc.addActionListener(new PlatformListener(Plataforma.aliasPC, frame, cesta));
+		pc.addActionListener(new PlatformListener(Plataforma.aliasPC, frame,
+				cesta));
 
 		return pc;
 	}
@@ -244,7 +484,8 @@ public class BotonesCategorias {
 		wiiu.setBorder(new LineBorder(new Color(0, 0, 0)));
 		wiiu.setBounds(742, 0, 106, 30);
 
-		wiiu.addActionListener(new PlatformListener(Plataforma.aliasWiiU, frame, cesta));
+		wiiu.addActionListener(new PlatformListener(Plataforma.aliasWiiU,
+				frame, cesta));
 
 		return wiiu;
 	}
@@ -266,7 +507,8 @@ public class BotonesCategorias {
 		wii.setBorder(new LineBorder(new Color(0, 0, 0)));
 		wii.setBounds(848, 0, 106, 30);
 
-		wii.addActionListener(new PlatformListener(Plataforma.aliasWii, frame, cesta));
+		wii.addActionListener(new PlatformListener(Plataforma.aliasWii, frame,
+				cesta));
 
 		return wii;
 	}
@@ -289,7 +531,8 @@ public class BotonesCategorias {
 		n3ds.setBorder(new LineBorder(new Color(0, 0, 0)));
 		n3ds.setBounds(954, 0, 106, 30);
 
-		n3ds.addActionListener(new PlatformListener(Plataforma.alias3DS, frame, cesta));
+		n3ds.addActionListener(new PlatformListener(Plataforma.alias3DS, frame,
+				cesta));
 
 		return n3ds;
 	}
@@ -313,7 +556,8 @@ public class BotonesCategorias {
 		ps4.setBorder(new LineBorder(new Color(0, 0, 0)));
 		ps4.setBounds(106, 0, 106, 30);
 
-		ps4.addActionListener(new PlatformListener(Plataforma.aliasPS4, frame, cesta));
+		ps4.addActionListener(new PlatformListener(Plataforma.aliasPS4, frame,
+				cesta));
 
 		return ps4;
 	}

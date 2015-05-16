@@ -92,7 +92,7 @@ public class OrdenacionListener implements ActionListener {
 				Principal.filtrosMap, 1);
 		sql.close();
 		frame.getContentPane().removeAll();
-		Listado.listar(frame, juegos, cesta);
+		Listado.listar(frame, juegos, cesta, 1);
 	}
 
 }

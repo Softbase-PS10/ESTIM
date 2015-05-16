@@ -49,7 +49,7 @@ public class PlatformListener implements ActionListener {
 		Principal.filtrosMap.put("plataforma", alias);
 		frame.getContentPane().removeAll();
 		Logger.log("Juegos de la plataforma "+this.alias+" cargados");
-		Listado.listar(frame, juegos, cesta);
+		Listado.listar(frame, juegos, cesta, 1);
 	}
 
 }

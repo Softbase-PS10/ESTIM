@@ -84,7 +84,7 @@ public class BotonesCabecera {
 				sql.close();
 				frame.getContentPane().removeAll();
 				Logger.log("Juegos encontrados");
-				Listado.listar(frame, juegos, cesta);
+				Listado.listar(frame, juegos, cesta, 1);
 			}
 		});
 
@@ -173,7 +173,7 @@ public class BotonesCabecera {
 												s.close();
 
 												frame.getContentPane().removeAll();
-												Listado.listar(frame, juegos, cesta);
+												Listado.listar(frame, juegos, cesta,1);
 											} else if (value == JOptionPane.NO_OPTION) {
 												// Do nothing
 											}
@@ -324,7 +324,7 @@ public class BotonesCabecera {
 						    				break;
 						    			case 2:
 						    				//Listado de juegos
-						    				Listado.listar(fr, juegos, cesta);
+						    				Listado.listar(fr, juegos, cesta,1);
 						    				break;
 						    			case 3:
 						    				//Info de juego

@@ -68,11 +68,11 @@ public class Listado {
 	 *            Lanza la ventana de listado de juegos
 	 */
 	public static void listar(final JFrame fr, final ArrayList<Juego> juegos,
-			final ArrayList<Juego> cesta) {
+			final ArrayList<Juego> cesta, final int nPagina) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Listado window = new Listado(fr, juegos, cesta);
+					Listado window = new Listado(fr, juegos, cesta,nPagina);
 					window.frmPantallaPrincipal.revalidate();
 					window.frmPantallaPrincipal.repaint();
 					window.frmPantallaPrincipal.setVisible(true);
@@ -90,7 +90,7 @@ public class Listado {
 	 * 
 	 *             Crea la aplicacion
 	 */
-	public Listado(JFrame fr, ArrayList<Juego> juegos, ArrayList<Juego> cesta)
+	public Listado(JFrame fr, ArrayList<Juego> juegos, ArrayList<Juego> cesta, int nPagina)
 			throws IOException {
 		this.games = juegos;
 		this.cesta = cesta;
@@ -98,7 +98,7 @@ public class Listado {
 		frmPantallaPrincipal.getContentPane().removeAll();
 		frmPantallaPrincipal.revalidate();
 		frmPantallaPrincipal.repaint();
-		initialize(juegos);
+		initialize(juegos,nPagina);
 	}
 
 	/**
@@ -108,7 +108,7 @@ public class Listado {
 	 * 
 	 *             Inicializa la ventana
 	 */
-	private void initialize(ArrayList<Juego> juegos) throws IOException {
+	private void initialize(ArrayList<Juego> juegos, int nPagina) throws IOException {
 		Logger.log("Inicializando listado de juegos...");
 		frmPantallaPrincipal.setTitle("List of games - Estim");
 		frmPantallaPrincipal.setIconImage(Toolkit.getDefaultToolkit().getImage(
@@ -307,7 +307,7 @@ public class Listado {
 				cesta));
 
 		JPanel principal = new JPanel();
-		principal.setBounds(190, 131, 870, 440);
+		principal.setBounds(190, 131, 870, 400);
 		principal.setBorder(new LineBorder(new Color(0, 0, 0), 1));
 		frmPantallaPrincipal.getContentPane().add(principal);
 		principal.setLayout(new BoxLayout(principal, BoxLayout.X_AXIS));
@@ -316,7 +316,7 @@ public class Listado {
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBorder(new LineBorder(new Color(0, 0, 0), 1));
-		scrollPane.setPreferredSize(new Dimension(850, 440));
+		scrollPane.setPreferredSize(new Dimension(850, 400));
 		principal.add(scrollPane);
 
 		scrollPane.getVerticalScrollBar().setUnitIncrement(20);
@@ -491,6 +491,24 @@ public class Listado {
 		txtOrdenar.setBorder(null);
 		txtOrdenar.setBounds(842, 7, 57, 20);
 		ordenacion.add(txtOrdenar);
+		
+		/* Panel paginación */
+		
+		JPanel ordenacion2 = new JPanel();
+		ordenacion2.setBackground(Color.DARK_GRAY);
+		ordenacion2.setBorder(new LineBorder(new Color(0, 0, 0),3));
+		ordenacion2.setBounds(190, 530, 871, 42);
+		frmPantallaPrincipal.getContentPane().add(ordenacion2);
+		ordenacion2.setLayout(null);
+		
+		if(nPagina!=1){
+			ordenacion2.add(BotonesCategorias.atras(frmPantallaPrincipal,cesta,nPagina));
+		}
+		
+		if(juegos.size()==5){
+			ordenacion2.add(BotonesCategorias.adelante(frmPantallaPrincipal,cesta,nPagina));
+		}
+		
 		Logger.log("Listado de juegos inicializado");
 	}
 }
