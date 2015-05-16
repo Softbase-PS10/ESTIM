@@ -171,7 +171,7 @@ public class BotonesCategorias {
 				if (!filtros.isEmpty()) {
 					frame.getContentPane().removeAll();
 					Listado.listar(frame,
-							s.listarJuegosMultipleFiltros(filtros, 1), cesta,
+							s.listarJuegosMultipleFiltros(filtros, nPagina-1), cesta,
 							nPagina - 1);
 				} else {
 					;
@@ -316,7 +316,7 @@ public class BotonesCategorias {
 				if (!filtros.isEmpty()) {
 					frame.getContentPane().removeAll();
 					Listado.listar(frame,
-							s.listarJuegosMultipleFiltros(filtros, 1), cesta,
+							s.listarJuegosMultipleFiltros(filtros, nPagina+1), cesta,
 							nPagina + 1);
 				} else {
 					;
