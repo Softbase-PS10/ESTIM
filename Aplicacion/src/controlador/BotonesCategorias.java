@@ -61,7 +61,7 @@ public class BotonesCategorias {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Logger.log("Cambiando de página...");
+				Logger.log("Cambiando de pï¿½gina...");
 				Sentencias s = new Sentencias();
 				String origen = "Listado";
 				HashMap<String, String> filtros = Principal.filtrosMap;
@@ -167,7 +167,7 @@ public class BotonesCategorias {
 					else
 						filtros.remove("plataforma");
 				}
-				Logger.log("Página cambiada");
+				Logger.log("Pï¿½gina cambiada");
 				if (!filtros.isEmpty()) {
 					frame.getContentPane().removeAll();
 					Listado.listar(frame,
@@ -206,7 +206,7 @@ public class BotonesCategorias {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Logger.log("Cambiando de página...");
+				Logger.log("Cambiando de pï¿½gina...");
 				Sentencias s = new Sentencias();
 				String origen = "Listado";
 				HashMap<String, String> filtros = Principal.filtrosMap;
@@ -312,7 +312,7 @@ public class BotonesCategorias {
 					else
 						filtros.remove("plataforma");
 				}
-				Logger.log("Página cambiada");
+				Logger.log("Pï¿½gina cambiada");
 				if (!filtros.isEmpty()) {
 					frame.getContentPane().removeAll();
 					Listado.listar(frame,
@@ -336,7 +336,7 @@ public class BotonesCategorias {
 		allgames.setIcon(new ImageIcon(Principal.class
 				.getResource("/Imagenes/B/allgamesS.png")));
 		allgames.setRolloverIcon(new ImageIcon(Principal.class
-				.getResource("/Imagenes/B/allgamessP.png")));
+				.getResource("/Imagenes/B/allgamesP.png")));
 		allgames.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		allgames.setForeground(Color.WHITE);
 		allgames.setFont(new Font("Tahoma", Font.BOLD, 14));
