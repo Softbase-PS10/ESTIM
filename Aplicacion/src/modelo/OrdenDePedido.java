@@ -15,23 +15,24 @@ public class OrdenDePedido {
 	public static void makeTicket(ArrayList<Juego> games) {
 		total = 0;
 		lista = games;
-		SimpleDateFormat simpleDateFecha = new SimpleDateFormat(
-				"ddMMyyyyHHmmss");// dd/MM/yyyy
-		Date d = new Date();
-		String strDate = simpleDateFecha.format(d);
-		String fichero = "FacturaPedido" + strDate + ".txt";
-		FileWriter factura;
-		try {
-			factura = new FileWriter(fichero, false);
-			factura.write(getCabecera(d));
-			factura.write(getCuerpo());
-			factura.write(getFin());
-			factura.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if (lista.size() != 0) {
+			SimpleDateFormat simpleDateFecha = new SimpleDateFormat(
+					"ddMMyyyyHHmmss");
+			Date d = new Date();
+			String strDate = simpleDateFecha.format(d);
+			String fichero = "FacturaPedido" + strDate + ".txt";
+			FileWriter factura;
+			try {
+				factura = new FileWriter(fichero, false);
+				factura.write(getCabecera(d));
+				factura.write(getCuerpo());
+				factura.write(getFin());
+				factura.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-
 	}
 
 	private static String getCabecera(Date d) {

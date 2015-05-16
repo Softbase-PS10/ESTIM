@@ -39,6 +39,7 @@ import javax.swing.border.LineBorder;
 
 import modelo.Juego;
 import modelo.Logger;
+import modelo.Sentencias;
 import controlador.Botones;
 import controlador.BotonesCabecera;
 import controlador.BotonesCategorias;
