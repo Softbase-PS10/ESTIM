@@ -61,7 +61,7 @@ public class BotonesCategorias {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Logger.log("Cambiando de página...");
+				Logger.log("Cambiando de pagina...");
 				Sentencias s = new Sentencias();
 				String origen = "Listado";
 				HashMap<String, String> filtros = Principal.filtrosMap;
@@ -167,7 +167,7 @@ public class BotonesCategorias {
 					else
 						filtros.remove("plataforma");
 				}
-				Logger.log("Página cambiada");
+				Logger.log("Pagina cambiada");
 				if (!filtros.isEmpty()) {
 					frame.getContentPane().removeAll();
 					Listado.listar(frame,
@@ -206,7 +206,7 @@ public class BotonesCategorias {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Logger.log("Cambiando de página...");
+				Logger.log("Cambiando de pagina...");
 				Sentencias s = new Sentencias();
 				String origen = "Listado";
 				HashMap<String, String> filtros = Principal.filtrosMap;
@@ -312,7 +312,7 @@ public class BotonesCategorias {
 					else
 						filtros.remove("plataforma");
 				}
-				Logger.log("Página cambiada");
+				Logger.log("Pagina cambiada");
 				if (!filtros.isEmpty()) {
 					frame.getContentPane().removeAll();
 					Listado.listar(frame,
