@@ -64,7 +64,7 @@ public class OrdenacionListener implements ActionListener {
 			break;
 		case ("Year asc."):
 			Principal.filtrosMap.put("order", "lanzamiento");
-			Principal.filtrosMap.put("type", "desc");
+			Principal.filtrosMap.put("type", "asc");
 			Principal.filtrosMap.put("optionS", "Year asc.");
 			break;
 		case ("Year desc."):
@@ -73,12 +73,12 @@ public class OrdenacionListener implements ActionListener {
 			Principal.filtrosMap.put("optionS", "Year desc.");
 			break;
 		case ("Rating asc."):
-			Principal.filtrosMap.put("order", "valoracion");
-			Principal.filtrosMap.put("type", "desc");
+			Principal.filtrosMap.put("order", "rating");
+			Principal.filtrosMap.put("type", "asc");
 			Principal.filtrosMap.put("optionS", "Rating asc.");
 			break;
 		case ("Rating desc."):
-			Principal.filtrosMap.put("order", "valoracion");
+			Principal.filtrosMap.put("order", "rating");
 			Principal.filtrosMap.put("type", "desc");
 			Principal.filtrosMap.put("optionS", "Rating desc.");
 			break;
