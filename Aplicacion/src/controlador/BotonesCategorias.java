@@ -336,7 +336,7 @@ public class BotonesCategorias {
 		allgames.setIcon(new ImageIcon(Principal.class
 				.getResource("/Imagenes/B/allgames.png")));
 		allgames.setRolloverIcon(new ImageIcon(Principal.class
-				.getResource("/Imagenes/B/allgamesP.png")));
+				.getResource("/Imagenes/B/allgamesp.png")));
 		allgames.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		allgames.setForeground(Color.WHITE);
 		allgames.setFont(new Font("Tahoma", Font.BOLD, 14));

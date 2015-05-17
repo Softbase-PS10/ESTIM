@@ -366,21 +366,40 @@ public class BotonesCabecera {
 	public static JLabel carro(final ArrayList<Juego> cesta) {
 		final JLabel carro = new JLabel("");
 		carro.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		carro.setIcon(new ImageIcon(Principal.class
+		
+		if(cesta.isEmpty()){
+			carro.setIcon(new ImageIcon(Principal.class
 				.getResource("/Imagenes/B/carro.png")));
+		}
+		else{
+			carro.setIcon(new ImageIcon(Principal.class
+					.getResource("/Imagenes/B/carroLleno.png")));
+		}
 		carro.setBounds(0, 0, 70, 70);
 		carro.addMouseListener(new MouseAdapter() {
 
 			@Override
 			public void mouseEntered(java.awt.event.MouseEvent evt) {
-				carro.setIcon(new ImageIcon(Principal.class
+				if(cesta.isEmpty()){
+					carro.setIcon(new ImageIcon(Principal.class
 						.getResource("/Imagenes/B/carroP.png")));
+				}
+				else{
+					carro.setIcon(new ImageIcon(Principal.class
+							.getResource("/Imagenes/B/carroPLleno.png")));
+				}
 			}
 
 			@Override
 			public void mouseExited(java.awt.event.MouseEvent evt) {
-				carro.setIcon(new ImageIcon(Principal.class
+				if(cesta.isEmpty()){
+					carro.setIcon(new ImageIcon(Principal.class
 						.getResource("/Imagenes/B/carro.png")));
+				}
+				else{
+					carro.setIcon(new ImageIcon(Principal.class
+							.getResource("/Imagenes/B/carroLleno.png")));
+				}
 			}
 
 			@Override
