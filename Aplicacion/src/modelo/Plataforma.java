@@ -19,7 +19,7 @@ public class Plataforma {
 
 	/* alias de las plataformas */
 	public static final String aliasXONE = "XONE";
-	public static final String alias3DS = "3DS";
+	public static final String alias3DS = "N3DS";
 	public static final String aliasWiiU = "Wii U";
 	public static final String aliasPC = "PC";
 	public static final String aliasPS4 = "PS4";
@@ -147,7 +147,7 @@ public class Plataforma {
 	 */
 	public static String[] listaAlias() {
 		String[] s = new String[] { "PS4", "PS3", "PSVita", "XONE", "X360",
-				"PC", "Wii U", "Wii", "3DS" };
+				"PC", "Wii U", "Wii", "N3DS" };
 		return s;
 	}
 
