@@ -262,7 +262,7 @@ public class Listado {
 		plataformaMulti = new JComboBox<String>();
 		plataformaMulti.setModel(new DefaultComboBoxModel<String>(new String[] {
 				"", "PS4", "PS3", "PSVITA", "XONE", "X360", "PC", "Wii U",
-				"WII", "N3DS" }));
+				"Wii", "N3DS" }));
 		plataformaMulti.setToolTipText("");
 		plataformaMulti.setName("");
 		plataformaMulti.setFont(new Font("Tahoma", Font.PLAIN, 12));
