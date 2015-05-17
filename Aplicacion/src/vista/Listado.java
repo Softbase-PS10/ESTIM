@@ -446,7 +446,7 @@ public class Listado {
 			if (j.getRating() == null || j.getRating().compareTo("null") == 0)
 				valoracion.setText("N/A");
 			else
-				valoracion.setText(j.getRating() + " / 10.0");
+				valoracion.setText(j.getRating() + " / 10");
 			valoracion.setOpaque(false);
 			valoracion.setForeground(Color.WHITE);
 			valoracion.setFont(new Font("Tahoma", Font.PLAIN, 14));

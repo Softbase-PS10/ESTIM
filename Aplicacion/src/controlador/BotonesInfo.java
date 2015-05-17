@@ -319,10 +319,10 @@ public class BotonesInfo {
 		RespValoracion.setForeground(Color.WHITE);
 		RespValoracion.setFont(new Font("Tahoma", Font.BOLD, 20));
 		if(!value.equals("null")){
-			RespValoracion.setText(value + "/10.0");
+			RespValoracion.setText(value + "/10");
 		}
 		else{
-			RespValoracion.setText("NA/10.0");	
+			RespValoracion.setText("NA/10");	
 		}
 		RespValoracion.setBounds(122, 401, 128, 25);
 		RespValoracion.setHorizontalAlignment(SwingConstants.CENTER);
