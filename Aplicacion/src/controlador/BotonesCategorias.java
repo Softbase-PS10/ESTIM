@@ -168,14 +168,10 @@ public class BotonesCategorias {
 						filtros.remove("plataforma");
 				}
 				Logger.log("Pagina cambiada");
-				if (!filtros.isEmpty()) {
-					frame.getContentPane().removeAll();
-					Listado.listar(frame,
-							s.listarJuegosMultipleFiltros(filtros, nPagina-1), cesta,
-							nPagina - 1);
-				} else {
-					;
-				}
+				frame.getContentPane().removeAll();
+				Listado.listar(frame,
+						s.listarJuegosMultipleFiltros(filtros, nPagina - 1),
+						cesta, nPagina - 1);
 			}
 		});
 
@@ -313,14 +309,11 @@ public class BotonesCategorias {
 						filtros.remove("plataforma");
 				}
 				Logger.log("Pagina cambiada");
-				if (!filtros.isEmpty()) {
-					frame.getContentPane().removeAll();
-					Listado.listar(frame,
-							s.listarJuegosMultipleFiltros(filtros, nPagina+1), cesta,
-							nPagina + 1);
-				} else {
-					;
-				}
+
+				frame.getContentPane().removeAll();
+				Listado.listar(frame,
+						s.listarJuegosMultipleFiltros(filtros, nPagina + 1),
+						cesta, nPagina + 1);
 			}
 		});
 
@@ -344,7 +337,7 @@ public class BotonesCategorias {
 		allgames.setFocusPainted(false);
 		allgames.setBorder(new LineBorder(new Color(0, 0, 0)));
 		allgames.setBounds(0, 0, 106, 30);
-		
+
 		allgames.addActionListener(new PlatformListener(null, frame, cesta));
 
 		return allgames;
