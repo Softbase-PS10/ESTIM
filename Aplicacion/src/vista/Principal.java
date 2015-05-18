@@ -31,6 +31,7 @@ import javax.swing.border.LineBorder;
 
 import modelo.Juego;
 import modelo.Logger;
+import modelo.Plataforma;
 import controlador.Botones;
 import controlador.BotonesCabecera;
 import controlador.BotonesCategorias;
@@ -43,16 +44,16 @@ public class Principal {
 	public static JTextField textField, textField_1, textField_2, textField_3;
 	private ArrayList<Juego> cesta;
 	public static JComboBox<String> comboBox, comboBox_1;
-	public static HashMap<String, String> filtrosMap  = new HashMap<>();
+	public static HashMap<String, String> filtrosMap = new HashMap<>();
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(final JFrame frame,final ArrayList<Juego> cesta) {
+	public static void main(final JFrame frame, final ArrayList<Juego> cesta) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Principal window = new Principal(frame,cesta);
+					Principal window = new Principal(frame, cesta);
 					window.frmPantallaPrincipal.repaint();
 					window.frmPantallaPrincipal.setVisible(true);
 				} catch (Exception e) {
@@ -65,7 +66,7 @@ public class Principal {
 	/**
 	 * Create the application.
 	 */
-	public Principal(JFrame frame,ArrayList<Juego> cesta) {
+	public Principal(JFrame frame, ArrayList<Juego> cesta) {
 		this.cesta = cesta;
 		frmPantallaPrincipal = frame;
 		frmPantallaPrincipal.getContentPane().removeAll();
@@ -118,7 +119,8 @@ public class Principal {
 		cabecera.add(panel_1);
 		panel_1.setLayout(null);
 
-		panel_1.add(BotonesCabecera.ajustes(1,null, null, frmPantallaPrincipal, cesta));
+		panel_1.add(BotonesCabecera.ajustes(1, null, null,
+				frmPantallaPrincipal, cesta));
 
 		JPanel categorias = new JPanel();
 		categorias.setBorder(new LineBorder(new Color(0, 0, 0), 2));
@@ -167,7 +169,7 @@ public class Principal {
 
 		textField = new JTextField();
 		textField.setBounds(20, 73, 51, 20);
-		if(filtrosMap.containsKey("preciomin"))
+		if (filtrosMap.containsKey("preciomin"))
 			textField.setText(filtrosMap.get("preciomin"));
 		filtros.add(textField);
 		textField.setColumns(10);
@@ -185,22 +187,23 @@ public class Principal {
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
 		textField_1.setBounds(99, 73, 51, 20);
-		if(filtrosMap.containsKey("preciomax"))
+		if (filtrosMap.containsKey("preciomax"))
 			textField_1.setText(filtrosMap.get("preciomax"));
 		filtros.add(textField_1);
 
 		comboBox = new JComboBox<String>();
-		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] { "", "Action",
-				"Adventure", "Construction and Management Simulation",
-				"Fighting", "Flight Simulator", "Horror", "Life Simulation",
-				"MMO", "Music", "Platform", "Puzzle", "Racing", "Role-Playing",
+		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] { "",
+				"Action", "Adventure",
+				"Construction and Management Simulation", "Fighting",
+				"Flight Simulator", "Horror", "Life Simulation", "MMO",
+				"Music", "Platform", "Puzzle", "Racing", "Role-Playing",
 				"Sandbox", "Shooter", "Sports", "Stealth", "Strategy",
 				"Vehicle Simulation" }));
 		comboBox.setToolTipText("");
 		comboBox.setName("");
 		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		comboBox.setBounds(20, 131, 130, 20);
-		if(filtrosMap.containsKey("genero"))
+		if (filtrosMap.containsKey("genero"))
 			comboBox.setSelectedItem(filtrosMap.get("genero"));
 		filtros.add(comboBox);
 
@@ -225,19 +228,19 @@ public class Principal {
 		filtros.add(frmtdtxtfldPlataforma);
 
 		comboBox_1 = new JComboBox<String>();
-		comboBox_1
-				.setModel(new DefaultComboBoxModel<String>(
-						new String[] { "", "PS4", "PS3", "PSVITA", "XONE", "X360",
-								"PC", "Wii U", "Wii", "N3DS" }));
+		comboBox_1.setModel(new DefaultComboBoxModel<String>(new String[] { "",
+				"PS4", "PS3", "PSVita", "XONE", "X360", "PC", "Wii U", "Wii",
+				"N3DS" }));
 		comboBox_1.setToolTipText("");
 		comboBox_1.setName("");
 		comboBox_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		comboBox_1.setBounds(20, 187, 130, 20);
-		if(filtrosMap.containsKey("plataforma"))
+		if (filtrosMap.containsKey("plataforma"))
 			comboBox_1.setSelectedItem(filtrosMap.get("plataforma"));
 		filtros.add(comboBox_1);
 
-		filtros.add(Botones.aplicarFiltros("Principal", frmPantallaPrincipal,cesta));
+		filtros.add(Botones.aplicarFiltros("Principal", frmPantallaPrincipal,
+				cesta));
 
 		JFormattedTextField frmtdtxtfldValoracin = new JFormattedTextField();
 		frmtdtxtfldValoracin.setText("Rating:");
@@ -252,7 +255,7 @@ public class Principal {
 		textField_2 = new JTextField();
 		textField_2.setColumns(10);
 		textField_2.setBounds(20, 252, 51, 20);
-		if(filtrosMap.containsKey("ratingmin"))
+		if (filtrosMap.containsKey("ratingmin"))
 			textField_2.setText(filtrosMap.get("ratingmin"));
 		filtros.add(textField_2);
 
@@ -269,7 +272,7 @@ public class Principal {
 		textField_3 = new JTextField();
 		textField_3.setColumns(10);
 		textField_3.setBounds(99, 252, 51, 20);
-		if(filtrosMap.containsKey("ratingmax"))
+		if (filtrosMap.containsKey("ratingmax"))
 			textField_3.setText(filtrosMap.get("ratingmax"));
 		filtros.add(textField_3);
 
@@ -290,7 +293,8 @@ public class Principal {
 
 		JLabel lblNewLabel = new JLabel("New label");
 		lblNewLabel.setBounds(0, 0, 870, 471);
-		lblNewLabel.setIcon(new ImageIcon(Principal.class.getResource("/Imagenes/blis.jpg")));
+		lblNewLabel.setIcon(new ImageIcon(Principal.class
+				.getResource("/Imagenes/blis.jpg")));
 		principal.add(lblNewLabel);
 		Logger.log("Frame principal creado");
 	}

@@ -269,7 +269,7 @@ public class Modificar {
 
 		JFormattedTextField nPlataformas = new JFormattedTextField();
 		nPlataformas.setBounds(53, 145, 140, 20);
-		nPlataformas.setText("PLATFORMS:");
+		nPlataformas.setText("PLATFORM:");
 		nPlataformas.setOpaque(false);
 		nPlataformas.setForeground(Color.WHITE);
 		nPlataformas.setFont(new Font("Tahoma", Font.BOLD, 16));
