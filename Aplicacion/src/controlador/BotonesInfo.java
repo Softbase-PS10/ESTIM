@@ -342,7 +342,7 @@ public class BotonesInfo {
 			public void mousePressed(MouseEvent e) {
 				Logger.log("Añadiendo juego "+game.getTitulo()+" al carro");
 				cesta.add(game);
-				Logger.log("Juego "+game.getTitulo()+" añadido al carro");
+				Logger.log("Juego "+game.getTitulo()+" agregado al carro");
 				JOptionPane.showMessageDialog(frame, "Game added to cart");
 			}
 		});
