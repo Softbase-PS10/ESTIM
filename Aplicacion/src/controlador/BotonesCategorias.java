@@ -196,7 +196,7 @@ public class BotonesCategorias {
 		adelante.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		adelante.setBorder(new LineBorder(new Color(0, 0, 0)));
 		adelante.setBackground(new Color(51, 102, 204));
-		adelante.setBounds(450, 6, 53, 30);
+		adelante.setBounds(452, 6, 53, 30);
 
 		adelante.addActionListener(new ActionListener() {
 

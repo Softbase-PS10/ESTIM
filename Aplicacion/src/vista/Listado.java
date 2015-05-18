@@ -39,7 +39,7 @@ import javax.swing.border.LineBorder;
 
 import modelo.Juego;
 import modelo.Logger;
-import modelo.Plataforma;
+import modelo.Sentencias;
 import controlador.Botones;
 import controlador.BotonesCabecera;
 import controlador.BotonesCategorias;
@@ -53,7 +53,8 @@ public class Listado {
 	private JTextField txtBuscar;
 	public static JTextField precioMinimo, precioMaximo, valoracionMinima,
 			valoracionMaxima;
-	public static JComboBox<String> generoMulti, plataformaMulti, ordenacionMulti;
+	public static JComboBox<String> generoMulti, plataformaMulti,
+			ordenacionMulti;
 
 	@SuppressWarnings("unused")
 	private ArrayList<Juego> games; // asi se podra realizar la ordenacion mas
@@ -73,7 +74,7 @@ public class Listado {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Listado window = new Listado(fr, juegos, cesta,nPagina);
+					Listado window = new Listado(fr, juegos, cesta, nPagina);
 					window.frmPantallaPrincipal.revalidate();
 					window.frmPantallaPrincipal.repaint();
 					window.frmPantallaPrincipal.setVisible(true);
@@ -91,15 +92,15 @@ public class Listado {
 	 * 
 	 *             Crea la aplicacion
 	 */
-	public Listado(JFrame fr, ArrayList<Juego> juegos, ArrayList<Juego> cesta, int nPagina)
-			throws IOException {
+	public Listado(JFrame fr, ArrayList<Juego> juegos, ArrayList<Juego> cesta,
+			int nPagina) throws IOException {
 		this.games = juegos;
 		this.cesta = cesta;
 		this.frmPantallaPrincipal = fr;
 		frmPantallaPrincipal.getContentPane().removeAll();
 		frmPantallaPrincipal.revalidate();
 		frmPantallaPrincipal.repaint();
-		initialize(juegos,nPagina);
+		initialize(juegos, nPagina);
 	}
 
 	/**
@@ -109,7 +110,8 @@ public class Listado {
 	 * 
 	 *             Inicializa la ventana
 	 */
-	private void initialize(ArrayList<Juego> juegos, int nPagina) throws IOException {
+	private void initialize(ArrayList<Juego> juegos, int nPagina)
+			throws IOException {
 		Logger.log("Inicializando listado de juegos...");
 		frmPantallaPrincipal.setTitle("List of games - Estim");
 		frmPantallaPrincipal.setIconImage(Toolkit.getDefaultToolkit().getImage(
@@ -143,9 +145,8 @@ public class Listado {
 		cabecera.add(opciones);
 		opciones.setLayout(null);
 
-
-		opciones.add(BotonesCabecera.ajustes(2, null, null, frmPantallaPrincipal,
-				cesta));
+		opciones.add(BotonesCabecera.ajustes(2, null, null,
+				frmPantallaPrincipal, cesta));
 
 		JPanel carrito = new JPanel();
 		carrito.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -261,14 +262,15 @@ public class Listado {
 
 		plataformaMulti = new JComboBox<String>();
 		plataformaMulti.setModel(new DefaultComboBoxModel<String>(new String[] {
-				"", "PS4", "PS3", "PSVita", "XONE", "X360", "PC", "Wii U",
+				"", "PS4", "PS3", "PSVITA", "XONE", "X360", "PC", "Wii U",
 				"Wii", "N3DS" }));
 		plataformaMulti.setToolTipText("");
 		plataformaMulti.setName("");
 		plataformaMulti.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		plataformaMulti.setBounds(20, 187, 130, 20);
 		if (Principal.filtrosMap.containsKey("plataforma"))
-			plataformaMulti.setSelectedItem(Principal.filtrosMap.get("plataforma"));
+			plataformaMulti.setSelectedItem(Principal.filtrosMap
+					.get("plataforma"));
 		filtros.add(plataformaMulti);
 
 		JFormattedTextField textValoracion = new JFormattedTextField();
@@ -325,138 +327,167 @@ public class Listado {
 		Box box = Box.createVerticalBox();
 		scrollPane.setViewportView(box);
 
-		for (int i = 0; i < juegos.size(); i++) {
-			final Juego j = juegos.get(i);
-
+		if (juegos.size() == 0) {
 			JPanel res = new JPanel();
 			res.setLayout(null);
 			res.setPreferredSize(new Dimension(700, 200));
 			res.setBorder(new LineBorder(new Color(0, 0, 0), 1));
 			res.setBackground(Color.DARK_GRAY);
-
-			JButton caratula = new JButton("");
-			Icon car = (Icon) Imagenes.getIcon(j.getImagen(), 1);
-			caratula.setIcon(car);
-			caratula.setSize(128, 180);
-			caratula.setLocation(8, 6);
-			caratula.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-			caratula.setBorder(new BevelBorder(BevelBorder.RAISED, Color.BLACK,
-					Color.BLACK, Color.BLACK, Color.BLACK));
-			caratula.addActionListener(new ActionListener() {
-
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					Logger.log("Cargando informaci�n del juego "+j.getTitulo());
-					frmPantallaPrincipal.getContentPane().removeAll();
-					Logger.log("Informaci�n del juego "+j.getTitulo()+" cargada");
-					Info.main(frmPantallaPrincipal, j, cesta);
-				}
-			});
-			res.add(caratula);
-
-			JFormattedTextField precio = new JFormattedTextField();
-			precio.setSize(144, 60);
-			precio.setLocation(540, 60);
-			precio.setText(j.getPrecio() + " \u20AC");
-			precio.setOpaque(false);
-			precio.setForeground(Color.WHITE);
-			precio.setFont(new Font("Tahoma", Font.PLAIN, 40));
-			precio.setEditable(false);
-			precio.setBorder(null);
-			res.add(precio);
-
-			JFormattedTextField releaseDate = new JFormattedTextField();
-			releaseDate.setSize(114, 20);
-			releaseDate.setLocation(172, 71);
-			releaseDate.setText("Release date:");
-			releaseDate.setOpaque(false);
-			releaseDate.setForeground(Color.WHITE);
-			releaseDate.setFont(new Font("Tahoma", Font.BOLD, 14));
-			releaseDate.setEditable(false);
-			releaseDate.setBorder(null);
-			res.add(releaseDate);
-
-			JFormattedTextField platforms = new JFormattedTextField();
-			platforms.setSize(81, 20);
-			platforms.setLocation(172, 107);
-			platforms.setText("Platforms:");
-			platforms.setOpaque(false);
-			platforms.setForeground(Color.WHITE);
-			platforms.setFont(new Font("Tahoma", Font.BOLD, 14));
-			platforms.setEditable(false);
-			platforms.setBorder(null);
-			res.add(platforms);
-
-			JFormattedTextField rating = new JFormattedTextField();
-			rating.setSize(62, 20);
-			rating.setLocation(172, 144);
-			rating.setText("Rating:");
-			rating.setOpaque(false);
-			rating.setForeground(Color.WHITE);
-			rating.setFont(new Font("Tahoma", Font.BOLD, 14));
-			rating.setEditable(false);
-			rating.setBorder(null);
-			res.add(rating);
-
-			JFormattedTextField titulo = new JFormattedTextField();
-			titulo.setSize(400, 20);
-			titulo.setLocation(172, 31);
-			if (j.getTitulo() == null || j.getTitulo().compareTo("null") == 0)
-				titulo.setText("N/A");
-			else
-				titulo.setText(j.getTitulo());
-			titulo.setOpaque(false);
-			titulo.setForeground(Color.WHITE);
-			titulo.setFont(new Font("Tahoma", Font.BOLD, 16));
-			titulo.setEditable(false);
-			titulo.setBorder(null);
-			res.add(titulo);
-
-			JFormattedTextField fecha = new JFormattedTextField();
-			fecha.setBounds(290, 71, 170, 20);
-			if (j.getLanzamiento() == null
-					|| j.getLanzamiento().compareTo("null") == 0)
-				fecha.setText("N/A");
-			else
-				fecha.setText(j.getLanzamiento());
-			fecha.setOpaque(false);
-			fecha.setForeground(Color.WHITE);
-			fecha.setFont(new Font("Tahoma", Font.PLAIN, 14));
-			fecha.setEditable(false);
-			fecha.setBorder(null);
-			res.add(fecha);
-
-			JFormattedTextField plataformas = new JFormattedTextField();
-			plataformas.setSize(188, 20);
-			plataformas.setLocation(256, 107);
-			if (j.getPlataforma().getAlias() == null
-					|| j.getPlataforma().getAlias().compareTo("null") == 0)
-				plataformas.setText("N/A");
-			else
-				plataformas.setText(j.getPlataforma().getAlias());
-			plataformas.setOpaque(false);
-			plataformas.setForeground(Color.WHITE);
-			plataformas.setFont(new Font("Tahoma", Font.PLAIN, 14));
-			plataformas.setEditable(false);
-			plataformas.setBorder(null);
-			res.add(plataformas);
-
-			JFormattedTextField valoracion = new JFormattedTextField();
-			valoracion.setSize(150, 20);
-			valoracion.setLocation(244, 144);
-			if (j.getRating() == null || j.getRating().compareTo("null") == 0)
-				valoracion.setText("N/A");
-			else
-				valoracion.setText(j.getRating() + " / 10");
-			valoracion.setOpaque(false);
-			valoracion.setForeground(Color.WHITE);
-			valoracion.setFont(new Font("Tahoma", Font.PLAIN, 14));
-			valoracion.setEditable(false);
-			valoracion.setBorder(null);
-			res.add(valoracion);
-
 			box.add(res);
+
+			JFormattedTextField frmtdtxtfldTotal = new JFormattedTextField();
+			frmtdtxtfldTotal.setText("No games to list with the chosen filters");
+			frmtdtxtfldTotal.setOpaque(false);
+			frmtdtxtfldTotal.setForeground(Color.WHITE);
+			frmtdtxtfldTotal.setFont(new Font("Tahoma", Font.PLAIN, 20));
+			frmtdtxtfldTotal.setEditable(false);
+			frmtdtxtfldTotal.setBorder(null);
+			frmtdtxtfldTotal.setBounds(10, 10, 700, 60);
+			res.add(frmtdtxtfldTotal);
+		} else {
+
+			for (int i = 0; i < juegos.size(); i++) {
+				final Juego j = juegos.get(i);
+
+				JPanel res = new JPanel();
+				res.setLayout(null);
+				res.setPreferredSize(new Dimension(700, 200));
+				res.setBorder(new LineBorder(new Color(0, 0, 0), 1));
+				res.setBackground(Color.DARK_GRAY);
+
+				JButton caratula = new JButton("");
+				Icon car = (Icon) Imagenes.getIcon(j.getImagen(), 1);
+				caratula.setIcon(car);
+				caratula.setSize(128, 180);
+				caratula.setLocation(8, 6);
+				caratula.setCursor(Cursor
+						.getPredefinedCursor(Cursor.HAND_CURSOR));
+				caratula.setBorder(new BevelBorder(BevelBorder.RAISED,
+						Color.BLACK, Color.BLACK, Color.BLACK, Color.BLACK));
+				caratula.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						Logger.log("Cargando informaci�n del juego "
+								+ j.getTitulo());
+						frmPantallaPrincipal.getContentPane().removeAll();
+						Logger.log("Informaci�n del juego " + j.getTitulo()
+								+ " cargada");
+						Info.main(frmPantallaPrincipal, j, cesta);
+					}
+				});
+				res.add(caratula);
+
+				JFormattedTextField precio = new JFormattedTextField();
+				precio.setSize(144, 60);
+				precio.setLocation(540, 60);
+				precio.setText(j.getPrecio() + " \u20AC");
+				precio.setOpaque(false);
+				precio.setForeground(Color.WHITE);
+				precio.setFont(new Font("Tahoma", Font.PLAIN, 40));
+				precio.setEditable(false);
+				precio.setBorder(null);
+				res.add(precio);
+
+				JFormattedTextField releaseDate = new JFormattedTextField();
+				releaseDate.setSize(114, 20);
+				releaseDate.setLocation(172, 71);
+				releaseDate.setText("Release date:");
+				releaseDate.setOpaque(false);
+				releaseDate.setForeground(Color.WHITE);
+				releaseDate.setFont(new Font("Tahoma", Font.BOLD, 14));
+				releaseDate.setEditable(false);
+				releaseDate.setBorder(null);
+				res.add(releaseDate);
+
+				JFormattedTextField platforms = new JFormattedTextField();
+				platforms.setSize(81, 20);
+				platforms.setLocation(172, 107);
+				platforms.setText("Platforms:");
+				platforms.setOpaque(false);
+				platforms.setForeground(Color.WHITE);
+				platforms.setFont(new Font("Tahoma", Font.BOLD, 14));
+				platforms.setEditable(false);
+				platforms.setBorder(null);
+				res.add(platforms);
+
+				JFormattedTextField rating = new JFormattedTextField();
+				rating.setSize(62, 20);
+				rating.setLocation(172, 144);
+				rating.setText("Rating:");
+				rating.setOpaque(false);
+				rating.setForeground(Color.WHITE);
+				rating.setFont(new Font("Tahoma", Font.BOLD, 14));
+				rating.setEditable(false);
+				rating.setBorder(null);
+				res.add(rating);
+
+				JFormattedTextField titulo = new JFormattedTextField();
+				titulo.setSize(400, 20);
+				titulo.setLocation(172, 31);
+				if (j.getTitulo() == null
+						|| j.getTitulo().compareTo("null") == 0)
+					titulo.setText("N/A");
+				else
+					titulo.setText(j.getTitulo());
+				titulo.setOpaque(false);
+				titulo.setForeground(Color.WHITE);
+				titulo.setFont(new Font("Tahoma", Font.BOLD, 16));
+				titulo.setEditable(false);
+				titulo.setBorder(null);
+				res.add(titulo);
+
+				JFormattedTextField fecha = new JFormattedTextField();
+				fecha.setBounds(290, 71, 170, 20);
+				if (j.getLanzamiento() == null
+						|| j.getLanzamiento().compareTo("null") == 0)
+					fecha.setText("N/A");
+				else
+					fecha.setText(j.getLanzamiento());
+				fecha.setOpaque(false);
+				fecha.setForeground(Color.WHITE);
+				fecha.setFont(new Font("Tahoma", Font.PLAIN, 14));
+				fecha.setEditable(false);
+				fecha.setBorder(null);
+				res.add(fecha);
+
+				JFormattedTextField plataformas = new JFormattedTextField();
+				plataformas.setSize(188, 20);
+				plataformas.setLocation(256, 107);
+				if (j.getPlataforma().getAlias() == null
+						|| j.getPlataforma().getAlias().compareTo("null") == 0)
+					plataformas.setText("N/A");
+				else
+					plataformas.setText(j.getPlataforma().getAlias());
+				plataformas.setOpaque(false);
+				plataformas.setForeground(Color.WHITE);
+				plataformas.setFont(new Font("Tahoma", Font.PLAIN, 14));
+				plataformas.setEditable(false);
+				plataformas.setBorder(null);
+				res.add(plataformas);
+
+				JFormattedTextField valoracion = new JFormattedTextField();
+				valoracion.setSize(150, 20);
+				valoracion.setLocation(244, 144);
+				if (j.getRating() == null
+						|| j.getRating().compareTo("null") == 0)
+					valoracion.setText("N/A");
+				else
+					valoracion.setText(j.getRating() + " / 10");
+				valoracion.setOpaque(false);
+				valoracion.setForeground(Color.WHITE);
+				valoracion.setFont(new Font("Tahoma", Font.PLAIN, 14));
+				valoracion.setEditable(false);
+				valoracion.setBorder(null);
+				res.add(valoracion);
+
+				box.add(res);
+			}
 		}
+		/* Sacar número de juegos */
+
+		Sentencias s = new Sentencias();
+		int cantidad = s.cantidadMultiples(Principal.filtrosMap);
 
 		JPanel ordenacion = new JPanel();
 		ordenacion.setBackground(Color.DARK_GRAY);
@@ -470,16 +501,17 @@ public class Listado {
 		txtResultados.setForeground(Color.WHITE);
 		txtResultados.setEditable(false);
 		txtResultados.setBorder(null);
-		txtResultados.setText(juegos.size() + " games found");
+		txtResultados.setText(cantidad + " games found");
 		txtResultados.setBounds(10, 11, 252, 14);
 		ordenacion.add(txtResultados);
 
 		ordenacionMulti = new JComboBox<String>();
 		ordenacionMulti.setBounds(909, 11, 118, 17);
 		ordenacionMulti.setModel(new DefaultComboBoxModel<String>(new String[] {
-				"", "Price asc.", "Price desc.", "Rating asc.",
-				"Rating desc.", "Title asc.", "Title desc.", "Year asc.", "Year desc." }));
-		ordenacionMulti.addActionListener(new OrdenacionListener(frmPantallaPrincipal, cesta));
+				"", "Price asc.", "Price desc.", "Rating asc.", "Rating desc.",
+				"Title asc.", "Title desc.", "Year asc.", "Year desc." }));
+		ordenacionMulti.addActionListener(new OrdenacionListener(
+				frmPantallaPrincipal, cesta));
 		ordenacion.add(ordenacionMulti);
 		JFormattedTextField txtOrdenar = new JFormattedTextField();
 		txtOrdenar.setText("Sort by:");
@@ -490,24 +522,46 @@ public class Listado {
 		txtOrdenar.setBorder(null);
 		txtOrdenar.setBounds(842, 7, 57, 20);
 		ordenacion.add(txtOrdenar);
-		
+
 		/* Panel paginación */
-		
+
 		JPanel ordenacion2 = new JPanel();
 		ordenacion2.setBackground(Color.DARK_GRAY);
-		ordenacion2.setBorder(new LineBorder(new Color(0, 0, 0),3));
+		ordenacion2.setBorder(new LineBorder(new Color(0, 0, 0), 3));
 		ordenacion2.setBounds(190, 530, 871, 42);
 		frmPantallaPrincipal.getContentPane().add(ordenacion2);
 		ordenacion2.setLayout(null);
-		
-		if(nPagina!=1){
-			ordenacion2.add(BotonesCategorias.atras(frmPantallaPrincipal,cesta,nPagina));
+
+		JTextField txtPaginacion1 = new JTextField();
+		txtPaginacion1.setOpaque(false);
+		txtPaginacion1.setForeground(Color.WHITE);
+		txtPaginacion1.setEditable(false);
+		txtPaginacion1.setBorder(null);
+		txtPaginacion1.setText("" + nPagina);
+		txtPaginacion1.setHorizontalAlignment(JTextField.CENTER);
+		txtPaginacion1.setBounds(408, 6, 40, 14);
+		ordenacion2.add(txtPaginacion1);
+
+		JTextField txtPaginacion2 = new JTextField();
+		txtPaginacion2.setOpaque(false);
+		txtPaginacion2.setForeground(Color.WHITE);
+		txtPaginacion2.setEditable(false);
+		txtPaginacion2.setBorder(null);
+		txtPaginacion2.setText("" + cantidad / 5);
+		txtPaginacion2.setHorizontalAlignment(JTextField.CENTER);
+		txtPaginacion2.setBounds(408, 21, 40, 14);
+		ordenacion2.add(txtPaginacion2);
+
+		if (nPagina != 1) {
+			ordenacion2.add(BotonesCategorias.atras(frmPantallaPrincipal,
+					cesta, nPagina));
 		}
-		
-		if(juegos.size()==5){
-			ordenacion2.add(BotonesCategorias.adelante(frmPantallaPrincipal,cesta,nPagina));
+
+		if (juegos.size() == 5 && nPagina * 5 != cantidad) {
+			ordenacion2.add(BotonesCategorias.adelante(frmPantallaPrincipal,
+					cesta, nPagina));
 		}
-		
+
 		Logger.log("Listado de juegos inicializado");
 	}
 }

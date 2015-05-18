@@ -254,7 +254,7 @@ public class BotonesInfo {
 	 * @return la label del genero
 	 */
 	public static JLabel getGeneroLabel() {
-		JLabel Genero = new JLabel("Gender:");
+		JLabel Genero = new JLabel("Genres:");
 		Genero.setFont(new Font("Tahoma", Font.BOLD, 16));
 		Genero.setForeground(Color.WHITE);
 		Genero.setBounds(405, 285, 72, 20);
@@ -342,7 +342,7 @@ public class BotonesInfo {
 			public void mousePressed(MouseEvent e) {
 				Logger.log("Añadiendo juego "+game.getTitulo()+" al carro");
 				cesta.add(game);
-				Logger.log("Juego "+game.getTitulo()+" añadido al carro");
+				Logger.log("Juego "+game.getTitulo()+" agregado al carro");
 				JOptionPane.showMessageDialog(frame, "Game added to cart");
 			}
 		});

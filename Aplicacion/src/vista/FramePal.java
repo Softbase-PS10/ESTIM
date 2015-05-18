@@ -55,7 +55,6 @@ public class FramePal {
 		try {
 			Logger.initialize();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		Principal.main(frmPantallaPrincipal,cesta);
