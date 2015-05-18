@@ -39,6 +39,7 @@ import javax.swing.border.LineBorder;
 
 import modelo.Juego;
 import modelo.Logger;
+import modelo.Sentencias;
 import controlador.Botones;
 import controlador.BotonesCabecera;
 import controlador.BotonesCategorias;
@@ -456,7 +457,12 @@ public class Listado {
 
 			box.add(res);
 		}
-
+		
+		/* Sacar número de juegos */
+		
+		Sentencias s = new Sentencias();
+		int cantidad = s.cantidadMultiples(Principal.filtrosMap);
+		
 		JPanel ordenacion = new JPanel();
 		ordenacion.setBackground(Color.DARK_GRAY);
 		ordenacion.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -469,7 +475,7 @@ public class Listado {
 		txtResultados.setForeground(Color.WHITE);
 		txtResultados.setEditable(false);
 		txtResultados.setBorder(null);
-		txtResultados.setText(juegos.size() + " games found");
+		txtResultados.setText(cantidad + " games found");
 		txtResultados.setBounds(10, 11, 252, 14);
 		ordenacion.add(txtResultados);
 
@@ -503,7 +509,7 @@ public class Listado {
 			ordenacion2.add(BotonesCategorias.atras(frmPantallaPrincipal,cesta,nPagina));
 		}
 		
-		if(juegos.size()==5){
+		if(juegos.size()==5 && nPagina*5!=cantidad){
 			ordenacion2.add(BotonesCategorias.adelante(frmPantallaPrincipal,cesta,nPagina));
 		}
 		
