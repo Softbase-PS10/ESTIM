@@ -59,7 +59,7 @@ public class OrdenDePedido {
 				}
 				name = name + ajustada;
 			}
-			name = name + " (" + actual.getPlataforma().getAlias() + ")\t- "
+			name = name + " (" + actual.getPlataforma().getAlias() + ")\t-\t"
 					+ actual.getPrecio() + "\t\u20AC\n";
 			total = total + actual.getPrecio();
 		}
@@ -68,7 +68,7 @@ public class OrdenDePedido {
 
 	private static String getFin() {
 		return "==================================================\n"
-				+ "\t\t\t\t\t\t\t\t\tTOTAL: " + total + " \u20AC\n\n"
+				+ "\t\t\t\t\t\t\t\t\tTOTAL:\t" + total + "\t\u20AC\n\n"
 				+ "Thanks for buying in Estim, hope to see you again!\n"
 				+ "==================================================";
 	}

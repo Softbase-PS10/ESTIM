@@ -40,7 +40,6 @@ import javax.swing.border.LineBorder;
 import modelo.Juego;
 import modelo.Logger;
 import modelo.Sentencias;
-import modelo.Plataforma;
 import controlador.Botones;
 import controlador.BotonesCabecera;
 import controlador.BotonesCategorias;
@@ -505,6 +504,27 @@ public class Listado {
 		ordenacion2.setBounds(190, 530, 871, 42);
 		frmPantallaPrincipal.getContentPane().add(ordenacion2);
 		ordenacion2.setLayout(null);
+		
+		JTextField txtPaginacion1 = new JTextField();
+		txtPaginacion1.setOpaque(false);
+		txtPaginacion1.setForeground(Color.WHITE);
+		txtPaginacion1.setEditable(false);
+		txtPaginacion1.setBorder(null);
+		txtPaginacion1.setText(""+nPagina);
+		txtPaginacion1.setHorizontalAlignment(JTextField.CENTER);
+		txtPaginacion1.setBounds(408, 6, 40, 14);
+		ordenacion2.add(txtPaginacion1);
+		
+		JTextField txtPaginacion2 = new JTextField();
+		txtPaginacion2.setOpaque(false);
+		txtPaginacion2.setForeground(Color.WHITE);
+		txtPaginacion2.setEditable(false);
+		txtPaginacion2.setBorder(null);
+		txtPaginacion2.setText(""+cantidad/5);
+		txtPaginacion2.setHorizontalAlignment(JTextField.CENTER);
+		txtPaginacion2.setBounds(408, 21, 40, 14);
+		ordenacion2.add(txtPaginacion2);
+		
 		
 		if(nPagina!=1){
 			ordenacion2.add(BotonesCategorias.atras(frmPantallaPrincipal,cesta,nPagina));

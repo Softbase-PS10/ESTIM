@@ -166,7 +166,6 @@ public class Sentencias {
 				+ "JUEGO_PLATAFORMA.plataforma = PLATAFORMA.id";
 		if (filtros != null) {
 			for (Entry<String, String> e : filtros.entrySet()) {
-				System.out.println(e.getKey() + ": " + e.getValue());
 				switch (e.getKey()) {
 				case ("titulo"):
 					query = query + " and JUEGO.titulo = '" + e.getValue()
