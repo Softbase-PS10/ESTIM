@@ -167,8 +167,7 @@ public class Sentencias {
 			for (Entry<String, String> e : filtros.entrySet()) {
 				switch (e.getKey()) {
 				case ("titulo"):
-					query = query + " and JUEGO.titulo = '" + e.getValue()
-							+ "'";
+					query = query + " and JUEGO.titulo LIKE '%" + e.getValue() + "%'";
 					break;
 				case ("preciomin"):
 					query = query + " and JUEGO.precio >= " + e.getValue();

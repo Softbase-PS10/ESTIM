@@ -547,7 +547,7 @@ public class Listado {
 		txtPaginacion2.setForeground(Color.WHITE);
 		txtPaginacion2.setEditable(false);
 		txtPaginacion2.setBorder(null);
-		txtPaginacion2.setText("" + cantidad / 5);
+		txtPaginacion2.setText("" + ((cantidad / 5)+1));
 		txtPaginacion2.setHorizontalAlignment(JTextField.CENTER);
 		txtPaginacion2.setBounds(408, 21, 40, 14);
 		ordenacion2.add(txtPaginacion2);
