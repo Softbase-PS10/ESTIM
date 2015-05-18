@@ -80,7 +80,8 @@ public class BotonesCabecera {
 				Logger.log("Buscando juegos en la base de datos...");
 				String busqueda = busc.getText();
 				Sentencias sql = new Sentencias();
-				ArrayList<Juego> juegos = sql.listarJuegosTitulo(busqueda);
+				Principal.filtrosMap.put("titulo", busqueda);
+				ArrayList<Juego> juegos = sql.listarJuegosMultipleFiltros(Principal.filtrosMap, 1);
 				frame.getContentPane().removeAll();
 				Logger.log("Juegos encontrados");
 				Listado.listar(frame, juegos, cesta, 1);

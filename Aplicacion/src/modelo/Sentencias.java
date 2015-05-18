@@ -207,16 +207,6 @@ public class Sentencias {
 	}
 
 	/**
-	 * @param titulo
-	 *            : titulo por el que se desea filtrar
-	 * @return una lista (ArrayList) de los juegos cuyo campo <titulo> coincide
-	 *         con @param titulo.
-	 */
-	public ArrayList<Juego> listarJuegosTitulo(String titulo) {
-		return listarJuegos(" AND LIKE '%" + titulo + "%'");
-	}
-
-	/**
 	 * @param min
 	 *            : precio minimo por el que filtrar
 	 * @param max
