@@ -254,7 +254,7 @@ public class BotonesInfo {
 	 * @return la label del genero
 	 */
 	public static JLabel getGeneroLabel() {
-		JLabel Genero = new JLabel("Gender:");
+		JLabel Genero = new JLabel("Genre:");
 		Genero.setFont(new Font("Tahoma", Font.BOLD, 16));
 		Genero.setForeground(Color.WHITE);
 		Genero.setBounds(405, 285, 72, 20);
