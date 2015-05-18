@@ -250,7 +250,7 @@ public class Listado {
 		filtros.add(generoMulti);
 
 		JFormattedTextField textPlataforma = new JFormattedTextField();
-		textPlataforma.setText("Platforms:");
+		textPlataforma.setText("Platform:");
 		textPlataforma.setOpaque(false);
 		textPlataforma.setForeground(Color.WHITE);
 		textPlataforma.setFont(new Font("Tahoma", Font.PLAIN, 14));
