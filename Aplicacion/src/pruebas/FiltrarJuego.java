@@ -30,7 +30,22 @@ public class FiltrarJuego {
 		System.out.println("Clase de equivalencia 1-2-3-4-5");
 		Lanzador.filtros.put("titulo", "The Witcher");
 		clase(Lanzador.filtros, sql);
+		
+		System.out.println("Clase de equivalencia 6");
+		clase(null, sql);
+		
+		System.out.println("Clase de equivalencia 7");
+		Lanzador.filtros.put("titulo", "");
+		clase(Lanzador.filtros, sql);
+		
+		System.out.println("Clase de equivalencia 8");
+		Lanzador.filtros.put(null, "The Witcher");
+		clase(Lanzador.filtros, sql);
 
+		System.out.println("Clase de equivalencia 9");
+		Lanzador.filtros.put("titulo", null);
+		clase(Lanzador.filtros, sql);
+		
 		sql.close();
 	}
 
