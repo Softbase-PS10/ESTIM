@@ -7,18 +7,16 @@
  * 		-Alejandro Marquez
  * 		-Alejandro Royo
  * 		-Jaime Ruiz-Borau
- * DESCRIPCION:
+ * DESCRIPCION: clase que lanza la ventana de modificar un juego
  */
 
 package vista;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.io.IOException;
 import java.util.ArrayList;
-
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBoxMenuItem;
@@ -35,7 +33,6 @@ import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
-
 import modelo.Juego;
 import modelo.Logger;
 import modelo.Plataforma;
@@ -46,6 +43,7 @@ import controlador.Imagenes;
 
 public class Modificar {
 
+	/* declaracion de variables */
 	private static JFrame frmPantallaPrincipal;
 	public JTextField txtBuscar;
 	public static JTextField titulo;
@@ -65,29 +63,15 @@ public class Modificar {
 	private static Juego j;
 	private static ArrayList<Juego> cesta;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					// Modificar window = new Modificar(null);
-					// window.frmPantallaPrincipal.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	/* declaracion de metodos y funciones */
 
-	/**
-	 * Create the application.
-	 * 
+	/** 
 	 * @param j
 	 *            : juego del cual se extraen datos para mostrarlos en los
 	 *            campos correspondientes. Si es =null, los campos quedarán
 	 *            vacios.
+	 *            
+	 *            Constructor
 	 */
 	@SuppressWarnings("static-access")
 	public Modificar(JFrame fr, Juego j, ArrayList<Juego> cesta) {
@@ -167,7 +151,7 @@ public class Modificar {
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Inicializa el frame de modificar juego
 	 */
 	private void initialize() {
 		Logger.log("Inicializando crear/modificar juego...");

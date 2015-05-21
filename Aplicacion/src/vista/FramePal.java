@@ -65,6 +65,7 @@ public class FramePal {
 	 * Metodo para cifrar la password del administrador, 
 	 * La password solamente puede tener una palabra y va a estar contenida en Admin.txt
 	 */
+	@SuppressWarnings("unused")
 	private static void cifrarPass(){
 		try{
 			BufferedReader br = new BufferedReader (new FileReader ("/Imagenes/Admin.txt"));

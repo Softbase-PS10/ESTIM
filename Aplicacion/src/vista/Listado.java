@@ -55,10 +55,6 @@ public class Listado {
 			valoracionMaxima;
 	public static JComboBox<String> generoMulti, plataformaMulti,
 			ordenacionMulti;
-
-	@SuppressWarnings("unused")
-	private ArrayList<Juego> games; // asi se podra realizar la ordenacion mas
-									// adelante
 	private ArrayList<Juego> cesta;
 
 	/* declaracion de metodos y funciones */
@@ -94,7 +90,6 @@ public class Listado {
 	 */
 	public Listado(JFrame fr, ArrayList<Juego> juegos, ArrayList<Juego> cesta,
 			int nPagina) throws IOException {
-		this.games = juegos;
 		this.cesta = cesta;
 		this.frmPantallaPrincipal = fr;
 		frmPantallaPrincipal.getContentPane().removeAll();

@@ -7,7 +7,8 @@
  * 		-Alejandro Marquez
  * 		-Alejandro Royo
  * 		-Jaime Ruiz-Borau
- * DESCRIPCION:
+ * DESCRIPCION: clase que lanza el frame de la pantalla principal de
+ * 				la aplicacion
  */
 
 package vista;
@@ -18,7 +19,6 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.HashMap;
-
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
@@ -28,7 +28,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
-
 import modelo.Juego;
 import modelo.Logger;
 import controlador.Botones;
@@ -38,6 +37,7 @@ import controlador.BotonesMenu;
 
 public class Principal {
 
+	/* declaracion de variables */
 	private JFrame frmPantallaPrincipal;
 	private JTextField txtBuscar;
 	public static JTextField textField, textField_1, textField_2, textField_3;
@@ -45,8 +45,16 @@ public class Principal {
 	public static JComboBox<String> comboBox, comboBox_1;
 	public static HashMap<String, String> filtrosMap = new HashMap<>();
 
+	/* declaracion de metodos y variables */
+
 	/**
-	 * Launch the application.
+	 * @param frame
+	 *            : JFrame donde se vera la aplicacion
+	 * @param cesta
+	 *            : ArrayList de Juegos con la lista de juegos que el usuario
+	 *            pretende comprar
+	 * 
+	 *            Lanza la ventana principal de la aplicacion
 	 */
 	public static void main(final JFrame frame, final ArrayList<Juego> cesta) {
 		EventQueue.invokeLater(new Runnable() {
@@ -63,7 +71,13 @@ public class Principal {
 	}
 
 	/**
-	 * Create the application.
+	 * @param frame
+	 *            : JFrame donde se vera la aplicacion
+	 * @param cesta
+	 *            : ArrayList de Juegos con la lista de juegos que el usuario
+	 *            pretende comprar
+	 * 
+	 *            Constructor
 	 */
 	public Principal(JFrame frame, ArrayList<Juego> cesta) {
 		this.cesta = cesta;
@@ -73,7 +87,7 @@ public class Principal {
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Inicializa la ventana principal de la aplicacion
 	 */
 	private void initialize() {
 		Logger.log("Inicializando frame principal...");

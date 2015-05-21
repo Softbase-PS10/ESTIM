@@ -1,3 +1,16 @@
+/*
+ * SOFTBASE - GRUPO 10
+ * AUTORES:
+ * 		-Alberto Blasco
+ * 		-Diego Galvez
+ * 		-Patricia Lazaro
+ * 		-Alejandro Marquez
+ * 		-Alejandro Royo
+ * 		-Jaime Ruiz-Borau
+ * DESCRIPCION: clase que contiene el diseno de la pantalla del carro
+ * 				de la aplicacion de ESTIM
+ */
+
 package vista;
 
 import java.awt.Color;
@@ -10,7 +23,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
-
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.Icon;
@@ -24,7 +36,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.LineBorder;
-
 import modelo.Juego;
 import modelo.Logger;
 import controlador.Botones;
@@ -39,12 +50,19 @@ public class Carro {
 	private JTextField txtBuscar;
 	public static JTextField valoracionMinima, valoracionMaxima;
 	public static JComboBox<String> generoMulti, plataformaMulti;
+	private ArrayList<Juego> games;
 
-	private ArrayList<Juego> games; // asi se podra realizar la ordenacion mas
-									// adelante
-
+	/* declaracion de metodos y funciones */
+	
 	/**
-	 * Launch the application.
+	 * @param frame
+	 *            : Frame principal de la aplicacion donde sera mostrado todo
+	 * @param cesta
+	 *            : ArrayList de juegos que contiene los juegos comprados por el
+	 *            usuario
+	 * 
+	 *            Construye un objeto Carro y lo inicializa, lo cual muestra en
+	 *            el frame "frame" la pantalla de carro
 	 */
 	public static void main(final JFrame frame, final ArrayList<Juego> cesta) {
 		EventQueue.invokeLater(new Runnable() {
@@ -61,9 +79,15 @@ public class Carro {
 	}
 
 	/**
-	 * Create the application.
-	 * 
+	 * @param frame
+	 *            : Frame principal donde sera mostrado todo
+	 * @param cesta
+	 *            : ArrayList de juegos que contiene los juegos comprados por el
+	 *            usuario
 	 * @throws IOException
+	 *             : Si cargar la imagen de algun juego produce una excepcion
+	 * 
+	 * 				Constructor
 	 */
 	public Carro(JFrame frame, ArrayList<Juego> cesta) throws IOException {
 		frame.getContentPane().removeAll();
@@ -71,9 +95,17 @@ public class Carro {
 	}
 
 	/**
-	 * Initialize the contents of the frame.
-	 * 
+	 * @param frame
+	 *            : Frame principal donde sera mostrado todo
+	 * @param cesta
+	 *            : ArrayList de juegos que contiene los juegos comprados por el
+	 *            usuario
 	 * @throws IOException
+	 *             : Si cargar la imagen de algun juego produce una excepcion
+	 * 
+	 * 				Metodo initialize. Su funcion consiste en ir mostrando
+	 * 				en el frame "frm" todos los elementos de la pantalla de
+	 * 				Carro
 	 */
 	private void initialize(JFrame frm, final ArrayList<Juego> cesta)
 			throws IOException {
@@ -175,7 +207,7 @@ public class Carro {
 		filtros.add(tituloFiltros);
 
 		filtros.add(Botones.vaciarCarro(frmPantallaPrincipal));
-		filtros.add(Botones.comprarCarro(frmPantallaPrincipal,games));
+		filtros.add(Botones.comprarCarro(frmPantallaPrincipal, games));
 
 		JPanel principal = new JPanel();
 		principal.setBounds(190, 131, 870, 440);
@@ -240,9 +272,11 @@ public class Carro {
 
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						Logger.log("Cargando informaci�n del juego "+j.getTitulo());
+						Logger.log("Cargando informaci�n del juego "
+								+ j.getTitulo());
 						frmPantallaPrincipal.getContentPane().removeAll();
-						Logger.log("Informaci�n del juego "+j.getTitulo()+" cargada");
+						Logger.log("Informaci�n del juego " + j.getTitulo()
+								+ " cargada");
 						Info.main(frmPantallaPrincipal, j, cesta);
 					}
 				});
@@ -366,13 +400,9 @@ public class Carro {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						String titulo = games.get(indiceJuego).getTitulo();
-						Logger.log("Borrando juego "
-								+ titulo
-								+ " del carro");
+						Logger.log("Borrando juego " + titulo + " del carro");
 						games.remove(indiceJuego);
-						Logger.log("Juego "
-								+ titulo
-								+ " borrado del carro");
+						Logger.log("Juego " + titulo + " borrado del carro");
 						Carro.main(frmPantallaPrincipal, games);
 					}
 				});

@@ -7,7 +7,9 @@
  * 		-Alejandro Marquez
  * 		-Alejandro Royo
  * 		-Jaime Ruiz-Borau
- * DESCRIPCION: 
+ * DESCRIPCION: clase que contiene el diseno de la pantalla
+ * 				de informacion de un juego de la aplicacion de
+ * 				ESTIM
  */
 
 package vista;
@@ -15,10 +17,8 @@ package vista;
 import java.awt.EventQueue;
 import java.awt.Toolkit;
 import java.util.ArrayList;
-
 import modelo.Juego;
 import modelo.Logger;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JButton;
@@ -30,11 +30,26 @@ import controlador.BotonesInfo;
 
 public class Info {
 
+	/* declaracion de variables */
 	private JFrame frmInformacinDelProduc;
 	private static Juego juego;
 	private ArrayList<Juego> cesta;
 
-	public static void main(final JFrame fr, Juego jue, final ArrayList<Juego> cesta) {
+	/* declaracion de metodos y funciones */
+	
+	/**
+	 * @param fr
+	 *            : Frame principal donde se dibuja la aplicacion
+	 * @param juego
+	 *            : Objeto juego del que mostrar informacion
+	 * @param cesta
+	 *            : Cesta de juegos anadidos al carro
+	 *            
+	 *            Devuelve un objeto de tipo Info e inicializa y dibuja la pantalla
+	 *            de informacion del objeto
+	 */
+	public static void main(final JFrame fr, Juego jue,
+			final ArrayList<Juego> cesta) {
 		juego = jue;
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -50,7 +65,15 @@ public class Info {
 	}
 
 	/**
-	 * Create the application.
+	 * @param fr
+	 *            : Frame principal donde se dibuja la aplicacion
+	 * @param juego
+	 *            : Objeto juego del que mostrar informacion
+	 * @param cesta
+	 *            : Cesta de juegos anadidos al carro
+	 *            
+	 *            Devuelve un objeto de tipo Info e inicializa y dibuja la pantalla
+	 *            de informacion del objeto
 	 */
 	public Info(JFrame fr, Juego juego, ArrayList<Juego> cesta) {
 		this.cesta = cesta;
@@ -59,18 +82,22 @@ public class Info {
 		initialize(juego);
 	}
 
+
 	/**
-	 * Initialize the contents of the frame.
+	 * @param juego
+	 *            : Objeto juego del que mostrar informacion
+	 *                
+	 *            Inicializa la pantalla de informacion del juego
 	 */
 	private void initialize(Juego juego) {
 		Logger.log("Inicializando información del juego...");
-		frmInformacinDelProduc
-				.setTitle("Product information - Estim");
+		frmInformacinDelProduc.setTitle("Product information - Estim");
 		frmInformacinDelProduc.setIconImage(Toolkit.getDefaultToolkit()
 				.getImage(Info.class.getResource("/Imagenes/E.png")));
 
 		// Cabecera
-		JPanel cabecera = BotonesInfo.getCabecera(frmInformacinDelProduc,cesta);
+		JPanel cabecera = BotonesInfo
+				.getCabecera(frmInformacinDelProduc, cesta);
 		frmInformacinDelProduc.getContentPane().add(cabecera);
 
 		// Panel de busqueda
@@ -82,8 +109,8 @@ public class Info {
 		cabecera.add(lupaBuscar);
 
 		// Opciones
-		JPanel opciones = BotonesInfo
-				.getOpciones(juego, null, frmInformacinDelProduc, cesta);
+		JPanel opciones = BotonesInfo.getOpciones(juego, null,
+				frmInformacinDelProduc, cesta);
 		cabecera.add(opciones);
 
 		// Carrito
@@ -91,7 +118,8 @@ public class Info {
 		cabecera.add(carrito);
 
 		// Categorias
-		JPanel categorias = BotonesInfo.getCategorias(frmInformacinDelProduc,cesta);
+		JPanel categorias = BotonesInfo.getCategorias(frmInformacinDelProduc,
+				cesta);
 		frmInformacinDelProduc.getContentPane().add(categorias);
 
 		// Imagen
@@ -153,7 +181,8 @@ public class Info {
 		frmInformacinDelProduc.getContentPane().add(RespValoracion);
 
 		// Boton carro
-		JButton Carro = BotonesInfo.getBotonCarro(frmInformacinDelProduc,juego,cesta);
+		JButton Carro = BotonesInfo.getBotonCarro(frmInformacinDelProduc,
+				juego, cesta);
 		frmInformacinDelProduc.getContentPane().add(Carro);
 
 		// Label fondo
