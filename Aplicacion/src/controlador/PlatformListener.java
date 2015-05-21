@@ -54,9 +54,13 @@ public class PlatformListener implements ActionListener {
 		this.cesta = cesta;
 	}
 
+	/**
+	 * Carga los juegos de una plataforma
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (alias != null) {
+			/* cargar juegos de la plataforma seleccionada */
 			Logger.log("Cargando juegos de la plataforma " + this.alias);
 			sql = new Sentencias();
 			ArrayList<Juego> juegos = sql
@@ -66,6 +70,7 @@ public class PlatformListener implements ActionListener {
 			Logger.log("Juegos de la plataforma " + this.alias + " cargados");
 			Listado.listar(frame, juegos, cesta, 1);
 		} else {
+			/* cargar todos los juegos */
 			Logger.log("Cargando todos los juegos");
 			sql = new Sentencias();
 			ArrayList<Juego> juegos = sql.listarTodosJuegos();

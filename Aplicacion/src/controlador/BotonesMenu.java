@@ -28,8 +28,12 @@ import vista.Principal;
 
 public class BotonesMenu {
 
+	/* declaracion de metodos y funciones */
+
 	/**
-	 * @return un boton que redirige a la pantalla de listado de juegos de New 3DS
+	 * @param frame : frame sobre el que se crea el boton
+	 * @param cesta : carrito de la compra
+	 * @return un menu de Nintendo 3DS
 	 */
 	public static JButton menuN3DS(JFrame frame, ArrayList<Juego> cesta) {
 		JButton n3ds = new JButton("");
@@ -40,13 +44,16 @@ public class BotonesMenu {
 				Color.BLACK, Color.BLACK, Color.BLACK));
 		n3ds.setBounds(596, 322, 246, 125);
 
-		n3ds.addActionListener(new PlatformListener(Plataforma.alias3DS, frame, cesta));
+		n3ds.addActionListener(new PlatformListener(Plataforma.alias3DS, frame,
+				cesta));
 
 		return n3ds;
 	}
 
 	/**
-	 * @return un boton que redirige a la pantalla de listado de juegos de la Wii
+	 * @param frame : frame sobre el que se crea el boton
+	 * @param cesta : carrito de la compra
+	 * @return un menu de Wii
 	 */
 	public static JButton menuWii(JFrame frame, ArrayList<Juego> cesta) {
 		JButton wii = new JButton("");
@@ -57,13 +64,16 @@ public class BotonesMenu {
 				Color.BLACK, Color.BLACK, Color.BLACK));
 		wii.setBounds(313, 322, 246, 125);
 
-		wii.addActionListener(new PlatformListener(Plataforma.aliasWii, frame, cesta));
+		wii.addActionListener(new PlatformListener(Plataforma.aliasWii, frame,
+				cesta));
 
 		return wii;
 	}
 
 	/**
-	 * @return un boton que redirige a la pantalla de listado de juegos de la WiiU
+	 * @param frame : frame sobre el que se crea el boton
+	 * @param cesta : carrito de la compra
+	 * @return un menu de Wii U
 	 */
 	public static JButton menuWiiU(JFrame frame, ArrayList<Juego> cesta) {
 		JButton wiiu = new JButton("");
@@ -74,13 +84,16 @@ public class BotonesMenu {
 				Color.BLACK, Color.BLACK, Color.BLACK));
 		wiiu.setBounds(30, 322, 246, 125);
 
-		wiiu.addActionListener(new PlatformListener(Plataforma.aliasWiiU, frame, cesta));
+		wiiu.addActionListener(new PlatformListener(Plataforma.aliasWiiU,
+				frame, cesta));
 
 		return wiiu;
 	}
 
 	/**
-	 * @return un boton que redirige a la pantalla de listado de juegos de PC
+	 * @param frame : frame sobre el que se crea el boton
+	 * @param cesta : carrito de la compra
+	 * @return un menu de PC
 	 */
 	public static JButton menuPC(JFrame frame, ArrayList<Juego> cesta) {
 		JButton pc = new JButton("");
@@ -91,13 +104,16 @@ public class BotonesMenu {
 				Color.BLACK, Color.BLACK, Color.BLACK));
 		pc.setBounds(596, 176, 246, 125);
 
-		pc.addActionListener(new PlatformListener(Plataforma.aliasPC, frame, cesta));
+		pc.addActionListener(new PlatformListener(Plataforma.aliasPC, frame,
+				cesta));
 
 		return pc;
 	}
 
 	/**
-	 * @return un boton que redirige a la pantalla de listado de juegos de Xbox 360
+	 * @param frame : frame sobre el que se crea el boton
+	 * @param cesta : carrito de la compra
+	 * @return un menu de XBOX 360
 	 */
 	public static JButton menuX360(JFrame frame, ArrayList<Juego> cesta) {
 		JButton x360 = new JButton("");
@@ -108,13 +124,16 @@ public class BotonesMenu {
 				Color.BLACK, Color.BLACK, Color.BLACK));
 		x360.setBounds(313, 176, 246, 125);
 
-		x360.addActionListener(new PlatformListener(Plataforma.aliasX360, frame, cesta));
+		x360.addActionListener(new PlatformListener(Plataforma.aliasX360,
+				frame, cesta));
 
 		return x360;
 	}
 
 	/**
-	 * @return un boton que redirige a la pantalla de listado de juegos de Xbox ONE
+	 * @param frame : frame sobre el que se crea el boton
+	 * @param cesta : carrito de la compra
+	 * @return un menu de XBOX ONE
 	 */
 	public static JButton menuXONE(JFrame frame, ArrayList<Juego> cesta) {
 		JButton xone = new JButton("");
@@ -125,13 +144,16 @@ public class BotonesMenu {
 				Color.BLACK, Color.BLACK, Color.BLACK));
 		xone.setBounds(30, 176, 246, 125);
 
-		xone.addActionListener(new PlatformListener(Plataforma.aliasXONE, frame, cesta));
+		xone.addActionListener(new PlatformListener(Plataforma.aliasXONE,
+				frame, cesta));
 
 		return xone;
 	}
 
 	/**
-	 * @return un boton que redirige a la pantalla de listado de juegos de PlayStation Vita
+	 * @param frame : frame sobre el que se crea el boton
+	 * @param cesta : carrito de la compra
+	 * @return un menu de PS Vita
 	 */
 	public static JButton menuVita(JFrame frame, ArrayList<Juego> cesta) {
 		JButton vita = new JButton("");
@@ -142,13 +164,16 @@ public class BotonesMenu {
 				Color.BLACK, Color.BLACK, Color.BLACK));
 		vita.setBounds(596, 34, 246, 125);
 
-		vita.addActionListener(new PlatformListener(Plataforma.aliasPSVita, frame, cesta));
+		vita.addActionListener(new PlatformListener(Plataforma.aliasPSVita,
+				frame, cesta));
 
 		return vita;
 	}
 
 	/**
-	 * @return un boton que redirige a la pantalla de listado de juegos de PlayStation 3
+	 * @param frame : frame sobre el que se crea el boton
+	 * @param cesta : carrito de la compra
+	 * @return un menu de PS3
 	 */
 	public static JButton menuPS3(JFrame frame, ArrayList<Juego> cesta) {
 		JButton ps3 = new JButton("");
@@ -159,25 +184,28 @@ public class BotonesMenu {
 				Color.BLACK, Color.BLACK, Color.BLACK));
 		ps3.setBounds(313, 34, 246, 125);
 
-		ps3.addActionListener(new PlatformListener(Plataforma.aliasPS3, frame, cesta));
+		ps3.addActionListener(new PlatformListener(Plataforma.aliasPS3, frame,
+				cesta));
 
 		return ps3;
 	}
 
 	/**
-	 * @return un boton que redirige a la pantalla de listado de juegos de PlayStation 4
+	 * @param frame : frame sobre el que se crea el boton
+	 * @param cesta : carrito de la compra
+	 * @return un menu de PS4
 	 */
 	public static JButton menuPS4(JFrame frame, ArrayList<Juego> cesta) {
 		JButton ps4 = new JButton("");
-		ps4
-				.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		ps4.setBorder(new BevelBorder(BevelBorder.RAISED,
-				Color.BLACK, Color.BLACK, Color.BLACK, Color.BLACK));
+		ps4.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		ps4.setBorder(new BevelBorder(BevelBorder.RAISED, Color.BLACK,
+				Color.BLACK, Color.BLACK, Color.BLACK));
 		ps4.setIcon(new ImageIcon(Principal.class
 				.getResource("/Imagenes/Menu/ps4.png")));
 		ps4.setBounds(30, 34, 246, 125);
 
-		ps4.addActionListener(new PlatformListener(Plataforma.aliasPS4, frame, cesta));
+		ps4.addActionListener(new PlatformListener(Plataforma.aliasPS4, frame,
+				cesta));
 
 		return ps4;
 	}
