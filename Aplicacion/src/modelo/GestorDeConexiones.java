@@ -20,30 +20,19 @@ import java.sql.SQLException;
 public class GestorDeConexiones {
 
 	/* declaracion de atributos */
-
-//	private static String db_driver = "jdbc:oracle:thin:@hendrix-oracle.cps.unizar.es:1521:vicious";
-//	private static String db_username = "a546751";
-//	private static String db_password = "Korea11";
-
 	private static String db_driver = "jdbc:mysql://db4free.net:3306/catalogops";
 	private static String db_username = "estim";
 	private static String db_password = "estim-ps";
-	
+
 	/* declaracion de metodos y funciones */
 	static {
-
 		try {
-//			Class.forName("oracle.jdbc.OracleDriver");
 			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
 			System.err.println("Oracle driver not found");
 			e.printStackTrace();
 		}
 
-	}
-
-	private GestorDeConexiones() {
-	
 	}
 
 	/**
