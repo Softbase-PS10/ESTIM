@@ -31,8 +31,12 @@ public class BotonesMenu {
 	/* declaracion de metodos y funciones */
 
 	/**
-	 * @param frame : frame sobre el que se crea el boton
-	 * @param cesta : carrito de la compra
+	 * Metodo que crea un boton de N3DS
+	 * 
+	 * @param frame
+	 *            : frame sobre el que se crea el boton
+	 * @param cesta
+	 *            : carrito de la compra
 	 * @return un menu de Nintendo 3DS
 	 */
 	public static JButton menuN3DS(JFrame frame, ArrayList<Juego> cesta) {
@@ -51,8 +55,12 @@ public class BotonesMenu {
 	}
 
 	/**
-	 * @param frame : frame sobre el que se crea el boton
-	 * @param cesta : carrito de la compra
+	 * Metodo que crea un boton de Wii
+	 * 
+	 * @param frame
+	 *            : frame sobre el que se crea el boton
+	 * @param cesta
+	 *            : carrito de la compra
 	 * @return un menu de Wii
 	 */
 	public static JButton menuWii(JFrame frame, ArrayList<Juego> cesta) {
@@ -71,8 +79,12 @@ public class BotonesMenu {
 	}
 
 	/**
-	 * @param frame : frame sobre el que se crea el boton
-	 * @param cesta : carrito de la compra
+	 * Metodo que crea un boton de Wii U
+	 * 
+	 * @param frame
+	 *            : frame sobre el que se crea el boton
+	 * @param cesta
+	 *            : carrito de la compra
 	 * @return un menu de Wii U
 	 */
 	public static JButton menuWiiU(JFrame frame, ArrayList<Juego> cesta) {
@@ -91,8 +103,12 @@ public class BotonesMenu {
 	}
 
 	/**
-	 * @param frame : frame sobre el que se crea el boton
-	 * @param cesta : carrito de la compra
+	 * Metodo que crea un boton de PC
+	 * 
+	 * @param frame
+	 *            : frame sobre el que se crea el boton
+	 * @param cesta
+	 *            : carrito de la compra
 	 * @return un menu de PC
 	 */
 	public static JButton menuPC(JFrame frame, ArrayList<Juego> cesta) {
@@ -111,8 +127,12 @@ public class BotonesMenu {
 	}
 
 	/**
-	 * @param frame : frame sobre el que se crea el boton
-	 * @param cesta : carrito de la compra
+	 * Metodo que crea un boton de XBOX 360
+	 * 
+	 * @param frame
+	 *            : frame sobre el que se crea el boton
+	 * @param cesta
+	 *            : carrito de la compra
 	 * @return un menu de XBOX 360
 	 */
 	public static JButton menuX360(JFrame frame, ArrayList<Juego> cesta) {
@@ -131,8 +151,12 @@ public class BotonesMenu {
 	}
 
 	/**
-	 * @param frame : frame sobre el que se crea el boton
-	 * @param cesta : carrito de la compra
+	 * Metodo que crea un boton de XBOX ONE
+	 * 
+	 * @param frame
+	 *            : frame sobre el que se crea el boton
+	 * @param cesta
+	 *            : carrito de la compra
 	 * @return un menu de XBOX ONE
 	 */
 	public static JButton menuXONE(JFrame frame, ArrayList<Juego> cesta) {
@@ -151,8 +175,12 @@ public class BotonesMenu {
 	}
 
 	/**
-	 * @param frame : frame sobre el que se crea el boton
-	 * @param cesta : carrito de la compra
+	 * Metodo que crea un boton de PS Vita
+	 * 
+	 * @param frame
+	 *            : frame sobre el que se crea el boton
+	 * @param cesta
+	 *            : carrito de la compra
 	 * @return un menu de PS Vita
 	 */
 	public static JButton menuVita(JFrame frame, ArrayList<Juego> cesta) {
@@ -171,8 +199,12 @@ public class BotonesMenu {
 	}
 
 	/**
-	 * @param frame : frame sobre el que se crea el boton
-	 * @param cesta : carrito de la compra
+	 * Metodo que crea un boton de PS3
+	 * 
+	 * @param frame
+	 *            : frame sobre el que se crea el boton
+	 * @param cesta
+	 *            : carrito de la compra
 	 * @return un menu de PS3
 	 */
 	public static JButton menuPS3(JFrame frame, ArrayList<Juego> cesta) {
@@ -191,8 +223,12 @@ public class BotonesMenu {
 	}
 
 	/**
-	 * @param frame : frame sobre el que se crea el boton
-	 * @param cesta : carrito de la compra
+	 * Metodo que crea un boton de PS4
+	 * 
+	 * @param frame
+	 *            : frame sobre el que se crea el boton
+	 * @param cesta
+	 *            : carrito de la compra
 	 * @return un menu de PS4
 	 */
 	public static JButton menuPS4(JFrame frame, ArrayList<Juego> cesta) {

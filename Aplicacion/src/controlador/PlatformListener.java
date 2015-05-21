@@ -36,6 +36,8 @@ public class PlatformListener implements ActionListener {
 	/* declaracion de metodos y funciones */
 
 	/**
+	 * Metodo constructor
+	 * 
 	 * @param alias
 	 *            : nombre corto de la plataforma
 	 * @param frame
@@ -43,8 +45,6 @@ public class PlatformListener implements ActionListener {
 	 *            funcionalidad
 	 * @param cesta
 	 *            : carrito de la compra
-	 * 
-	 *            Metodo constructor
 	 */
 	public PlatformListener(String alias, JFrame frame, ArrayList<Juego> cesta) {
 		this.alias = alias;
