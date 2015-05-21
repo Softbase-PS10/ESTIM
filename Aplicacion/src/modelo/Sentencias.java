@@ -83,40 +83,44 @@ public class Sentencias {
 		/* aplicar filtros */
 		if (filtros != null) {
 			for (Entry<String, String> e : filtros.entrySet()) {
-				switch (e.getKey()) {
-				case ("titulo"):
-					query = query + " and JUEGO.titulo LIKE '%" + e.getValue()
-							+ "%'";
-					break;
-				case ("preciomin"):
-					query = query + " and JUEGO.precio >= " + e.getValue();
-					break;
-				case ("preciomax"):
-					query = query + " and JUEGO.precio <= " + e.getValue();
-					break;
-				case ("genero"):
-					query = query + " and JUEGO_GENERO.genero = '"
-							+ e.getValue() + "'";
-					break;
-				case ("plataforma"):
-					query = query + " and PLATAFORMA.alias = '" + e.getValue()
-							+ "'";
-					break;
-				case ("ratingmin"):
-					query = query + " and JUEGO.rating >= " + e.getValue();
-					break;
-				case ("ratingmax"):
-					query = query + " and JUEGO.rating <= " + e.getValue();
-					break;
-				case ("order"):
-					order = " ORDER BY " + e.getValue();
-					break;
-				case ("type"):
-					type = e.getValue();
-					break;
-				}
+				if (e.getKey() != null && e.getValue() != null
+						&& !e.getValue().equals("")) {
+					switch (e.getKey()) {
+					case ("titulo"):
+						query = query + " and JUEGO.titulo LIKE '%"
+								+ e.getValue() + "%'";
+						break;
+					case ("preciomin"):
+						query = query + " and JUEGO.precio >= " + e.getValue();
+						break;
+					case ("preciomax"):
+						query = query + " and JUEGO.precio <= " + e.getValue();
+						break;
+					case ("genero"):
+						query = query + " and JUEGO_GENERO.genero = '"
+								+ e.getValue() + "'";
+						break;
+					case ("plataforma"):
+						query = query + " and PLATAFORMA.alias = '"
+								+ e.getValue() + "'";
+						break;
+					case ("ratingmin"):
+						query = query + " and JUEGO.rating >= " + e.getValue();
+						break;
+					case ("ratingmax"):
+						query = query + " and JUEGO.rating <= " + e.getValue();
+						break;
+					default:
+						Logger.log("Se ha introducido una clave invalida");
+						break;
+					}
+				} else if (e.getKey() == null)
+					Logger.log("Se ha introducido una clave nula");
+				else
+					Logger.log("Se ha introducido un valor invalido");
 			}
-		}
+		} else
+			Logger.log("Se ha introducido un HashMap nulo");
 		/* paginacion */
 		query = query + order + " " + type + " limit 5 offset "
 				+ (5 * (nPagina - 1));
@@ -172,34 +176,44 @@ public class Sentencias {
 		/* aplicar filtros */
 		if (filtros != null) {
 			for (Entry<String, String> e : filtros.entrySet()) {
-				switch (e.getKey()) {
-				case ("titulo"):
-					query = query + " and JUEGO.titulo LIKE '%" + e.getValue()
-							+ "%'";
-					break;
-				case ("preciomin"):
-					query = query + " and JUEGO.precio >= " + e.getValue();
-					break;
-				case ("preciomax"):
-					query = query + " and JUEGO.precio <= " + e.getValue();
-					break;
-				case ("genero"):
-					query = query + " and JUEGO_GENERO.genero = '"
-							+ e.getValue() + "'";
-					break;
-				case ("plataforma"):
-					query = query + " and PLATAFORMA.alias = '" + e.getValue()
-							+ "'";
-					break;
-				case ("ratingmin"):
-					query = query + " and JUEGO.rating >= " + e.getValue();
-					break;
-				case ("ratingmax"):
-					query = query + " and JUEGO.rating <= " + e.getValue();
-					break;
-				}
+				if (e.getKey() != null && e.getValue() != null
+						&& !e.getValue().equals("")) {
+					switch (e.getKey()) {
+					case ("titulo"):
+						query = query + " and JUEGO.titulo LIKE '%"
+								+ e.getValue() + "%'";
+						break;
+					case ("preciomin"):
+						query = query + " and JUEGO.precio >= " + e.getValue();
+						break;
+					case ("preciomax"):
+						query = query + " and JUEGO.precio <= " + e.getValue();
+						break;
+					case ("genero"):
+						query = query + " and JUEGO_GENERO.genero = '"
+								+ e.getValue() + "'";
+						break;
+					case ("plataforma"):
+						query = query + " and PLATAFORMA.alias = '"
+								+ e.getValue() + "'";
+						break;
+					case ("ratingmin"):
+						query = query + " and JUEGO.rating >= " + e.getValue();
+						break;
+					case ("ratingmax"):
+						query = query + " and JUEGO.rating <= " + e.getValue();
+						break;
+					default:
+						Logger.log("Se ha introducido una clave invalida");
+						break;
+					}
+				} else if (e.getKey() == null)
+					Logger.log("Se ha introducido una clave nula");
+				else
+					Logger.log("Se ha introducido un valor invalido");
 			}
-		}
+		} else
+			Logger.log("Se ha introducido un HashMap nulo");
 		try {
 			Statement st = connection.createStatement();
 			ResultSet resul = st.executeQuery(query);
