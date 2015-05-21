@@ -29,11 +29,25 @@ import vista.Principal;
 
 public class PlatformListener implements ActionListener {
 
+	/* declaracion de variables */
 	private String alias;
 	private Sentencias sql;
 	private JFrame frame;
 	private ArrayList<Juego> cesta;
 
+	/* declaracion de metodos y funciones */
+
+	/**
+	 * @param alias
+	 *            : nombre corto de la plataforma
+	 * @param frame
+	 *            : frame en el que se encuentra el boton al que dotarle de
+	 *            funcionalidad
+	 * @param cesta
+	 *            : carrito de la compra
+	 * 
+	 *            Metodo constructor
+	 */
 	public PlatformListener(String alias, JFrame frame, ArrayList<Juego> cesta) {
 		this.alias = alias;
 		this.frame = frame;
@@ -51,7 +65,7 @@ public class PlatformListener implements ActionListener {
 			frame.getContentPane().removeAll();
 			Logger.log("Juegos de la plataforma " + this.alias + " cargados");
 			Listado.listar(frame, juegos, cesta, 1);
-		} else{
+		} else {
 			Logger.log("Cargando todos los juegos");
 			sql = new Sentencias();
 			ArrayList<Juego> juegos = sql.listarTodosJuegos();
