@@ -65,13 +65,13 @@ public class Modificar {
 
 	/* declaracion de metodos y funciones */
 
-	/** 
+	/**
+	 * Constructor
+	 * 
 	 * @param j
 	 *            : juego del cual se extraen datos para mostrarlos en los
 	 *            campos correspondientes. Si es =null, los campos quedarán
 	 *            vacios.
-	 *            
-	 *            Constructor
 	 */
 	@SuppressWarnings("static-access")
 	public Modificar(JFrame fr, Juego j, ArrayList<Juego> cesta) {
@@ -99,7 +99,8 @@ public class Modificar {
 
 			precio.setText(j.getPrecio() + "");
 
-			if (j.getLanzamiento() != null && !j.getLanzamiento().equals("null")) {
+			if (j.getLanzamiento() != null
+					&& !j.getLanzamiento().equals("null")) {
 				anyo.setText(j.getLanzamiento());
 			}
 			if (j.getRating() != null && !j.getRating().equals("null")) {
@@ -114,7 +115,8 @@ public class Modificar {
 					e.printStackTrace();
 				}
 			}
-			if (j.getDescripcion() != null && !j.getDescripcion().equals("null")) {
+			if (j.getDescripcion() != null
+					&& !j.getDescripcion().equals("null")) {
 				descripcion.setText(j.getDescripcion());
 			}
 			if (j.getPlataforma() != null) {
@@ -166,7 +168,7 @@ public class Modificar {
 		frmPantallaPrincipal.getContentPane().add(cabecera);
 		cabecera.setLayout(null);
 
-		cabecera.add(BotonesCabecera.logo(frmPantallaPrincipal,cesta));
+		cabecera.add(BotonesCabecera.logo(frmPantallaPrincipal, cesta));
 
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -188,7 +190,7 @@ public class Modificar {
 		cabecera.add(panel_2);
 		panel_2.setLayout(null);
 
-		panel_2.add(BotonesCabecera.buscar(txtBuscar,cesta));
+		panel_2.add(BotonesCabecera.buscar(txtBuscar, cesta));
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -196,7 +198,8 @@ public class Modificar {
 		cabecera.add(panel_1);
 		panel_1.setLayout(null);
 
-		panel_1.add(BotonesCabecera.ajustes(4, null, null, frmPantallaPrincipal, cesta));
+		panel_1.add(BotonesCabecera.ajustes(4, null, null,
+				frmPantallaPrincipal, cesta));
 
 		JPanel categorias = new JPanel();
 		categorias.setBorder(new LineBorder(new Color(0, 0, 0), 2));
@@ -205,16 +208,16 @@ public class Modificar {
 		frmPantallaPrincipal.getContentPane().add(categorias);
 		categorias.setLayout(null);
 
-		categorias.add(BotonesCategorias.allgames(frmPantallaPrincipal,cesta));
-		categorias.add(BotonesCategorias.ps3(frmPantallaPrincipal,cesta));
-		categorias.add(BotonesCategorias.vita(frmPantallaPrincipal,cesta));
-		categorias.add(BotonesCategorias.xone(frmPantallaPrincipal,cesta));
-		categorias.add(BotonesCategorias.x360(frmPantallaPrincipal,cesta));
-		categorias.add(BotonesCategorias.pc(frmPantallaPrincipal,cesta));
-		categorias.add(BotonesCategorias.wiiu(frmPantallaPrincipal,cesta));
-		categorias.add(BotonesCategorias.wii(frmPantallaPrincipal,cesta));
-		categorias.add(BotonesCategorias.n3ds(frmPantallaPrincipal,cesta));
-		categorias.add(BotonesCategorias.ps4(frmPantallaPrincipal,cesta));
+		categorias.add(BotonesCategorias.allgames(frmPantallaPrincipal, cesta));
+		categorias.add(BotonesCategorias.ps3(frmPantallaPrincipal, cesta));
+		categorias.add(BotonesCategorias.vita(frmPantallaPrincipal, cesta));
+		categorias.add(BotonesCategorias.xone(frmPantallaPrincipal, cesta));
+		categorias.add(BotonesCategorias.x360(frmPantallaPrincipal, cesta));
+		categorias.add(BotonesCategorias.pc(frmPantallaPrincipal, cesta));
+		categorias.add(BotonesCategorias.wiiu(frmPantallaPrincipal, cesta));
+		categorias.add(BotonesCategorias.wii(frmPantallaPrincipal, cesta));
+		categorias.add(BotonesCategorias.n3ds(frmPantallaPrincipal, cesta));
+		categorias.add(BotonesCategorias.ps4(frmPantallaPrincipal, cesta));
 
 		JPanel panel_3 = new JPanel();
 		panel_3.setBounds(0, 100, 1060, 471);
@@ -345,7 +348,7 @@ public class Modificar {
 		vistaPreviaCaratula.setBounds(706, 114, 170, 240);
 		panel_3.add(vistaPreviaCaratula);
 
-		panel_3.add(Botones.save(j, frmPantallaPrincipal,cesta));
+		panel_3.add(Botones.save(j, frmPantallaPrincipal, cesta));
 
 		plataforma = new JComboBox<String>();
 		String[] listaP = Plataforma.listaAlias();
@@ -415,7 +418,7 @@ public class Modificar {
 		eRating.setBorder(null);
 		eRating.setBounds(284, 209, 410, 20);
 		panel_3.add(eRating);
-		
+
 		eTitulo = new JFormattedTextField();
 		eTitulo.setVisible(false);
 		eTitulo.setText("Campo obligatorio");

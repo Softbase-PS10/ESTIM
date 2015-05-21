@@ -36,17 +36,17 @@ public class Info {
 	private ArrayList<Juego> cesta;
 
 	/* declaracion de metodos y funciones */
-	
+
 	/**
+	 * Devuelve un objeto de tipo Info e inicializa y dibuja la pantalla de
+	 * informacion del objeto
+	 * 
 	 * @param fr
 	 *            : Frame principal donde se dibuja la aplicacion
 	 * @param juego
 	 *            : Objeto juego del que mostrar informacion
 	 * @param cesta
 	 *            : Cesta de juegos anadidos al carro
-	 *            
-	 *            Devuelve un objeto de tipo Info e inicializa y dibuja la pantalla
-	 *            de informacion del objeto
 	 */
 	public static void main(final JFrame fr, Juego jue,
 			final ArrayList<Juego> cesta) {
@@ -65,15 +65,15 @@ public class Info {
 	}
 
 	/**
+	 * Devuelve un objeto de tipo Info e inicializa y dibuja la pantalla de
+	 * informacion del objeto
+	 * 
 	 * @param fr
 	 *            : Frame principal donde se dibuja la aplicacion
 	 * @param juego
 	 *            : Objeto juego del que mostrar informacion
 	 * @param cesta
 	 *            : Cesta de juegos anadidos al carro
-	 *            
-	 *            Devuelve un objeto de tipo Info e inicializa y dibuja la pantalla
-	 *            de informacion del objeto
 	 */
 	public Info(JFrame fr, Juego juego, ArrayList<Juego> cesta) {
 		this.cesta = cesta;
@@ -82,12 +82,11 @@ public class Info {
 		initialize(juego);
 	}
 
-
 	/**
+	 * Inicializa la pantalla de informacion del juego
+	 * 
 	 * @param juego
 	 *            : Objeto juego del que mostrar informacion
-	 *                
-	 *            Inicializa la pantalla de informacion del juego
 	 */
 	private void initialize(Juego juego) {
 		Logger.log("Inicializando información del juego...");
