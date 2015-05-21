@@ -34,13 +34,12 @@ public class OrdenacionListener implements ActionListener {
 	/* declaracion de metodos y funciones */
 
 	/**
+	 * Metodo constructor
 	 * @param frame
 	 *            : frame en el que se encuentra el boton al que dotar de
 	 *            funcionalidad
 	 * @param cesta
 	 *            : carrito de la compra
-	 * 
-	 *            Metodo constructor
 	 */
 	public OrdenacionListener(JFrame frame, ArrayList<Juego> cesta) {
 		this.frame = frame;

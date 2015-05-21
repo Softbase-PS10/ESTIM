@@ -35,14 +35,13 @@ public class BotonesCategorias {
 	/* declaracion de metodos y funciones */
 
 	/**
+	 * Metodo que devuelve el boton de all games de la seccion de categorias
+	 * 
 	 * @param frame
 	 *            : Frame principal de la aplicacion
 	 * @param cesta
 	 *            : ArrayList de juegos con la cesta del usuario
 	 * @return el boton de allgames de la seccion de categorias
-	 * 
-	 *         Metodo que devuelve el boton de all games de la seccion de
-	 *         categorias
 	 */
 	public static JButton allgames(JFrame frame, ArrayList<Juego> cesta) {
 		JButton allgames = new JButton("");
@@ -64,13 +63,13 @@ public class BotonesCategorias {
 	}
 
 	/**
+	 * Metodo que devuelve el boton de ps3 de la seccion de categorias
+	 * 
 	 * @param frame
 	 *            : Frame principal de la aplicacion
 	 * @param cesta
 	 *            : ArrayList de juegos con la cesta del usuario
 	 * @return el boton de ps3 de la seccion de categorias
-	 * 
-	 *         Metodo que devuelve el boton de ps3 de la seccion de categorias
 	 */
 	public static JButton ps3(JFrame frame, ArrayList<Juego> cesta) {
 		JButton ps3 = new JButton("");
@@ -93,13 +92,13 @@ public class BotonesCategorias {
 	}
 
 	/**
+	 * Metodo que devuelve el boton de vita de la seccion de categorias
+	 * 
 	 * @param frame
 	 *            : Frame principal de la aplicacion
 	 * @param cesta
 	 *            : ArrayList de juegos con la cesta del usuario
 	 * @return el boton de vita de la seccion de categorias
-	 * 
-	 *         Metodo que devuelve el boton de vita de la seccion de categorias
 	 */
 	public static JButton vita(JFrame frame, ArrayList<Juego> cesta) {
 		JButton vita = new JButton("");
@@ -122,13 +121,13 @@ public class BotonesCategorias {
 	}
 
 	/**
+	 * Metodo que devuelve el boton de xone de la seccion de categorias
+	 * 
 	 * @param frame
 	 *            : Frame principal de la aplicacion
 	 * @param cesta
 	 *            : ArrayList de juegos con la cesta del usuario
 	 * @return el boton de xone de la seccion de categorias
-	 * 
-	 *         Metodo que devuelve el boton de xone de la seccion de categorias
 	 */
 	public static JButton xone(JFrame frame, ArrayList<Juego> cesta) {
 		JButton xone = new JButton("");
@@ -151,13 +150,13 @@ public class BotonesCategorias {
 	}
 
 	/**
+	 * Metodo que devuelve el boton de x360 de la seccion de categorias
+	 * 
 	 * @param frame
 	 *            : Frame principal de la aplicacion
 	 * @param cesta
 	 *            : ArrayList de juegos con la cesta del usuario
 	 * @return el boton de x360 de la seccion de categorias
-	 * 
-	 *         Metodo que devuelve el boton de x360 de la seccion de categorias
 	 */
 	public static JButton x360(JFrame frame, ArrayList<Juego> cesta) {
 		JButton x360 = new JButton("");
@@ -180,13 +179,13 @@ public class BotonesCategorias {
 	}
 
 	/**
+	 * Metodo que devuelve el boton de pc de la seccion de categorias
+	 * 
 	 * @param frame
 	 *            : Frame principal de la aplicacion
 	 * @param cesta
 	 *            : ArrayList de juegos con la cesta del usuario
 	 * @return el boton de pc de la seccion de categorias
-	 * 
-	 *         Metodo que devuelve el boton de pc de la seccion de categorias
 	 */
 	public static JButton pc(JFrame frame, ArrayList<Juego> cesta) {
 		JButton pc = new JButton("");
@@ -209,13 +208,13 @@ public class BotonesCategorias {
 	}
 
 	/**
+	 * Metodo que devuelve el boton de wiiu de la seccion de categorias
+	 * 
 	 * @param frame
 	 *            : Frame principal de la aplicacion
 	 * @param cesta
 	 *            : ArrayList de juegos con la cesta del usuario
 	 * @return el boton de wiiu de la seccion de categorias
-	 * 
-	 *         Metodo que devuelve el boton de wiiu de la seccion de categorias
 	 */
 	public static JButton wiiu(JFrame frame, ArrayList<Juego> cesta) {
 		JButton wiiu = new JButton("");
@@ -238,13 +237,13 @@ public class BotonesCategorias {
 	}
 
 	/**
+	 * Metodo que devuelve el boton de wii de la seccion de categorias
+	 * 
 	 * @param frame
 	 *            : Frame principal de la aplicacion
 	 * @param cesta
 	 *            : ArrayList de juegos con la cesta del usuario
 	 * @return el boton de wii de la seccion de categorias
-	 * 
-	 *         Metodo que devuelve el boton de wii de la seccion de categorias
 	 */
 	public static JButton wii(JFrame frame, ArrayList<Juego> cesta) {
 		JButton wii = new JButton("");
@@ -267,13 +266,13 @@ public class BotonesCategorias {
 	}
 
 	/**
+	 * Metodo que devuelve el boton de n3ds de la seccion de categorias
+	 * 
 	 * @param frame
 	 *            : Frame principal de la aplicacion
 	 * @param cesta
 	 *            : ArrayList de juegos con la cesta del usuario
 	 * @return el boton de n3ds de la seccion de categorias
-	 * 
-	 *         Metodo que devuelve el boton de n3ds de la seccion de categorias
 	 */
 	public static JButton n3ds(JFrame frame, ArrayList<Juego> cesta) {
 		JButton n3ds = new JButton("");
@@ -296,13 +295,13 @@ public class BotonesCategorias {
 	}
 
 	/**
+	 * Metodo que devuelve el boton de ps4 de la seccion de categorias
+	 * 
 	 * @param frame
 	 *            : Frame principal de la aplicacion
 	 * @param cesta
 	 *            : ArrayList de juegos con la cesta del usuario
 	 * @return el boton de ps4 de la seccion de categorias
-	 * 
-	 *         Metodo que devuelve el boton de ps4 de la seccion de categorias
 	 */
 	public static JButton ps4(JFrame frame, ArrayList<Juego> cesta) {
 		JButton ps4 = new JButton("");

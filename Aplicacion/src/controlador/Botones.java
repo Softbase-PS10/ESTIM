@@ -50,6 +50,8 @@ public class Botones {
 	/* declaracion de metodos y funciones */
 
 	/**
+	 * Metodo que construye el boton de aplicar filtros
+	 * 
 	 * @param origen
 	 *            : String que indica de que ventana proviene la llamada al
 	 *            boton
@@ -60,8 +62,6 @@ public class Botones {
 	 * 
 	 * @return el boton de 'Aplicar' filtros, con su comportamiento
 	 *         implementado.
-	 * 
-	 *         Metodo que construye el boton de aplicar filtros
 	 */
 	public static JButton aplicarFiltros(final String origen,
 			final JFrame frame, final ArrayList<Juego> cesta) {
@@ -191,12 +191,12 @@ public class Botones {
 	}
 
 	/**
+	 * Metodo que devuelve el boton de vaciar el carro (cesta)
+	 * 
 	 * @param frame
 	 *            : Frame de la pantalla principal
 	 * 
 	 * @return el boton de 'Empty cart', con su comportamiento implementado.
-	 * 
-	 *         Metodo que devuelve el boton de vaciar el carro (cesta)
 	 */
 	public static JButton vaciarCarro(final JFrame frame) {
 		JButton vaciar = new JButton("Empty cart");
@@ -215,13 +215,13 @@ public class Botones {
 	}
 
 	/**
+	 * Metodo que devuelve el boton de comprar el carro actual
+	 * 
 	 * @param frame
 	 *            : Frame principal de la aplicacion
 	 * @param games
 	 *            : ArrayList con los juegos de la cesta
 	 * @return el boton de 'Buy cart', con su comportamiento implementado.
-	 * 
-	 *         Metodo que devuelve el boton de comprar el carro actual
 	 */
 	public static JButton comprarCarro(final JFrame frame,
 			final ArrayList<Juego> games) {
@@ -246,6 +246,8 @@ public class Botones {
 	}
 
 	/**
+	 * Metodo que devuelve el boton de guardar los cambios del juego
+	 * 
 	 * @param j
 	 *            : Juego con los datos modificados para guardarlos
 	 * @param frame
@@ -254,8 +256,6 @@ public class Botones {
 	 *            : ArrayList de juegos de la cesta
 	 * @return el boton de 'Guardar' los cambios al modificar un juego del
 	 *         catalogo.
-	 * 
-	 *         Metodo que devuelve el boton de guardar los cambios del juego
 	 */
 	public static JButton save(final Juego j, final JFrame frame,
 			final ArrayList<Juego> cesta) {
@@ -375,8 +375,10 @@ public class Botones {
 
 		return salvar;
 	}
-	
+
 	/**
+	 * Metodo que devuelve el boton de atras de la pantalla de Listado
+	 * 
 	 * @param frame
 	 *            : Frame principal de la aplicacion
 	 * @param cesta
@@ -385,8 +387,6 @@ public class Botones {
 	 *            : Pagina actual del listado
 	 * @return el boton de atras de la ventana de Listado con su comportamiento
 	 *         implementado
-	 * 
-	 *         Metodo que devuelve el boton de atras de la pantalla de Listado
 	 */
 	public static JButton atras(final JFrame frame,
 			final ArrayList<Juego> cesta, final int nPagina) {
@@ -526,16 +526,16 @@ public class Botones {
 	}
 
 	/**
+	 * Metodo que devuelve el boton de adelante de la pantalla de Listado
+	 * 
 	 * @param frame
 	 *            : Frame principal de la aplicacion
 	 * @param cesta
 	 *            : ArrayList de juegos con la cesta del usuario
 	 * @param nPagina
 	 *            : Pagina actual del listado
-	 * @return el boton de adelante de la ventana de Listado con su comportamiento
-	 *         implementado
-	 * 
-	 *         Metodo que devuelve el boton de adelante de la pantalla de Listado
+	 * @return el boton de adelante de la ventana de Listado con su
+	 *         comportamiento implementado
 	 */
 	public static JButton adelante(final JFrame frame,
 			final ArrayList<Juego> cesta, final int nPagina) {

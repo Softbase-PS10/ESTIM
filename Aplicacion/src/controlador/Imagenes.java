@@ -36,6 +36,9 @@ public class Imagenes {
 	/* declaracion de metodos y funciones */
 
 	/**
+	 * Metodo que devuelve la imagen de la URL con (escala*128, escala*180) de
+	 * size
+	 * 
 	 * @param url
 	 *            : URL de la imagen
 	 * @param escala
@@ -56,6 +59,8 @@ public class Imagenes {
 	}
 
 	/**
+	 * Metodo que obtiene una imagen de (width, height)
+	 * 
 	 * @param url
 	 *            : URL de la imagen
 	 * @param width
@@ -74,6 +79,8 @@ public class Imagenes {
 	}
 
 	/**
+	 * Metodo que devuelve la imagen a partir de su URL
+	 * 
 	 * @param url
 	 *            : URL de la imagen
 	 * @return la imagen de @param url
@@ -101,6 +108,8 @@ public class Imagenes {
 	}
 
 	/**
+	 * Metodo que modifica el size de una imagen
+	 * 
 	 * @param image
 	 *            : imagen que redimensionar
 	 * @param width

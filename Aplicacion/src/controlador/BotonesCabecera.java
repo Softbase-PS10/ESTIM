@@ -63,14 +63,14 @@ public class BotonesCabecera {
 	/* declaracion de metodos y funciones */
 
 	/**
+	 * Metodo que devuelve el boton de buscar de la aplicacion
+	 * 
 	 * @param b
 	 *            : JTextField donde se escribira la busqueda
 	 * @param cesta
 	 *            : ArrayList de juegos con la lista de juegos comprados
 	 * @return un boton de busqueda que obtiene lo escrito en un campo, lo
 	 *         procesa y redirige a la pantalla de listado de resultados.
-	 * 
-	 *         Metodo que devuelve el boton de buscar de la aplicacion
 	 */
 	public static JButton buscar(JTextField b, final ArrayList<Juego> cesta) {
 		busc = b;
@@ -100,6 +100,8 @@ public class BotonesCabecera {
 	}
 
 	/**
+	 * Metodo que devuelve el panel de ajustes para el admin
+	 * 
 	 * @param origen
 	 *            : 1 representa que el origen de esta llamada es de la pantalla
 	 *            principal, 2 para la pantalla de listado, 3 para la pantalla
@@ -116,8 +118,6 @@ public class BotonesCabecera {
 	 *            : ArrayList de juegos con la cesta actual del usuario
 	 * @return un boton de ajuste/opciones que redirige a la pantalla de
 	 *         opciones de la aplicacion.
-	 * 
-	 *         Metodo que devuelve el panel de ajustes para el admin
 	 */
 	public static JLabel ajustes(final int origen, final Juego j,
 			final ArrayList<Juego> juegos, final JFrame fr,
@@ -177,11 +177,6 @@ public class BotonesCabecera {
 										if (dialog.isVisible()
 												&& (arg0.getSource() == optionPane)
 												&& (prop.equals(JOptionPane.VALUE_PROPERTY))) {
-											// If you were going to check
-											// something
-											// before closing the window, you'd
-											// do
-											// it here.
 											int value = ((Integer) optionPane
 													.getValue()).intValue();
 											if (value == JOptionPane.YES_OPTION) {
@@ -197,7 +192,7 @@ public class BotonesCabecera {
 												Listado.listar(frame, juegos,
 														cesta, 1);
 											} else if (value == JOptionPane.NO_OPTION) {
-												// Do nothing
+												;
 											}
 											dialog.setVisible(false);
 										}
@@ -217,7 +212,6 @@ public class BotonesCabecera {
 			exit.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mousePressed(java.awt.event.MouseEvent evt) {
-					// BotonesCabecera.frame.dispose();
 					FramePal.setAdminOn(false);
 					frame.getContentPane().removeAll();
 
@@ -393,12 +387,12 @@ public class BotonesCabecera {
 	}
 
 	/**
+	 * Metodo que devuelve el panel de carro de la aplicacion
+	 * 
 	 * @param cesta
 	 *            : ArrayList de juegos en la cesta
 	 * @return un boton del carro de la compra que implementa la funcion de
 	 *         'carrito de la compra' en la aplicacion.
-	 * 
-	 *         Metodo que devuelve el panel de carro de la aplicacion
 	 */
 	public static JLabel carro(final ArrayList<Juego> cesta) {
 		final JLabel carro = new JLabel("");
@@ -446,14 +440,14 @@ public class BotonesCabecera {
 	}
 
 	/**
+	 * Metodo que devuelve el boton de logo de la aplicacion
+	 * 
 	 * @param frame
 	 *            : Frame principal de la aplicacion
 	 * @param cesta
 	 *            : ArrayList de juegos con los juegos de la cesta del usuario
 	 * @return un boton con el logo del producto que redirige al usuario a la
 	 *         pantalla de inicio de la app.
-	 * 
-	 *         Metodo que devuelve el boton de logo de la aplicacion
 	 */
 	public static JButton logo(JFrame frame, final ArrayList<Juego> cesta) {
 		BotonesCabecera.frame = frame;
