@@ -29,17 +29,17 @@ public class Sentencias {
 	private static boolean abierta;
 
 	/* declaracion de metodos y funciones */
-	
+
 	/**
-	 * Metodo de creacion de la conexion con la Base de Datos MySql
+	 * Metodo constructor
 	 */
 	public Sentencias() {
 		try {
-			if(!abierta){
+			if (!abierta) {
 				connection = GestorDeConexiones.getConnection();
 				abierta = true;
 			}
-				
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -55,12 +55,8 @@ public class Sentencias {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
-	 * Metodo que aplica distintas querys en funcion del contenido del parametro
-	 * filtros. Ademas devuelve una consulta paginada, es decir, dependiendo del
-	 * numero de pagina, devuelve los 5 elementos de dicha pagina. Se asume la
-	 * primera pagina la numero 1.
 	 * 
 	 * @param filtros
 	 *            : TreeMap que contiene los distintos requisitos para la
@@ -70,6 +66,11 @@ public class Sentencias {
 	 *            numero 1
 	 * @return Una lista con los 5 juegos que pertenezcan a la pagina pasada y
 	 *         que cumplan los requisitos especificados en el TreeMap
+	 * 
+	 *         Metodo que aplica distintas querys en funcion del contenido del
+	 *         parametro filtros. Ademas devuelve una consulta paginada, es
+	 *         decir, dependiendo del numero de pagina, devuelve los 5 elementos
+	 *         de dicha pagina. Se asume la primera pagina la numero 1.
 	 */
 	public ArrayList<Juego> listarJuegosMultipleFiltros(
 			HashMap<String, String> filtros, int nPagina) {
@@ -79,11 +80,13 @@ public class Sentencias {
 				+ "JUEGO.id = JUEGO_GENERO.id and JUEGO.id = JUEGO_PLATAFORMA.juego and "
 				+ "JUEGO_PLATAFORMA.plataforma = PLATAFORMA.id";
 		String order = "", type = "";
+		/* aplicar filtros */
 		if (filtros != null) {
 			for (Entry<String, String> e : filtros.entrySet()) {
 				switch (e.getKey()) {
 				case ("titulo"):
-					query = query + " and JUEGO.titulo LIKE '%" + e.getValue() + "%'";
+					query = query + " and JUEGO.titulo LIKE '%" + e.getValue()
+							+ "%'";
 					break;
 				case ("preciomin"):
 					query = query + " and JUEGO.precio >= " + e.getValue();
@@ -114,7 +117,9 @@ public class Sentencias {
 				}
 			}
 		}
-		query = query + order + " " + type + " limit 5 offset " + (5 * (nPagina - 1));
+		/* paginacion */
+		query = query + order + " " + type + " limit 5 offset "
+				+ (5 * (nPagina - 1));
 		ArrayList<Juego> js = new ArrayList<Juego>();
 		try {
 			Statement st = connection.createStatement(), st2;
@@ -123,6 +128,7 @@ public class Sentencias {
 			String q;
 			ArrayList<String> generos = new ArrayList<String>();
 			ResultSet res;
+			/* recuperar resultados */
 			while (resul.next()) {
 				j = new Juego(resul.getLong("id"), resul.getString("titulo"),
 						resul.getString("imagen"), resul.getString("resumen"),
@@ -150,24 +156,26 @@ public class Sentencias {
 	}
 
 	/**
-	 * Devuelve la cantidad de juegos que cumplen las condiciones establecidas
-	 * en los filtros
-	 * 
 	 * @param filtros
 	 *            : Pares clave valor que establecen filtros a aplicar a la
 	 *            busqueda
 	 * @return numero de juegos que cumplen los filtros
+	 * 
+	 *         Devuelve la cantidad de juegos que cumplen las condiciones
+	 *         establecidas en los filtros
 	 */
 	public int cantidadMultiples(HashMap<String, String> filtros) {
 		String query = "select COUNT(DISTINCT JUEGO.id) AS CONTAR "
 				+ "from JUEGO, JUEGO_GENERO, JUEGO_PLATAFORMA, PLATAFORMA where "
 				+ "JUEGO.id = JUEGO_GENERO.id and JUEGO.id = JUEGO_PLATAFORMA.juego and "
 				+ "JUEGO_PLATAFORMA.plataforma = PLATAFORMA.id";
+		/* aplicar filtros */
 		if (filtros != null) {
 			for (Entry<String, String> e : filtros.entrySet()) {
 				switch (e.getKey()) {
 				case ("titulo"):
-					query = query + " and JUEGO.titulo LIKE '%" + e.getValue() + "%'";
+					query = query + " and JUEGO.titulo LIKE '%" + e.getValue()
+							+ "%'";
 					break;
 				case ("preciomin"):
 					query = query + " and JUEGO.precio >= " + e.getValue();
@@ -196,6 +204,7 @@ public class Sentencias {
 			Statement st = connection.createStatement();
 			ResultSet resul = st.executeQuery(query);
 			int cantidad = -1;
+			/* recuperar resultados */
 			while (resul.next()) {
 				cantidad = resul.getInt("CONTAR");
 			}
@@ -212,6 +221,8 @@ public class Sentencias {
 	 *            : precio maximo por el que filtrar
 	 * @return una lista (ArrayList) de los juegos cuyo precio se encuentra
 	 *         entre @param min y @param max
+	 * 
+	 *         Devuelve los juegos que se encuentran en un rango de precios
 	 */
 	public ArrayList<Juego> listarJuegosRangoPrecios(int min, int max) {
 		return listarJuegos(" AND precio <= '" + max + "' AND precio >= '"
@@ -225,6 +236,8 @@ public class Sentencias {
 	 *            : valoracion maxima
 	 * @return una lista (ArrayList) de los juegos cuyo rating se encuentre
 	 *         entre @param min y @param max
+	 * 
+	 *         Devuelve los juegos que se encuentran en un rango de rating
 	 */
 	public ArrayList<Juego> listarJuegosRangoRating(String min, String max) {
 		return listarJuegos(" AND rating <= '" + max + "' AND rating >= '"
@@ -236,6 +249,8 @@ public class Sentencias {
 	 *            : genero por el que filtrar
 	 * @return una lista (ArrayList) de los juegos cuyo genero coincide con @param
 	 *         genero
+	 * 
+	 *         Devuelve los juegos de un genero
 	 */
 	public ArrayList<Juego> listarJuegosGenero(String genero) {
 		return listarJuegos(" AND JUEGO_GENERO.id = JUEGO.id AND genero = '"
@@ -247,6 +262,8 @@ public class Sentencias {
 	 *            : nombre de la plataforma
 	 * @return una lista (ArrayList) de los juegos cuya plataforma coincide con @param
 	 *         nomP
+	 * 
+	 *         Devuelve los juegos de una plataforma
 	 */
 	public ArrayList<Juego> listarJuegosPlataformaNombre(String nomP) {
 		return listarJuegos(" AND PLATAFORMA.nombre = '" + nomP + "'");
@@ -257,6 +274,8 @@ public class Sentencias {
 	 *            : alias de la plataforma
 	 * @return una lista (ArrayList) de los juegos cuya plataforma coincide con @param
 	 *         alP
+	 * 
+	 *         Devuelve los juegos de una plataforma
 	 */
 	public ArrayList<Juego> listarJuegosPlataformaAlias(String alP) {
 		return listarJuegos(" AND PLATAFORMA.alias = '" + alP + "'");
@@ -267,6 +286,8 @@ public class Sentencias {
 	 *            : identificador del juego
 	 * @return la informacion del juego cuyo identificador coincide con @param
 	 *         id, si este no existe, devuelve un juego vacio.
+	 * 
+	 *         Devuelve un juego
 	 */
 	public Juego listarJuego(long id) {
 		ArrayList<Juego> ar = listarJuegos(" AND JUEGO.id = '" + id + "'");
@@ -279,6 +300,8 @@ public class Sentencias {
 	/**
 	 * @return una lista (ArrayList) con todos los juegos disponibles en la Base
 	 *         de Datos (MySQL)
+	 * 
+	 *         Devuelve todos los juegos
 	 */
 	public ArrayList<Juego> listarTodosJuegos() {
 		return listarJuegos("");
@@ -289,6 +312,8 @@ public class Sentencias {
 	 *            : nombre de la plataforma
 	 * @return la informacion asociada a la plataforma cuyo nombre coincida con @param
 	 *         nombre
+	 * 
+	 *         Devuelve la informacion asociada a una plataforma
 	 */
 	public Plataforma listarPlataformaNombre(String nombre) {
 		return listarPlataforma(" WHERE nombre = '" + nombre + "'");
@@ -299,6 +324,8 @@ public class Sentencias {
 	 *            : alias de la plataforma
 	 * @return la informacion asociada a la plataforma cuyo alias coincida con @param
 	 *         alias
+	 * 
+	 *         Devuelve la informacion asociada a una plataforma
 	 */
 	public Plataforma listarPlataformaAlias(String alias) {
 		return listarPlataforma(" WHERE alias = '" + alias + "'");
@@ -309,6 +336,8 @@ public class Sentencias {
 	 *            : identificador de la plataforma
 	 * @return la informacion asociada a la plataforma cuyo identificador con @param
 	 *         id
+	 * 
+	 *         Devuelve la informacion asociada a una plataforma
 	 */
 	public Plataforma listarPlataformaId(long id) {
 		return listarPlataforma(" WHERE id = '" + id + "'");
@@ -317,6 +346,8 @@ public class Sentencias {
 	/**
 	 * @return una lista (ArrayList) de todas las plataformas existentes en la
 	 *         Base de Datos
+	 * 
+	 *         Devuelve todas las plataformas
 	 */
 	public ArrayList<Plataforma> listarTodasPlataformas() {
 		Logger.log("Accediendo a la BD para listar los juegos de todas las plataformas...");
@@ -344,6 +375,8 @@ public class Sentencias {
 	/**
 	 * @param id
 	 *            : identificador del juego a eliminar de la Base de Datos
+	 * 
+	 *            Borra una juego de la base de datos
 	 */
 	public void borrarJuego(long id) {
 		Logger.log("Accediendo a la BD para borrar con id " + id + "...");
@@ -382,12 +415,14 @@ public class Sentencias {
 	/**
 	 * @param juego
 	 *            : informacion del juego a insertar
+	 * 
+	 *            Insertar un juego en la base de datos
 	 */
 	public void insertarJuego(Juego juego) {
 
 		// Si el titulo no es vacio ni nulo, el precio mayor que cero, la
 		// plataforma no se nula ni sus campos vacios,
-		// se comienza a a�adir
+		// se comienza a agregar
 		if (juego.getTitulo() != null
 				&& !juego.getTitulo().equals("")
 				&& juego.getPrecio() > 0
@@ -473,12 +508,14 @@ public class Sentencias {
 	/**
 	 * @param juego
 	 *            : nueva informacion del juego a actualizar
+	 * 
+	 *            Actualiza un juego en la base de datos
 	 */
 	public void actualizarJuego(Juego juego) {
 
 		// Si el titulo no es vacio ni nulo, el precio mayor que cero, la
 		// plataforma no se nula ni
-		// sus campos vacios, se comienza a a�adir
+		// sus campos vacios, se comienza a agregar
 		if (juego.getTitulo() != null
 				&& !juego.getTitulo().equals("")
 				&& juego.getPrecio() > 0
@@ -543,6 +580,8 @@ public class Sentencias {
 	/**
 	 * @param p
 	 *            : nueva informacion de la plataforma a actualizar
+	 * 
+	 *            Actualiza una plataforma en la base de datos
 	 */
 	public void actualizarPlataforma(Plataforma p) {
 		Logger.log("Accediendo a la BD para actualizar la plataforma "
@@ -567,6 +606,8 @@ public class Sentencias {
 
 	/**
 	 * @return el identificador del ultimo juego
+	 * 
+	 *         Obtiene el identificador del ultimo juego
 	 */
 	public long obtenerUltimoIdJuego() {
 		Logger.log("Accediendo a la BD para obtener el id del ultimo juego...");
@@ -591,6 +632,9 @@ public class Sentencias {
 	 *            : datos adicionales para el filtrado de las consultas
 	 * @return una lista (ArrayList) de todos los juegos de la Base de Datos que
 	 *         coinciden con @param query
+	 * 
+	 *         Devuelve una lista de juegos que cumplen los requisitos
+	 *         especificados en @param query
 	 */
 	private ArrayList<Juego> listarJuegos(String query) {
 		Logger.log("Accediendo a la BD para obtener juegos bajo ciertos criterios...");
@@ -635,10 +679,12 @@ public class Sentencias {
 	 * @param query
 	 *            : datos adicionales para la obtencion de la plataforma
 	 * @return la plataforma cuya informacion coincida con @param query
+	 * 
+	 *         Devuelve una plataforma que cumple los requisitos de @param query
 	 */
 	private Plataforma listarPlataforma(String query) {
-		Logger.log("Accediendo a la BD para obtener juegos de la plataforma "
-				+ query + "...");
+		Logger.log("Accediendo a la BD para obtener la plataforma " + query
+				+ "...");
 		String q = "SELECT * FROM PLATAFORMA" + query;
 		Statement st;
 		Plataforma p = null;
@@ -652,7 +698,7 @@ public class Sentencias {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		Logger.log("Juegos de la plataforma " + query + " obtenidos");
+		Logger.log("Plataforma " + query + " obtenida");
 		return p;
 	}
 }

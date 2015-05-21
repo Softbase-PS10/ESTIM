@@ -46,6 +46,8 @@ public class Juego {
 	 *            : precio del juego
 	 * @param plataforma
 	 *            : plataforma en la que se encuentra disponibles
+	 *            
+	 *            Metodo constructor
 	 */
 	public Juego(long id, String titulo, String imagen, String descripcion,
 			String lanzamiento, String rating, ArrayList<String> genero,
@@ -79,6 +81,8 @@ public class Juego {
 	 *            : precio del juego
 	 * @param plataforma
 	 *            : plataforma en la que se encuentra disponibles
+	 *            
+	 *            Metodo constructor
 	 */
 	public Juego(String titulo, String imagen, String descripcion,
 			String lanzamiento, String rating, ArrayList<String> genero,
@@ -99,6 +103,8 @@ public class Juego {
 	 * @param id
 	 *            : identificador del juego Creacion de un juego con plataforma
 	 *            autogenerada
+	 *            
+	 *            Metodo constructor
 	 */
 	public Juego(long id) {
 		this.id = id;
@@ -114,8 +120,7 @@ public class Juego {
 	}
 
 	/**
-	 * Genera un juego completamente vacio excepto el ID, que es el 
-	 * máximo que hay en la base de datos
+	 * Metodo constructor
 	 */
 	public Juego() {
 		this.id = new Sentencias().obtenerUltimoIdJuego() + 1;

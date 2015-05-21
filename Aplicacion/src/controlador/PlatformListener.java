@@ -7,10 +7,8 @@
  * 		-Alejandro Marquez
  * 		-Alejandro Royo
  * 		-Jaime Ruiz-Borau
- * DESCRIPCION: clase que contiene la creacion de botones de la cabecera,
- * 				centralizando el comportamiento de dichos botones, que 
- * 				sera el mismo en todas las pantallas.
- * 				La cabecera es igual para todas las pantallas de la app.
+ * DESCRIPCION: clase que implementa la funcionalidad de los botones que
+ * 				muestran juegos de una plataforma concreta
  */
 
 package controlador;
