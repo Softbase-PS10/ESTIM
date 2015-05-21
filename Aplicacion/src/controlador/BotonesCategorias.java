@@ -19,310 +19,30 @@ package controlador;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.HashMap;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.border.LineBorder;
-
 import modelo.Juego;
-import modelo.Logger;
 import modelo.Plataforma;
-import modelo.Sentencias;
-import vista.Listado;
 import vista.Principal;
 
 public class BotonesCategorias {
 
-	/**
-	 * @return
-	 */
-	public static JButton atras(final JFrame frame,
-			final ArrayList<Juego> cesta, final int nPagina) {
-		JButton atras = new JButton("");
-		atras.setIcon(new ImageIcon(Principal.class
-				.getResource("/Imagenes/B/atras.png")));
-		atras.setRolloverIcon(new ImageIcon(Principal.class
-				.getResource("/Imagenes/B/atrasP.png")));
-		atras.setBackground(new Color(51, 102, 204));
-		atras.setBorder(new LineBorder(new Color(0, 0, 0)));
-		atras.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		atras.setFocusable(false);
-		atras.setFocusPainted(false);
-		atras.setForeground(Color.WHITE);
-		atras.setFont(new Font("Tahoma", Font.BOLD, 14));
-		atras.setBounds(350, 6, 53, 30);
+	/* declaracion de variables */
 
-		atras.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Logger.log("Cambiando de pagina...");
-				Sentencias s = new Sentencias();
-				String origen = "Listado";
-				HashMap<String, String> filtros = Principal.filtrosMap;
-				if (origen == "Listado") {
-					int pMin, pMax;
-					double gMin, gMax;
-					String te = Listado.precioMinimo.getText();
-					try {
-						pMin = Integer.parseInt(te);
-						filtros.put("preciomin", pMin + "");
-					} catch (NumberFormatException e1) {
-						filtros.remove("preciomin");
-					}
-					te = Listado.precioMaximo.getText();
-					try {
-						pMax = Integer.parseInt(te);
-						filtros.put("preciomax", pMax + "");
-					} catch (NumberFormatException e1) {
-						filtros.remove("preciomax");
-					}
-					te = Listado.valoracionMinima.getText();
-					if (te.length() > 4)
-						te = te.substring(0, 3);
-					try {
-						gMin = Double.parseDouble(te);
-						if (gMin / 10 < 1)
-							filtros.put("ratingmin", gMin + "");
-					} catch (NumberFormatException e1) {
-						filtros.remove("ratingmin");
-					}
-					te = Listado.valoracionMaxima.getText();
-					if (te.length() > 4)
-						te = te.substring(0, 3);
-					try {
-						gMax = Double.parseDouble(te);
-						if (gMax / 10 < 1)
-							filtros.put("ratingmax", gMax + "");
-					} catch (NumberFormatException e1) {
-						filtros.remove("ratingmax");
-					}
-					if (!Listado.generoMulti.getSelectedItem().equals(""))
-						filtros.put("genero",
-								(String) Listado.generoMulti.getSelectedItem());
-					else
-						filtros.remove("genero");
-					if (!Listado.plataformaMulti.getSelectedItem().equals(""))
-						filtros.put("plataforma",
-								(String) Listado.plataformaMulti
-										.getSelectedItem());
-					else
-						filtros.remove("plataforma");
-				}
-
-				else if (origen == "Principal") {
-					int pMin, pMax;
-					double gMin, gMax;
-					String te = Principal.textField.getText();
-					try {
-						pMin = Integer.parseInt(te);
-						filtros.put("preciomin", pMin + "");
-					} catch (NumberFormatException e1) {
-						filtros.remove("preciomin");
-					}
-					te = Principal.textField_1.getText();
-					try {
-						pMax = Integer.parseInt(te);
-						filtros.put("preciomax", pMax + "");
-					} catch (NumberFormatException e1) {
-						filtros.remove("preciomax");
-					}
-					te = Principal.textField_2.getText();
-					if (te.length() > 4)
-						te = te.substring(0, 3);
-					try {
-						gMin = Double.parseDouble(te);
-						if (gMin / 10 < 1)
-							filtros.put("ratingmin", gMin + "");
-						else
-							filtros.remove("ratingmin");
-					} catch (NumberFormatException e1) {
-						filtros.remove("ratingmin");
-					}
-					te = Principal.textField_3.getText();
-					if (te.length() > 4)
-						te = te.substring(0, 3);
-					try {
-						gMax = Double.parseDouble(te);
-						if (gMax / 10 < 1)
-							filtros.put("ratingmax", gMax + "");
-						else
-							filtros.remove("ratingmax");
-					} catch (NumberFormatException e1) {
-						filtros.remove("ratingmax");
-					}
-					if (!Principal.comboBox.getSelectedItem().equals(""))
-						filtros.put("genero",
-								(String) Principal.comboBox.getSelectedItem());
-					else
-						filtros.remove("genero");
-					if (!Principal.comboBox_1.getSelectedItem().equals(""))
-						filtros.put("plataforma",
-								(String) Principal.comboBox_1.getSelectedItem());
-					else
-						filtros.remove("plataforma");
-				}
-				Logger.log("Pagina cambiada");
-				frame.getContentPane().removeAll();
-				Listado.listar(frame,
-						s.listarJuegosMultipleFiltros(filtros, nPagina - 1),
-						cesta, nPagina - 1);
-			}
-		});
-
-		return atras;
-	}
+	/* declaracion de metodos y funciones */
 
 	/**
-	 * @return
-	 */
-	public static JButton adelante(final JFrame frame,
-			final ArrayList<Juego> cesta, final int nPagina) {
-		JButton adelante = new JButton("");
-		adelante.setIcon(new ImageIcon(Principal.class
-				.getResource("/Imagenes/B/alante.png")));
-		adelante.setRolloverIcon(new ImageIcon(Principal.class
-				.getResource("/Imagenes/B/alanteP.png")));
-		adelante.setOpaque(false);
-		adelante.setForeground(Color.WHITE);
-		adelante.setFont(new Font("Tahoma", Font.BOLD, 14));
-		adelante.setFocusable(false);
-		adelante.setContentAreaFilled(false);
-		adelante.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		adelante.setBorder(new LineBorder(new Color(0, 0, 0)));
-		adelante.setBackground(new Color(51, 102, 204));
-		adelante.setBounds(452, 6, 53, 30);
-
-		adelante.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Logger.log("Cambiando de pagina...");
-				Sentencias s = new Sentencias();
-				String origen = "Listado";
-				HashMap<String, String> filtros = Principal.filtrosMap;
-				if (origen == "Listado") {
-					int pMin, pMax;
-					double gMin, gMax;
-					String te = Listado.precioMinimo.getText();
-					try {
-						pMin = Integer.parseInt(te);
-						filtros.put("preciomin", pMin + "");
-					} catch (NumberFormatException e1) {
-						filtros.remove("preciomin");
-					}
-					te = Listado.precioMaximo.getText();
-					try {
-						pMax = Integer.parseInt(te);
-						filtros.put("preciomax", pMax + "");
-					} catch (NumberFormatException e1) {
-						filtros.remove("preciomax");
-					}
-					te = Listado.valoracionMinima.getText();
-					if (te.length() > 4)
-						te = te.substring(0, 3);
-					try {
-						gMin = Double.parseDouble(te);
-						if (gMin / 10 < 1)
-							filtros.put("ratingmin", gMin + "");
-					} catch (NumberFormatException e1) {
-						filtros.remove("ratingmin");
-					}
-					te = Listado.valoracionMaxima.getText();
-					if (te.length() > 4)
-						te = te.substring(0, 3);
-					try {
-						gMax = Double.parseDouble(te);
-						if (gMax / 10 < 1)
-							filtros.put("ratingmax", gMax + "");
-					} catch (NumberFormatException e1) {
-						filtros.remove("ratingmax");
-					}
-					if (!Listado.generoMulti.getSelectedItem().equals(""))
-						filtros.put("genero",
-								(String) Listado.generoMulti.getSelectedItem());
-					else
-						filtros.remove("genero");
-					if (!Listado.plataformaMulti.getSelectedItem().equals(""))
-						filtros.put("plataforma",
-								(String) Listado.plataformaMulti
-										.getSelectedItem());
-					else
-						filtros.remove("plataforma");
-				}
-
-				else if (origen == "Principal") {
-					int pMin, pMax;
-					double gMin, gMax;
-					String te = Principal.textField.getText();
-					try {
-						pMin = Integer.parseInt(te);
-						filtros.put("preciomin", pMin + "");
-					} catch (NumberFormatException e1) {
-						filtros.remove("preciomin");
-					}
-					te = Principal.textField_1.getText();
-					try {
-						pMax = Integer.parseInt(te);
-						filtros.put("preciomax", pMax + "");
-					} catch (NumberFormatException e1) {
-						filtros.remove("preciomax");
-					}
-					te = Principal.textField_2.getText();
-					if (te.length() > 4)
-						te = te.substring(0, 3);
-					try {
-						gMin = Double.parseDouble(te);
-						if (gMin / 10 < 1)
-							filtros.put("ratingmin", gMin + "");
-						else
-							filtros.remove("ratingmin");
-					} catch (NumberFormatException e1) {
-						filtros.remove("ratingmin");
-					}
-					te = Principal.textField_3.getText();
-					if (te.length() > 4)
-						te = te.substring(0, 3);
-					try {
-						gMax = Double.parseDouble(te);
-						if (gMax / 10 < 1)
-							filtros.put("ratingmax", gMax + "");
-						else
-							filtros.remove("ratingmax");
-					} catch (NumberFormatException e1) {
-						filtros.remove("ratingmax");
-					}
-					if (!Principal.comboBox.getSelectedItem().equals(""))
-						filtros.put("genero",
-								(String) Principal.comboBox.getSelectedItem());
-					else
-						filtros.remove("genero");
-					if (!Principal.comboBox_1.getSelectedItem().equals(""))
-						filtros.put("plataforma",
-								(String) Principal.comboBox_1.getSelectedItem());
-					else
-						filtros.remove("plataforma");
-				}
-				Logger.log("Pagina cambiada");
-
-				frame.getContentPane().removeAll();
-				Listado.listar(frame,
-						s.listarJuegosMultipleFiltros(filtros, nPagina + 1),
-						cesta, nPagina + 1);
-			}
-		});
-
-		return adelante;
-	}
-
-	/**
-	 * @return un boton que redirige a la pantalla de listados de juegos de
-	 *         todos los juegos
+	 * @param frame
+	 *            : Frame principal de la aplicacion
+	 * @param cesta
+	 *            : ArrayList de juegos con la cesta del usuario
+	 * @return el boton de allgames de la seccion de categorias
+	 * 
+	 *         Metodo que devuelve el boton de all games de la seccion de
+	 *         categorias
 	 */
 	public static JButton allgames(JFrame frame, ArrayList<Juego> cesta) {
 		JButton allgames = new JButton("");
@@ -344,8 +64,13 @@ public class BotonesCategorias {
 	}
 
 	/**
-	 * @return un boton que redirige a la pantalla de listados de juegos de
-	 *         PlayStation 3
+	 * @param frame
+	 *            : Frame principal de la aplicacion
+	 * @param cesta
+	 *            : ArrayList de juegos con la cesta del usuario
+	 * @return el boton de ps3 de la seccion de categorias
+	 * 
+	 *         Metodo que devuelve el boton de ps3 de la seccion de categorias
 	 */
 	public static JButton ps3(JFrame frame, ArrayList<Juego> cesta) {
 		JButton ps3 = new JButton("");
@@ -368,8 +93,13 @@ public class BotonesCategorias {
 	}
 
 	/**
-	 * @return un boton que redirige a la pantalla de listado de juegos de
-	 *         PlayStation Vita
+	 * @param frame
+	 *            : Frame principal de la aplicacion
+	 * @param cesta
+	 *            : ArrayList de juegos con la cesta del usuario
+	 * @return el boton de vita de la seccion de categorias
+	 * 
+	 *         Metodo que devuelve el boton de vita de la seccion de categorias
 	 */
 	public static JButton vita(JFrame frame, ArrayList<Juego> cesta) {
 		JButton vita = new JButton("");
@@ -392,8 +122,13 @@ public class BotonesCategorias {
 	}
 
 	/**
-	 * @return un boton que redirige a la pantalla de listado de juegos de Xbox
-	 *         ONE
+	 * @param frame
+	 *            : Frame principal de la aplicacion
+	 * @param cesta
+	 *            : ArrayList de juegos con la cesta del usuario
+	 * @return el boton de xone de la seccion de categorias
+	 * 
+	 *         Metodo que devuelve el boton de xone de la seccion de categorias
 	 */
 	public static JButton xone(JFrame frame, ArrayList<Juego> cesta) {
 		JButton xone = new JButton("");
@@ -416,8 +151,13 @@ public class BotonesCategorias {
 	}
 
 	/**
-	 * @return un boton que redirige a la pantalla de listado de juegos de Xbox
-	 *         360
+	 * @param frame
+	 *            : Frame principal de la aplicacion
+	 * @param cesta
+	 *            : ArrayList de juegos con la cesta del usuario
+	 * @return el boton de x360 de la seccion de categorias
+	 * 
+	 *         Metodo que devuelve el boton de x360 de la seccion de categorias
 	 */
 	public static JButton x360(JFrame frame, ArrayList<Juego> cesta) {
 		JButton x360 = new JButton("");
@@ -440,7 +180,13 @@ public class BotonesCategorias {
 	}
 
 	/**
-	 * @return un boton que redirige a la pantalla de listado de juegos de PC
+	 * @param frame
+	 *            : Frame principal de la aplicacion
+	 * @param cesta
+	 *            : ArrayList de juegos con la cesta del usuario
+	 * @return el boton de pc de la seccion de categorias
+	 * 
+	 *         Metodo que devuelve el boton de pc de la seccion de categorias
 	 */
 	public static JButton pc(JFrame frame, ArrayList<Juego> cesta) {
 		JButton pc = new JButton("");
@@ -463,7 +209,13 @@ public class BotonesCategorias {
 	}
 
 	/**
-	 * @return un boton que redirige a la pantalla de listado de juegos de WiiU
+	 * @param frame
+	 *            : Frame principal de la aplicacion
+	 * @param cesta
+	 *            : ArrayList de juegos con la cesta del usuario
+	 * @return el boton de wiiu de la seccion de categorias
+	 * 
+	 *         Metodo que devuelve el boton de wiiu de la seccion de categorias
 	 */
 	public static JButton wiiu(JFrame frame, ArrayList<Juego> cesta) {
 		JButton wiiu = new JButton("");
@@ -486,7 +238,13 @@ public class BotonesCategorias {
 	}
 
 	/**
-	 * @return un boton que redirige a la pantalla de listado de juegos de Wii
+	 * @param frame
+	 *            : Frame principal de la aplicacion
+	 * @param cesta
+	 *            : ArrayList de juegos con la cesta del usuario
+	 * @return el boton de wii de la seccion de categorias
+	 * 
+	 *         Metodo que devuelve el boton de wii de la seccion de categorias
 	 */
 	public static JButton wii(JFrame frame, ArrayList<Juego> cesta) {
 		JButton wii = new JButton("");
@@ -509,8 +267,13 @@ public class BotonesCategorias {
 	}
 
 	/**
-	 * @return un boton que redirige a la pantalla de listado de juegos de
-	 *         Nintendo New 3DS
+	 * @param frame
+	 *            : Frame principal de la aplicacion
+	 * @param cesta
+	 *            : ArrayList de juegos con la cesta del usuario
+	 * @return el boton de n3ds de la seccion de categorias
+	 * 
+	 *         Metodo que devuelve el boton de n3ds de la seccion de categorias
 	 */
 	public static JButton n3ds(JFrame frame, ArrayList<Juego> cesta) {
 		JButton n3ds = new JButton("");
@@ -533,8 +296,13 @@ public class BotonesCategorias {
 	}
 
 	/**
-	 * @return un boton que redirige a la pantalla de listado de juegos de
-	 *         PlayStation 4
+	 * @param frame
+	 *            : Frame principal de la aplicacion
+	 * @param cesta
+	 *            : ArrayList de juegos con la cesta del usuario
+	 * @return el boton de ps4 de la seccion de categorias
+	 * 
+	 *         Metodo que devuelve el boton de ps4 de la seccion de categorias
 	 */
 	public static JButton ps4(JFrame frame, ArrayList<Juego> cesta) {
 		JButton ps4 = new JButton("");

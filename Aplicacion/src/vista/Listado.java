@@ -548,12 +548,12 @@ public class Listado {
 		ordenacion2.add(txtPaginacion2);
 
 		if (nPagina != 1) {
-			ordenacion2.add(BotonesCategorias.atras(frmPantallaPrincipal,
+			ordenacion2.add(Botones.atras(frmPantallaPrincipal,
 					cesta, nPagina));
 		}
 
 		if (juegos.size() == 5 && nPagina * 5 != cantidad) {
-			ordenacion2.add(BotonesCategorias.adelante(frmPantallaPrincipal,
+			ordenacion2.add(Botones.adelante(frmPantallaPrincipal,
 					cesta, nPagina));
 		}
 
