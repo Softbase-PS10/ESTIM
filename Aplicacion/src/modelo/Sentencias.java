@@ -374,7 +374,7 @@ public class Sentencias {
 			}
 
 		} else {
-			Logger.log("Error n�mero negativo");
+			Logger.log("Error numero negativo");
 			// Mostrar mensaje en el log
 		}
 	}
@@ -569,7 +569,7 @@ public class Sentencias {
 	 * @return el identificador del ultimo juego
 	 */
 	public long obtenerUltimoIdJuego() {
-		Logger.log("Accediendo a la BD para obtener el id del �ltimo juego...");
+		Logger.log("Accediendo a la BD para obtener el id del ultimo juego...");
 		String q = "SELECT MAX(id) AS mid FROM JUEGO";
 		Statement st;
 		long id = -1;
