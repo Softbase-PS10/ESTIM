@@ -52,6 +52,8 @@ public class Plataforma {
 	 * @param id
 	 *            : id de la plataforma Crea una plataforma con identificador
 	 *            autogenerado, con nombre @param nombre y alias @param alias
+	 *            
+	 *            Metodo constructor
 	 */
 	public Plataforma(long id, String nombre, String alias) {
 		this.nombre = nombre;
@@ -65,6 +67,8 @@ public class Plataforma {
 	 * @param alias
 	 *            : alias de la plataforma Crea una plataforma con identificador
 	 *            autogenerado, con nombre @param nombre y alias @param alias
+	 *            
+	 *            Metodo constructor
 	 */
 	public Plataforma(String nombre, String alias) {
 		this.nombre = nombre;
@@ -77,6 +81,8 @@ public class Plataforma {
 	 * @param alias
 	 *            : alias de la plataforma Crea una plataforma con identificador
 	 *            y nombre autogenerado y alias @param alias
+	 *            
+	 *            Metodo constructor
 	 */
 	public Plataforma(String alias) {
 		this.alias = alias;
@@ -89,6 +95,8 @@ public class Plataforma {
 	 * @param id
 	 *            : identificador de la plataforma Crea una plataforma sin
 	 *            nombre ni alias. Su identificador sera @param id
+	 *            
+	 *            Metodo constructor
 	 */
 	public Plataforma(long id) {
 		this.id = id;
