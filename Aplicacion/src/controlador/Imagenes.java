@@ -23,10 +23,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.net.URLConnection;
-
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-
 import modelo.Logger;
 
 public class Imagenes {
@@ -47,11 +45,14 @@ public class Imagenes {
 	 * @throws IOException
 	 *             si se produce algun error en la obtencion de la imagen
 	 */
-	public static ImageIcon getIcon(String url, double escala) throws IOException {
-		if (url == null || url.compareToIgnoreCase("null") == 0){
-			return new ImageIcon(Imagenes.class.getResource("/Imagenes/not_available.jpg"));
+	public static ImageIcon getIcon(String url, double escala)
+			throws IOException {
+		if (url == null || url.compareToIgnoreCase("null") == 0) {
+			return new ImageIcon(
+					Imagenes.class.getResource("/Imagenes/not_available.jpg"));
 		}
-		return new ImageIcon(Imagenes.getImage(url, (int)(WIDTH * escala), (int)(HEIGHT * escala)));
+		return new ImageIcon(Imagenes.getImage(url, (int) (WIDTH * escala),
+				(int) (HEIGHT * escala)));
 	}
 
 	/**
@@ -83,8 +84,7 @@ public class Imagenes {
 		Logger.log("Cargando imagen de internet...");
 		URL link = new URL(url);
 		URLConnection conn = link.openConnection();
-		conn.addRequestProperty("User-Agent",
-				"Mozilla/5.0 (Windows NT 6.1;"
+		conn.addRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1;"
 				+ " WOW64; rv:25.0) Gecko/20100101 Firefox/25.0");
 		BufferedInputStream in = new BufferedInputStream(conn.getInputStream());
 		ByteArrayOutputStream byteArrayOut = new ByteArrayOutputStream();

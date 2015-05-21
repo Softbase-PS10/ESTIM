@@ -32,7 +32,6 @@ import java.io.InputStreamReader;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -45,7 +44,6 @@ import javax.swing.JPasswordField;
 import javax.swing.JPopupMenu;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-
 import modelo.Juego;
 import modelo.Logger;
 import modelo.Sentencias;
@@ -58,12 +56,21 @@ import vista.Principal;
 
 public class BotonesCabecera {
 
+	/* declaracion de variables */
 	private static JTextField busc;
 	private static JFrame frame;
 
+	/* declaracion de metodos y funciones */
+
 	/**
+	 * @param b
+	 *            : JTextField donde se escribira la busqueda
+	 * @param cesta
+	 *            : ArrayList de juegos con la lista de juegos comprados
 	 * @return un boton de busqueda que obtiene lo escrito en un campo, lo
 	 *         procesa y redirige a la pantalla de listado de resultados.
+	 * 
+	 *         Metodo que devuelve el boton de buscar de la aplicacion
 	 */
 	public static JButton buscar(JTextField b, final ArrayList<Juego> cesta) {
 		busc = b;
@@ -81,7 +88,8 @@ public class BotonesCabecera {
 				String busqueda = busc.getText();
 				Sentencias sql = new Sentencias();
 				Principal.filtrosMap.put("titulo", busqueda);
-				ArrayList<Juego> juegos = sql.listarJuegosMultipleFiltros(Principal.filtrosMap, 1);
+				ArrayList<Juego> juegos = sql.listarJuegosMultipleFiltros(
+						Principal.filtrosMap, 1);
 				frame.getContentPane().removeAll();
 				Logger.log("Juegos encontrados");
 				Listado.listar(frame, juegos, cesta, 1);
@@ -92,24 +100,35 @@ public class BotonesCabecera {
 	}
 
 	/**
-	 * @return un boton de ajuste/opciones que redirige a la pantalla de
-	 *         opciones de la aplicacion.
-	 * 
 	 * @param origen
 	 *            : 1 representa que el origen de esta llamada es de la pantalla
 	 *            principal, 2 para la pantalla de listado, 3 para la pantalla
 	 *            de informacion del juego y 4 para la pantalla de modificar
 	 *            juego
+	 * @param j
+	 *            : Juego actual que se esta visionando ahora en caso de estar
+	 *            en la pantalla de edicion de juego
+	 * @param juegos
+	 *            : Listado de juegos que se esta visionando en el momento
+	 * @param fr
+	 *            : Frame principal de la aplicacion
+	 * @param cesta
+	 *            : ArrayList de juegos con la cesta actual del usuario
+	 * @return un boton de ajuste/opciones que redirige a la pantalla de
+	 *         opciones de la aplicacion.
+	 * 
+	 *         Metodo que devuelve el panel de ajustes para el admin
 	 */
-	public static JLabel ajustes(final int origen, final Juego j, final ArrayList<Juego> juegos, 
-			final JFrame fr, final ArrayList<Juego> cesta) {
-		
+	public static JLabel ajustes(final int origen, final Juego j,
+			final ArrayList<Juego> juegos, final JFrame fr,
+			final ArrayList<Juego> cesta) {
+
 		final JLabel ajustes = new JLabel();
 		final Juego juegoActual = j;
 		ajustes.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		ajustes.setBounds(0, 0, 70, 70);
-		//Esta iniciada la sesion de administrador
-		if(FramePal.isAdminOn()){
+		// Esta iniciada la sesion de administrador
+		if (FramePal.isAdminOn()) {
 			ajustes.setIcon(new ImageIcon(Principal.class
 					.getResource("/Imagenes/B/settings.png")));
 			final JPopupMenu pop = new JPopupMenu();
@@ -142,8 +161,8 @@ public class BotonesCabecera {
 								"Are you sure you want to delete this game?",
 								JOptionPane.QUESTION_MESSAGE,
 								JOptionPane.YES_NO_OPTION);
-						final JDialog dialog = new JDialog(frame, "Confirmation",
-								true);
+						final JDialog dialog = new JDialog(frame,
+								"Confirmation", true);
 						dialog.setLocationRelativeTo(frame);
 						dialog.setBounds(500, 325, 200, 200);
 						dialog.setContentPane(optionPane);
@@ -158,20 +177,25 @@ public class BotonesCabecera {
 										if (dialog.isVisible()
 												&& (arg0.getSource() == optionPane)
 												&& (prop.equals(JOptionPane.VALUE_PROPERTY))) {
-											// If you were going to check something
-											// before closing the window, you'd do
+											// If you were going to check
+											// something
+											// before closing the window, you'd
+											// do
 											// it here.
 											int value = ((Integer) optionPane
 													.getValue()).intValue();
 											if (value == JOptionPane.YES_OPTION) {
 												Sentencias s = new Sentencias();
-												s.borrarJuego(juegoActual.getId());
+												s.borrarJuego(juegoActual
+														.getId());
 												ArrayList<Juego> juegos = s
 														.listarJuegosPlataformaAlias(juegoActual
 																.getPlataforma()
 																.getAlias());
-												frame.getContentPane().removeAll();
-												Listado.listar(frame, juegos, cesta,1);
+												frame.getContentPane()
+														.removeAll();
+												Listado.listar(frame, juegos,
+														cesta, 1);
 											} else if (value == JOptionPane.NO_OPTION) {
 												// Do nothing
 											}
@@ -193,16 +217,15 @@ public class BotonesCabecera {
 			exit.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mousePressed(java.awt.event.MouseEvent evt) {
-//					BotonesCabecera.frame.dispose();
-	    			FramePal.setAdminOn(false);
+					// BotonesCabecera.frame.dispose();
+					FramePal.setAdminOn(false);
 					frame.getContentPane().removeAll();
 
 					Principal.main(frame, cesta);
 				}
 			});
 			pop.add(exit);
-			
-			
+
 			ajustes.setComponentPopupMenu(pop);
 			ajustes.addMouseListener(new MouseAdapter() {
 
@@ -224,8 +247,8 @@ public class BotonesCabecera {
 				}
 			});
 		}
-		//No esta iniciada la sesion de administrador
-		else{
+		// No esta iniciada la sesion de administrador
+		else {
 			ajustes.setIcon(new ImageIcon(Principal.class
 					.getResource("/Imagenes/B/admin.png")));
 			ajustes.addMouseListener(new MouseAdapter() {
@@ -244,20 +267,25 @@ public class BotonesCabecera {
 
 				@Override
 				public void mousePressed(java.awt.event.MouseEvent evt) {
-					
-					InputStream is = Principal.class.getResourceAsStream("/Imagenes/Admin.txt");
-					BufferedReader br = new BufferedReader(new InputStreamReader(is));
+
+					InputStream is = Principal.class
+							.getResourceAsStream("/Imagenes/Admin.txt");
+					BufferedReader br = new BufferedReader(
+							new InputStreamReader(is));
 					try {
-						
+
 						final String pass = br.readLine().split(" ")[0];
 						br.close();
 
-						final JDialog dialog = new JDialog(frame, "Admin password", true);
+						final JDialog dialog = new JDialog(frame,
+								"Admin password", true);
 						final JPasswordField password;
 						JPanel panel = new JPanel();
 						JButton aceptar = new JButton("Accept");
-						JLabel texto = new JLabel("Use your admin password, please");
-						final JLabel errorPass = new JLabel("Incorrect password, try again");
+						JLabel texto = new JLabel(
+								"Use your admin password, please");
+						final JLabel errorPass = new JLabel(
+								"Incorrect password, try again");
 						JButton cancelar = new JButton("Cancel");
 
 						panel.setLayout(null);
@@ -265,23 +293,23 @@ public class BotonesCabecera {
 						panel.setPreferredSize(new Dimension(275, 125));
 						frame.getContentPane().add(panel, BorderLayout.CENTER);
 						panel.setBounds(500, 325, 400, 300);
-						
+
 						texto.setHorizontalAlignment(SwingConstants.CENTER);
 						texto.setBounds(0, 11, 275, 14);
 						panel.add(texto);
-						
+
 						errorPass.setHorizontalAlignment(SwingConstants.CENTER);
 						errorPass.setForeground(Color.RED);
 						errorPass.setBounds(0, 25, 275, 14);
 						errorPass.setVisible(false);
 						panel.add(errorPass);
-						
+
 						password = new JPasswordField();
 						password.setBounds(33, 48, 210, 20);
 						panel.add(password);
 						password.setPreferredSize(new Dimension(120, 20));
 						password.setName("Pass");
-						
+
 						cancelar.setBounds(149, 79, 85, 23);
 						cancelar.setHorizontalAlignment(SwingConstants.CENTER);
 						cancelar.addActionListener(new ActionListener() {
@@ -289,7 +317,7 @@ public class BotonesCabecera {
 							public void actionPerformed(ActionEvent e) {
 								dialog.setVisible(false);
 							}
-						});							
+						});
 						panel.add(cancelar);
 
 						aceptar.setBounds(45, 79, 85, 23);
@@ -299,52 +327,56 @@ public class BotonesCabecera {
 							public void actionPerformed(ActionEvent e) {
 								@SuppressWarnings("deprecation")
 								String passwor = password.getText();
-								if(passwor.length() != 0){
-								 try {
-									MessageDigest md = MessageDigest.getInstance("MD5");
-						        	md.update(passwor.getBytes());
-						 
-							        byte byteData[] = md.digest();
-							        StringBuffer hexString = new StringBuffer();
-						    		for (int i=0;i<byteData.length;i++) {
-						    			String hex=Integer.toHexString(0xff & byteData[i]);
-						   	     		if(hex.length()==1) hexString.append('0');
-						   	     		hexString.append(hex);
-						    		}
-						    		
-						    		if(hexString.toString().compareTo(pass.toString()) == 0){
-						    			FramePal.setAdminOn(true);
-						    			dialog.setVisible(false);
-						    			switch (origen) {
-						    			case 1:
-						    				//Pantalla principal
-						    				Principal.main(fr, cesta);
-						    				break;
-						    			case 2:
-						    				//Listado de juegos
-						    				Listado.listar(fr, juegos, cesta,1);
-						    				break;
-						    			case 3:
-						    				//Info de juego
-						    				Info.main(fr, juegoActual, cesta);
-						    				break;
-						    			}
-						    		}
-						    		else {
-										errorPass.setVisible(true);
-						    		}
-									
-								} catch (NoSuchAlgorithmException ex) {
-									ex.printStackTrace();
+								if (passwor.length() != 0) {
+									try {
+										MessageDigest md = MessageDigest
+												.getInstance("MD5");
+										md.update(passwor.getBytes());
+
+										byte byteData[] = md.digest();
+										StringBuffer hexString = new StringBuffer();
+										for (int i = 0; i < byteData.length; i++) {
+											String hex = Integer
+													.toHexString(0xff & byteData[i]);
+											if (hex.length() == 1)
+												hexString.append('0');
+											hexString.append(hex);
+										}
+
+										if (hexString.toString().compareTo(
+												pass.toString()) == 0) {
+											FramePal.setAdminOn(true);
+											dialog.setVisible(false);
+											switch (origen) {
+											case 1:
+												// Pantalla principal
+												Principal.main(fr, cesta);
+												break;
+											case 2:
+												// Listado de juegos
+												Listado.listar(fr, juegos,
+														cesta, 1);
+												break;
+											case 3:
+												// Info de juego
+												Info.main(fr, juegoActual,
+														cesta);
+												break;
+											}
+										} else {
+											errorPass.setVisible(true);
+										}
+
+									} catch (NoSuchAlgorithmException ex) {
+										ex.printStackTrace();
+									}
+								} else {
+									errorPass.setVisible(true);
 								}
-							}	
-							else{
-								errorPass.setVisible(true);
 							}
-								}
 						});
 						panel.add(aceptar);
-						
+
 						dialog.add(panel);
 						dialog.setBounds(500, 325, 400, 300);
 						dialog.setResizable(false);
@@ -356,23 +388,26 @@ public class BotonesCabecera {
 				}
 			});
 		}
-		
+
 		return ajustes;
 	}
 
 	/**
+	 * @param cesta
+	 *            : ArrayList de juegos en la cesta
 	 * @return un boton del carro de la compra que implementa la funcion de
 	 *         'carrito de la compra' en la aplicacion.
+	 * 
+	 *         Metodo que devuelve el panel de carro de la aplicacion
 	 */
 	public static JLabel carro(final ArrayList<Juego> cesta) {
 		final JLabel carro = new JLabel("");
 		carro.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		
-		if(cesta.isEmpty()){
+
+		if (cesta.isEmpty()) {
 			carro.setIcon(new ImageIcon(Principal.class
-				.getResource("/Imagenes/B/carro.png")));
-		}
-		else{
+					.getResource("/Imagenes/B/carro.png")));
+		} else {
 			carro.setIcon(new ImageIcon(Principal.class
 					.getResource("/Imagenes/B/carroLleno.png")));
 		}
@@ -381,11 +416,10 @@ public class BotonesCabecera {
 
 			@Override
 			public void mouseEntered(java.awt.event.MouseEvent evt) {
-				if(cesta.isEmpty()){
+				if (cesta.isEmpty()) {
 					carro.setIcon(new ImageIcon(Principal.class
-						.getResource("/Imagenes/B/carroP.png")));
-				}
-				else{
+							.getResource("/Imagenes/B/carroP.png")));
+				} else {
 					carro.setIcon(new ImageIcon(Principal.class
 							.getResource("/Imagenes/B/carroPLleno.png")));
 				}
@@ -393,11 +427,10 @@ public class BotonesCabecera {
 
 			@Override
 			public void mouseExited(java.awt.event.MouseEvent evt) {
-				if(cesta.isEmpty()){
+				if (cesta.isEmpty()) {
 					carro.setIcon(new ImageIcon(Principal.class
-						.getResource("/Imagenes/B/carro.png")));
-				}
-				else{
+							.getResource("/Imagenes/B/carro.png")));
+				} else {
 					carro.setIcon(new ImageIcon(Principal.class
 							.getResource("/Imagenes/B/carroLleno.png")));
 				}
@@ -413,8 +446,14 @@ public class BotonesCabecera {
 	}
 
 	/**
+	 * @param frame
+	 *            : Frame principal de la aplicacion
+	 * @param cesta
+	 *            : ArrayList de juegos con los juegos de la cesta del usuario
 	 * @return un boton con el logo del producto que redirige al usuario a la
 	 *         pantalla de inicio de la app.
+	 * 
+	 *         Metodo que devuelve el boton de logo de la aplicacion
 	 */
 	public static JButton logo(JFrame frame, final ArrayList<Juego> cesta) {
 		BotonesCabecera.frame = frame;
@@ -434,7 +473,7 @@ public class BotonesCabecera {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				BotonesCabecera.frame.getContentPane().removeAll();
-				Principal.main(BotonesCabecera.frame,cesta);
+				Principal.main(BotonesCabecera.frame, cesta);
 			}
 		});
 
