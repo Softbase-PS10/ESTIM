@@ -17,8 +17,9 @@ import java.util.HashMap;
 
 import modelo.Sentencias;
 
-/* Asignado a: Alejandro Royo */
 public class FiltrarJuego {
+
+	/* declaracion de metodos y funciones */
 
 	/**
 	 * Clase que lanza las distintas pruebas
@@ -30,14 +31,14 @@ public class FiltrarJuego {
 		System.out.println("Clase de equivalencia 1-2-3-4-5");
 		Lanzador.filtros.put("titulo", "The Witcher");
 		clase(Lanzador.filtros, sql);
-		
+
 		System.out.println("Clase de equivalencia 6");
 		clase(null, sql);
-		
+
 		System.out.println("Clase de equivalencia 7");
 		Lanzador.filtros.put("titulo", "");
 		clase(Lanzador.filtros, sql);
-		
+
 		System.out.println("Clase de equivalencia 8");
 		Lanzador.filtros.put(null, "The Witcher");
 		clase(Lanzador.filtros, sql);
@@ -45,7 +46,7 @@ public class FiltrarJuego {
 		System.out.println("Clase de equivalencia 9");
 		Lanzador.filtros.put("titulo", null);
 		clase(Lanzador.filtros, sql);
-		
+
 		sql.close();
 	}
 
@@ -53,7 +54,7 @@ public class FiltrarJuego {
 	 * Realiza una prueba de filtrado de juegos.
 	 * 
 	 * @param filtros
-	 * 			  : filtros de busqueda
+	 *            : filtros de busqueda
 	 * @param sql
 	 *            : conexion con la Base de Datos
 	 */

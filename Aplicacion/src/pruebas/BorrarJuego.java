@@ -15,38 +15,39 @@ package pruebas;
 
 import modelo.Sentencias;
 
-/* Asignado a: Alenadro Marquez */
 public class BorrarJuego {
-	
+
+	/* declaracion de metodos y funciones */
+
 	/**
 	 * Clase que lanza las distintas pruebas
 	 */
 	public static void prueba() {
 		System.out.println("Comenzando las pruebas sobre borrar juego:");
 		Sentencias sql = new Sentencias();
-		
+
 		System.out.println("Clase de equivalencia 1");
-		clase(1,sql);
-		
+		clase(1, sql);
+
 		System.out.println("Clase de equivalencia 2");
-		clase(-5,sql);
-		
+		clase(-5, sql);
+
 		System.out.println("Clase de equivalencia 3");
-		clase(2,sql);
-		
+		clase(2, sql);
+
 		sql.close();
 	}
-	
+
 	/**
 	 * Realiza una prueba unitaria eliminando un juego.
 	 * 
 	 * @param id
 	 *            : id del juego
 	 */
-	private static void clase(long id, Sentencias sql){
-		
+	private static void clase(long id, Sentencias sql) {
+
 		sql.borrarJuego(id);
-		
+
 	}
 
 }
