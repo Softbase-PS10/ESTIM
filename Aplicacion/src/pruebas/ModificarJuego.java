@@ -21,7 +21,7 @@ import modelo.Sentencias;
 
 /* Asignado a: Alejandro Marquez */
 public class ModificarJuego {
-	
+
 	/**
 	 * Clase que lanza las distintas pruebas
 	 */
@@ -40,54 +40,53 @@ public class ModificarJuego {
 				Lanzador.PRECIO, Lanzador.PLATAFORMA, sql);
 
 		System.out.println("Clase de equivalencia 6");
-		clase(Lanzador.TITULO, Lanzador.URL, null,
-				Lanzador.LANZAMIENTO, Lanzador.RATING, Lanzador.GENERO,
-				Lanzador.PRECIO, Lanzador.PLATAFORMA, sql);
-		
+		clase(Lanzador.TITULO, Lanzador.URL, null, Lanzador.LANZAMIENTO,
+				Lanzador.RATING, Lanzador.GENERO, Lanzador.PRECIO,
+				Lanzador.PLATAFORMA, sql);
+
 		System.out.println("Clase de equivalencia 8");
-		clase(Lanzador.TITULO, Lanzador.URL, Lanzador.DESCRIPCION,
-				null, Lanzador.RATING, Lanzador.GENERO,
-				Lanzador.PRECIO, Lanzador.PLATAFORMA, sql);
+		clase(Lanzador.TITULO, Lanzador.URL, Lanzador.DESCRIPCION, null,
+				Lanzador.RATING, Lanzador.GENERO, Lanzador.PRECIO,
+				Lanzador.PLATAFORMA, sql);
 
 		System.out.println("Clase de equivalencia 10");
 		clase(Lanzador.TITULO, Lanzador.URL, Lanzador.DESCRIPCION,
-				Lanzador.LANZAMIENTO, null, Lanzador.GENERO,
-				Lanzador.PRECIO, Lanzador.PLATAFORMA, sql);
+				Lanzador.LANZAMIENTO, null, Lanzador.GENERO, Lanzador.PRECIO,
+				Lanzador.PLATAFORMA, sql);
 
 		System.out.println("Clase de equivalencia 12");
 		clase(Lanzador.TITULO, Lanzador.URL, Lanzador.DESCRIPCION,
-				Lanzador.LANZAMIENTO, Lanzador.RATING, null,
-				Lanzador.PRECIO, Lanzador.PLATAFORMA, sql);
-		
+				Lanzador.LANZAMIENTO, Lanzador.RATING, null, Lanzador.PRECIO,
+				Lanzador.PLATAFORMA, sql);
+
 		System.out.println("Clase de equivalencia 17");
-		clase(null, Lanzador.URL, Lanzador.DESCRIPCION,
-				Lanzador.LANZAMIENTO, Lanzador.RATING, Lanzador.GENERO,
-				Lanzador.PRECIO, Lanzador.PLATAFORMA, sql);
-		
+		clase(null, Lanzador.URL, Lanzador.DESCRIPCION, Lanzador.LANZAMIENTO,
+				Lanzador.RATING, Lanzador.GENERO, Lanzador.PRECIO,
+				Lanzador.PLATAFORMA, sql);
+
 		System.out.println("Clase de equivalencia 18");
-		clase("", Lanzador.URL, Lanzador.DESCRIPCION,
-				Lanzador.LANZAMIENTO, Lanzador.RATING, Lanzador.GENERO,
-				Lanzador.PRECIO, Lanzador.PLATAFORMA, sql);
-		
+		clase("", Lanzador.URL, Lanzador.DESCRIPCION, Lanzador.LANZAMIENTO,
+				Lanzador.RATING, Lanzador.GENERO, Lanzador.PRECIO,
+				Lanzador.PLATAFORMA, sql);
+
 		System.out.println("Clase de equivalencia 19");
 		clase(Lanzador.TITULO, Lanzador.URL, Lanzador.DESCRIPCION,
-				Lanzador.LANZAMIENTO, Lanzador.RATING, Lanzador.GENERO,
-				-25, Lanzador.PLATAFORMA, sql);
-		
+				Lanzador.LANZAMIENTO, Lanzador.RATING, Lanzador.GENERO, -25,
+				Lanzador.PLATAFORMA, sql);
+
 		System.out.println("Clase de equivalencia 20");
 		clase(Lanzador.TITULO, Lanzador.URL, Lanzador.DESCRIPCION,
 				Lanzador.LANZAMIENTO, Lanzador.RATING, Lanzador.GENERO,
 				Lanzador.PRECIO, null, sql);
-		
+
 		System.out.println("Clase de equivalencia 21");
 		clase(Lanzador.TITULO, Lanzador.URL, Lanzador.DESCRIPCION,
 				Lanzador.LANZAMIENTO, Lanzador.RATING, Lanzador.GENERO,
 				Lanzador.PRECIO, "", sql);
-		
 
-		sql.close();
+//		sql.close();
 	}
-	
+
 	/**
 	 * Realiza una prueba unitaria modificando el juego con el ultimo id
 	 * 
@@ -115,7 +114,7 @@ public class ModificarJuego {
 			String plataforma, Sentencias sql) {
 
 		long id = sql.obtenerUltimoIdJuego();
-		
+
 		Plataforma platform = sql.listarPlataformaAlias(plataforma);
 		ArrayList<String> generos = new ArrayList<String>();
 		generos.add(genero);
@@ -125,6 +124,5 @@ public class ModificarJuego {
 
 		sql.actualizarJuego(j);
 	}
-	
 
 }

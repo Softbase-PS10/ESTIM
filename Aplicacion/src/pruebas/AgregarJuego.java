@@ -85,7 +85,7 @@ public class AgregarJuego {
 				Lanzador.PRECIO, "", sql);
 		
 
-		sql.close();
+//		sql.close();
 	}
 
 	/**
