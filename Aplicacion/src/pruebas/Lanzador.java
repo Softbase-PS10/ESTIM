@@ -18,7 +18,6 @@ import java.util.HashMap;
 import modelo.Logger;
 import modelo.Plataforma;
 
-/* Asignado a: Patricia Lazaro */
 public class Lanzador {
 
 	/* variables que usar en las pruebas */
@@ -32,10 +31,12 @@ public class Lanzador {
 	public final static String PLATAFORMA = Plataforma.aliasPC;
 	public final static HashMap<String, String> filtros = new HashMap<String, String>();
 
+	/* declaracion de metodos y funciones */
+
 	/**
 	 * Metodo que llama a las distintas funciones para realizar las
-	 * correspondientes pruebas a los requisitos de agregar, modificar,
-	 * eliminar y filtrar juegos de la Base de Datos
+	 * correspondientes pruebas a los requisitos de agregar, modificar, eliminar
+	 * y filtrar juegos de la Base de Datos
 	 */
 	public static void main(String[] args) {
 		
@@ -48,18 +49,22 @@ public class Lanzador {
 		System.out.println("Comenzando las pruebas sobre insercion de juegos...");
 		AgregarJuego.prueba();
 		System.out.println("Pruebas sobre insercion de juegos terminadas.");
-		
-		System.out.println("Comenzando las pruebas sobre modificacion de juegos...");
+
+		System.out
+				.println("Comenzando las pruebas sobre modificacion de juegos...");
 		ModificarJuego.prueba();
 		System.out.println("Pruebas sobre modificacion de juegos terminadas.");
-		
-		System.out.println("Comenzando las pruebas sobre eliminacion de juegos...");
+
+		System.out
+				.println("Comenzando las pruebas sobre eliminacion de juegos...");
 		BorrarJuego.prueba();
 		System.out.println("Pruebas sobre eliminacion de juegos terminadas.");
-		
-		System.out.println("Comenzando las pruebas sobre filtrado y ordenación de juegos...");
+
+		System.out
+				.println("Comenzando las pruebas sobre filtrado y ordenacion de juegos...");
 		FiltrarJuego.prueba();
-		System.out.println("Pruebas sobre filtrado y ordenación de juegos terminadas.");
+		System.out
+				.println("Pruebas sobre filtrado y ordenacion de juegos terminadas.");
 
 	}
 

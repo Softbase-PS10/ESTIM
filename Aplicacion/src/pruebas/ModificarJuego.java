@@ -19,8 +19,9 @@ import modelo.Juego;
 import modelo.Plataforma;
 import modelo.Sentencias;
 
-/* Asignado a: Alejandro Marquez */
 public class ModificarJuego {
+
+	/* declaracion de metodos y funciones */
 
 	/**
 	 * Clase que lanza las distintas pruebas

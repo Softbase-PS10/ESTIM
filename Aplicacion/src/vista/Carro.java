@@ -53,16 +53,16 @@ public class Carro {
 	private ArrayList<Juego> games;
 
 	/* declaracion de metodos y funciones */
-	
+
 	/**
+	 * Construye un objeto Carro y lo inicializa, lo cual muestra en el frame
+	 * "frame" la pantalla de carro
+	 * 
 	 * @param frame
 	 *            : Frame principal de la aplicacion donde sera mostrado todo
 	 * @param cesta
 	 *            : ArrayList de juegos que contiene los juegos comprados por el
 	 *            usuario
-	 * 
-	 *            Construye un objeto Carro y lo inicializa, lo cual muestra en
-	 *            el frame "frame" la pantalla de carro
 	 */
 	public static void main(final JFrame frame, final ArrayList<Juego> cesta) {
 		EventQueue.invokeLater(new Runnable() {
@@ -79,6 +79,8 @@ public class Carro {
 	}
 
 	/**
+	 * Constructor
+	 * 
 	 * @param frame
 	 *            : Frame principal donde sera mostrado todo
 	 * @param cesta
@@ -86,8 +88,6 @@ public class Carro {
 	 *            usuario
 	 * @throws IOException
 	 *             : Si cargar la imagen de algun juego produce una excepcion
-	 * 
-	 * 				Constructor
 	 */
 	public Carro(JFrame frame, ArrayList<Juego> cesta) throws IOException {
 		frame.getContentPane().removeAll();
@@ -95,6 +95,9 @@ public class Carro {
 	}
 
 	/**
+	 * Metodo initialize. Su funcion consiste en ir mostrando en el frame "frm"
+	 * todos los elementos de la pantalla de Carro
+	 * 
 	 * @param frame
 	 *            : Frame principal donde sera mostrado todo
 	 * @param cesta
@@ -102,10 +105,6 @@ public class Carro {
 	 *            usuario
 	 * @throws IOException
 	 *             : Si cargar la imagen de algun juego produce una excepcion
-	 * 
-	 * 				Metodo initialize. Su funcion consiste en ir mostrando
-	 * 				en el frame "frm" todos los elementos de la pantalla de
-	 * 				Carro
 	 */
 	private void initialize(JFrame frm, final ArrayList<Juego> cesta)
 			throws IOException {

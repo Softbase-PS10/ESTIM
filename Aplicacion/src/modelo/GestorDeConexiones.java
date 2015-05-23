@@ -29,7 +29,7 @@ public class GestorDeConexiones {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
-			System.err.println("Oracle driver not found");
+			System.err.println("MySQL driver not found");
 			e.printStackTrace();
 		}
 
