@@ -60,10 +60,10 @@ public class Listado {
 	/* declaracion de metodos y funciones */
 
 	/**
+	 * Lanza la ventana de listado de juegos
+	 * 
 	 * @param juegos
 	 *            : lista de los juegos a listar
-	 * 
-	 *            Lanza la ventana de listado de juegos
 	 */
 	public static void listar(final JFrame fr, final ArrayList<Juego> juegos,
 			final ArrayList<Juego> cesta, final int nPagina) {
@@ -82,11 +82,12 @@ public class Listado {
 	}
 
 	/**
+	 * Crea la pantalla de listado
+	 * 
 	 * @param juegos
 	 *            : lista de juegos a mostrar
 	 * @throws IOException
-	 * 
-	 *             Crea la aplicacion
+	 *             : Si no consigue cargar la imagen
 	 */
 	public Listado(JFrame fr, ArrayList<Juego> juegos, ArrayList<Juego> cesta,
 			int nPagina) throws IOException {
@@ -99,11 +100,12 @@ public class Listado {
 	}
 
 	/**
+	 * Inicializa la ventana
+	 * 
 	 * @param juegos
 	 *            : lista de juegos a mostrar
 	 * @throws IOException
-	 * 
-	 *             Inicializa la ventana
+	 *             : Si no consigue cargar la imagen
 	 */
 	private void initialize(ArrayList<Juego> juegos, int nPagina)
 			throws IOException {
@@ -331,7 +333,8 @@ public class Listado {
 			box.add(res);
 
 			JFormattedTextField frmtdtxtfldTotal = new JFormattedTextField();
-			frmtdtxtfldTotal.setText("No games to list with the chosen filters");
+			frmtdtxtfldTotal
+					.setText("No games to list with the chosen filters");
 			frmtdtxtfldTotal.setOpaque(false);
 			frmtdtxtfldTotal.setForeground(Color.WHITE);
 			frmtdtxtfldTotal.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -542,19 +545,19 @@ public class Listado {
 		txtPaginacion2.setForeground(Color.WHITE);
 		txtPaginacion2.setEditable(false);
 		txtPaginacion2.setBorder(null);
-		txtPaginacion2.setText("" + ((cantidad / 5)+1));
+		txtPaginacion2.setText("" + ((cantidad / 5) + 1));
 		txtPaginacion2.setHorizontalAlignment(JTextField.CENTER);
 		txtPaginacion2.setBounds(408, 21, 40, 14);
 		ordenacion2.add(txtPaginacion2);
 
 		if (nPagina != 1) {
-			ordenacion2.add(Botones.atras(frmPantallaPrincipal,
-					cesta, nPagina));
+			ordenacion2
+					.add(Botones.atras(frmPantallaPrincipal, cesta, nPagina));
 		}
 
 		if (juegos.size() == 5 && nPagina * 5 != cantidad) {
-			ordenacion2.add(Botones.adelante(frmPantallaPrincipal,
-					cesta, nPagina));
+			ordenacion2.add(Botones.adelante(frmPantallaPrincipal, cesta,
+					nPagina));
 		}
 
 		Logger.log("Listado de juegos inicializado");

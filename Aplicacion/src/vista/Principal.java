@@ -48,13 +48,13 @@ public class Principal {
 	/* declaracion de metodos y variables */
 
 	/**
+	 * Lanza la ventana principal de la aplicacion
+	 * 
 	 * @param frame
 	 *            : JFrame donde se vera la aplicacion
 	 * @param cesta
 	 *            : ArrayList de Juegos con la lista de juegos que el usuario
-	 *            pretende comprar
-	 * 
-	 *            Lanza la ventana principal de la aplicacion
+	 *            pretende comprar   
 	 */
 	public static void main(final JFrame frame, final ArrayList<Juego> cesta) {
 		EventQueue.invokeLater(new Runnable() {
@@ -71,13 +71,13 @@ public class Principal {
 	}
 
 	/**
+	 * Constructor
+	 * 
 	 * @param frame
 	 *            : JFrame donde se vera la aplicacion
 	 * @param cesta
 	 *            : ArrayList de Juegos con la lista de juegos que el usuario
 	 *            pretende comprar
-	 * 
-	 *            Constructor
 	 */
 	public Principal(JFrame frame, ArrayList<Juego> cesta) {
 		this.cesta = cesta;
