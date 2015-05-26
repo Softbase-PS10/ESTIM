@@ -141,10 +141,12 @@ public class Sentencias {
 			query = query + " AND LANZAMIENTO != 'null' ORDER BY STR_TO_DATE("
 					+ order + ", '%m/%d/%Y') " + type + " limit 5 offset "
 					+ (5 * (nPagina - 1));
-		else
+		else if (!order.equals(""))
 			query = query + " ORDER BY " + order + " " + type
 					+ " limit 5 offset " + (5 * (nPagina - 1));
-
+		else
+			query = query + " limit 5 offset " + (5 * (nPagina - 1));
+		
 		ArrayList<Juego> js = new ArrayList<Juego>();
 		try {
 			Statement st = connection.createStatement(), st2;
