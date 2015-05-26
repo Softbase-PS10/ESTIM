@@ -74,6 +74,7 @@ public class BotonesCabecera {
 	 */
 	public static JButton buscar(JTextField b, final ArrayList<Juego> cesta) {
 		busc = b;
+		busc.setText(Principal.filtrosMap.get("titulo"));
 		JButton busqueda = new JButton("");
 		busqueda.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		busqueda.setIcon(new ImageIcon(Principal.class

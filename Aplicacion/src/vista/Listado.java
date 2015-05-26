@@ -540,12 +540,19 @@ public class Listado {
 		txtPaginacion1.setBounds(408, 6, 40, 14);
 		ordenacion2.add(txtPaginacion1);
 
+		int totalPaginas=1;
+		if(cantidad>5){
+			totalPaginas = cantidad/5;
+			if(cantidad%5!=0){
+				totalPaginas++;
+			}
+		}
 		JTextField txtPaginacion2 = new JTextField();
 		txtPaginacion2.setOpaque(false);
 		txtPaginacion2.setForeground(Color.WHITE);
 		txtPaginacion2.setEditable(false);
 		txtPaginacion2.setBorder(null);
-		txtPaginacion2.setText("" + ((cantidad / 5) + 1));
+		txtPaginacion2.setText("" + totalPaginas);
 		txtPaginacion2.setHorizontalAlignment(JTextField.CENTER);
 		txtPaginacion2.setBounds(408, 21, 40, 14);
 		ordenacion2.add(txtPaginacion2);
@@ -554,8 +561,8 @@ public class Listado {
 			ordenacion2
 					.add(Botones.atras(frmPantallaPrincipal, cesta, nPagina));
 		}
-
-		if (juegos.size() == 5 && nPagina * 5 != cantidad) {
+		
+		if (nPagina!=totalPaginas) {
 			ordenacion2.add(Botones.adelante(frmPantallaPrincipal, cesta,
 					nPagina));
 		}

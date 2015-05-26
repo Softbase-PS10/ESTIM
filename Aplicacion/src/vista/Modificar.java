@@ -15,7 +15,6 @@ package vista;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Toolkit;
-import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
