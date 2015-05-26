@@ -48,15 +48,21 @@ public class Imagenes {
 	 * @throws IOException
 	 *             si se produce algun error en la obtencion de la imagen
 	 */
-	public static ImageIcon getIcon(String url, double escala)
-			throws IOException {
-		if (url == null || url.compareToIgnoreCase("null") == 0) {
+	public static ImageIcon getIcon(String url, double escala) {
+		
+		try {
+			if (url == null || url.compareToIgnoreCase("null") == 0) {
+				return new ImageIcon(
+						Imagenes.class.getResource("/Imagenes/not_available.jpg"));
+			}
+			return new ImageIcon(Imagenes.getImage(url, (int) (WIDTH * escala),
+					(int) (HEIGHT * escala)));
+		}
+		catch (Exception e) {
 			return new ImageIcon(
 					Imagenes.class.getResource("/Imagenes/not_available.jpg"));
 		}
-		return new ImageIcon(Imagenes.getImage(url, (int) (WIDTH * escala),
-				(int) (HEIGHT * escala)));
-	}
+		}
 
 	/**
 	 * Metodo que obtiene una imagen de (width, height)
@@ -73,7 +79,7 @@ public class Imagenes {
 	 *             si se produce algun error en la obtencion de la imagen
 	 */
 	public static Image getImage(String url, int width, int height)
-			throws IOException {
+			throws Exception {
 
 		return Imagenes.resizeImage(Imagenes.Url2Image(url), width, height);
 	}
@@ -87,7 +93,7 @@ public class Imagenes {
 	 * @throws IOException
 	 *             si se produce algun error en la obtencion de la imagen
 	 */
-	public static BufferedImage Url2Image(String url) throws IOException {
+	public static BufferedImage Url2Image(String url) throws Exception {
 		Logger.log("Cargando imagen de internet...");
 		URL link = new URL(url);
 		URLConnection conn = link.openConnection();

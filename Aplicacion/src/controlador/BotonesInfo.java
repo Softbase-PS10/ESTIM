@@ -163,7 +163,7 @@ public class BotonesInfo {
 			lblNewLabel.setBounds(122, 181, 128, 180);
 			try {
 				lblNewLabel.setIcon(controlador.Imagenes.getIcon(url, 1));
-			} catch (IOException e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
@@ -171,7 +171,7 @@ public class BotonesInfo {
 			lblNewLabel.setBounds(122, 181, 128, 180);
 			try {
 				lblNewLabel.setIcon(controlador.Imagenes.getIcon("/Imagenes/not_available.jpg", 1));
-			} catch (IOException e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}	
 		}

@@ -111,7 +111,7 @@ public class Modificar {
 				try {
 					ImageIcon caratula = Imagenes.getIcon(j.getImagen(), 1.35);
 					vistaPreviaCaratula.setIcon(caratula);
-				} catch (IOException e) {
+				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
