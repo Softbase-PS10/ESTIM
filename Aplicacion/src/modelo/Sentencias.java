@@ -80,6 +80,7 @@ public class Sentencias {
 				+ "JUEGO.id = JUEGO_GENERO.id and JUEGO.id = JUEGO_PLATAFORMA.juego and "
 				+ "JUEGO_PLATAFORMA.plataforma = PLATAFORMA.id";
 		String order = "", type = "";
+		boolean rat = false, fec = false;
 		/* aplicar filtros */
 		if (filtros != null) {
 			for (Entry<String, String> e : filtros.entrySet()) {
@@ -111,7 +112,11 @@ public class Sentencias {
 						query = query + " and JUEGO.rating <= " + e.getValue();
 						break;
 					case ("order"):
-						order =  " ORDER BY " +  e.getValue();
+						order = e.getValue();
+						if (order.equals("rating"))
+							rat = true;
+						else if (order.equals("lanzamiento"))
+							fec = true;
 						break;
 					case ("type"):
 						type = e.getValue();
@@ -128,8 +133,18 @@ public class Sentencias {
 		} else
 			Logger.log("Se ha introducido un HashMap nulo");
 		/* paginacion */
-		query = query + order + " " + type + " limit 5 offset "
-				+ (5 * (nPagina - 1));
+		if (rat)
+			query = query + " AND RATING != 'null' ORDER BY cast(" + order
+					+ " as DECIMAL(2,1)) " + type + " limit 5 offset "
+					+ (5 * (nPagina - 1));
+		else if (fec)
+			query = query + " AND LANZAMIENTO != 'null' ORDER BY STR_TO_DATE("
+					+ order + ", '%m/%d/%Y') " + type + " limit 5 offset "
+					+ (5 * (nPagina - 1));
+		else
+			query = query + " ORDER BY " + order + " " + type
+					+ " limit 5 offset " + (5 * (nPagina - 1));
+
 		ArrayList<Juego> js = new ArrayList<Juego>();
 		try {
 			Statement st = connection.createStatement(), st2;
