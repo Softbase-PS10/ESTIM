@@ -110,6 +110,12 @@ public class Sentencias {
 					case ("ratingmax"):
 						query = query + " and JUEGO.rating <= " + e.getValue();
 						break;
+					case ("order"):
+						order =  " ORDER BY " +  e.getValue();
+						break;
+					case ("type"):
+						type = e.getValue();
+						break;
 					default:
 						Logger.log("Se ha introducido una clave invalida");
 						break;
