@@ -85,7 +85,7 @@ public class ModificarJuego {
 				Lanzador.LANZAMIENTO, Lanzador.RATING, Lanzador.GENERO,
 				Lanzador.PRECIO, "", sql);
 
-		sql.close();
+//		sql.close();
 	}
 
 	/**

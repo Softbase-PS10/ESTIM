@@ -38,7 +38,12 @@ import vista.Info;
 public class BotonesInfo {
 
 	/**
-	 * @return la cabecera de la pantalla
+	 * Metodo que devuelve el label con la cabecera del programa
+	 * @param framePrincipal
+	 *            : Frame completo del programa
+	 * @param cesta
+	 * 			  : Array de juegos en el carro
+	 * @return el label de la cabecera del programa
 	 */
 	public static JPanel getCabecera(JFrame framePrincipal,
 			ArrayList<Juego> cesta) {
@@ -52,7 +57,8 @@ public class BotonesInfo {
 	}
 
 	/**
-	 * @return el cuadro de busqueda
+	 * Metodo que devuelve el cuadro de busqueda del programa
+	 * @return el campo de texto para buscar de la cabecera del programa
 	 */
 	public static JTextField getCuadroBusqueda() {
 		JTextField txtBuscar = new JTextField();
@@ -64,7 +70,12 @@ public class BotonesInfo {
 	}
 
 	/**
-	 * @return la lupa de busqueda
+	 * Metodo que devuelve el panel con la lupa de la cabecera del programa
+	 * @param txtBuscar
+	 *            : Campo de texto donde se va a escribir que buscar
+	 * @param cesta
+	 * 			  : Array de juegos en el carro
+	 * @return el panel de la lupa
 	 */
 	public static JPanel getLupaBuscar(JTextField txtBuscar,
 			ArrayList<Juego> cesta) {
@@ -76,7 +87,16 @@ public class BotonesInfo {
 	}
 
 	/**
-	 * @return las opciones
+	 * Metodo que devuelve el panel con las opciones del programa
+	 * @param juego
+	 *            : Juego a mostrar
+	 * @param juegos
+	 * 			  : Listado de juegos mostrados en la busqueda desde donde se llama
+	 * @param fr
+	 * 			  : Frame donde se va a mostrar el panel
+	 * @param cesta
+	 * 			  : Array de juegos en el carro
+	 * @return el panel de las opciones del programa
 	 */
 	public static JPanel getOpciones(Juego juego, ArrayList<Juego> juegos,  JFrame fr,
 			ArrayList<Juego> cesta) {
@@ -89,7 +109,10 @@ public class BotonesInfo {
 	}
 
 	/**
-	 * @return el carrito
+	 * Metodo que devuelve el label con el carrito del programa
+	 * @param cesta
+	 * 			  : Array de juegos en el carro
+	 * @return el panel del carrito de la cabecera del programa
 	 */
 	public static JPanel getCarrito(ArrayList<Juego> cesta) {
 		JPanel carrito = new JPanel();
@@ -101,7 +124,12 @@ public class BotonesInfo {
 	}
 
 	/**
-	 * @return las categorias
+	 * Metodo que devuelve el panel con todas las categorias del programa
+	 * @param frmInformacinDelProduc
+	 *            : Frame de las categorias del programa
+	 * @param cesta
+	 * 			  : Array de juegos en el carro
+	 * @return el panel de todas las categorias del programa
 	 */
 	public static JPanel getCategorias(JFrame frmInformacinDelProduc,
 			ArrayList<Juego> cesta) {
@@ -124,7 +152,10 @@ public class BotonesInfo {
 	}
 
 	/**
-	 * @return la label de la imagen
+	 * Metodo que devuelve el panel con todas las categorias del programa
+	 * @param url
+	 *            : Url de la imagen a mostrar
+	 * @return el label con la imagen del juego
 	 */
 	public static JLabel getImagenLabel(String url) {
 		JLabel lblNewLabel = new JLabel("");
@@ -148,7 +179,10 @@ public class BotonesInfo {
 	}
 
 	/**
-	 * @return la label del titulo
+	 * Metodo que devuelve el label con el nombre del juego
+	 * @param tituloString
+	 * 			  : Titulo del juego
+	 * @return el label con el nombre del juego
 	 */
 	public static JLabel getTituloLabel(String tituloString) {
 		JLabel Titulo = new JLabel();
@@ -169,7 +203,8 @@ public class BotonesInfo {
 	}
 
 	/**
-	 * @return la label del precio
+	 * Metodo que devuelve el label que indica el precio del juego
+	 * @return el label que pone price:
 	 */
 	public static JLabel getPrecioLabel() {
 		JLabel Precio = new JLabel("Price:");
@@ -180,7 +215,10 @@ public class BotonesInfo {
 	}
 
 	/**
-	 * @return la label del valor del precio
+	 * Metodo que devuelve el label con el valor del precio del juego
+	 * @param value
+	 *            : Precio del juego
+	 * @return el label del valor del precio
 	 */
 	public static JLabel getPrecioValueLabel(int value) {
 		JLabel RespPrecio = new JLabel();
@@ -193,7 +231,8 @@ public class BotonesInfo {
 	}
 
 	/**
-	 * @return la label del lanzamiento
+	 * Metodo que devuelve el label que indica la fecha de lanzamiento del juego
+	 * @return el label que pone release date:
 	 */
 	public static JLabel getLanzamientoLabel() {
 		JLabel Anio = new JLabel("Release date:");
@@ -204,7 +243,10 @@ public class BotonesInfo {
 	}
 
 	/**
-	 * @return la label del valor del lanzamiento
+	 * Metodo que devuelve el label con el valor de la fecha de lanzamiento del juego
+	 * @param value
+	 *            : Fecha del juego en el siguiente formato dd/mm/yy
+	 * @return el label del valor de la fecha de lanzamiento
 	 */
 	public static JLabel getLanzamientoValueLabel(String value) {
 		JLabel RespAnio = new JLabel();
@@ -222,7 +264,8 @@ public class BotonesInfo {
 	}
 
 	/**
-	 * @return la label de la plataforma
+	 * Metodo que devuelve el label que indica la plataforma del juego 
+	 * @return el label que pone platform:
 	 */
 	public static JLabel getPlataformaLabel() {
 		JLabel Plataforma = new JLabel("Platform:");
@@ -233,7 +276,10 @@ public class BotonesInfo {
 	}
 
 	/**
-	 * @return la label del valor de la plataforma
+	 * Metodo que devuelve el label con todas las plataformas del juego
+	 * @param value
+	 * 			  : Cadena con las plataformas del juego
+	 * @return el label de todas las plataformas del juego
 	 */
 	public static JLabel getPlataformaValueLabel(String value) {
 		JLabel RespPlataforma = new JLabel();
@@ -251,7 +297,8 @@ public class BotonesInfo {
 	}
 
 	/**
-	 * @return la label del genero
+	 * Metodo que devuelve el label que indica el genero del juego 
+	 * @return el label que pone genres:
 	 */
 	public static JLabel getGeneroLabel() {
 		JLabel Genero = new JLabel("Genres:");
@@ -262,7 +309,10 @@ public class BotonesInfo {
 	}
 
 	/**
-	 * @return la label del valor del genero
+	 * Metodo que devuelve el label con todos los generos del juego
+	 * @param value
+	 * 			  : Cadena con los generos del juego
+	 * @return el label de todos los generos del programa
 	 */
 	public static JLabel getGeneroValueLabel(String value) {
 		JLabel RespGenero = new JLabel();
@@ -280,7 +330,8 @@ public class BotonesInfo {
 	}
 
 	/**
-	 * @return la label de la descripcion
+	 * Metodo que devuelve el label que indica la descripcion del juego 
+	 * @return el label que pone description:
 	 */
 	public static JLabel getDescripcionLabel() {
 		JLabel Descripcion = new JLabel("Description:");
@@ -291,7 +342,10 @@ public class BotonesInfo {
 	}
 
 	/**
-	 * @return la label del valor de la descripcion
+	 * Metodo que devuelve el area de texto con la descripcion del juego
+	 * @param value
+	 * 			  : Descripcion del juego
+	 * @return el area de texto de la descripcion del juego
 	 */
 	public static JTextArea getDescripcionValueLabel(String value) {
 		JTextArea RespDescripcion = new JTextArea();
@@ -311,7 +365,10 @@ public class BotonesInfo {
 	}
 	
 	/**
-	 * @return la label de la valoracion
+	 * Metodo que devuelve el label con la valoracion del juego
+	 * @param value
+	 * 			  : valoracion del juego 
+	 * @return el label de la valoracion del juego
 	 */
 	public static JLabel getValoracionLabel(String value) {
 		JLabel RespValoracion = new JLabel();
@@ -330,7 +387,14 @@ public class BotonesInfo {
 	}
 	
 	/**
-	 * @return el boton del carro
+	 * Metodo que devuelve el boton del carro del programa
+	 * @param frame
+	 *            : Frame principal
+	 * @param game
+	 *            : Juego del que se va a mostrar la informacion 
+	 * @param cesta
+	 * 			  : Array de juegos en el carro
+	 * @return el panel de todas las categorias del programa
 	 */
 	public static JButton getBotonCarro(final JFrame frame, final Juego game,
 			final ArrayList<Juego> cesta) {
@@ -350,7 +414,8 @@ public class BotonesInfo {
 	}
 
 	/**
-	 * @return el fondo
+	 * Metodo que devuelve el label con el fondo puesto
+	 * @return el label con el fondo 
 	 */
 	public static JLabel getFondo() {
 		JLabel Fondo = new JLabel("");

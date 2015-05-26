@@ -12,8 +12,10 @@
 
 package pruebas;
 
+import java.io.IOException;
 import java.util.HashMap;
 
+import modelo.Logger;
 import modelo.Plataforma;
 
 public class Lanzador {
@@ -37,9 +39,14 @@ public class Lanzador {
 	 * y filtrar juegos de la Base de Datos
 	 */
 	public static void main(String[] args) {
-
-		System.out
-				.println("Comenzando las pruebas sobre insercion de juegos...");
+		
+		try {
+			Logger.initialize();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("Comenzando las pruebas sobre insercion de juegos...");
 		AgregarJuego.prueba();
 		System.out.println("Pruebas sobre insercion de juegos terminadas.");
 

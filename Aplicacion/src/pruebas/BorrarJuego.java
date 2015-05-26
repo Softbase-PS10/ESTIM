@@ -34,8 +34,6 @@ public class BorrarJuego {
 
 		System.out.println("Clase de equivalencia 3");
 		clase(2, sql);
-
-		sql.close();
 	}
 
 	/**
