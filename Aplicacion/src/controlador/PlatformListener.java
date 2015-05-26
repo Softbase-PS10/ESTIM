@@ -16,6 +16,7 @@ package controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.swing.JFrame;
 
@@ -57,6 +58,7 @@ public class PlatformListener implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		Principal.filtrosMap = new HashMap<String, String>();
 		if (alias != null) {
 			/* cargar juegos de la plataforma seleccionada */
 			Logger.log("Cargando juegos de la plataforma " + this.alias);
