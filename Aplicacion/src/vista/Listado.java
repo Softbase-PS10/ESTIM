@@ -259,7 +259,7 @@ public class Listado {
 
 		plataformaMulti = new JComboBox<String>();
 		plataformaMulti.setModel(new DefaultComboBoxModel<String>(new String[] {
-				"", "PS4", "PS3", "PSVITA", "XONE", "X360", "PC", "Wii U",
+				"", "PS4", "PS3", "PSVita", "XONE", "X360", "PC", "Wii U",
 				"Wii", "N3DS" }));
 		plataformaMulti.setToolTipText("");
 		plataformaMulti.setName("");
