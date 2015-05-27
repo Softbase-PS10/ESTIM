@@ -49,7 +49,6 @@ import modelo.Logger;
 import modelo.Sentencias;
 import vista.Carro;
 import vista.FramePal;
-import vista.Info;
 import vista.Listado;
 import vista.Modificar;
 import vista.Principal;
@@ -342,22 +341,8 @@ public class BotonesCabecera {
 												pass.toString()) == 0) {
 											FramePal.setAdminOn(true);
 											dialog.setVisible(false);
-											switch (origen) {
-											case 1:
-												// Pantalla principal
-												Principal.main(fr, cesta);
-												break;
-											case 2:
-												// Listado de juegos
-												Listado.listar(fr, juegos,
-														cesta, 1);
-												break;
-											case 3:
-												// Info de juego
-												Info.main(fr, juegoActual,
-														cesta);
-												break;
-											}
+											// Pantalla principal
+											Principal.main(fr, cesta);
 										} else {
 											errorPass.setVisible(true);
 										}
