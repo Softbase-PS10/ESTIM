@@ -366,10 +366,10 @@ public class Listado {
 
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						Logger.log("Cargando informaci�n del juego "
+						Logger.log("Cargando informacion del juego "
 								+ j.getTitulo());
 						frmPantallaPrincipal.getContentPane().removeAll();
-						Logger.log("Informaci�n del juego " + j.getTitulo()
+						Logger.log("Informacion del juego " + j.getTitulo()
 								+ " cargada");
 						Info.main(frmPantallaPrincipal, j, cesta);
 					}
@@ -467,8 +467,14 @@ public class Listado {
 				JFormattedTextField valoracion = new JFormattedTextField();
 				valoracion.setSize(150, 20);
 				valoracion.setLocation(244, 144);
-				if (j.getRating() == null
-						|| j.getRating().compareTo("null") == 0)
+				
+				// true si no tiene valoracion
+				boolean noValorar = (j.getRating() == null)
+						|| (j.getRating().compareToIgnoreCase("null") == 0)
+						|| (j.getRating().length() == 0)
+						|| (j.getRating().compareToIgnoreCase("") == 0);
+				
+				if (noValorar)
 					valoracion.setText("N/A");
 				else
 					valoracion.setText(j.getRating() + " / 10");

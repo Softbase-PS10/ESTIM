@@ -112,14 +112,8 @@ public class Carro {
 		games = cesta;
 		frmPantallaPrincipal = frm;
 		frmPantallaPrincipal.setIconImage(Toolkit.getDefaultToolkit().getImage(
-				Principal.class.getResource("/Imagenes/E.png")));
-		frmPantallaPrincipal.setResizable(false);
-		frmPantallaPrincipal.setBounds(100, 100, 1066, 600);
-		frmPantallaPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmPantallaPrincipal.getContentPane().setLayout(null);
-		frmPantallaPrincipal.setTitle("Cart - Estim");
-		frmPantallaPrincipal.setIconImage(Toolkit.getDefaultToolkit().getImage(
 				Info.class.getResource("/Imagenes/E.png")));
+		frmPantallaPrincipal.setTitle("Cart - Estim");
 
 		JPanel cabecera = new JPanel();
 		cabecera.setBorder(new LineBorder(new Color(0, 0, 0), 2));
@@ -271,10 +265,10 @@ public class Carro {
 
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						Logger.log("Cargando informaci�n del juego "
+						Logger.log("Cargando informacion del juego "
 								+ j.getTitulo());
 						frmPantallaPrincipal.getContentPane().removeAll();
-						Logger.log("Informaci�n del juego " + j.getTitulo()
+						Logger.log("Informacion del juego " + j.getTitulo()
 								+ " cargada");
 						Info.main(frmPantallaPrincipal, j, cesta);
 					}

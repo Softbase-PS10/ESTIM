@@ -89,7 +89,7 @@ public class Info {
 	 *            : Objeto juego del que mostrar informacion
 	 */
 	private void initialize(Juego juego) {
-		Logger.log("Inicializando información del juego...");
+		Logger.log("Inicializando informacion del juego...");
 		frmInformacinDelProduc.setTitle("Product information - Estim");
 		frmInformacinDelProduc.setIconImage(Toolkit.getDefaultToolkit()
 				.getImage(Info.class.getResource("/Imagenes/E.png")));
@@ -188,6 +188,6 @@ public class Info {
 		JLabel Fondo = BotonesInfo.getFondo();
 		frmInformacinDelProduc.getContentPane().add(Fondo);
 
-		Logger.log("Información del juego inicializada");
+		Logger.log("Informacion del juego inicializada");
 	}
 }

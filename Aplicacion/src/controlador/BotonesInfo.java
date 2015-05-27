@@ -38,10 +38,11 @@ public class BotonesInfo {
 
 	/**
 	 * Metodo que devuelve el label con la cabecera del programa
+	 * 
 	 * @param framePrincipal
 	 *            : Frame completo del programa
 	 * @param cesta
-	 * 			  : Array de juegos en el carro
+	 *            : Array de juegos en el carro
 	 * @return el label de la cabecera del programa
 	 */
 	public static JPanel getCabecera(JFrame framePrincipal,
@@ -57,6 +58,7 @@ public class BotonesInfo {
 
 	/**
 	 * Metodo que devuelve el cuadro de busqueda del programa
+	 * 
 	 * @return el campo de texto para buscar de la cabecera del programa
 	 */
 	public static JTextField getCuadroBusqueda() {
@@ -70,10 +72,11 @@ public class BotonesInfo {
 
 	/**
 	 * Metodo que devuelve el panel con la lupa de la cabecera del programa
+	 * 
 	 * @param txtBuscar
 	 *            : Campo de texto donde se va a escribir que buscar
 	 * @param cesta
-	 * 			  : Array de juegos en el carro
+	 *            : Array de juegos en el carro
 	 * @return el panel de la lupa
 	 */
 	public static JPanel getLupaBuscar(JTextField txtBuscar,
@@ -87,30 +90,33 @@ public class BotonesInfo {
 
 	/**
 	 * Metodo que devuelve el panel con las opciones del programa
+	 * 
 	 * @param juego
 	 *            : Juego a mostrar
 	 * @param juegos
-	 * 			  : Listado de juegos mostrados en la busqueda desde donde se llama
+	 *            : Listado de juegos mostrados en la busqueda desde donde se
+	 *            llama
 	 * @param fr
-	 * 			  : Frame donde se va a mostrar el panel
+	 *            : Frame donde se va a mostrar el panel
 	 * @param cesta
-	 * 			  : Array de juegos en el carro
+	 *            : Array de juegos en el carro
 	 * @return el panel de las opciones del programa
 	 */
-	public static JPanel getOpciones(Juego juego, ArrayList<Juego> juegos,  JFrame fr,
-			ArrayList<Juego> cesta) {
+	public static JPanel getOpciones(Juego juego, ArrayList<Juego> juegos,
+			JFrame fr, ArrayList<Juego> cesta) {
 		JPanel opciones = new JPanel();
 		opciones.setBorder(new LineBorder(new Color(0, 0, 0)));
 		opciones.setBounds(920, 0, 70, 70);
 		opciones.setLayout(null);
-		opciones.add(BotonesCabecera.ajustes(3,juego, juegos, fr, cesta));
+		opciones.add(BotonesCabecera.ajustes(3, juego, juegos, fr, cesta));
 		return opciones;
 	}
 
 	/**
 	 * Metodo que devuelve el label con el carrito del programa
+	 * 
 	 * @param cesta
-	 * 			  : Array de juegos en el carro
+	 *            : Array de juegos en el carro
 	 * @return el panel del carrito de la cabecera del programa
 	 */
 	public static JPanel getCarrito(ArrayList<Juego> cesta) {
@@ -124,10 +130,11 @@ public class BotonesInfo {
 
 	/**
 	 * Metodo que devuelve el panel con todas las categorias del programa
+	 * 
 	 * @param frmInformacinDelProduc
 	 *            : Frame de las categorias del programa
 	 * @param cesta
-	 * 			  : Array de juegos en el carro
+	 *            : Array de juegos en el carro
 	 * @return el panel de todas las categorias del programa
 	 */
 	public static JPanel getCategorias(JFrame frmInformacinDelProduc,
@@ -137,7 +144,8 @@ public class BotonesInfo {
 		categorias.setBackground(Color.DARK_GRAY);
 		categorias.setBounds(0, 70, 1060, 30);
 		categorias.setLayout(null);
-		categorias.add(BotonesCategorias.allgames(frmInformacinDelProduc, cesta));
+		categorias.add(BotonesCategorias
+				.allgames(frmInformacinDelProduc, cesta));
 		categorias.add(BotonesCategorias.ps3(frmInformacinDelProduc, cesta));
 		categorias.add(BotonesCategorias.vita(frmInformacinDelProduc, cesta));
 		categorias.add(BotonesCategorias.xone(frmInformacinDelProduc, cesta));
@@ -152,35 +160,37 @@ public class BotonesInfo {
 
 	/**
 	 * Metodo que devuelve el panel con todas las categorias del programa
+	 * 
 	 * @param url
 	 *            : Url de la imagen a mostrar
 	 * @return el label con la imagen del juego
 	 */
 	public static JLabel getImagenLabel(String url) {
 		JLabel lblNewLabel = new JLabel("");
-		if(!url.equals("null")) {
+		if (!url.equals("null")) {
 			lblNewLabel.setBounds(122, 181, 128, 180);
 			try {
 				lblNewLabel.setIcon(controlador.Imagenes.getIcon(url, 1));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
-		else{
+		} else {
 			lblNewLabel.setBounds(122, 181, 128, 180);
 			try {
-				lblNewLabel.setIcon(controlador.Imagenes.getIcon("/Imagenes/not_available.jpg", 1));
+				lblNewLabel.setIcon(controlador.Imagenes.getIcon(
+						"/Imagenes/not_available.jpg", 1));
 			} catch (Exception e) {
 				e.printStackTrace();
-			}	
+			}
 		}
 		return lblNewLabel;
 	}
 
 	/**
 	 * Metodo que devuelve el label con el nombre del juego
+	 * 
 	 * @param tituloString
-	 * 			  : Titulo del juego
+	 *            : Titulo del juego
 	 * @return el label con el nombre del juego
 	 */
 	public static JLabel getTituloLabel(String tituloString) {
@@ -190,11 +200,10 @@ public class BotonesInfo {
 		Titulo.setBackground(new Color(255, 255, 255));
 		Titulo.setBorder(null);
 		Titulo.setForeground(Color.WHITE);
-		if(!tituloString.equals("null")){
+		if (!tituloString.equals("null")) {
 			Titulo.setText(tituloString + "\r\n");
-		}
-		else{
-			Titulo.setText("N/A" + "\r\n");	
+		} else {
+			Titulo.setText("N/A" + "\r\n");
 		}
 		Titulo.setBounds(0, 105, 1066, 31);
 		Titulo.setHorizontalAlignment(SwingConstants.CENTER);
@@ -203,6 +212,7 @@ public class BotonesInfo {
 
 	/**
 	 * Metodo que devuelve el label que indica el precio del juego
+	 * 
 	 * @return el label que pone price:
 	 */
 	public static JLabel getPrecioLabel() {
@@ -215,6 +225,7 @@ public class BotonesInfo {
 
 	/**
 	 * Metodo que devuelve el label con el valor del precio del juego
+	 * 
 	 * @param value
 	 *            : Precio del juego
 	 * @return el label del valor del precio
@@ -231,6 +242,7 @@ public class BotonesInfo {
 
 	/**
 	 * Metodo que devuelve el label que indica la fecha de lanzamiento del juego
+	 * 
 	 * @return el label que pone release date:
 	 */
 	public static JLabel getLanzamientoLabel() {
@@ -242,7 +254,9 @@ public class BotonesInfo {
 	}
 
 	/**
-	 * Metodo que devuelve el label con el valor de la fecha de lanzamiento del juego
+	 * Metodo que devuelve el label con el valor de la fecha de lanzamiento del
+	 * juego
+	 * 
 	 * @param value
 	 *            : Fecha del juego en el siguiente formato dd/mm/yy
 	 * @return el label del valor de la fecha de lanzamiento
@@ -257,13 +271,14 @@ public class BotonesInfo {
 		} else {
 			RespAnio.setText("N/A");
 		}
-		
+
 		RespAnio.setBounds(540, 200, 282, 20);
 		return RespAnio;
 	}
 
 	/**
-	 * Metodo que devuelve el label que indica la plataforma del juego 
+	 * Metodo que devuelve el label que indica la plataforma del juego
+	 * 
 	 * @return el label que pone platform:
 	 */
 	public static JLabel getPlataformaLabel() {
@@ -276,8 +291,9 @@ public class BotonesInfo {
 
 	/**
 	 * Metodo que devuelve el label con todas las plataformas del juego
+	 * 
 	 * @param value
-	 * 			  : Cadena con las plataformas del juego
+	 *            : Cadena con las plataformas del juego
 	 * @return el label de todas las plataformas del juego
 	 */
 	public static JLabel getPlataformaValueLabel(String value) {
@@ -285,10 +301,9 @@ public class BotonesInfo {
 		RespPlataforma.setOpaque(false);
 		RespPlataforma.setForeground(Color.WHITE);
 		RespPlataforma.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		if(!value.equals("null")){
-			RespPlataforma.setText(value);	
-		}
-		else{
+		if (!value.equals("null")) {
+			RespPlataforma.setText(value);
+		} else {
 			RespPlataforma.setText("N/A");
 		}
 		RespPlataforma.setBounds(540, 244, 254, 20);
@@ -296,7 +311,8 @@ public class BotonesInfo {
 	}
 
 	/**
-	 * Metodo que devuelve el label que indica el genero del juego 
+	 * Metodo que devuelve el label que indica el genero del juego
+	 * 
 	 * @return el label que pone genres:
 	 */
 	public static JLabel getGeneroLabel() {
@@ -309,18 +325,18 @@ public class BotonesInfo {
 
 	/**
 	 * Metodo que devuelve el label con todos los generos del juego
+	 * 
 	 * @param value
-	 * 			  : Cadena con los generos del juego
+	 *            : Cadena con los generos del juego
 	 * @return el label de todos los generos del programa
 	 */
 	public static JLabel getGeneroValueLabel(String value) {
 		JLabel RespGenero = new JLabel();
 		RespGenero.setOpaque(false);
-		if(!value.equals("null")){
-			RespGenero.setText(value);	
-		}
-		else{
-			RespGenero.setText("N/A");	
+		if (!value.equals("null")) {
+			RespGenero.setText(value);
+		} else {
+			RespGenero.setText("N/A");
 		}
 		RespGenero.setForeground(Color.WHITE);
 		RespGenero.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -329,7 +345,8 @@ public class BotonesInfo {
 	}
 
 	/**
-	 * Metodo que devuelve el label que indica la descripcion del juego 
+	 * Metodo que devuelve el label que indica la descripcion del juego
+	 * 
 	 * @return el label que pone description:
 	 */
 	public static JLabel getDescripcionLabel() {
@@ -342,18 +359,18 @@ public class BotonesInfo {
 
 	/**
 	 * Metodo que devuelve el area de texto con la descripcion del juego
+	 * 
 	 * @param value
-	 * 			  : Descripcion del juego
+	 *            : Descripcion del juego
 	 * @return el area de texto de la descripcion del juego
 	 */
 	public static JTextArea getDescripcionValueLabel(String value) {
 		JTextArea RespDescripcion = new JTextArea();
 		RespDescripcion.setForeground(Color.WHITE);
 		RespDescripcion.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		if(!value.equals("null")){
-			RespDescripcion.setText(value);	
-		}
-		else{
+		if (!value.equals("null")) {
+			RespDescripcion.setText(value);
+		} else {
 			RespDescripcion.setText("");
 		}
 		RespDescripcion.setOpaque(false);
@@ -362,11 +379,12 @@ public class BotonesInfo {
 		RespDescripcion.setWrapStyleWord(true);
 		return RespDescripcion;
 	}
-	
+
 	/**
 	 * Metodo que devuelve el label con la valoracion del juego
+	 * 
 	 * @param value
-	 * 			  : valoracion del juego 
+	 *            : valoracion del juego
 	 * @return el label de la valoracion del juego
 	 */
 	public static JLabel getValoracionLabel(String value) {
@@ -374,25 +392,32 @@ public class BotonesInfo {
 		RespValoracion.setOpaque(false);
 		RespValoracion.setForeground(Color.WHITE);
 		RespValoracion.setFont(new Font("Tahoma", Font.BOLD, 20));
-		if(!value.equals("null")){
+
+		// true si no tiene valoracion
+		boolean noValorar = (value == null)
+				|| (value.compareToIgnoreCase("null") == 0)
+				|| (value.length() == 0)
+				|| (value.compareToIgnoreCase("") == 0);
+
+		if(!noValorar){
 			RespValoracion.setText(value + "/10");
-		}
-		else{
-			RespValoracion.setText("NA/10");	
+		} else {
+			RespValoracion.setText("N/A");
 		}
 		RespValoracion.setBounds(122, 401, 128, 25);
 		RespValoracion.setHorizontalAlignment(SwingConstants.CENTER);
 		return RespValoracion;
 	}
-	
+
 	/**
 	 * Metodo que devuelve el boton del carro del programa
+	 * 
 	 * @param frame
 	 *            : Frame principal
 	 * @param game
-	 *            : Juego del que se va a mostrar la informacion 
+	 *            : Juego del que se va a mostrar la informacion
 	 * @param cesta
-	 * 			  : Array de juegos en el carro
+	 *            : Array de juegos en el carro
 	 * @return el panel de todas las categorias del programa
 	 */
 	public static JButton getBotonCarro(final JFrame frame, final Juego game,
@@ -403,9 +428,9 @@ public class BotonesInfo {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				Logger.log("Añadiendo juego "+game.getTitulo()+" al carro");
+				Logger.log("Aï¿½adiendo juego " + game.getTitulo() + " al carro");
 				cesta.add(game);
-				Logger.log("Juego "+game.getTitulo()+" agregado al carro");
+				Logger.log("Juego " + game.getTitulo() + " agregado al carro");
 				JOptionPane.showMessageDialog(frame, "Game added to cart");
 			}
 		});
@@ -414,7 +439,8 @@ public class BotonesInfo {
 
 	/**
 	 * Metodo que devuelve el label con el fondo puesto
-	 * @return el label con el fondo 
+	 * 
+	 * @return el label con el fondo
 	 */
 	public static JLabel getFondo() {
 		JLabel Fondo = new JLabel("");
