@@ -69,7 +69,7 @@ public class Modificar {
 	 * 
 	 * @param j
 	 *            : juego del cual se extraen datos para mostrarlos en los
-	 *            campos correspondientes. Si es =null, los campos quedarán
+	 *            campos correspondientes. Si es =null, los campos quedarï¿½n
 	 *            vacios.
 	 */
 	@SuppressWarnings("static-access")
@@ -356,7 +356,7 @@ public class Modificar {
 		panel_3.add(plataforma);
 
 		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(214, 175, 100, 20);
+		menuBar.setBounds(214, 175, 130, 20);
 		panel_3.add(menuBar);
 
 		genero = new JMenu();
@@ -387,7 +387,7 @@ public class Modificar {
 		ePrecio.setBounds(284, 84, 140, 20);
 		ePrecioString = new JFormattedTextField();
 		ePrecioString.setVisible(false);
-		ePrecioString.setText("Solo se admiten números");
+		ePrecioString.setText("Solo se admiten numeros");
 		ePrecioString.setOpaque(false);
 		ePrecioString.setForeground(Color.RED);
 		ePrecioString.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -396,7 +396,7 @@ public class Modificar {
 		ePrecioString.setBounds(284, 84, 250, 20);
 		ePrecioNegativo = new JFormattedTextField();
 		ePrecioNegativo.setVisible(false);
-		ePrecioNegativo.setText("Solo se admiten números positivos");
+		ePrecioNegativo.setText("Solo se admiten numeros positivos");
 		ePrecioNegativo.setOpaque(false);
 		ePrecioNegativo.setForeground(Color.RED);
 		ePrecioNegativo.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -409,7 +409,7 @@ public class Modificar {
 
 		eRating = new JFormattedTextField();
 		eRating.setVisible(false);
-		eRating.setText("Formato incorrecto, número decimal entre 0 y 10 con separador .");
+		eRating.setText("Formato incorrecto, numero decimal entre 0 y 10 con separador .");
 		eRating.setOpaque(false);
 		eRating.setForeground(Color.RED);
 		eRating.setFont(new Font("Tahoma", Font.PLAIN, 14));
