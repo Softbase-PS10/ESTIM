@@ -319,7 +319,7 @@ public class Botones {
 						if (!((point > 47 && point < 58) || point == 46)
 								&& !punto) {
 							error = true;
-							Logger.log("Error: La valoraciï¿½n del juego tiene un formato incorrecto");
+							Logger.log("Error: La valoración del juego tiene un formato incorrecto");
 							Modificar.eRating.setVisible(true);
 						} else {
 							Modificar.eRating.setVisible(false);

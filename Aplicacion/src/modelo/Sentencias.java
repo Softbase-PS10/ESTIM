@@ -146,7 +146,7 @@ public class Sentencias {
 					+ " limit 5 offset " + (5 * (nPagina - 1));
 		else
 			query = query + " limit 5 offset " + (5 * (nPagina - 1));
-		
+
 		ArrayList<Juego> js = new ArrayList<Juego>();
 		try {
 			Statement st = connection.createStatement(), st2;
@@ -587,13 +587,19 @@ public class Sentencias {
 				ex.printStackTrace();
 			}
 
-			for (String g : juego.getGenero()) {
-				String query = "DELETE FROM JUEGO_GENERO WHERE id = "
-						+ juego.getId() + ";";
-				try {
-					Statement st = connection.createStatement();
-					st.execute(query);
+			String query = "DELETE FROM JUEGO_GENERO WHERE id = "
+					+ juego.getId() + ";";
+			Statement st;
+			try {
+				st = connection.createStatement();
+				st.execute(query);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
+			for (String g : juego.getGenero()) {
+				try {
 					queryString = "INSERT INTO JUEGO_GENERO (id,genero) VALUES (?,?)";
 
 					PreparedStatement preparedStatement = connection
