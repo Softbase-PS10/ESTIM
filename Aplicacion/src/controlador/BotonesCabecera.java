@@ -183,14 +183,9 @@ public class BotonesCabecera {
 												Sentencias s = new Sentencias();
 												s.borrarJuego(juegoActual
 														.getId());
-												ArrayList<Juego> juegos = s
-														.listarJuegosPlataformaAlias(juegoActual
-																.getPlataforma()
-																.getAlias());
 												frame.getContentPane()
 														.removeAll();
-												Listado.listar(frame, juegos,
-														cesta, 1);
+												Principal.main(frame, cesta);
 											} else if (value == JOptionPane.NO_OPTION) {
 												;
 											}
