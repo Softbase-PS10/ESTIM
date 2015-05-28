@@ -274,7 +274,7 @@ public class Botones {
 				String titulo = Modificar.titulo.getText();
 				if (titulo.length() == 0) {
 					error = true;
-					Logger.log("Error: La longitud del tï¿½tulo es cero");
+					Logger.log("Error: La longitud del titulo es cero");
 					Modificar.eTitulo.setVisible(true);
 				} else {
 					Modificar.eTitulo.setVisible(false);
@@ -319,7 +319,7 @@ public class Botones {
 						if (!((point > 47 && point < 58) || point == 46)
 								&& !punto) {
 							error = true;
-							Logger.log("Error: La valoración del juego tiene un formato incorrecto");
+							Logger.log("Error: La valoracion del juego tiene un formato incorrecto");
 							Modificar.eRating.setVisible(true);
 						} else {
 							Modificar.eRating.setVisible(false);
@@ -327,7 +327,7 @@ public class Botones {
 					}
 				} else {
 					error = true;
-					Logger.log("Error: La valoraciï¿½n del juego tiene un formato incorrecto");
+					Logger.log("Error: La valoracion del juego tiene un formato incorrecto");
 					Modificar.eRating.setVisible(true);
 				}
 
