@@ -345,7 +345,6 @@ public class Botones {
 					JCheckBoxMenuItem cb = (JCheckBoxMenuItem) comp[i];
 					if (cb.isSelected()) {
 						genero.add(cb.getText());
-						System.out.println(cb.getText());
 					}
 				}
 				if (!error) {
